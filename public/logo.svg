@@ -1,0 +1,5 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'>
+    <circle cx='100' cy='100' r='90' fill='gold'/>
+    <path d='M60 140 L100 40 L140 140 Z' fill='navy'/>
+    <text x='100' y='190' font-size='24' text-anchor='middle' fill='green'>BuddyMoney</text>
+    </svg>
