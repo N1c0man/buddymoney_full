@@ -33,7 +33,7 @@ export default function Hero() {
           <div className="bg-white rounded-2xl shadow-soft p-6">
             <img
               className="w-72 md:w-96"
-              src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?q=80&w=1200&auto=format&fit=crop"
+              src="/icons/heroowl.png"
               alt="Finance illustration"
             />
           </div>

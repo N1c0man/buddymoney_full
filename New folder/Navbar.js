@@ -11,7 +11,7 @@ export default function Navbar() {
       : "text-gray-700 hover:bg-green-100");
 
   return (
-    <header className="bg-white shadow sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
+    <header className="bg-white shadow sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between md:flex-nowrap">
         {/* Logo (centered on mobile, left on md+) */}
         <div className="w-full md:w-auto flex justify-center md:justify-start mb-2 md:mb-0">
@@ -19,7 +19,7 @@ export default function Navbar() {
             <img
               src="/icons/BMlogo.png"
               alt="BuddyMoney Logo"
-              className="h-14 w-auto md:h-16 transition-transform duration-300 hover:scale-105"
+              className="h-14 w-auto md:h-16 drop-shadow-md transition-transform duration-300 hover:scale-105"
               style={{ objectFit: "contain" }}
             />
           </Link>
@@ -30,7 +30,6 @@ export default function Navbar() {
           <NavLink to="/" className={linkCls}>Home</NavLink>
           <NavLink to="/blog" className={linkCls}>Blog</NavLink>
           <NavLink to="/tools" className={linkCls}>Tools</NavLink>
-          <NavLink to="/coach" className={linkCls}>Coach</NavLink> {/* ✅ New link */}
           <NavLink to="/about" className={linkCls}>About</NavLink>
         </nav>
 
@@ -61,7 +60,7 @@ export default function Navbar() {
       <div
         id="mobile-menu"
         className={
-          "md:hidden overflow-hidden transition-all duration-300 backdrop-blur-sm bg-white/80 " +
+          "md:hidden overflow-hidden transition-all duration-300 " +
           (open ? "max-h-60 opacity-100" : "max-h-0 opacity-0")
         }
       >
@@ -86,13 +85,6 @@ export default function Navbar() {
               (isActive ? "bg-green-600 text-white" : "text-gray-700 hover:bg-green-100")
             }>
             Tools
-          </NavLink>
-          <NavLink to="/coach" onClick={() => setOpen(false)}  // ✅ New link for mobile
-            className={({ isActive }) =>
-              "block px-3 py-2 rounded-md text-base font-medium transition-colors " +
-              (isActive ? "bg-green-600 text-white" : "text-gray-700 hover:bg-green-100")
-            }>
-            Coach
           </NavLink>
           <NavLink to="/about" onClick={() => setOpen(false)}
             className={({ isActive }) =>

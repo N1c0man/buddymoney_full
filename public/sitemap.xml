@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+  <!-- Main pages -->
+  <url><loc>https://buddymoney.com/</loc></url>
+  <url><loc>https://buddymoney.com/blog</loc></url>
+  <url><loc>https://buddymoney.com/tools</loc></url>
+  <url><loc>https://buddymoney.com/about</loc></url>
+
+  <!-- AI Coach Tool -->
+  <url>
+    <loc>https://buddymoney.com/coach</loc>
+    <lastmod>2025-11-12</lastmod>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Mortgage Payoff Calculator -->
+  <url>
+    <loc>https://buddymoney.com/tools/mortgage-payoff</loc>
+    <lastmod>2025-11-12</lastmod>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Blog post examples -->
+  <url><loc>https://buddymoney.com/blog/how-to-start-a-budget</loc></url>
+  <url><loc>https://buddymoney.com/blog/emergency-fund-basics</loc></url>
+  <url><loc>https://buddymoney.com/blog/side-hustle-income-tips</loc></url>
+  <url><loc>https://buddymoney.com/privacy</loc></url>
+<url><loc>https://buddymoney.com/terms</loc></url>
+
+</urlset>
