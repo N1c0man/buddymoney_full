@@ -16,3 +16,6 @@ body {
 .animate-fade-in {
   animation: fade-in-up 0.4s ease-out forwards;
 }
+#root {
+  @apply min-h-screen;
+}
