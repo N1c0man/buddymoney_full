@@ -10,12 +10,8 @@ function desktopNavLinkClass({ isActive }) {
   return `${baseLink} ${isActive ? active : inactive}`;
 }
 
-// z-index scale for BuddyMoney navbar
-// z-[99999]  = sticky navbar shell (above page content)
-// z-[100000] = desktop dropdown menus (above sticky header + hero stuff)
-
 // Desktop dropdown with no vertical gap + stable position + subtle motion
-function DesktopDropdown({ label, children }) {
+function DesktopDropdown({ label, icon, children }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -30,7 +26,14 @@ function DesktopDropdown({ label, children }) {
         aria-haspopup="true"
         aria-expanded={open}
       >
-        <span>{label}</span>
+        <span className="inline-flex items-center gap-1.5">
+          {icon && (
+            <span aria-hidden="true" className="text-[13px]">
+              {icon}
+            </span>
+          )}
+          <span>{label}</span>
+        </span>
         <span className="text-[10px]">▾</span>
       </button>
 
@@ -44,7 +47,6 @@ function DesktopDropdown({ label, children }) {
             : "opacity-0 -translate-y-1 invisible pointer-events-none")
         }
       >
-        {/* Small padding inside instead of margin between button & menu */}
         <div className="pt-1 px-2 pb-2 text-sm text-slate-700">
           {children}
         </div>
@@ -56,7 +58,7 @@ function DesktopDropdown({ label, children }) {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [openGuides, setOpenGuides] = useState(true);
-  const [openAdvanced, setOpenAdvanced] = useState(false);
+  const [openAdvanced, setOpenAdvanced] = useState(false); // harmless, even if unused
   const [scrolled, setScrolled] = useState(false);
 
   // Detect scroll to change navbar background/shadow
@@ -104,16 +106,14 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-2">
           {/* Home */}
           <NavLink to="/" className={desktopNavLinkClass}>
-            Home
-          </NavLink>
-
-          {/* Tools (simple link, no dropdown) */}
-          <NavLink to="/tools" className={desktopNavLinkClass}>
-            Tools
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden="true">🏠</span>
+              <span>Home</span>
+            </span>
           </NavLink>
 
           {/* Guides dropdown */}
-          <DesktopDropdown label="Guides">
+          <DesktopDropdown label="Guides" icon="📚">
             <ul className="space-y-1">
               <li>
                 <NavLink
@@ -190,46 +190,54 @@ export default function Navbar() {
 
           {/* Blog */}
           <NavLink to="/blog" className={desktopNavLinkClass}>
-            Blog
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden="true">📰</span>
+              <span>Blog</span>
+            </span>
           </NavLink>
 
-          {/* Advanced Tools & Coach dropdown */}
-          <DesktopDropdown label="Mortgage Payoff & Budget Coach">
-            <ul className="space-y-1">
-              <li>
-                <NavLink
-                  to="/mortgage"
-                  className={({ isActive }) =>
-                    `${baseLink} w-full text-left ${
-                      isActive
-                        ? active
-                        : "text-slate-700 hover:bg-emerald-50"
-                    }`
-                  }
-                >
-                  Mortgage Calculator
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/coach"
-                  className={({ isActive }) =>
-                    `${baseLink} w-full text-left ${
-                      isActive
-                        ? active
-                        : "text-slate-700 hover:bg-emerald-50"
-                    }`
-                  }
-                >
-                  Coach
-                </NavLink>
-              </li>
-            </ul>
-          </DesktopDropdown>
+          {/* Subtle separator */}
+          <span
+            className="h-6 w-px bg-emerald-100 mx-1"
+            aria-hidden="true"
+          />
+
+          {/* Tools */}
+          <NavLink to="/tools" className={desktopNavLinkClass}>
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden="true">🧰</span>
+              <span>Tools</span>
+            </span>
+          </NavLink>
+
+          {/* Budget Coach */}
+          <NavLink to="/coach" className={desktopNavLinkClass}>
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden="true">🎯</span>
+              <span>Budget Coach</span>
+            </span>
+          </NavLink>
+
+          {/* Mortgage Payoff Calculator */}
+          <NavLink to="/mortgage" className={desktopNavLinkClass}>
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden="true">📊</span>
+              <span>Mortgage Payoff Calculator</span>
+            </span>
+          </NavLink>
+
+          {/* Subtle separator */}
+          <span
+            className="h-6 w-px bg-emerald-100 mx-1"
+            aria-hidden="true"
+          />
 
           {/* About */}
           <NavLink to="/about" className={desktopNavLinkClass}>
-            About
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden="true">👤</span>
+              <span>About</span>
+            </span>
           </NavLink>
         </nav>
 
@@ -295,19 +303,10 @@ export default function Navbar() {
               (isActive ? active : inactive)
             }
           >
-            Home
-          </NavLink>
-
-          {/* Tools */}
-          <NavLink
-            to="/tools"
-            onClick={closeMobile}
-            className={({ isActive }) =>
-              "block px-3 py-2 rounded-md text-base font-medium transition-colors " +
-              (isActive ? active : inactive)
-            }
-          >
-            Tools
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden="true">🏠</span>
+              <span>Home</span>
+            </span>
           </NavLink>
 
           {/* Guides accordion */}
@@ -316,7 +315,10 @@ export default function Navbar() {
             onClick={() => setOpenGuides((v) => !v)}
             className="mt-3 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400"
           >
-            <span>Guides</span>
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden="true">📚</span>
+              <span>Guides</span>
+            </span>
             <span
               className={
                 "text-xs transition-transform duration-200 " +
@@ -369,69 +371,91 @@ export default function Navbar() {
             </Link>
           </div>
 
+          {/* subtle separator */}
+          <div
+            className="h-px bg-emerald-100 my-2"
+            aria-hidden="true"
+          />
+
           {/* Blog */}
           <NavLink
             to="/blog"
             onClick={closeMobile}
             className={({ isActive }) =>
-              "mt-2 block px-3 py-2 rounded-md text-base font-medium transition-colors " +
+              "mt-1 block px-3 py-2 rounded-md text-base font-medium transition-colors " +
               (isActive ? active : inactive)
             }
           >
-            Blog
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden="true">📰</span>
+              <span>Blog</span>
+            </span>
           </NavLink>
 
-          {/* Advanced Tools & Coach accordion */}
-          <button
-            type="button"
-            onClick={() => setOpenAdvanced((v) => !v)}
-            className="mt-3 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400"
-          >
-            <span>Advanced Mortgage Calculator &amp; Coach</span>
-            <span
-              className={
-                "text-xs transition-transform duration-200 " +
-                (openAdvanced ? "rotate-90" : "")
-              }
-            >
-              ▸
-            </span>
-          </button>
-          <div
-            className={
-              "grid gap-1 transition-all duration-200 " +
-              (openAdvanced ? "max-h-40" : "max-h-0 overflow-hidden")
+          {/* Tools */}
+          <NavLink
+            to="/tools"
+            onClick={closeMobile}
+            className={({ isActive }) =>
+              "block px-3 py-2 rounded-md text-base font-medium transition-colors " +
+              (isActive ? active : inactive)
             }
           >
-            <Link
-              to="/mortgage"
-              onClick={closeMobile}
-              className="block px-3 py-2 rounded-md text-sm text-slate-700 hover:bg-emerald-50"
-            >
-              Mortgage Calculator
-            </Link>
-            <NavLink
-              to="/coach"
-              onClick={closeMobile}
-              className={({ isActive }) =>
-                "block px-3 py-2 rounded-md text-sm transition-colors " +
-                (isActive ? active : "text-slate-700 hover:bg-emerald-50")
-              }
-            >
-              Coach
-            </NavLink>
-          </div>
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden="true">🧰</span>
+              <span>Tools</span>
+            </span>
+          </NavLink>
+
+          {/* Budget Coach */}
+          <NavLink
+            to="/coach"
+            onClick={closeMobile}
+            className={({ isActive }) =>
+              "block px-3 py-2 rounded-md text-base font-medium transition-colors " +
+              (isActive ? active : inactive)
+            }
+          >
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden="true">🎯</span>
+              <span>Budget Coach</span>
+            </span>
+          </NavLink>
+
+          {/* Mortgage Payoff Calculator */}
+          <NavLink
+            to="/mortgage"
+            onClick={closeMobile}
+            className={({ isActive }) =>
+              "block px-3 py-2 rounded-md text-base font-medium transition-colors " +
+              (isActive ? active : inactive)
+            }
+          >
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden="true">📊</span>
+              <span>Mortgage Payoff Calculator</span>
+            </span>
+          </NavLink>
+
+          {/* subtle separator */}
+          <div
+            className="h-px bg-emerald-100 my-2"
+            aria-hidden="true"
+          />
 
           {/* About */}
           <NavLink
             to="/about"
             onClick={closeMobile}
             className={({ isActive }) =>
-              "mt-2 block px-3 py-2 rounded-md text-base font-medium transition-colors " +
+              "mt-1 block px-3 py-2 rounded-md text-base font-medium transition-colors " +
               (isActive ? active : inactive)
             }
           >
-            About
+            <span className="inline-flex items-center gap-1.5">
+              <span aria-hidden="true">👤</span>
+              <span>About</span>
+            </span>
           </NavLink>
         </div>
       </div>
