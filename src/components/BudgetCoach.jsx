@@ -228,169 +228,200 @@ export default function BudgetCoach() {
   };
 
   return (
-    <section className="space-y-8">
-      <motion.div
-        className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="flex items-start justify-between gap-4 flex-wrap">
-          <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900">
-              AI-Powered Budget Coach
-            </h2>
-            <p className="text-sm md:text-base text-slate-600 mt-1">
-              Enter your monthly numbers to get a budget health score, targets,
-              and friendly, actionable tips.
+    <main className="pt-2 lg:pt-4 pb-16 bg-brand-50/40">
+      <div className="max-w-5xl mx-auto px-4 space-y-6">
+
+        {/* COACH HERO */}
+        <section className="mb-2 rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 px-5 py-7 md:px-8 md:py-9 shadow-soft">
+          <div className="space-y-3">
+            <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-600">
+              Budget & Money Coach
             </p>
-          </div>
-          <div className="flex items-center gap-2">
-            <Badge>beta</Badge>
-            <button
-              type="button"
-              onClick={handleReset}
-              className="text-xs text-slate-500 underline underline-offset-2 hover:text-slate-700"
-            >
-              Reset to defaults
-            </button>
-          </div>
-        </div>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
+              Get a calm, realistic plan for your monthly money.
+            </h1>
+            <p className="text-sm md:text-base text-brand-800/80 max-w-xl">
+              Enter your real numbers and see how your budget stacks up against a
+              simple rule of thumb. Then get clear suggestions on what to tweak next.
+            </p>
 
-        {/* Inputs */}
-        <div className="grid md:grid-cols-3 gap-4 mt-6">
-          <div className="md:col-span-1">
-            <label className="block text-sm font-medium text-slate-700 mb-1">
-              Monthly take-home income
-            </label>
-            <input
-              type="number"
-              inputMode="decimal"
-              min={0}
-              className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-              value={income}
-              onChange={(e) => setIncome(e.target.value)}
-              placeholder="e.g., 5200"
-            />
+            <div className="flex flex-wrap gap-2 text-[11px] mt-2">
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+                ✍️ Uses your real monthly numbers
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
+                🎯 Simple, friendly tips—not guilt
+              </span>
+            </div>
           </div>
+        </section>
 
-          <div className="md:col-span-2 grid grid-cols-2 gap-4">
-            <InputField
-              label="Housing / Rent"
-              value={housing}
-              onChange={setHousing}
-              placeholder="e.g., 1600"
-            />
-            <InputField
-              label="Transport"
-              value={transport}
-              onChange={setTransport}
-              placeholder="e.g., 300"
-            />
-            <InputField
-              label="Food / Groceries"
-              value={food}
-              onChange={setFood}
-              placeholder="e.g., 450"
-            />
-            <InputField
-              label="Utilities / Bills"
-              value={utilities}
-              onChange={setUtilities}
-              placeholder="e.g., 220"
-            />
-            <InputField
-              label="Debt payments"
-              value={debt}
-              onChange={setDebt}
-              placeholder="e.g., 250"
-            />
-            <InputField
-              label="Wants (shopping, dining, fun)"
-              value={wants}
-              onChange={setWants}
-              placeholder="e.g., 400"
-            />
-          </div>
-        </div>
-
-        {/* Score & overview */}
-        <div className="mt-8 grid md:grid-cols-5 gap-6">
-          <div className="md:col-span-2 bg-emerald-50 rounded-xl p-4 border border-emerald-100">
-            <div className="flex items-center justify-between">
+        {/* MAIN COACH CARD */}
+        <section className="space-y-8">
+          <motion.div
+            className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex items-start justify-between gap-4 flex-wrap">
               <div>
-                <div className={`text-3xl font-extrabold ${scoreColor}`}>
-                  {score}
-                </div>
-                <div className="text-sm text-slate-600 -mt-1">
-                  {scoreLabel}
-                </div>
+                <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900">
+                  AI-Powered Budget Coach
+                </h2>
+                <p className="text-sm md:text-base text-slate-600 mt-1">
+                  Enter your monthly numbers to get a budget health score, targets,
+                  and friendly, actionable tips.
+                </p>
               </div>
-              <div className="w-28">
-                <Bar value={score} color={scoreBar} />
+              <div className="flex items-center gap-2">
+                <Badge>beta</Badge>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="text-xs text-slate-500 underline underline-offset-2 hover:text-slate-700"
+                >
+                  Reset to defaults
+                </button>
               </div>
             </div>
-            <p className="text-sm text-slate-700 mt-3">
-              Based on your inputs and the{" "}
-              {Math.round(targets.needs * 100)}/
-              {Math.round(targets.wants * 100)}/
-              {Math.round(targets.savings * 100)} rule of thumb.
-            </p>
-          </div>
 
-          <div className="md:col-span-3 bg-white rounded-xl p-4 border border-slate-200">
-            <h4 className="font-semibold text-slate-800 mb-3">Your mix</h4>
-            <div className="space-y-3">
-              <Row
-                label="Needs"
-                value={numbers.needsPct}
-                target={targets.needs * 100}
+            {/* Inputs */}
+            <div className="grid md:grid-cols-3 gap-4 mt-6">
+              <div className="md:col-span-1">
+                <label className="block text-sm font-medium text-slate-700 mb-1">
+                  Monthly take-home income
+                </label>
+                <input
+                  type="number"
+                  inputMode="decimal"
+                  min={0}
+                  className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                  value={income}
+                  onChange={(e) => setIncome(e.target.value)}
+                  placeholder="e.g., 5200"
+                />
+              </div>
+
+              <div className="md:col-span-2 grid grid-cols-2 gap-4">
+                <InputField
+                  label="Housing / Rent"
+                  value={housing}
+                  onChange={setHousing}
+                  placeholder="e.g., 1600"
+                />
+                <InputField
+                  label="Transport"
+                  value={transport}
+                  onChange={setTransport}
+                  placeholder="e.g., 300"
+                />
+                <InputField
+                  label="Food / Groceries"
+                  value={food}
+                  onChange={setFood}
+                  placeholder="e.g., 450"
+                />
+                <InputField
+                  label="Utilities / Bills"
+                  value={utilities}
+                  onChange={setUtilities}
+                  placeholder="e.g., 220"
+                />
+                <InputField
+                  label="Debt payments"
+                  value={debt}
+                  onChange={setDebt}
+                  placeholder="e.g., 250"
+                />
+                <InputField
+                  label="Wants (shopping, dining, fun)"
+                  value={wants}
+                  onChange={setWants}
+                  placeholder="e.g., 400"
+                />
+              </div>
+            </div>
+
+            {/* Score & overview */}
+            <div className="mt-8 grid md:grid-cols-5 gap-6">
+              <div className="md:col-span-2 bg-emerald-50 rounded-xl p-4 border border-emerald-100">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className={`text-3xl font-extrabold ${scoreColor}`}>
+                      {score}
+                    </div>
+                    <div className="text-sm text-slate-600 -mt-1">
+                      {scoreLabel}
+                    </div>
+                  </div>
+                  <div className="w-28">
+                    <Bar value={score} color={scoreBar} />
+                  </div>
+                </div>
+                <p className="text-sm text-slate-700 mt-3">
+                  Based on your inputs and the{" "}
+                  {Math.round(targets.needs * 100)}/
+                  {Math.round(targets.wants * 100)}/
+                  {Math.round(targets.savings * 100)} rule of thumb.
+                </p>
+              </div>
+
+              <div className="md:col-span-3 bg-white rounded-xl p-4 border border-slate-200">
+                <h4 className="font-semibold text-slate-800 mb-3">Your mix</h4>
+                <div className="space-y-3">
+                  <Row
+                    label="Needs"
+                    value={numbers.needsPct}
+                    target={targets.needs * 100}
+                  />
+                  <Row
+                    label="Wants"
+                    value={numbers.wantsPct}
+                    target={targets.wants * 100}
+                  />
+                  <Row
+                    label="Savings (leftover)"
+                    value={numbers.savingsPct}
+                    target={targets.savings * 100}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Targets */}
+            <div className="mt-8 grid md:grid-cols-3 gap-4">
+              <Card
+                title="Suggested Monthly Needs"
+                value={`$${targetNeeds.toFixed(0)}`}
+                note={`${Math.round(targets.needs * 100)}% target`}
               />
-              <Row
-                label="Wants"
-                value={numbers.wantsPct}
-                target={targets.wants * 100}
+              <Card
+                title="Suggested Monthly Wants"
+                value={`$${targetWants.toFixed(0)}`}
+                note={`${Math.round(targets.wants * 100)}% target`}
               />
-              <Row
-                label="Savings (leftover)"
-                value={numbers.savingsPct}
-                target={targets.savings * 100}
+              <Card
+                title="Suggested Monthly Savings"
+                value={`$${targetSavings.toFixed(0)}`}
+                note={`${Math.round(targets.savings * 100)}% target`}
               />
             </div>
-          </div>
-        </div>
 
-        {/* Targets */}
-        <div className="mt-8 grid md:grid-cols-3 gap-4">
-          <Card
-            title="Suggested Monthly Needs"
-            value={`$${targetNeeds.toFixed(0)}`}
-            note={`${Math.round(targets.needs * 100)}% target`}
-          />
-          <Card
-            title="Suggested Monthly Wants"
-            value={`$${targetWants.toFixed(0)}`}
-            note={`${Math.round(targets.wants * 100)}% target`}
-          />
-          <Card
-            title="Suggested Monthly Savings"
-            value={`$${targetSavings.toFixed(0)}`}
-            note={`${Math.round(targets.savings * 100)}% target`}
-          />
-        </div>
-
-        {/* Tips */}
-        <div className="mt-8">
-          <h4 className="font-semibold text-slate-800 mb-2">Coach tips</h4>
-          <ul className="list-disc ml-5 text-slate-700 space-y-1 text-sm">
-            {tips.map((t, i) => (
-              <li key={i}>{t}</li>
-            ))}
-          </ul>
-        </div>
-      </motion.div>
-    </section>
+            {/* Tips */}
+            <div className="mt-8">
+              <h4 className="font-semibold text-slate-800 mb-2">Coach tips</h4>
+              <ul className="list-disc ml-5 text-slate-700 space-y-1 text-sm">
+                {tips.map((t, i) => (
+                  <li key={i}>{t}</li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        </section>
+      </div>
+    </main>
   );
 }
 
