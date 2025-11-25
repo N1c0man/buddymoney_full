@@ -1,44 +1,49 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+
+// Components
+import ScrollToTop from "./components/ScrollToTop";
+
+// Pages
 import Home from "./pages/Home";
 import Tools from "./pages/Tools";
 import About from "./pages/About";
-import BudgetCoachPage from "./pages/BudgetCoach"; // ✅ New import for the Coach
+import BudgetCoachPage from "./pages/BudgetCoach"; // Coach page
 import MortgagePayoff from "./pages/MortgagePayoff";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 
-
-// ✅ Blog system imports
+// Blog system
 import BlogList from "./blog/BlogList";
 import BlogPost from "./blog/BlogPost";
 
+// Layout
+import MainLayout from "./layouts/MainLayout";
+
 export default function App() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-1">
-        <Routes>
-          {/* Existing pages */}
-          <Route path="/" element={<Home />} />
-          <Route path="/tools" element={<Tools />} />
-          <Route path="/about" element={<About />} />
+    <MainLayout>
+      {/* 🌟 Global scroll-to-top on route change */}
+      <ScrollToTop />
 
-          {/* ✅ Budget Coach route */}
-          <Route path="/coach" element={<BudgetCoachPage />} />
-<Route path="/mortgage" element={<MortgagePayoff />} />
+      <Routes>
+        {/* Main pages */}
+        <Route path="/" element={<Home />} />
+        <Route path="/tools" element={<Tools />} />
+        <Route path="/about" element={<About />} />
 
-          {/* Blog routes */}
-          <Route path="/blog" element={<BlogList />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/Privacy" element={<Privacy />} />
-<Route path="/terms" element={<Terms />} />
+        {/* Tools */}
+        <Route path="/coach" element={<BudgetCoachPage />} />
+        <Route path="/mortgage" element={<MortgagePayoff />} />
 
-        </Routes>
-      </main>
-      <Footer />
-    </div>
+        {/* Blog */}
+        <Route path="/blog" element={<BlogList />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+
+        {/* Legal */}
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+      </Routes>
+    </MainLayout>
   );
 }

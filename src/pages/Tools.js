@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import BudgetTracker from "../tools/BudgetTracker";
 import SavingsGoal from "../tools/SavingsGoal";
 import DebtPayoff from "../tools/DebtPayoff";
@@ -53,93 +54,223 @@ const TOOL_CARDS = [
 
 export default function Tools() {
   return (
-    <main className="max-w-6xl mx-auto px-4 py-12 bg-slate-50 min-h-screen">
-      {/* HERO */}
-      <header className="mb-6 mt-4">
-        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-emerald-500 mb-3">
-          BuddyMoney Tools
-        </p>
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
-          Simple tools to keep your money on track.
-        </h1>
-        <p className="text-sm md:text-base text-slate-600 max-w-2xl">
-          Use these calculators to plan your budget, save for goals, pay off
-          debt, and stay in control—without needing a finance degree. Bookmark
-          this page and come back whenever you need a quick money check-in.
-        </p>
-      </header>
+    // MainLayout already gives outer max-width / bg.
+    <main className="pt-2 lg:pt-4 pb-16 bg-brand-50/40">
+      <div className="space-y-6">
+        {/* TOOLS HERO – soft gradient banner */}
+        <motion.section
+          className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 px-5 py-7 md:px-8 md:py-9 shadow-soft"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
+          {/* background blobs */}
+          <motion.div
+            className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl"
+            initial={{ opacity: 0, scale: 0.9, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          />
+          <motion.div
+            className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl"
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.1, ease: "easeOut", delay: 0.15 }}
+          />
 
-      {/* TOOL CARD GRID */}
-      <section aria-label="Tool navigation" className="mb-10">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {TOOL_CARDS.map((tool) => (
-            <a
-              key={tool.id}
-              href={`#${tool.id}`}
-              className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+          <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-center">
+            <div className="space-y-4">
+              <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-600">
+                BuddyMoney Tools
+              </p>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
+                Your free toolbox for calmer money decisions.
+              </h1>
+              <p className="text-sm md:text-base text-brand-800/80 max-w-xl">
+                Plan your budget, goals, debt payoff, and safety net with simple
+                calculators. No logins, no fees—just tools to help you and your
+                buddies stay on the same money page.
+              </p>
+              <div className="flex flex-wrap gap-3 text-xs">
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                  Free • No account needed
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+                  🛠️ New tools added over time
+                </span>
+              </div>
+            </div>
+
+            {/* mini “tool icons” cluster */}
+            <motion.div
+              className="relative flex justify-center"
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             >
-              <div className="mb-3 flex items-start justify-between gap-3">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                    {tool.icon}
-                  </span>
-                  <div>
-                    <h2 className="text-sm font-semibold text-slate-900 group-hover:text-emerald-700">
-                      {tool.name}
-                    </h2>
+              <motion.div
+                className="rounded-2xl bg-white/90 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 w-full max-w-xs"
+                animate={{ y: [0, -5, 0] }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                  ease: "easeInOut",
+                  delay: 1.2,
+                }}
+              >
+                <p className="text-xs font-semibold text-slate-800 mb-3">
+                  Popular tools at a glance
+                </p>
+                <div className="grid grid-cols-2 gap-3 text-[11px] text-slate-700">
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                      💰
+                    </span>
+                    <span>Budget Tracker</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                      🛟
+                    </span>
+                    <span>Emergency Fund</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                      📉
+                    </span>
+                    <span>Debt Payoff</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                      📊
+                    </span>
+                    <span>Net Worth</span>
                   </div>
                 </div>
-                <span className="rounded-full bg-slate-900 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-50">
-                  {tool.badge}
-                </span>
+              </motion.div>
+            </motion.div>
+          </div>
+        </motion.section>
+
+        {/* MAIN CARD: tool nav + actual embedded tools */}
+        <motion.div
+          className="space-y-10 rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8 lg:px-8"
+          // Gentle entrance on mount – no scroll gating
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: "easeOut", delay: 0.5 }}
+        >
+          {/* TOOL CARD GRID */}
+          <section aria-label="Tool navigation" className="mb-4">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <h2 className="text-sm font-semibold text-slate-900">
+                Jump straight to a tool
+              </h2>
+              <p className="text-[11px] text-slate-500">
+                Click a card to scroll down to the full calculator.
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {TOOL_CARDS.map((tool) => (
+                <motion.a
+                  key={tool.id}
+                  href={`#${tool.id}`}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 18 }}
+                  className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm transition-shadow hover:shadow-md"
+                >
+                  <div className="mb-3 flex items-start justify-between gap-3">
+                    <div className="flex items-center gap-3">
+                      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-lg transition-transform group-hover:scale-110">
+                        {tool.icon}
+                      </span>
+                      <div>
+                        <h3 className="text-sm font-semibold text-slate-900 group-hover:text-emerald-700">
+                          {tool.name}
+                        </h3>
+                      </div>
+                    </div>
+                    <span className="rounded-full bg-slate-900 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-50">
+                      {tool.badge}
+                    </span>
+                  </div>
+
+                  <p className="mb-3 text-xs text-slate-600">{tool.tagline}</p>
+
+                  <div className="flex items-center text-[11px] font-semibold text-emerald-600">
+                    Open tool
+                    <span className="ml-1 transition-transform group-hover:translate-x-0.5">
+                      →
+                    </span>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </section>
+
+          {/* ACTUAL TOOLS */}
+          <section className="space-y-12">
+            {/* Budget – supports both #budget (from Home) and #budget-tracker (from grid) */}
+            <section id="budget" className="scroll-mt-24">
+              <div id="budget-tracker">
+                <BudgetTracker />
               </div>
+            </section>
 
-              <p className="mb-3 text-xs text-slate-600">{tool.tagline}</p>
-
-              <div className="flex items-center text-[11px] font-semibold text-emerald-600">
-                Open tool
-                <span className="ml-1 transition-transform group-hover:translate-x-0.5">
-                  →
-                </span>
+            {/* Savings */}
+            <section id="savings" className="scroll-mt-24">
+              <div id="savings-goal">
+                <SavingsGoal />
               </div>
-            </a>
-          ))}
-        </div>
-      </section>
+            </section>
 
-      {/* ACTUAL TOOLS */}
-      <section className="space-y-12">
-        <section id="budget-tracker" className="scroll-mt-24">
-          <BudgetTracker />
-        </section>
+            {/* Debt */}
+            <section id="debt" className="scroll-mt-24">
+              <div id="debt-payoff">
+                <DebtPayoff />
+              </div>
+            </section>
 
-        <section id="savings-goal" className="scroll-mt-24">
-          <SavingsGoal />
-        </section>
+            {/* Bill Splitter */}
+            <section id="split" className="scroll-mt-24">
+              <div id="bill-splitter">
+                <BillSplitter />
+              </div>
+            </section>
 
-        <section id="debt-payoff" className="scroll-mt-24">
-          <DebtPayoff />
-        </section>
+            {/* Emergency Fund */}
+            <section id="emergency" className="scroll-mt-24">
+              <div id="emergency-fund">
+                <EmergencyFund />
+              </div>
+            </section>
 
-        <section id="bill-splitter" className="scroll-mt-24">
-          <BillSplitter />
-        </section>
+            {/* Net Worth */}
+            <section id="networth" className="scroll-mt-24">
+              <div id="net-worth">
+                <NetWorth />
+              </div>
+            </section>
+          </section>
 
-        <section id="emergency-fund" className="scroll-mt-24">
-          <EmergencyFund />
-        </section>
-
-        <section id="net-worth" className="scroll-mt-24">
-          <NetWorth />
-        </section>
-      </section>
-
-      {/* FOOTER NOTE */}
-      <footer className="mt-10 border-t border-slate-200 pt-4 text-xs text-slate-500">
-  <p>More tools are on the way. Have an idea? We're building this toolbox with you.</p>
-  <p className="mt-1 text-[10px] text-slate-400">Updated November 2025</p>
-</footer>
-
+          {/* FOOTER NOTE */}
+          <footer className="mt-4 border-t border-slate-200 pt-4 text-xs text-slate-500">
+            <p>
+              More tools are on the way. Have an idea? We&apos;re building this
+              toolbox with you.
+            </p>
+            <p className="mt-1 text-[10px] text-slate-400">
+              Updated November 2025
+            </p>
+          </footer>
+        </motion.div>
+      </div>
     </main>
   );
 }
