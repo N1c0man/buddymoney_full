@@ -354,18 +354,18 @@ export default function Navbar() {
               Side Hustles
             </Link>
             <Link
-              to="/blog/emergency-fund-guide"
+              to="/blog/emergency-fund-basics"
               onClick={closeMobile}
               className="block px-3 py-2 rounded-md text-sm text-slate-700 hover:bg-emerald-50"
             >
               Emergency Fund
             </Link>
             <Link
-              to="/blog/debt-payoff-guide"
+              to="/blog/crush-credit-card-debt"
               onClick={closeMobile}
               className="block px-3 py-2 rounded-md text-sm text-slate-700 hover:bg-emerald-50"
             >
-              Debt &amp; Credit
+              Crush Credit Card Debt
             </Link>
           </div>
 
