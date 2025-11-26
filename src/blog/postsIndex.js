@@ -1,6 +1,24 @@
 // src/blog/postsIndex.js
 
 export const posts = [
+    {
+    slug: "save-your-first-1000",
+    title: "How to Save Your First $1,000 (Even on a Tight Budget)",
+    tag: "Saving",
+    level: "Beginner",
+    readTime: "9 min read",
+    excerpt:
+      "A simple, realistic plan to build your first $1,000 cushion even if money feels tight right now.",
+    file: "/posts/save-your-first-1000.md",
+
+    author: "BuddyMoney Editorial",
+    authorAvatar: "/icons/editorial.png",
+    date: "2025-11-23",
+
+    heroImage: "/icons/save-your-first-1000-hero.png",
+    heroImageAlt:
+      "Owl saving for his first 1000 dollars",
+  },
   {
     slug: "emergency-fund-basics",
     title: "Emergency Fund Basics",
@@ -31,7 +49,8 @@ export const posts = [
     date: "2025-11-18",
 
     heroImage: "/icons/quick-budget-hero.png",
-    heroImageAlt: "Notebook, phone, and coffee cup on a desk used for budgeting",
+    heroImageAlt:
+      "Notebook, phone, and coffee cup on a desk used for budgeting",
   },
   {
     slug: "side-hustle-income-tips",
@@ -48,7 +67,8 @@ export const posts = [
     date: "2025-11-19",
 
     heroImage: "/icons/side-hustle-hero.png",
-    heroImageAlt: "Person working on a laptop at night with side hustle ideas",
+    heroImageAlt:
+      "Person working on a laptop at night with side hustle ideas",
   },
   {
     slug: "crush-credit-card-debt",
@@ -67,26 +87,40 @@ export const posts = [
     heroImageAlt: "Cut-up credit cards and a payoff plan on a notepad",
   },
   {
-  slug: "side-hustle-ideas",
-  title: "7 Best Side Hustles You Can Start This Week",
-  tag: "Side Hustle",
-  level: "Beginner",
-  readTime: "9 min read",
-  file: "/posts/side-hustle-ideas.md",
-  heroImage: "/icons/side-hustle-hero2.png",
-  heroImageAlt: "Person juggling multiple side hustles"
-},
-{
-  slug: "salary-by-age",
-  title: "How Much Salary Should You Be Making for Your Age in 2025?",
-  tag: "Income",
-  level: "Beginner",
-  readTime: "10 min read",
-  file: "/posts/salary-by-age.md",
-  heroImage: "/icons/salary-by-age-hero.png",
-  heroImageAlt: ""
-},
+    slug: "side-hustle-ideas",
+    title: "7 Best Side Hustles You Can Start This Week",
+    tag: "Side Hustles",
+    level: "Beginner",
+    readTime: "9 min read",
+    excerpt:
+      "Practical, fast-start side hustles you can launch this weekend.",
+    file: "/posts/side-hustle-ideas.md",
 
+    author: "BuddyMoney Editorial",
+    authorAvatar: "/icons/editorial.png",
+    date: "2025-11-21",
+
+    heroImage: "/icons/side-hustle-hero2.png",
+    heroImageAlt: "Person juggling multiple side hustles",
+  },
+  {
+    slug: "salary-by-age",
+    title: "How Much Salary Should You Be Making for Your Age in 2025?",
+    tag: "Income",
+    level: "Beginner",
+    readTime: "10 min read",
+    excerpt:
+      "A breakdown of what people typically earn at each age in 2025.",
+    file: "/posts/salary-by-age.md",
+
+    author: "BuddyMoney Editorial",
+    authorAvatar: "/icons/editorial.png",
+    date: "2025-11-22",
+
+    heroImage: "/icons/salary-by-age-hero.png",
+    heroImageAlt:
+      "Bar chart showing typical salary ranges by age",
+  },
 ];
 
 export function getPostBySlug(slug) {

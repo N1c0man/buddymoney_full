@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import BudgetTracker from "../tools/BudgetTracker";
 import SavingsGoal from "../tools/SavingsGoal";
 import DebtPayoff from "../tools/DebtPayoff";
@@ -53,10 +54,54 @@ const TOOL_CARDS = [
 ];
 
 export default function Tools() {
+  // SEO + JSON-LD
+  useEffect(() => {
+    document.title = "Money Tools | Budget, Savings, Debt & More | BuddyMoney";
+
+    const description =
+      "Explore free financial tools from BuddyMoney: budget tracker, savings planner, debt payoff calculator, emergency fund estimator, net worth tracker, and more.";
+
+    let meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", description);
+    } else {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = description;
+      document.head.appendChild(meta);
+    }
+
+    // JSON-LD structured data
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "BuddyMoney Tools",
+      "url": "https://buddymoney.com/tools",
+      "description": description,
+      "mainEntity": TOOL_CARDS.map((tool) => ({
+        "@type": "SoftwareApplication",
+        "applicationCategory": "FinanceApplication",
+        "name": tool.name,
+        "operatingSystem": "Web",
+        "url": `https://buddymoney.com/tools#${tool.id}`,
+        "description": tool.tagline,
+        "image": "https://buddymoney.com/images/icon-placeholder.png"
+      })),
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.innerHTML = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+
+    return () => {
+      if (script && script.parentNode) script.parentNode.removeChild(script);
+    };
+  }, []);
+
   return (
-    // MainLayout already gives outer max-width / bg.
-    <main className="pt-2 lg:pt-4 pb-16 bg-brand-50/40">
-      <div className="space-y-6">
+    <main className="min-h-screen pt-2 lg:pt-4 pb-16 bg-gradient-to-b from-green-50 via-white to-emerald-50/40">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
         {/* TOOLS HERO – soft gradient banner */}
         <motion.section
           className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 px-5 py-7 md:px-8 md:py-9 shadow-soft"
@@ -159,7 +204,6 @@ export default function Tools() {
         {/* MAIN CARD: tool nav + actual embedded tools */}
         <motion.div
           className="space-y-10 rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8 lg:px-8"
-          // Gentle entrance on mount – no scroll gating
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease: "easeOut", delay: 0.5 }}
@@ -216,7 +260,7 @@ export default function Tools() {
 
           {/* ACTUAL TOOLS */}
           <section className="space-y-12">
-            {/* Budget – supports both #budget (from Home) and #budget-tracker (from grid) */}
+            {/* Budget */}
             <section id="budget" className="scroll-mt-24">
               <div id="budget-tracker">
                 <BudgetTracker />
@@ -257,6 +301,27 @@ export default function Tools() {
                 <NetWorth />
               </div>
             </section>
+          </section>
+
+          {/* CTA Banner */}
+          <section className="mt-4">
+            <div className="rounded-2xl bg-emerald-600 text-white px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-sm">
+              <div>
+                <h2 className="text-lg font-semibold">
+                  Want help deciding what to do first?
+                </h2>
+                <p className="text-sm text-emerald-50">
+                  Try Budget Coach — a guided experience that helps you choose your
+                  next best money move.
+                </p>
+              </div>
+              <Link
+                to="/coach"
+                className="inline-flex items-center justify-center rounded-full bg-white text-emerald-700 font-semibold text-sm px-5 py-2 shadow hover:bg-emerald-50 transition"
+              >
+                Start Budget Coach →
+              </Link>
+            </div>
           </section>
 
           {/* FOOTER NOTE */}

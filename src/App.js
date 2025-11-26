@@ -12,6 +12,7 @@ import BudgetCoachPage from "./pages/BudgetCoach"; // Coach page
 import MortgagePayoff from "./pages/MortgagePayoff";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import AffiliateDisclosure from "./pages/AffiliateDisclosure"; // <-- added
 
 // Blog system
 import BlogList from "./blog/BlogList";
@@ -43,6 +44,7 @@ export default function App() {
         {/* Legal */}
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/affiliate-disclosure" element={<AffiliateDisclosure />} /> {/* <-- added */}
       </Routes>
     </MainLayout>
   );

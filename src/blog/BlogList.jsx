@@ -1,9 +1,70 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { posts } from "./postsIndex";
 
 export default function BlogList() {
   const [search, setSearch] = useState("");
+
+  // SEO + JSON-LD for Blog collection
+  useEffect(() => {
+    const description =
+      "Browse BuddyMoney money guides: beginner-friendly articles on budgeting, saving, emergency funds, side hustles, debt payoff, and more.";
+
+    // Set document title
+    document.title = "Money Guides & Articles | BuddyMoney Blog";
+
+    // Ensure a single meta description
+    let meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", description);
+    } else {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = description;
+      document.head.appendChild(meta);
+    }
+
+    // JSON-LD structured data (Blog + BlogPosting list)
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "BuddyMoney Guides",
+      "url": "https://buddymoney.com/blog",
+      "description": description,
+      "publisher": {
+        "@type": "Organization",
+        "name": "BuddyMoney",
+        "url": "https://buddymoney.com"
+      },
+      "inLanguage": "en",
+      "blogPost": posts.map((post) => ({
+        "@type": "BlogPosting",
+        "headline": post.title,
+        "name": post.title,
+        "description": post.excerpt,
+        "url": `https://buddymoney.com/blog/${post.slug}`,
+        "articleSection": post.tag,
+        "timeRequired": post.readTime,
+        "isPartOf": {
+          "@type": "Blog",
+          "name": "BuddyMoney Guides",
+          "url": "https://buddymoney.com/blog"
+        }
+      }))
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.innerHTML = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+
+    // Cleanup on unmount
+    return () => {
+      if (script && script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
 
   const filteredPosts = useMemo(() => {
     const q = search.trim().toLowerCase();

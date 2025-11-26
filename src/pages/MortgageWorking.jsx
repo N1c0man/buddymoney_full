@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import React, { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 
 const DEFAULT_PRINCIPAL = 300000;
@@ -131,58 +131,6 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
 }
 
 export default function MortgagePayoff() {
-  // ✅ SEO + JSON-LD
-  useEffect(() => {
-    document.title = "Mortgage Payoff Calculator | BuddyMoney";
-
-    const description =
-      "Estimate how extra payments and bi-weekly strategies can reduce your mortgage payoff time and total interest with BuddyMoney’s free Mortgage Payoff Calculator.";
-
-    // meta description
-    let meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute("content", description);
-    } else {
-      meta = document.createElement("meta");
-      meta.name = "description";
-      meta.content = description;
-      document.head.appendChild(meta);
-    }
-
-    // JSON-LD as a SoftwareApplication
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Mortgage Payoff Calculator",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "Web",
-      "url": "https://buddymoney.com/mortgage",
-      "description": description,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "BuddyMoney",
-        "url": "https://buddymoney.com"
-      }
-    };
-
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.innerHTML = JSON.stringify(jsonLd);
-    document.head.appendChild(script);
-
-    // cleanup when leaving page
-    return () => {
-      if (script && script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-    };
-  }, []);
-
   const [principal, setPrincipal] = useState(String(DEFAULT_PRINCIPAL));
   const [rate, setRate] = useState(String(DEFAULT_RATE));
   const [years, setYears] = useState(String(DEFAULT_YEARS));

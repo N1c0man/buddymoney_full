@@ -1,6 +1,52 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function Terms() {
+  useEffect(() => {
+    const description =
+      "Read the BuddyMoney Terms of Service. Learn the rules for using our free budgeting, savings, and debt payoff tools, and important disclaimers.";
+
+    // Set document title
+    document.title = "Terms of Service | BuddyMoney";
+
+    // Ensure a single meta description
+    let meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", description);
+    } else {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = description;
+      document.head.appendChild(meta);
+    }
+
+    // JSON-LD structured data (TermsOfService)
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "TermsOfService",
+      "name": "Terms of Service | BuddyMoney",
+      "url": "https://buddymoney.com/terms",
+      "description": description,
+      "publisher": {
+        "@type": "Organization",
+        "name": "BuddyMoney",
+        "url": "https://buddymoney.com"
+      },
+      "inLanguage": "en"
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.innerHTML = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+
+    // Cleanup on unmount
+    return () => {
+      if (script && script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
+
   return (
     <main className="pt-2 lg:pt-4 pb-16">
       <div className="max-w-3xl mx-auto rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8">

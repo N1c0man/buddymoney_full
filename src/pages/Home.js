@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero";
@@ -24,9 +24,57 @@ const item = {
 };
 
 export default function Home() {
+
+  // 🔥 SEO: Title, Meta Description, JSON-LD
+  useEffect(() => {
+    document.title = "BuddyMoney – Simple Money Tools, Guides & Confidence";
+
+    const description =
+      "BuddyMoney helps beginners feel calmer about money with simple tools: budgeting, debt payoff, savings, mortgage payoff, emergency fund planning, and more.";
+
+    // Update or create meta description
+    let meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", description);
+    } else {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = description;
+      document.head.appendChild(meta);
+    }
+
+    // -------- JSON-LD Structured Data --------
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "BuddyMoney",
+      "url": "https://buddymoney.com/",
+      "description": description,
+      "publisher": {
+        "@type": "Organization",
+        "name": "BuddyMoney",
+        "url": "https://buddymoney.com"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://buddymoney.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.innerHTML = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   return (
     // Brand-tint background + tighter vertical spacing
-    <div className="min-h-screen bg-brand-50/40 space-y-8 md:space-y-10">
+    <div className="min-h-screen bg-brand-50/40 space-y-8 md:space-y-10" itemScope itemType="https://schema.org/WebPage">
       {/* HERO with subtle fade-up on view */}
       <motion.section
         className="pt-0"
@@ -59,7 +107,7 @@ export default function Home() {
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
           variants={containerStagger}
         >
-          {/* ✅ New: Mortgage Payoff Tool */}
+          {/* Mortgage Payoff */}
           <motion.div variants={item}>
             <div className="relative">
               <span className="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs px-2 py-0.5 rounded-full shadow-sm animate-pulse">
@@ -74,7 +122,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* ✅ Budget Coach */}
+          {/* Budget Coach */}
           <motion.div variants={item}>
             <div className="relative">
               <span className="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs px-2 py-0.5 rounded-full shadow-sm animate-pulse">
@@ -145,7 +193,7 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
-      {/* TESTIMONIALS / SOCIAL PROOF */}
+      {/* TESTIMONIALS */}
       <motion.section
         className="pt-0"
         initial="initial"
@@ -236,7 +284,7 @@ export default function Home() {
         </motion.div>
       </motion.section>
 
-      {/* NEWSLETTER with fade-up */}
+      {/* NEWSLETTER */}
       <motion.section
         id="newsletter"
         className="mt-0 md:mt-2"

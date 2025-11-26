@@ -1,6 +1,52 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function Privacy() {
+  useEffect(() => {
+    const description =
+      "Read the BuddyMoney Privacy Policy. Learn how we collect, use, and protect your information when you use our free money tools and guides.";
+
+    // Set document title
+    document.title = "Privacy Policy | BuddyMoney";
+
+    // Ensure a single meta description
+    let meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", description);
+    } else {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = description;
+      document.head.appendChild(meta);
+    }
+
+    // JSON-LD structured data (PrivacyPolicy)
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "PrivacyPolicy",
+      "name": "Privacy Policy | BuddyMoney",
+      "url": "https://buddymoney.com/privacy",
+      "description": description,
+      "publisher": {
+        "@type": "Organization",
+        "name": "BuddyMoney",
+        "url": "https://buddymoney.com"
+      },
+      "inLanguage": "en"
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.innerHTML = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+
+    // Cleanup on unmount
+    return () => {
+      if (script && script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
+
   return (
     <main className="pt-2 lg:pt-4 pb-16">
       <div className="max-w-3xl mx-auto rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8">

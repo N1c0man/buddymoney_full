@@ -285,6 +285,98 @@ export default function BlogPost() {
 
   const relatedTools = useMemo(() => getRelatedTools(post), [post]);
 
+  // 🔹 SEO + BlogPosting JSON-LD
+  useEffect(() => {
+    if (!post) return;
+
+    // Title
+    const title = `${post.seoTitle || post.title} | BuddyMoney`;
+    document.title = title;
+
+    // Description
+    const description =
+      post.metaDescription ||
+      post.excerpt ||
+      "Read this BuddyMoney guide to learn about budgeting, saving, debt payoff, and more in plain English.";
+
+    let meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute("content", description);
+    } else {
+      meta = document.createElement("meta");
+      meta.name = "description";
+      meta.content = description;
+      document.head.appendChild(meta);
+    }
+
+    // URL
+    const url =
+      typeof window !== "undefined"
+        ? window.location.href
+        : `https://buddymoney.com/blog/${post.slug}`;
+
+    // Base BlogPosting schema
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: post.title,
+      description,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": url,
+      },
+      url,
+      author: {
+        "@type": "Organization",
+        name: "BuddyMoney",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "BuddyMoney",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://buddymoney.com/images/buddymoney-logo.png",
+        },
+      },
+    };
+
+    if (post.heroImage) {
+      jsonLd.image = post.heroImage;
+    }
+    if (post.datePublished) {
+      jsonLd.datePublished = post.datePublished;
+    }
+    if (post.dateModified || post.lastUpdated) {
+      jsonLd.dateModified = post.dateModified || post.lastUpdated;
+    }
+
+    // Optional FAQ enhancement if you later add post.faq = [{ question, answer }]
+    if (Array.isArray(post.faq) && post.faq.length > 0) {
+      jsonLd.mainEntity = {
+        "@type": "FAQPage",
+        mainEntity: post.faq.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      };
+    }
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.innerHTML = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+
+    return () => {
+      if (script && script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, [post]);
+
   // Load markdown
   useEffect(() => {
     if (!post) {
@@ -383,14 +475,12 @@ export default function BlogPost() {
   return (
     <main className="pt-2 lg:pt-4 pb-16">
       {/* Reading progress bar */}
-      {/* Reading progress bar */}
-<div className="fixed inset-x-0 top-0 z-[1000000] h-1 bg-sky-100/40">
-  <div
-    className="h-full bg-gradient-to-r from-sky-500 via-emerald-400 to-sky-500 transition-[width] duration-150 ease-out"
-    style={{ width: `${progress}%` }}
-  />
-</div>
-
+      <div className="fixed inset-x-0 top-0 z-[1000000] h-1 bg-sky-100/40">
+        <div
+          className="h-full bg-gradient-to-r from-sky-500 via-emerald-400 to-sky-500 transition-[width] duration-150 ease-out"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
 
       <div className="max-w-5xl mx-auto px-4">
         {/* ✅ Rounded card shell around your existing layout */}
@@ -498,7 +588,7 @@ export default function BlogPost() {
 
           {/* MAIN GRID: Sidebar TOC + Article + Related Tools */}
           <div className="mt-4 lg:grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,2.1fr)] lg:gap-10">
-            {/* Sidebar TOC (desktop), compact box on mobile above article */}
+            {/* Sidebar TOC */}
             <aside className="mb-6 lg:mb-0 lg:self-start lg:sticky lg:top-24">
               {headings.length > 0 && (
                 <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-[11px]">
