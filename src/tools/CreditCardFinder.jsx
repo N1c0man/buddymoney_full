@@ -1,6 +1,7 @@
 // src/tools/CreditCardFinder.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
+import ShareBar from "../components/ShareBar";
 
 const AFFILIATE_ENABLED = false; // flip to true later when you have real links
 
@@ -17,7 +18,8 @@ const CREDIT_CARDS = [
     cardType: "cashback", // cashback | travel | balance-transfer | secured | student
     annualFee: 0,
     bonus: "Earn a $200 bonus after you spend $1,000 in the first 3 months.",
-    rewards: "3% cash back on groceries, 2% at gas stations, 1% on everything else.",
+    rewards:
+      "3% cash back on groceries, 2% at gas stations, 1% on everything else.",
     introApr: "0% intro APR for 15 months on purchases.",
     regularApr: "18.99%–27.99% variable APR.",
     perks: [
@@ -36,7 +38,8 @@ const CREDIT_CARDS = [
     cardType: "travel",
     annualFee: 95,
     bonus: "60,000 bonus miles after $3,000 spent in 3 months.",
-    rewards: "2x miles on travel and dining, 1x miles on all other purchases.",
+    rewards:
+      "2x miles on travel and dining, 1x miles on all other purchases.",
     introApr: "0% intro APR on balance transfers for 12 months.",
     regularApr: "20.99%–28.99% variable APR.",
     perks: [
@@ -114,13 +117,35 @@ export default function CreditCardFinder() {
   const [sortBy, setSortBy] = useState("featured"); // featured | annualFeeLow | annualFeeHigh
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Compare selection (up to 3 cards)
+  const [compareIds, setCompareIds] = useState([]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const toggleCompare = (id) => {
+    setCompareIds((prev) => {
+      if (prev.includes(id)) {
+        // remove
+        return prev.filter((x) => x !== id);
+      }
+      if (prev.length >= 3) {
+        // limit to 3 selected cards
+        return prev;
+      }
+      return [...prev, id];
+    });
+  };
+
+  const selectedForCompare = useMemo(
+    () => CREDIT_CARDS.filter((card) => compareIds.includes(card.id)),
+    [compareIds]
+  );
+
   // ------------------------------------------
   // Structured data for SEO (ItemList of cards)
-// ------------------------------------------
+  // ------------------------------------------
   const schemaOrg = useMemo(() => {
     const items = CREDIT_CARDS.map((card, index) => ({
       "@type": "ListItem",
@@ -180,7 +205,8 @@ export default function CreditCardFinder() {
     if (annualFeeFilter !== "any") {
       cards = cards.filter((card) => {
         if (annualFeeFilter === "no-fee") return card.annualFee === 0;
-        if (annualFeeFilter === "under-100") return card.annualFee > 0 && card.annualFee < 100;
+        if (annualFeeFilter === "under-100")
+          return card.annualFee > 0 && card.annualFee < 100;
         if (annualFeeFilter === "premium") return card.annualFee >= 100;
         return true;
       });
@@ -198,9 +224,15 @@ export default function CreditCardFinder() {
     return cards;
   }, [creditScore, cardType, annualFeeFilter, sortBy, searchQuery]);
 
-  const pageTitle = "Credit Card Finder | BuddyMoney";
+  const pageTitle = "Credit Card Finder (Preview) | BuddyMoney";
   const pageDescription =
     "Use BuddyMoney’s beta credit card finder to explore sample cards by credit score, rewards type, and annual fee. Live partner offers will be added soon.";
+
+  const activeFiltersCount =
+    (creditScore !== "any" ? 1 : 0) +
+    (cardType !== "any" ? 1 : 0) +
+    (annualFeeFilter !== "any" ? 1 : 0) +
+    (searchQuery.trim() ? 1 : 0);
 
   return (
     <>
@@ -222,7 +254,6 @@ export default function CreditCardFinder() {
           property="og:url"
           content="https://buddymoney.com/tools/credit-cards"
         />
-        {/* You can swap this for a dedicated OG image later */}
         <meta
           property="og:image"
           content="https://buddymoney.com/icons/buddymoney-og-default.png"
@@ -243,171 +274,340 @@ export default function CreditCardFinder() {
         </script>
       </Helmet>
 
-      <section className="bg-slate-50/60 min-h-screen">
-        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-12 lg:py-16 space-y-10">
-          {/* Heading / Intro */}
-          <header className="space-y-3">
-            <p className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
-              Credit Card Finder
-              <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] text-emerald-700">
-                Beta
-              </span>
-            </p>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900">
-              Find a credit card that actually fits your life.
-            </h1>
-            <p className="max-w-2xl text-sm sm:text-base text-slate-600">
-              Filter by credit score, card type, and annual fee to explore card
-              options. This tool is in{" "}
-              <span className="font-semibold text-emerald-700">preview mode</span>{" "}
-              — application links will be added once partner approvals are live.
-            </p>
-          </header>
+      <main className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50/40 pb-16 pt-4">
+        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 sm:px-6 lg:px-8">
+          {/* Hero / intro card */}
+          <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 px-5 py-6 shadow-soft md:px-8 md:py-8">
+            {/* soft background blobs */}
+            <div className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl" />
 
-          {/* Filters panel */}
-          <div className="rounded-2xl border border-slate-200 bg-white/80 p-4 sm:p-5 shadow-sm space-y-4">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-xs sm:text-sm text-slate-600">
-                Use the filters to narrow down cards by{" "}
-                <span className="font-semibold text-slate-800">
-                  credit score, card type, and annual fee.
-                </span>
-              </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setCreditScore("any");
-                  setCardType("any");
-                  setAnnualFeeFilter("any");
-                  setSortBy("featured");
-                  setSearchQuery("");
-                }}
-                className="self-start text-xs font-medium text-emerald-700 hover:text-emerald-800"
-              >
-                Reset filters
-              </button>
+            <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-center">
+              <div className="space-y-4">
+                <p className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                  Credit Card Finder
+                  <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">
+                    Preview
+                  </span>
+                </p>
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
+                  Find a credit card that actually fits your life.
+                </h1>
+                <p className="text-sm md:text-base text-brand-800/80 max-w-xl">
+                  Filter sample cards by credit score, card type, and annual fee
+                  to get a feel for what&apos;s out there. This is{" "}
+                  <span className="font-semibold text-emerald-800">
+                    demo data only
+                  </span>{" "}
+                  — once partners are live, this tool will show real application
+                  links from banks and card issuers.
+                </p>
+                <ul className="ml-4 list-disc text-[12px] text-slate-700 space-y-1">
+                  <li>Educational preview, not financial advice.</li>
+                  <li>Card terms change often — always confirm on issuer site.</li>
+                  <li>
+                    Use this alongside your budget and debt tools to plan your
+                    next move.
+                  </li>
+                </ul>
+              </div>
+
+              {/* Side info card */}
+              <div className="relative">
+                <div className="rounded-2xl bg-white/90 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 text-sm text-slate-800 space-y-3">
+                  <p className="text-xs font-semibold text-slate-700">
+                    How to use this finder
+                  </p>
+                  <ol className="ml-4 list-decimal space-y-1 text-[12px]">
+                    <li>Pick your closest credit score range.</li>
+                    <li>Choose the card type that matches your goal.</li>
+                    <li>Filter by annual fee to fit your budget.</li>
+                    <li>Compare perks, APRs, and welcome offers side by side.</li>
+                  </ol>
+                  <p className="text-[11px] text-slate-500">
+                    When affiliate links are live, cards shown here may earn
+                    BuddyMoney a commission if you&apos;re approved. That helps
+                    keep the tools free for you.
+                  </p>
+                </div>
+              </div>
             </div>
+          </section>
 
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {/* Credit score */}
-              <div className="space-y-1">
-                <label className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                  Credit score
-                </label>
-                <select
-                  value={creditScore}
-                  onChange={(e) => setCreditScore(e.target.value)}
-                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 shadow-inner outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
-                >
-                  {Object.entries(CREDIT_SCORE_LABELS).map(([value, label]) => (
-                    <option key={value} value={value}>
-                      {label}
-                    </option>
-                  ))}
-                </select>
-              </div>
+          {/* Top share bar */}
+          <ShareBar
+            variant="top"
+            title="I’m using BuddyMoney’s credit card finder to explore card options."
+          />
 
-              {/* Card type */}
-              <div className="space-y-1">
-                <label className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                  Card type
-                </label>
-                <select
-                  value={cardType}
-                  onChange={(e) => setCardType(e.target.value)}
-                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 shadow-inner outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
-                >
-                  {Object.entries(CARD_TYPE_LABELS).map(([value, label]) => (
-                    <option key={value} value={value}>
-                      {label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Annual fee */}
-              <div className="space-y-1">
-                <label className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                  Annual fee
-                </label>
-                <select
-                  value={annualFeeFilter}
-                  onChange={(e) => setAnnualFeeFilter(e.target.value)}
-                  className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 shadow-inner outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
-                >
-                  <option value="any">Any</option>
-                  <option value="no-fee">No annual fee</option>
-                  <option value="under-100">Under $100</option>
-                  <option value="premium">$100+ (premium)</option>
-                </select>
-              </div>
-
-              {/* Sort + search */}
-              <div className="space-y-1">
-                <label className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                  Sort & search
-                </label>
-                <div className="flex gap-2">
-                  <select
-                    value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
-                    className="w-1/2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs sm:text-sm text-slate-800 shadow-inner outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+          {/* Main card: filters + results + note */}
+          <section className="space-y-6 rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8">
+            {/* Filters panel */}
+            <div className="rounded-2xl border border-slate-100 bg-slate-50/60 p-4 sm:p-5 space-y-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="space-y-1">
+                  <p className="text-xs sm:text-sm text-slate-700">
+                    Use the filters to narrow down cards by{" "}
+                    <span className="font-semibold text-slate-900">
+                      credit score, card type, and annual fee.
+                    </span>
+                  </p>
+                  <p className="text-[11px] text-slate-500">
+                    This is a{" "}
+                    <span className="font-semibold text-emerald-700">
+                      preview experience
+                    </span>{" "}
+                    using sample data. Real offers will appear here once partner
+                    approvals are complete.
+                  </p>
+                </div>
+                <div className="flex items-center gap-3">
+                  {activeFiltersCount > 0 && (
+                    <span className="inline-flex items-center rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-semibold text-emerald-700">
+                      {activeFiltersCount} active filter
+                      {activeFiltersCount === 1 ? "" : "s"}
+                    </span>
+                  )}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCreditScore("any");
+                      setCardType("any");
+                      setAnnualFeeFilter("any");
+                      setSortBy("featured");
+                      setSearchQuery("");
+                    }}
+                    className="self-start text-[11px] font-medium text-emerald-700 hover:text-emerald-800"
                   >
-                    <option value="featured">Featured</option>
-                    <option value="annualFeeLow">Lowest annual fee</option>
-                    <option value="annualFeeHigh">Highest annual fee</option>
+                    Reset filters
+                  </button>
+                </div>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {/* Credit score */}
+                <div className="space-y-1">
+                  <label className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                    Credit score
+                  </label>
+                  <select
+                    value={creditScore}
+                    onChange={(e) => setCreditScore(e.target.value)}
+                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 shadow-inner outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                  >
+                    {Object.entries(CREDIT_SCORE_LABELS).map(
+                      ([value, label]) => (
+                        <option key={value} value={value}>
+                          {label}
+                        </option>
+                      )
+                    )}
                   </select>
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search by card or bank"
-                    className="w-1/2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs sm:text-sm text-slate-800 shadow-inner outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
-                  />
+                </div>
+
+                {/* Card type */}
+                <div className="space-y-1">
+                  <label className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                    Card type
+                  </label>
+                  <select
+                    value={cardType}
+                    onChange={(e) => setCardType(e.target.value)}
+                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 shadow-inner outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                  >
+                    {Object.entries(CARD_TYPE_LABELS).map(
+                      ([value, label]) => (
+                        <option key={value} value={value}>
+                          {label}
+                        </option>
+                      )
+                    )}
+                  </select>
+                </div>
+
+                {/* Annual fee */}
+                <div className="space-y-1">
+                  <label className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                    Annual fee
+                  </label>
+                  <select
+                    value={annualFeeFilter}
+                    onChange={(e) => setAnnualFeeFilter(e.target.value)}
+                    className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 shadow-inner outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                  >
+                    <option value="any">Any</option>
+                    <option value="no-fee">No annual fee</option>
+                    <option value="under-100">Under $100</option>
+                    <option value="premium">$100+ (premium)</option>
+                  </select>
+                </div>
+
+                {/* Sort + search */}
+                <div className="space-y-1">
+                  <label className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                    Sort & search
+                  </label>
+                  <div className="flex gap-2">
+                    <select
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value)}
+                      className="w-1/2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs sm:text-sm text-slate-800 shadow-inner outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    >
+                      <option value="featured">Featured</option>
+                      <option value="annualFeeLow">Lowest annual fee</option>
+                      <option value="annualFeeHigh">Highest annual fee</option>
+                    </select>
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Search by card or bank"
+                      className="w-1/2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs sm:text-sm text-slate-800 shadow-inner outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* Results */}
-          <div className="space-y-3">
-            <p className="text-xs text-slate-500">
-              Showing{" "}
-              <span className="font-semibold text-slate-800">
-                {filteredCards.length}
-              </span>{" "}
-              card{filteredCards.length === 1 ? "" : "s"} based on your filters.
-            </p>
+            {/* Results */}
+            <div className="space-y-3">
+              <p className="text-xs text-slate-500">
+                Showing{" "}
+                <span className="font-semibold text-slate-800">
+                  {filteredCards.length}
+                </span>{" "}
+                card{filteredCards.length === 1 ? "" : "s"} based on your
+                filters.
+              </p>
 
-            <div className="grid gap-4 lg:grid-cols-2">
-              {filteredCards.map((card) => (
-                <CardResult key={card.id} card={card} />
-              ))}
+              <div className="grid gap-4 lg:grid-cols-2">
+                {filteredCards.map((card) => (
+                  <CardResult
+                    key={card.id}
+                    card={card}
+                    isSelected={compareIds.includes(card.id)}
+                    onToggleCompare={() => toggleCompare(card.id)}
+                  />
+                ))}
 
-              {filteredCards.length === 0 && (
-                <div className="col-span-full rounded-2xl border border-dashed border-slate-300 bg-white/70 px-4 py-10 text-center text-sm text-slate-600">
-                  No cards match those filters yet. Try widening your credit score
-                  or card type.
-                </div>
-              )}
+                {filteredCards.length === 0 && (
+                  <div className="col-span-full rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-4 py-10 text-center text-sm text-slate-600">
+                    No cards match those filters yet. Try widening your credit
+                    score, card type, or annual fee range.
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
 
-          {/* Disclosure */}
-          <div className="rounded-2xl border border-amber-100 bg-amber-50/80 px-4 py-3 text-[11px] leading-relaxed text-amber-900">
-            <p className="font-semibold uppercase tracking-[0.16em] text-amber-800">
-              Important note
-            </p>
-            <p className="mt-1">
-              This tool is for educational purposes only and is not financial
-              advice. Card details shown here are sample data while we prepare
-              live offers from partner banks and card issuers. Always review the
-              terms and disclosures on the official application page before you
-              apply.
-            </p>
-          </div>
+            {/* Compare strip */}
+            {selectedForCompare.length > 0 && (
+              <section className="mt-4 space-y-3 rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-4">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                      Compare cards
+                    </p>
+                    <p className="text-[11px] text-slate-600">
+                      You&apos;re comparing{" "}
+                      <span className="font-semibold">
+                        {selectedForCompare.length}
+                      </span>{" "}
+                      card
+                      {selectedForCompare.length === 1 ? "" : "s"}. You can
+                      select up to 3 at a time.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setCompareIds([])}
+                    className="text-[11px] font-medium text-emerald-700 hover:text-emerald-800"
+                  >
+                    Clear comparison
+                  </button>
+                </div>
+
+                <div className="mt-2 flex gap-3 overflow-x-auto pb-2">
+                  {selectedForCompare.map((card) => (
+                    <div
+                      key={card.id}
+                      className="min-w-[220px] max-w-xs rounded-2xl border border-slate-200 bg-white px-3 py-3 text-xs text-slate-800 shadow-sm"
+                    >
+                      <p className="text-[11px] font-semibold text-slate-900 line-clamp-2">
+                        {card.name}
+                      </p>
+                      <p className="mt-0.5 text-[10px] text-slate-500">
+                        {card.issuer} • {card.network}
+                      </p>
+
+                      <dl className="mt-2 space-y-1 text-[11px]">
+                        <div className="flex justify-between gap-2">
+                          <dt className="text-slate-500">Type</dt>
+                          <dd className="font-medium text-slate-800">
+                            {CARD_TYPE_LABELS[card.cardType] || "Credit card"}
+                          </dd>
+                        </div>
+                        <div className="flex justify-between gap-2">
+                          <dt className="text-slate-500">Score</dt>
+                          <dd className="text-right">
+                            {CREDIT_SCORE_LABELS[card.creditScore]}
+                          </dd>
+                        </div>
+                        <div className="flex justify-between gap-2">
+                          <dt className="text-slate-500">Annual fee</dt>
+                          <dd className="text-right">
+                            {card.annualFee === 0
+                              ? "No fee"
+                              : `$${card.annualFee.toLocaleString()}/yr`}
+                          </dd>
+                        </div>
+                        <div>
+                          <dt className="text-slate-500">Intro APR</dt>
+                          <dd className="text-[11px]">{card.introApr}</dd>
+                        </div>
+                        <div>
+                          <dt className="text-slate-500">Regular APR</dt>
+                          <dd className="text-[11px]">{card.regularApr}</dd>
+                        </div>
+                        <div>
+                          <dt className="text-slate-500">Bonus</dt>
+                          <dd className="text-[11px] line-clamp-3">
+                            {card.bonus}
+                          </dd>
+                        </div>
+                      </dl>
+
+                      <p className="mt-2 text-[10px] text-slate-500 line-clamp-3">
+                        {card.rewards}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Disclosure box */}
+            <div className="rounded-2xl border border-amber-100 bg-amber-50/80 px-4 py-3 text-[11px] leading-relaxed text-amber-900">
+              <p className="font-semibold uppercase tracking-[0.16em] text-amber-800">
+                Important note
+              </p>
+              <p className="mt-1">
+                This tool is for educational purposes only and is not financial
+                advice. Card details shown here are sample data while we prepare
+                live offers from partner banks and card issuers. Always review
+                the terms and disclosures on the official application page
+                before you apply.
+              </p>
+            </div>
+          </section>
+
+          {/* Bottom share bar */}
+          <ShareBar
+            variant="bottom"
+            label="Share this tool"
+            title="I’m using BuddyMoney’s credit card finder to explore card options."
+          />
         </div>
-      </section>
+      </main>
     </>
   );
 }
@@ -415,7 +615,7 @@ export default function CreditCardFinder() {
 // ---------------------------------------------------------
 // CardResult: single card visual
 // ---------------------------------------------------------
-function CardResult({ card }) {
+function CardResult({ card, isSelected, onToggleCompare }) {
   const {
     name,
     issuer,
@@ -437,9 +637,9 @@ function CardResult({ card }) {
   const canApply = AFFILIATE_ENABLED && link && link !== "#";
 
   return (
-    <article className="flex h-full flex-col justify-between rounded-2xl border border-slate-200 bg-white/90 p-4 sm:p-5 shadow-sm">
+    <article className="flex h-full flex-col justify-between rounded-2xl border border-slate-200 bg-white/95 p-4 sm:p-5 shadow-soft">
       <div className="space-y-3">
-        {/* Top row: name + issuer */}
+        {/* Top row: name + issuer + badges + compare */}
         <div className="flex items-start justify-between gap-3">
           <div>
             <h2 className="text-base sm:text-lg font-semibold text-slate-900">
@@ -456,6 +656,27 @@ function CardResult({ card }) {
             <span className="rounded-full bg-slate-50 px-2 py-0.5 text-[10px] font-medium text-slate-600">
               {CREDIT_SCORE_LABELS[creditScore] || "Any credit score"}
             </span>
+            <button
+              type="button"
+              onClick={onToggleCompare}
+              className={`mt-1 inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-semibold ${
+                isSelected
+                  ? "border-emerald-500 bg-emerald-50 text-emerald-700"
+                  : "border-slate-200 bg-white text-slate-600 hover:border-emerald-400 hover:text-emerald-700"
+              }`}
+            >
+              {isSelected ? (
+                <>
+                  <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                  In compare
+                </>
+              ) : (
+                <>
+                  <span className="text-xs">＋</span>
+                  Compare
+                </>
+              )}
+            </button>
           </div>
         </div>
 
