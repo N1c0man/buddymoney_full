@@ -22,56 +22,106 @@ const item = {
   initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0 }
 };
-
 export default function Home() {
-
-  // 🔥 SEO: Title, Meta Description, JSON-LD
+  // 🔥 SEO: Title, Meta Description, JSON-LD, Canonical, Social Tags
   useEffect(() => {
-    document.title = "BuddyMoney – Simple Money Tools, Guides & Confidence";
-
+    const title =
+      "BuddyMoney – Free Money Tools for Budgeting, Saving & Debt Payoff";
     const description =
-      "BuddyMoney helps beginners feel calmer about money with simple tools: budgeting, debt payoff, savings, mortgage payoff, emergency fund planning, and more.";
+      "BuddyMoney helps beginners feel calmer about money with free tools for budgeting, debt payoff, savings goals, mortgage payoff, emergency fund planning, and more.";
+    const url = "https://buddymoney.com/";
+    const ogImage = "https://buddymoney.com/og-image-buddymoney-home.jpg"; // update this when you have one
 
-    // Update or create meta description
-    let meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute("content", description);
-    } else {
-      meta = document.createElement("meta");
-      meta.name = "description";
-      meta.content = description;
-      document.head.appendChild(meta);
+    // ---- Title ----
+    document.title = title;
+
+    // ---- Meta description ----
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement("meta");
+      metaDescription.name = "description";
+      document.head.appendChild(metaDescription);
     }
+    metaDescription.setAttribute("content", description);
+
+    // ---- Canonical ----
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement("link");
+      canonicalLink.rel = "canonical";
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute("href", url);
+
+    // ---- Open Graph tags ----
+    const ensureOgTag = (property, content) => {
+      if (!content) return;
+      let el = document.querySelector(`meta[property="${property}"]`);
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute("property", property);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+
+    ensureOgTag("og:type", "website");
+    ensureOgTag("og:title", title);
+    ensureOgTag("og:description", description);
+    ensureOgTag("og:url", url);
+    ensureOgTag("og:site_name", "BuddyMoney");
+    ensureOgTag("og:image", ogImage);
+
+    // ---- Twitter card tags ----
+    const ensureTwitterTag = (name, content) => {
+      if (!content) return;
+      let el = document.querySelector(`meta[name="${name}"]`);
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute("name", name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+
+    ensureTwitterTag("twitter:card", "summary_large_image");
+    ensureTwitterTag("twitter:title", title);
+    ensureTwitterTag("twitter:description", description);
+    ensureTwitterTag("twitter:image", ogImage);
 
     // -------- JSON-LD Structured Data --------
     const jsonLd = {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      "name": "BuddyMoney",
-      "url": "https://buddymoney.com/",
-      "description": description,
-      "publisher": {
+      name: "BuddyMoney",
+      url,
+      description,
+      publisher: {
         "@type": "Organization",
-        "name": "BuddyMoney",
-        "url": "https://buddymoney.com"
+        name: "BuddyMoney",
+        url
       },
-      "potentialAction": {
+      potentialAction: {
         "@type": "SearchAction",
-        "target": "https://buddymoney.com/search?q={search_term_string}",
+        target: "https://buddymoney.com/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       }
     };
 
     const script = document.createElement("script");
     script.type = "application/ld+json";
-    script.innerHTML = JSON.stringify(jsonLd);
+    script.id = "ld-json-website";
+    script.textContent = JSON.stringify(jsonLd);
     document.head.appendChild(script);
 
+    // Cleanup on unmount
     return () => {
-      document.head.removeChild(script);
+      const existingScript = document.getElementById("ld-json-website");
+      if (existingScript) {
+        document.head.removeChild(existingScript);
+      }
     };
   }, []);
-
   return (
     // Brand-tint background + tighter vertical spacing
     <div className="min-h-screen bg-brand-50/40 space-y-8 md:space-y-10" itemScope itemType="https://schema.org/WebPage">
@@ -102,6 +152,12 @@ export default function Home() {
         >
           Popular Tools
         </motion.h2>
+<motion.p
+  className="text-sm text-slate-600 mb-4 max-w-2xl"
+  variants={item}
+>
+  Explore free BuddyMoney tools to help you budget, save for goals, build an emergency fund, track your net worth, and plan your debt payoff.
+</motion.p>
 
         <motion.div
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"

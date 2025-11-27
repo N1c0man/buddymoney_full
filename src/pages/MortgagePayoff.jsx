@@ -1,5 +1,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet";
+import ShareBar from "../components/ShareBar";
 
 const DEFAULT_PRINCIPAL = 300000;
 const DEFAULT_RATE = 6.5;
@@ -131,57 +133,45 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
 }
 
 export default function MortgagePayoff() {
-  // ✅ SEO + JSON-LD
-  useEffect(() => {
-    document.title = "Mortgage Payoff Calculator | BuddyMoney";
+  // Helmet SEO data
+  const title =
+    "Mortgage Payoff Calculator – Extra Payment & Bi-Weekly Tool | BuddyMoney";
 
-    const description =
-      "Estimate how extra payments and bi-weekly strategies can reduce your mortgage payoff time and total interest with BuddyMoney’s free Mortgage Payoff Calculator.";
+  const description =
+    "Use BuddyMoney’s free Mortgage Payoff Calculator to see how extra monthly payments and bi-weekly strategies can reduce your payoff time and total interest.";
 
-    // meta description
-    let meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute("content", description);
-    } else {
-      meta = document.createElement("meta");
-      meta.name = "description";
-      meta.content = description;
-      document.head.appendChild(meta);
-    }
+  const pageUrl =
+    typeof window !== "undefined"
+      ? window.location.href
+      : "https://buddymoney.com/mortgage";
 
-    // JSON-LD as a SoftwareApplication
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Mortgage Payoff Calculator",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "Web",
-      "url": "https://buddymoney.com/mortgage",
-      "description": description,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "BuddyMoney",
-        "url": "https://buddymoney.com"
-      }
-    };
-
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.innerHTML = JSON.stringify(jsonLd);
-    document.head.appendChild(script);
-
-    // cleanup when leaving page
-    return () => {
-      if (script && script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-    };
-  }, []);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Mortgage Payoff Calculator – Extra Payment & Bi-Weekly Tool",
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Web",
+    url: "https://buddymoney.com/mortgage",
+    description,
+    isAccessibleForFree: true,
+    keywords: [
+      "mortgage payoff calculator",
+      "extra payment mortgage calculator",
+      "bi-weekly mortgage calculator",
+      "amortization calculator",
+      "pay off mortgage faster"
+    ],
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "BuddyMoney",
+      url: "https://buddymoney.com",
+    },
+  };
 
   const [principal, setPrincipal] = useState(String(DEFAULT_PRINCIPAL));
   const [rate, setRate] = useState(String(DEFAULT_RATE));
@@ -197,8 +187,11 @@ export default function MortgagePayoff() {
   const [goalYearsInput, setGoalYearsInput] = useState("");
   const [goalResult, setGoalResult] = useState(null);
 
-  // Copy/share status
+  // Copy/share status (summary)
   const [copyStatus, setCopyStatus] = useState("");
+
+  // Link share state (for share buttons)
+  const [linkCopied, setLinkCopied] = useState(false);
 
   const principalNum = toNumber(principal);
   const rateNum = toNumber(rate);
@@ -494,6 +487,28 @@ export default function MortgagePayoff() {
     }
   }
 
+  // Copy link for social share buttons (now used only by ShareBar via URL; keeping in case needed elsewhere)
+  const encodedUrl = encodeURIComponent(pageUrl);
+  const encodedTitle = encodeURIComponent(
+    "I’m using BuddyMoney’s Mortgage Payoff Calculator to see how extra payments can knock years off my mortgage."
+  );
+
+  async function handleCopyLink() {
+    try {
+      if (
+        typeof navigator !== "undefined" &&
+        navigator.clipboard &&
+        navigator.clipboard.writeText
+      ) {
+        await navigator.clipboard.writeText(pageUrl);
+        setLinkCopied(true);
+        setTimeout(() => setLinkCopied(false), 2000);
+      }
+    } catch (err) {
+      console.error("Failed to copy link:", err);
+    }
+  }
+
   // CSV download
   function handleDownloadCsv() {
     const schedule = scheduleForDisplay;
@@ -525,591 +540,628 @@ export default function MortgagePayoff() {
   }
 
   return (
-    <main className="pt-2 lg:pt-4 pb-16 bg-brand-50/40">
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        className="max-w-6xl mx-auto px-4 space-y-6"
-      >
-        {/* MORTGAGE HERO */}
-        <section className="rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 px-5 py-7 md:px-8 md:py-9 shadow-soft">
-          <div className="space-y-3">
-            <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-600">
-              Mortgage Payoff Lab
-            </p>
-            <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-              See how extra payments can knock years off your mortgage.
-            </h1>
-            <p className="text-sm md:text-base text-brand-800/80 max-w-xl">
-              Plug in your balance, rate, and extra payments to see how much
-              interest you could save—and how soon you could be free from the bank.
-            </p>
+    <>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="robots" content="index,follow" />
+        <link rel="canonical" href="https://buddymoney.com/mortgage" />
 
-            <div className="flex flex-wrap gap-2 text-[11px] mt-2">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
-                🧮 Compare normal vs. extra payments
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
-                📈 See years saved and interest avoided
-              </span>
-            </div>
-          </div>
-        </section>
+        {/* Open Graph / Twitter */}
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:site_name" content="BuddyMoney" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
 
-        {/* MAIN CALCULATOR CARD */}
-        <div className="rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-8 md:py-8">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900">
-                Mortgage Payoff Calculator
-              </h2>
-              <p className="mt-2 text-slate-600 max-w-2xl text-sm md:text-base">
-                See how extra monthly payments and bi-weekly strategies reduce
-                your payoff time and total interest.
+        {/* JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
+      </Helmet>
+
+      <main className="pt-2 lg:pt-4 pb-16 bg-brand-50/40">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="max-w-6xl mx-auto px-4 space-y-6"
+        >
+          {/* MORTGAGE HERO */}
+          <section className="rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 px-5 py-7 md:px-8 md:py-9 shadow-soft">
+            <div className="space-y-3">
+              <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-600">
+                Mortgage Payoff Lab
               </p>
-            </div>
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
+                See how extra payments can knock years off your mortgage.
+              </h1>
+              <p className="text-sm md:text-base text-brand-800/80 max-w-xl">
+                Plug in your balance, rate, and extra payments to see how much
+                interest you could save—and how soon you could be free from the bank.
+              </p>
 
-            <button
-              onClick={handleReset}
-              className="text-sm text-indigo-600 hover:underline"
-            >
-              Reset to defaults
-            </button>
-          </div>
-
-          {/* Impact banner */}
-          <div className="mb-4">
-            <div className="inline-flex flex-wrap items-center gap-2 rounded-full bg-indigo-50 border border-indigo-100 px-4 py-2 text-sm text-slate-800">
-              <span className="font-semibold text-indigo-700">
-                {interestSaved > 0 && yearsSaved
-                  ? "Impact of your payoff strategy"
-                  : "Try adding an extra payment or switching to bi-weekly to see your impact"}
-              </span>
-
-              {interestSaved > 0 && yearsSaved && (
-                <span className="whitespace-normal text-xs md:text-sm">
-                  You&apos;ll pay off about{" "}
-                  <span className="font-semibold">
-                    {yearsSaved} years
-                  </span>{" "}
-                  sooner and avoid roughly{" "}
-                  <span className="font-semibold">
-                    {formatMoney(interestSaved)}
-                  </span>{" "}
-                  in interest compared with the normal schedule.
+              <div className="flex flex-wrap gap-2 text-[11px] mt-2">
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+                  🧮 Compare normal vs. extra payments
                 </span>
-              )}
-            </div>
-          </div>
-
-          {/* Frequency toggle */}
-          <div className="mb-6 flex items-center justify-end">
-            <span className="text-xs text-slate-600 mr-2">
-              Payment frequency:
-            </span>
-            <div className="inline-flex rounded-full bg-slate-100 p-1 text-xs">
-              <button
-                type="button"
-                onClick={() => setFrequency("monthly")}
-                className={`px-3 py-1 rounded-full border ${
-                  frequency === "monthly"
-                    ? "bg-white border-slate-300 text-slate-900 shadow-sm"
-                    : "border-transparent text-slate-600 hover:text-slate-900"
-                }`}
-              >
-                Monthly
-              </button>
-              <button
-                type="button"
-                onClick={() => setFrequency("biweekly")}
-                className={`px-3 py-1 rounded-full border ml-1 ${
-                  frequency === "biweekly"
-                    ? "bg-white border-slate-300 text-slate-900 shadow-sm"
-                    : "border-transparent text-slate-600 hover:text-slate-900"
-                }`}
-              >
-                Bi-weekly
-              </button>
-            </div>
-          </div>
-
-          {/* Inputs */}
-          <div className="grid gap-4 md:grid-cols-4 mb-6">
-            <InputBox
-              label="Loan Amount ($)"
-              value={principal}
-              onChange={setPrincipal}
-            />
-            <InputBox
-              label="Interest Rate (%)"
-              value={rate}
-              onChange={setRate}
-            />
-            <InputBox
-              label="Term (Years)"
-              value={years}
-              onChange={setYears}
-            />
-            <InputBox
-              label="Extra Payment ($/mo)"
-              value={extra}
-              onChange={setExtra}
-            />
-          </div>
-
-          {/* Summary */}
-          <div className="grid gap-4 md:grid-cols-4 mb-4">
-            <SummaryCard
-              title="Base Monthly Payment"
-              value={formatMoney(basePayment)}
-            />
-            <SummaryCard
-              title="Payoff Time (with strategy)"
-              value={`${payoffYears} yr ${payoffRemMonths} mo`}
-            />
-            <SummaryCard
-              title="Total Interest (with strategy)"
-              value={formatMoney(interestExtra)}
-            />
-            <SummaryCard
-              title="Interest Saved vs Normal"
-              value={formatMoney(interestSaved)}
-              green
-            />
-          </div>
-
-          {/* Base vs extra comparison */}
-          <div className="mb-8 text-xs text-slate-600 bg-white border border-slate-200 rounded-2xl px-4 py-3 shadow-sm">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
-              <div className="font-semibold text-slate-800">
-                Comparison summary
-              </div>
-              <div className="flex flex-wrap gap-x-6 gap-y-1">
-                <span>
-                  <span className="font-medium text-slate-800">
-                    Base payoff:
-                  </span>{" "}
-                  {Math.floor(payoffMonthsNormal / 12)} yr{" "}
-                  {payoffMonthsNormal % 12} mo
-                </span>
-                <span>
-                  <span className="font-medium text-slate-800">
-                    With current strategy:
-                  </span>{" "}
-                  {payoffYears} yr {payoffRemMonths} mo
-                </span>
-                <span>
-                  <span className="font-medium text-slate-800">
-                    Interest (base):
-                  </span>{" "}
-                  {formatMoney(interestNormal)}
-                </span>
-                <span>
-                  <span className="font-medium text-slate-800">
-                    Interest (with strategy):
-                  </span>{" "}
-                  {formatMoney(interestExtra)}
+                <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
+                  📈 See years saved and interest avoided
                 </span>
               </div>
-            </div>
-            {frequency === "biweekly" && (
-              <p className="mt-1 text-[11px] text-slate-500">
-                Bi-weekly mode approximates half your monthly payment every
-                two weeks, which is similar to making one extra full payment
-                per year.
-              </p>
-            )}
-          </div>
-
-          {/* Scenario A vs Scenario B */}
-          <section className="mb-8 grid gap-4 md:grid-cols-2">
-            {/* Scenario A */}
-            <div className="bg-white border border-slate-200 rounded-2xl px-4 py-4 shadow-sm">
-              <h2 className="text-sm font-semibold text-slate-800 mb-1">
-                Scenario A: Monthly, no extra
-              </h2>
-              <p className="text-[11px] text-slate-500 mb-3">
-                Snapshot this loan with standard monthly payments and no extra
-                contributions.
-              </p>
-              {scenarioAMetrics ? (
-                <div className="space-y-1 text-xs text-slate-700 mb-3">
-                  <div>
-                    <span className="font-medium">Payoff time:</span>{" "}
-                    {scenarioAMetrics.payoffYears} yr{" "}
-                    {scenarioAMetrics.payoffRemMonths} mo
-                  </div>
-                  <div>
-                    <span className="font-medium">Total interest:</span>{" "}
-                    {formatMoney(scenarioAMetrics.interestExtra)}
-                  </div>
-                  <div>
-                    <span className="font-medium">
-                      Interest saved vs base:
-                    </span>{" "}
-                    {formatMoney(scenarioAMetrics.interestSaved)}
-                  </div>
-                </div>
-              ) : (
-                <p className="text-[11px] text-slate-500 mb-3">
-                  Click “Set from current values” to store this scenario.
-                </p>
-              )}
-              <button
-                type="button"
-                onClick={handleSaveScenarioA}
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 px-3 py-1.5 text-[11px] font-medium text-slate-700 hover:bg-slate-50"
-              >
-                Set from current values
-              </button>
-            </div>
-
-            {/* Scenario B */}
-            <div className="bg-white border border-slate-200 rounded-2xl px-4 py-4 shadow-sm">
-              <h2 className="text-sm font-semibold text-slate-800 mb-1">
-                Scenario B: Bi-weekly + extra
-              </h2>
-              <p className="text-[11px] text-slate-500 mb-3">
-                Snapshot this loan using your current extra amount with a
-                bi-weekly strategy.
-              </p>
-              {scenarioBMetrics ? (
-                <div className="space-y-1 text-xs text-slate-700 mb-3">
-                  <div>
-                    <span className="font-medium">Payoff time:</span>{" "}
-                    {scenarioBMetrics.payoffYears} yr{" "}
-                    {scenarioBMetrics.payoffRemMonths} mo
-                  </div>
-                  <div>
-                    <span className="font-medium">Total interest:</span>{" "}
-                    {formatMoney(scenarioBMetrics.interestExtra)}
-                  </div>
-                  <div>
-                    <span className="font-medium">
-                      Interest saved vs base:
-                    </span>{" "}
-                    {formatMoney(scenarioBMetrics.interestSaved)}
-                  </div>
-                </div>
-              ) : (
-                <p className="text-[11px] text-slate-500 mb-3">
-                  Click “Set from current values” to store this scenario.
-                </p>
-              )}
-              <button
-                type="button"
-                onClick={handleSaveScenarioB}
-                className="inline-flex items-center justify-center rounded-full border border-slate-300 px-3 py-1.5 text-[11px] font-medium text-slate-700 hover:bg-slate-50"
-              >
-                Set from current values
-              </button>
             </div>
           </section>
 
-          {/* Goal date reverse calculator */}
-          <section className="mb-8 bg-white border border-slate-200 rounded-2xl px-5 py-4 shadow-sm">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
+          {/* Social share bar */}
+          <ShareBar
+            variant="top"
+            title="Mortgage Payoff Calculator – BuddyMoney"
+          />
+
+          {/* MAIN CALCULATOR CARD */}
+          <div className="rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-8 md:py-8">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-6">
               <div>
-                <h2 className="text-sm font-semibold text-slate-800">
-                  Have a payoff goal?
+                <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900">
+                  Mortgage Payoff Calculator
                 </h2>
-                <p className="text-[11px] text-slate-500 mt-1">
-                  Enter a target payoff horizon and we’ll estimate the extra{" "}
-                  {frequency === "biweekly"
-                    ? "per month (and per bi-weekly payment)"
-                    : "per month"}{" "}
-                  needed with your current loan details.
+                <p className="mt-2 text-slate-600 max-w-2xl text-sm md:text-base">
+                  See how extra monthly payments and bi-weekly strategies reduce
+                  your payoff time and total interest.
                 </p>
               </div>
-              <div className="flex items-end gap-2">
-                <div>
-                  <label className="block text-[11px] font-semibold text-slate-600 mb-1">
-                    Target payoff (years)
-                  </label>
-                  <input
-                    type="number"
-                    min={1}
-                    className="rounded-lg border border-slate-200 px-3 py-1.5 text-xs bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-24"
-                    value={goalYearsInput}
-                    onChange={(e) => setGoalYearsInput(e.target.value)}
-                  />
-                </div>
+
+              <button
+                onClick={handleReset}
+                className="text-sm text-indigo-600 hover:underline"
+              >
+                Reset to defaults
+              </button>
+            </div>
+
+            {/* Impact banner */}
+            <div className="mb-4">
+              <div className="inline-flex flex-wrap items-center gap-2 rounded-full bg-indigo-50 border border-indigo-100 px-4 py-2 text-sm text-slate-800">
+                <span className="font-semibold text-indigo-700">
+                  {interestSaved > 0 && yearsSaved
+                    ? "Impact of your payoff strategy"
+                    : "Try adding an extra payment or switching to bi-weekly to see your impact"}
+                </span>
+
+                {interestSaved > 0 && yearsSaved && (
+                  <span className="whitespace-normal text-xs md:text-sm">
+                    You&apos;ll pay off about{" "}
+                    <span className="font-semibold">
+                      {yearsSaved} years
+                    </span>{" "}
+                    sooner and avoid roughly{" "}
+                    <span className="font-semibold">
+                      {formatMoney(interestSaved)}
+                    </span>{" "}
+                    in interest compared with the normal schedule.
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {/* Frequency toggle */}
+            <div className="mb-6 flex items-center justify-end">
+              <span className="text-xs text-slate-600 mr-2">
+                Payment frequency:
+              </span>
+              <div className="inline-flex rounded-full bg-slate-100 p-1 text-xs">
                 <button
                   type="button"
-                  onClick={handleGoalCalculate}
-                  className="inline-flex items-center justify-center rounded-full border border-indigo-500 px-3 py-1.5 text-xs font-medium text-indigo-600 hover:bg-indigo-50 mt-4 md:mt-0"
+                  onClick={() => setFrequency("monthly")}
+                  className={`px-3 py-1 rounded-full border ${
+                    frequency === "monthly"
+                      ? "bg-white border-slate-300 text-slate-900 shadow-sm"
+                      : "border-transparent text-slate-600 hover:text-slate-900"
+                  }`}
                 >
-                  Calculate extra needed
+                  Monthly
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFrequency("biweekly")}
+                  className={`px-3 py-1 rounded-full border ml-1 ${
+                    frequency === "biweekly"
+                      ? "bg-white border-slate-300 text-slate-900 shadow-sm"
+                      : "border-transparent text-slate-600 hover:text-slate-900"
+                  }`}
+                >
+                  Bi-weekly
                 </button>
               </div>
             </div>
 
-            <div className="mt-3 text-[11px] text-slate-600">
-              {goalResult?.error ? (
-                <span className="text-rose-600">{goalResult.error}</span>
-              ) : goalResult?.extraNeeded != null ? (
-                <>
-                  To pay off this loan in about{" "}
+            {/* Inputs */}
+            <div className="grid gap-4 md:grid-cols-4 mb-6">
+              <InputBox
+                label="Loan Amount ($)"
+                value={principal}
+                onChange={setPrincipal}
+              />
+              <InputBox
+                label="Interest Rate (%)"
+                value={rate}
+                onChange={setRate}
+              />
+              <InputBox
+                label="Term (Years)"
+                value={years}
+                onChange={setYears}
+              />
+              <InputBox
+                label="Extra Payment ($/mo)"
+                value={extra}
+                onChange={setExtra}
+              />
+            </div>
+
+            {/* Summary */}
+            <div className="grid gap-4 md:grid-cols-4 mb-4">
+              <SummaryCard
+                title="Base Monthly Payment"
+                value={formatMoney(basePayment)}
+              />
+              <SummaryCard
+                title="Payoff Time (with strategy)"
+                value={`${payoffYears} yr ${payoffRemMonths} mo`}
+              />
+              <SummaryCard
+                title="Total Interest (with strategy)"
+                value={formatMoney(interestExtra)}
+              />
+              <SummaryCard
+                title="Interest Saved vs Normal"
+                value={formatMoney(interestSaved)}
+                green
+              />
+            </div>
+
+            {/* Base vs extra comparison */}
+            <div className="mb-8 text-xs text-slate-600 bg-white border border-slate-200 rounded-2xl px-4 py-3 shadow-sm">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                <div className="font-semibold text-slate-800">
+                  Comparison summary
+                </div>
+                <div className="flex flex-wrap gap-x-6 gap-y-1">
+                  <span>
+                    <span className="font-medium text-slate-800">
+                      Base payoff:
+                    </span>{" "}
+                    {Math.floor(payoffMonthsNormal / 12)} yr{" "}
+                    {payoffMonthsNormal % 12} mo
+                  </span>
+                  <span>
+                    <span className="font-medium text-slate-800">
+                      With current strategy:
+                    </span>{" "}
+                    {payoffYears} yr {payoffRemMonths} mo
+                  </span>
+                  <span>
+                    <span className="font-medium text-slate-800">
+                      Interest (base):
+                    </span>{" "}
+                    {formatMoney(interestNormal)}
+                  </span>
+                  <span>
+                    <span className="font-medium text-slate-800">
+                      Interest (with strategy):
+                    </span>{" "}
+                    {formatMoney(interestExtra)}
+                  </span>
+                </div>
+              </div>
+              {frequency === "biweekly" && (
+                <p className="mt-1 text-[11px] text-slate-500">
+                  Bi-weekly mode approximates half your monthly payment every
+                  two weeks, which is similar to making one extra full payment
+                  per year.
+                </p>
+              )}
+            </div>
+
+            {/* Scenario A vs Scenario B */}
+            <section className="mb-8 grid gap-4 md:grid-cols-2">
+              {/* Scenario A */}
+              <div className="bg-white border border-slate-200 rounded-2xl px-4 py-4 shadow-sm">
+                <h2 className="text-sm font-semibold text-slate-800 mb-1">
+                  Scenario A: Monthly, no extra
+                </h2>
+                <p className="text-[11px] text-slate-500 mb-3">
+                  Snapshot this loan with standard monthly payments and no extra
+                  contributions.
+                </p>
+                {scenarioAMetrics ? (
+                  <div className="space-y-1 text-xs text-slate-700 mb-3">
+                    <div>
+                      <span className="font-medium">Payoff time:</span>{" "}
+                      {scenarioAMetrics.payoffYears} yr{" "}
+                      {scenarioAMetrics.payoffRemMonths} mo
+                    </div>
+                    <div>
+                      <span className="font-medium">Total interest:</span>{" "}
+                      {formatMoney(scenarioAMetrics.interestExtra)}
+                    </div>
+                    <div>
+                      <span className="font-medium">
+                        Interest saved vs base:
+                      </span>{" "}
+                      {formatMoney(scenarioAMetrics.interestSaved)}
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-[11px] text-slate-500 mb-3">
+                    Click “Set from current values” to store this scenario.
+                  </p>
+                )}
+                <button
+                  type="button"
+                  onClick={handleSaveScenarioA}
+                  className="inline-flex items-center justify-center rounded-full border border-slate-300 px-3 py-1.5 text-[11px] font-medium text-slate-700 hover:bg-slate-50"
+                >
+                  Set from current values
+                </button>
+              </div>
+
+              {/* Scenario B */}
+              <div className="bg-white border border-slate-200 rounded-2xl px-4 py-4 shadow-sm">
+                <h2 className="text-sm font-semibold text-slate-800 mb-1">
+                  Scenario B: Bi-weekly + extra
+                </h2>
+                <p className="text-[11px] text-slate-500 mb-3">
+                  Snapshot this loan using your current extra amount with a
+                  bi-weekly strategy.
+                </p>
+                {scenarioBMetrics ? (
+                  <div className="space-y-1 text-xs text-slate-700 mb-3">
+                    <div>
+                      <span className="font-medium">Payoff time:</span>{" "}
+                      {scenarioBMetrics.payoffYears} yr{" "}
+                      {scenarioBMetrics.payoffRemMonths} mo
+                    </div>
+                    <div>
+                      <span className="font-medium">Total interest:</span>{" "}
+                      {formatMoney(scenarioBMetrics.interestExtra)}
+                    </div>
+                    <div>
+                      <span className="font-medium">
+                        Interest saved vs base:
+                      </span>{" "}
+                      {formatMoney(scenarioBMetrics.interestSaved)}
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-[11px] text-slate-500 mb-3">
+                    Click “Set from current values” to store this scenario.
+                  </p>
+                )}
+                <button
+                  type="button"
+                  onClick={handleSaveScenarioB}
+                  className="inline-flex items-center justify-center rounded-full border border-slate-300 px-3 py-1.5 text-[11px] font-medium text-slate-700 hover:bg-slate-50"
+                >
+                  Set from current values
+                </button>
+              </div>
+            </section>
+
+            {/* Goal date reverse calculator */}
+            <section className="mb-8 bg-white border border-slate-200 rounded-2xl px-5 py-4 shadow-sm">
+              <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3">
+                <div>
+                  <h2 className="text-sm font-semibold text-slate-800">
+                    Have a payoff goal?
+                  </h2>
+                  <p className="text-[11px] text-slate-500 mt-1">
+                    Enter a target payoff horizon and we’ll estimate the extra{" "}
+                    {frequency === "biweekly"
+                      ? "per month (and per bi-weekly payment)"
+                      : "per month"}{" "}
+                    needed with your current loan details.
+                  </p>
+                </div>
+                <div className="flex items-end gap-2">
+                  <div>
+                    <label className="block text-[11px] font-semibold text-slate-600 mb-1">
+                      Target payoff (years)
+                    </label>
+                    <input
+                      type="number"
+                      min={1}
+                      className="rounded-lg border border-slate-200 px-3 py-1.5 text-xs bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-24"
+                      value={goalYearsInput}
+                      onChange={(e) => setGoalYearsInput(e.target.value)}
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleGoalCalculate}
+                    className="inline-flex items-center justify-center rounded-full border border-indigo-500 px-3 py-1.5 text-xs font-medium text-indigo-600 hover:bg-indigo-50 mt-4 md:mt-0"
+                  >
+                    Calculate extra needed
+                  </button>
+                </div>
+              </div>
+
+              <div className="mt-3 text-[11px] text-slate-600">
+                {goalResult?.error ? (
+                  <span className="text-rose-600">{goalResult.error}</span>
+                ) : goalResult?.extraNeeded != null ? (
+                  <>
+                    To pay off this loan in about{" "}
                     <span className="font-semibold">
                       {goalResult.targetYears} years
                     </span>{" "}
-                  with{" "}
-                  <span className="font-semibold">
-                    {goalResult.frequencyUsed === "biweekly"
-                      ? "bi-weekly"
-                      : "monthly"}
-                  </span>{" "}
-                  payments, you&apos;d need approximately{" "}
-                  <span className="font-semibold">
-                    {formatMoney(goalResult.extraNeeded)}
-                  </span>{" "}
-                  in extra payments per month.
-                  {goalResult.frequencyUsed === "biweekly" && (
-                    <>
-                      {" "}
-                      That’s about{" "}
-                      <span className="font-semibold">
-                        {formatMoney(goalResult.extraNeeded / 2)}
-                      </span>{" "}
-                      extra added to each bi-weekly payment.
-                    </>
-                  )}
-                </>
-              ) : (
-                <span className="text-slate-500">
-                  Example: if your term is 30 years, try a 15-year payoff goal
-                  to see how much extra you might need.
-                </span>
-              )}
-            </div>
-          </section>
-
-          {/* Chart + Tips */}
-          <div className="grid gap-6 md:grid-cols-[1.4fr_1fr]">
-            {/* Chart */}
-            <div className="bg-white rounded-2xl border border-slate-200 px-5 py-4 shadow-sm">
-              <div className="flex items-center justify-between mb-3">
-                <h2 className="text-sm font-semibold text-slate-800">
-                  Paydown Progress (simulated)
-                </h2>
-                <span className="text-[11px] text-slate-500">
-                  Remaining balance at key milestones
-                </span>
-              </div>
-
-              <div className="h-40 flex items-end justify-between gap-4">
-                {chartPoints.length === 0 ? (
-                  <div className="text-xs text-slate-500">
-                    No chart data yet. Check that loan amount, rate, and term
-                    are all filled in.
-                  </div>
+                    with{" "}
+                    <span className="font-semibold">
+                      {goalResult.frequencyUsed === "biweekly"
+                        ? "bi-weekly"
+                        : "monthly"}
+                    </span>{" "}
+                    payments, you&apos;d need approximately{" "}
+                    <span className="font-semibold">
+                      {formatMoney(goalResult.extraNeeded)}
+                    </span>{" "}
+                    in extra payments per month.
+                    {goalResult.frequencyUsed === "biweekly" && (
+                      <>
+                        {" "}
+                        That’s about{" "}
+                        <span className="font-semibold">
+                          {formatMoney(goalResult.extraNeeded / 2)}
+                        </span>{" "}
+                        extra added to each bi-weekly payment.
+                      </>
+                    )}
+                  </>
                 ) : (
-                  chartPoints.map((p) => {
-                    const heightPct =
-                      maxBalance > 0 ? (p.balance / maxBalance) * 85 + 10 : 0;
-
-                    return (
-                      <div
-                        key={p.month}
-                        className="flex-1 h-full flex flex-col items-center justify-end"
-                      >
-                        <div
-                          className="w-6 bg-indigo-500 rounded-t-md shadow"
-                          style={{ height: `${heightPct}%` }}
-                        />
-                        <div className="mt-1 text-[10px] text-slate-500">
-                          {p.month}
-                        </div>
-                      </div>
-                    );
-                  })
+                  <span className="text-slate-500">
+                    Example: if your term is 30 years, try a 15-year payoff goal
+                    to see how much extra you might need.
+                  </span>
                 )}
               </div>
+            </section>
 
-              <p className="mt-3 text-[11px] text-slate-500">
-                Each bar shows remaining balance at a few points in time
-                (start → mid → end). Bi-weekly payments and extra
-                contributions speed up the drop.
-              </p>
-            </div>
+            {/* Chart + Tips */}
+            <div className="grid gap-6 md:grid-cols-[1.4fr_1fr]">
+              {/* Chart */}
+              <div className="bg-white rounded-2xl border border-slate-200 px-5 py-4 shadow-sm">
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="text-sm font-semibold text-slate-800">
+                    Paydown Progress (simulated)
+                  </h2>
+                  <span className="text-[11px] text-slate-500">
+                    Remaining balance at key milestones
+                  </span>
+                </div>
 
-            {/* Coach tips */}
-            <div className="bg-emerald-50 border border-emerald-100 rounded-2xl px-5 py-4 shadow-sm">
-              <h2 className="text-sm font-semibold text-emerald-900 mb-2">
-                Coach Tips
-              </h2>
-              <ul className="list-disc ml-4 space-y-1 text-xs text-emerald-900/90">
-                <li>
-                  Even small extra payments compound—round your payment up by
-                  $50–$200.
-                </li>
-                <li>
-                  Use windfalls (bonuses, tax refunds) as lump-sum principal
-                  payments.
-                </li>
-                <li>
-                  Bi-weekly payments can mimic one extra payment per year
-                  without changing your budget dramatically.
-                </li>
-              </ul>
-            </div>
-          </div>
+                <div className="h-40 flex items-end justify-between gap-4">
+                  {chartPoints.length === 0 ? (
+                    <div className="text-xs text-slate-500">
+                      No chart data yet. Check that loan amount, rate, and term
+                      are all filled in.
+                    </div>
+                  ) : (
+                    chartPoints.map((p) => {
+                      const heightPct =
+                        maxBalance > 0 ? (p.balance / maxBalance) * 85 + 10 : 0;
 
-          {/* Save / share summary */}
-          <section className="mt-8 bg-white border border-slate-200 rounded-2xl px-5 py-4 shadow-sm">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
-              <div>
-                <h2 className="text-sm font-semibold text-slate-800">
-                  Save or share this plan
-                </h2>
-                <p className="text-[11px] text-slate-500 mt-1">
-                  Copy this summary into an email, note, or text message so
-                  you can revisit your payoff strategy later.
+                      return (
+                        <div
+                          key={p.month}
+                          className="flex-1 h-full flex flex-col items-center justify-end"
+                        >
+                          <div
+                            className="w-6 bg-indigo-500 rounded-t-md shadow"
+                            style={{ height: `${heightPct}%` }}
+                          />
+                          <div className="mt-1 text-[10px] text-slate-500">
+                            {p.month}
+                          </div>
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
+
+                <p className="mt-3 text-[11px] text-slate-500">
+                  Each bar shows remaining balance at a few points in time
+                  (start → mid → end). Bi-weekly payments and extra
+                  contributions speed up the drop.
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={handleCopySummary}
-                className="inline-flex items-center justify-center rounded-full border border-indigo-500 px-3 py-1.5 text-xs font-medium text-indigo-600 hover:bg-indigo-50"
-              >
-                Copy summary
-              </button>
-            </div>
-            <textarea
-              className="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs text-slate-800 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 min-h-[70px]"
-              readOnly
-              value={
-                shareSummary ||
-                "Enter a loan amount, rate, term, and payoff strategy to generate a shareable summary."
-              }
-            />
-            {copyStatus && (
-              <p className="mt-1 text-[11px] text-emerald-600">
-                {copyStatus}
-              </p>
-            )}
-          </section>
 
-          {/* Amortization preview + CSV download */}
-          <section className="mt-8 bg-white border border-slate-200 rounded-2xl shadow-sm">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 px-5 pt-4">
-              <h2 className="text-sm font-semibold text-slate-800">
-                Amortization schedule (preview)
-              </h2>
-              <button
-                type="button"
-                onClick={handleDownloadCsv}
-                className="inline-flex items-center justify-center rounded-full border border-indigo-500 px-3 py-1.5 text-xs font-medium text-indigo-600 hover:bg-indigo-50"
-              >
-                Download full schedule (CSV)
-              </button>
+              {/* Coach tips */}
+              <div className="bg-emerald-50 border border-emerald-100 rounded-2xl px-5 py-4 shadow-sm">
+                <h2 className="text-sm font-semibold text-emerald-900 mb-2">
+                  Coach Tips
+                </h2>
+                <ul className="list-disc ml-4 space-y-1 text-xs text-emerald-900/90">
+                  <li>
+                    Even small extra payments compound—round your payment up by
+                    $50–$200.
+                  </li>
+                  <li>
+                    Use windfalls (bonuses, tax refunds) as lump-sum principal
+                    payments.
+                  </li>
+                  <li>
+                    Bi-weekly payments can mimic one extra payment per year
+                    without changing your budget dramatically.
+                  </li>
+                </ul>
+              </div>
             </div>
 
-            <div className="px-5 pb-4 overflow-x-auto">
-              {scheduleForDisplay && scheduleForDisplay.length ? (
-                <table className="mt-3 w-full text-xs text-left text-slate-700">
-                  <thead>
-                    <tr className="border-b border-slate-200 text-[11px] text-slate-500">
-                      <th className="py-1 pr-3">Month</th>
-                      <th className="py-1 pr-3">Payment</th>
-                      <th className="py-1 pr-3">Principal</th>
-                      <th className="py-1 pr-3">Interest</th>
-                      <th className="py-1 pr-3">Balance</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {scheduleForDisplay.slice(0, 24).map((row) => (
-                      <tr
-                        key={row.month}
-                        className="border-b border-slate-50 last:border-0"
-                      >
-                        <td className="py-1 pr-3">{row.month}</td>
-                        <td className="py-1 pr-3">
-                          {formatMoney(basePayment + effectiveExtra)}
-                        </td>
-                        <td className="py-1 pr-3">
-                          {formatMoney(row.principalPaid)}
-                        </td>
-                        <td className="py-1 pr-3">
-                          {formatMoney(row.interest)}
-                        </td>
-                        <td className="py-1 pr-3">
-                          {formatMoney(row.balance)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              ) : (
-                <p className="mt-3 text-xs text-slate-500">
-                  Enter a valid loan amount, interest rate, and term to view
-                  the schedule.
+            {/* Save / share summary */}
+            <section className="mt-8 bg-white border border-slate-200 rounded-2xl px-5 py-4 shadow-sm">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
+                <div>
+                  <h2 className="text-sm font-semibold text-slate-800">
+                    Save or share this plan
+                  </h2>
+                  <p className="text-[11px] text-slate-500 mt-1">
+                    Copy this summary into an email, note, or text message so
+                    you can revisit your payoff strategy later.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleCopySummary}
+                  className="inline-flex items-center justify-center rounded-full border border-indigo-500 px-3 py-1.5 text-xs font-medium text-indigo-600 hover:bg-indigo-50"
+                >
+                  Copy summary
+                </button>
+              </div>
+              <textarea
+                className="w-full rounded-xl border border-slate-200 px-3 py-2 text-xs text-slate-800 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 min-h-[70px]"
+                readOnly
+                value={
+                  shareSummary ||
+                  "Enter a loan amount, rate, term, and payoff strategy to generate a shareable summary."
+                }
+              />
+              {copyStatus && (
+                <p className="mt-1 text-[11px] text-emerald-600">
+                  {copyStatus}
                 </p>
               )}
-            </div>
-          </section>
+            </section>
 
-          {/* Related tools */}
-          <section className="mt-8 max-w-5xl">
-            <h2 className="text-sm font-semibold text-slate-800 mb-2">
-              Explore more BuddyMoney tools
-            </h2>
-            <p className="text-[11px] text-slate-500 mb-3">
-              Keep building your financial plan with these other calculators.
-            </p>
-            <div className="grid gap-3 md:grid-cols-3">
-              <RelatedToolCard
-                title="Budget Planner"
-                description="Track your income and spending so extra mortgage payments fit comfortably."
-                href="/tools#budget-tracker"
-              />
-              <RelatedToolCard
-                title="Debt Payoff Planner"
-                description="Prioritize credit cards, loans, and other debts alongside your mortgage."
-                href="/tools#debt-payoff"
-              />
-              <RelatedToolCard
-                title="Emergency Fund Calculator"
-                description="Estimate how much cash you should keep on hand for surprises."
-                href="/tools#emergency-fund"
-              />
-            </div>
-          </section>
+            {/* Amortization preview + CSV download */}
+            <section className="mt-8 bg-white border border-slate-200 rounded-2xl shadow-sm">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 px-5 pt-4">
+                <h2 className="text-sm font-semibold text-slate-800">
+                  Amortization schedule (preview)
+                </h2>
+                <button
+                  type="button"
+                  onClick={handleDownloadCsv}
+                  className="inline-flex items-center justify-center rounded-full border border-indigo-500 px-3 py-1.5 text-xs font-medium text-indigo-600 hover:bg-indigo-50"
+                >
+                  Download full schedule (CSV)
+                </button>
+              </div>
 
-          {/* Assumptions & disclaimers */}
-          <section className="mt-8 max-w-4xl">
-            <div className="bg-slate-900 text-slate-100 rounded-2xl px-5 py-4 text-xs leading-relaxed shadow-sm">
-              <h2 className="text-sm font-semibold mb-2">
-                Assumptions &amp; Disclaimers
+              <div className="px-5 pb-4 overflow-x-auto">
+                {scheduleForDisplay && scheduleForDisplay.length ? (
+                  <table className="mt-3 w-full text-xs text-left text-slate-700">
+                    <thead>
+                      <tr className="border-b border-slate-200 text-[11px] text-slate-500">
+                        <th className="py-1 pr-3">Month</th>
+                        <th className="py-1 pr-3">Payment</th>
+                        <th className="py-1 pr-3">Principal</th>
+                        <th className="py-1 pr-3">Interest</th>
+                        <th className="py-1 pr-3">Balance</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {scheduleForDisplay.slice(0, 24).map((row) => (
+                        <tr
+                          key={row.month}
+                          className="border-b border-slate-50 last:border-0"
+                        >
+                          <td className="py-1 pr-3">{row.month}</td>
+                          <td className="py-1 pr-3">
+                            {formatMoney(basePayment + effectiveExtra)}
+                          </td>
+                          <td className="py-1 pr-3">
+                            {formatMoney(row.principalPaid)}
+                          </td>
+                          <td className="py-1 pr-3">
+                            {formatMoney(row.interest)}
+                          </td>
+                          <td className="py-1 pr-3">
+                            {formatMoney(row.balance)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <p className="mt-3 text-xs text-slate-500">
+                    Enter a valid loan amount, interest rate, and term to view
+                    the schedule.
+                  </p>
+                )}
+              </div>
+            </section>
+
+            {/* Bottom share strip (smaller) */}
+            <ShareBar
+              variant="bottom"
+              label="Share this tool"
+              title="I’m using BuddyMoney’s Mortgage Payoff Calculator to see how extra payments can knock years off my mortgage."
+            />
+
+            {/* Related tools */}
+            <section className="mt-8 max-w-5xl">
+              <h2 className="text-sm font-semibold text-slate-800 mb-2">
+                Explore more BuddyMoney tools
               </h2>
-              <ul className="list-disc ml-4 space-y-1">
-                <li>
-                  Calculations assume a fixed-rate, fully amortizing mortgage
-                  with payments made in full and on time each month.
-                </li>
-                <li>
-                  Property taxes, homeowners insurance, mortgage insurance,
-                  HOA dues, and other housing costs are not included.
-                </li>
-                <li>
-                  Bi-weekly mode approximates half-payments every two weeks by
-                  applying the equivalent of one extra monthly principal
-                  payment per year. Actual lender bi-weekly programs may
-                  differ.
-                </li>
-                <li>
-                  Scenario comparisons, payoff goals, and summaries are
-                  estimates only and are not a commitment to lend or financial
-                  advice. Actual lender terms may differ.
-                </li>
-              </ul>
-            </div>
-          </section>
-        </div>
-      </motion.div>
-    </main>
+              <p className="text-[11px] text-slate-500 mb-3">
+                Keep building your financial plan with these other calculators.
+              </p>
+              <div className="grid gap-3 md:grid-cols-3">
+                <RelatedToolCard
+                  title="Budget Planner"
+                  description="Track your income and spending so extra mortgage payments fit comfortably."
+                  href="/tools#budget-tracker"
+                />
+                <RelatedToolCard
+                  title="Debt Payoff Planner"
+                  description="Prioritize credit cards, loans, and other debts alongside your mortgage."
+                  href="/tools#debt-payoff"
+                />
+                <RelatedToolCard
+                  title="Emergency Fund Calculator"
+                  description="Estimate how much cash you should keep on hand for surprises."
+                  href="/tools#emergency-fund"
+                />
+              </div>
+            </section>
+
+            {/* Assumptions & disclaimers */}
+            <section className="mt-8 max-w-4xl">
+              <div className="bg-slate-900 text-slate-100 rounded-2xl px-5 py-4 text-xs leading-relaxed shadow-sm">
+                <h2 className="text-sm font-semibold mb-2">
+                  Assumptions &amp; Disclaimers
+                </h2>
+                <ul className="list-disc ml-4 space-y-1">
+                  <li>
+                    Calculations assume a fixed-rate, fully amortizing mortgage
+                    with payments made in full and on time each month.
+                  </li>
+                  <li>
+                    Property taxes, homeowners insurance, mortgage insurance,
+                    HOA dues, and other housing costs are not included.
+                  </li>
+                  <li>
+                    Bi-weekly mode approximates half-payments every two weeks by
+                    applying the equivalent of one extra monthly principal
+                    payment per year. Actual lender bi-weekly programs may
+                    differ.
+                  </li>
+                  <li>
+                    Scenario comparisons, payoff goals, and summaries are
+                    estimates only and are not a commitment to lend or financial
+                    advice. Actual lender terms may differ.
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </div>
+        </motion.div>
+      </main>
+    </>
   );
 }
 
