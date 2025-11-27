@@ -1,390 +1,375 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Hero from "../components/Hero";
 import ToolCard from "../components/ToolCard";
 import NewsletterSignup from "../components/NewsletterSignup";
+import ShareBar from "../components/ShareBar";
 
 // Shared variants
 const fadeUp = {
   initial: { opacity: 0, y: 50 },
-  animate: { opacity: 1, y: 0 }
+  animate: { opacity: 1, y: 0 },
 };
 const containerStagger = {
   initial: { opacity: 0, y: 10 },
   animate: {
     opacity: 1,
     y: 0,
-    transition: { staggerChildren: 0.12, delayChildren: 0.05 }
-  }
+    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+  },
 };
 const item = {
   initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0 }
+  animate: { opacity: 1, y: 0 },
 };
+
 export default function Home() {
-  // 🔥 SEO: Title, Meta Description, JSON-LD, Canonical, Social Tags
-  useEffect(() => {
-    const title =
-      "BuddyMoney – Free Money Tools for Budgeting, Saving & Debt Payoff";
-    const description =
-      "BuddyMoney helps beginners feel calmer about money with free tools for budgeting, debt payoff, savings goals, mortgage payoff, emergency fund planning, and more.";
-    const url = "https://buddymoney.com/";
-    const ogImage = "https://buddymoney.com/og-image-buddymoney-home.jpg"; // update this when you have one
+  // Centralized SEO values
+  const title =
+    "BuddyMoney – Free Money Tools for Budgeting, Saving & Debt Payoff";
+  const description =
+    "BuddyMoney helps beginners feel calmer about money with free tools for budgeting, debt payoff, savings goals, mortgage payoff, emergency fund planning, and more.";
+  const url = "https://buddymoney.com/";
+  const ogImage = "https://buddymoney.com/og-image-buddymoney-home.jpg"; // swap when you have a real one
 
-    // ---- Title ----
-    document.title = title;
-
-    // ---- Meta description ----
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement("meta");
-      metaDescription.name = "description";
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.setAttribute("content", description);
-
-    // ---- Canonical ----
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
-    if (!canonicalLink) {
-      canonicalLink = document.createElement("link");
-      canonicalLink.rel = "canonical";
-      document.head.appendChild(canonicalLink);
-    }
-    canonicalLink.setAttribute("href", url);
-
-    // ---- Open Graph tags ----
-    const ensureOgTag = (property, content) => {
-      if (!content) return;
-      let el = document.querySelector(`meta[property="${property}"]`);
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute("property", property);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-
-    ensureOgTag("og:type", "website");
-    ensureOgTag("og:title", title);
-    ensureOgTag("og:description", description);
-    ensureOgTag("og:url", url);
-    ensureOgTag("og:site_name", "BuddyMoney");
-    ensureOgTag("og:image", ogImage);
-
-    // ---- Twitter card tags ----
-    const ensureTwitterTag = (name, content) => {
-      if (!content) return;
-      let el = document.querySelector(`meta[name="${name}"]`);
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute("name", name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-
-    ensureTwitterTag("twitter:card", "summary_large_image");
-    ensureTwitterTag("twitter:title", title);
-    ensureTwitterTag("twitter:description", description);
-    ensureTwitterTag("twitter:image", ogImage);
-
-    // -------- JSON-LD Structured Data --------
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "BuddyMoney",
+    url,
+    description,
+    publisher: {
+      "@type": "Organization",
       name: "BuddyMoney",
       url,
-      description,
-      publisher: {
-        "@type": "Organization",
-        name: "BuddyMoney",
-        url
-      },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: "https://buddymoney.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    };
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://buddymoney.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
 
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.id = "ld-json-website";
-    script.textContent = JSON.stringify(jsonLd);
-    document.head.appendChild(script);
-
-    // Cleanup on unmount
-    return () => {
-      const existingScript = document.getElementById("ld-json-website");
-      if (existingScript) {
-        document.head.removeChild(existingScript);
-      }
-    };
-  }, []);
   return (
-    // Brand-tint background + tighter vertical spacing
-    <div className="min-h-screen bg-brand-50/40 space-y-8 md:space-y-10" itemScope itemType="https://schema.org/WebPage">
-      {/* HERO with subtle fade-up on view */}
-      <motion.section
-        className="pt-0"
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, amount: 0.4 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        variants={fadeUp}
-      >
-        <Hero />
-      </motion.section>
+    <>
+      {/* 🔍 SEO + JSON-LD via Helmet */}
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={url} />
 
-      {/* TOOLS grid title + staggered cards */}
-      <motion.section
-        className="pt-0"
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={containerStagger}
-        transition={{ duration: 0.7, ease: "easeOut" }}
+        {/* Open Graph */}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="BuddyMoney" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={url} />
+        <meta property="og:image" content={ogImage} />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
+
+        {/* JSON-LD structured data */}
+        <script type="application/ld+json">
+          {JSON.stringify(jsonLd)}
+        </script>
+      </Helmet>
+
+      {/* PAGE CONTENT */}
+      <div
+        className="min-h-screen bg-brand-50/40 space-y-8 md:space-y-10"
+        itemScope
+        itemType="https://schema.org/WebPage"
       >
-        <motion.h2
-          className="text-2xl font-semibold text-slate-900 mb-5"
-          variants={item}
+        {/* HERO with subtle fade-up on view */}
+        <motion.section
+          className="pt-0"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          variants={fadeUp}
         >
-          Popular Tools
-        </motion.h2>
-<motion.p
-  className="text-sm text-slate-600 mb-4 max-w-2xl"
-  variants={item}
->
-  Explore free BuddyMoney tools to help you budget, save for goals, build an emergency fund, track your net worth, and plan your debt payoff.
-</motion.p>
+          <Hero />
+        </motion.section>
 
-        <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        {/* 🔼 TOP SHARE BAR – lets people share the whole BuddyMoney homepage */}
+        <section className="max-w-5xl mx-auto px-4 -mt-2">
+          <ShareBar
+            variant="top"
+            title="BuddyMoney – Free Money Tools for Budgeting, Saving & Debt Payoff"
+          />
+        </section>
+
+        {/* TOOLS grid title + staggered cards */}
+        <motion.section
+          className="pt-0 max-w-5xl mx-auto px-4"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.2 }}
           variants={containerStagger}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          {/* Mortgage Payoff */}
-          <motion.div variants={item}>
-            <div className="relative">
-              <span className="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs px-2 py-0.5 rounded-full shadow-sm animate-pulse">
-                New
-              </span>
+          <motion.h2
+            className="text-2xl font-semibold text-slate-900 mb-5"
+            variants={item}
+          >
+            Popular Tools
+          </motion.h2>
+
+          <motion.p
+            className="text-sm text-slate-600 mb-4 max-w-2xl"
+            variants={item}
+          >
+            Explore free BuddyMoney tools to help you budget, save for goals,
+            build an emergency fund, track your net worth, and plan your debt
+            payoff.
+          </motion.p>
+
+          <motion.div
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            variants={containerStagger}
+          >
+            {/* Mortgage Payoff */}
+            <motion.div variants={item}>
+              <div className="relative">
+                <span className="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs px-2 py-0.5 rounded-full shadow-sm animate-pulse">
+                  New
+                </span>
+                <ToolCard
+                  to="/mortgage"
+                  title="Mortgage Payoff"
+                  emoji="🏠"
+                  desc="See how extra payments shorten your loan term."
+                />
+              </div>
+            </motion.div>
+
+            {/* Budget Coach */}
+            <motion.div variants={item}>
+              <div className="relative">
+                <span className="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs px-2 py-0.5 rounded-full shadow-sm animate-pulse">
+                  New
+                </span>
+                <ToolCard
+                  to="/coach"
+                  title="Budget Coach"
+                  emoji="🧭"
+                  desc="Personalized budget score, targets, and tips."
+                />
+              </div>
+            </motion.div>
+
+            <motion.div variants={item}>
               <ToolCard
-                to="/mortgage"
-                title="Mortgage Payoff"
-                emoji="🏠"
-                desc="See how extra payments shorten your loan term."
+                to="/tools#budget"
+                title="Budget Tracker"
+                emoji="💸"
+                desc="Track your income and expenses quickly."
               />
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Budget Coach */}
-          <motion.div variants={item}>
-            <div className="relative">
-              <span className="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs px-2 py-0.5 rounded-full shadow-sm animate-pulse">
-                New
-              </span>
+            <motion.div variants={item}>
               <ToolCard
-                to="/coach"
-                title="Budget Coach"
-                emoji="🧭"
-                desc="Personalized budget score, targets, and tips."
+                to="/tools#savings"
+                title="Savings Goal"
+                emoji="🎯"
+                desc="Plan how much to save each month."
               />
-            </div>
+            </motion.div>
+
+            <motion.div variants={item}>
+              <ToolCard
+                to="/tools#debt"
+                title="Debt Payoff"
+                emoji="📉"
+                desc="Estimate months to pay off your debt."
+              />
+            </motion.div>
+
+            <motion.div variants={item}>
+              <ToolCard
+                to="/tools#split"
+                title="Bill Splitter"
+                emoji="🧮"
+                desc="Split a bill fairly among friends."
+              />
+            </motion.div>
+
+            <motion.div variants={item}>
+              <ToolCard
+                to="/tools#emergency"
+                title="Emergency Fund"
+                emoji="🛟"
+                desc="Know your ideal safety net size."
+              />
+            </motion.div>
+
+            <motion.div variants={item}>
+              <ToolCard
+                to="/tools#networth"
+                title="Net Worth"
+                emoji="📊"
+                desc="Sum assets minus liabilities."
+              />
+            </motion.div>
           </motion.div>
+        </motion.section>
 
-          <motion.div variants={item}>
-            <ToolCard
-              to="/tools#budget"
-              title="Budget Tracker"
-              emoji="💸"
-              desc="Track your income and expenses quickly."
-            />
-          </motion.div>
-
-          <motion.div variants={item}>
-            <ToolCard
-              to="/tools#savings"
-              title="Savings Goal"
-              emoji="🎯"
-              desc="Plan how much to save each month."
-            />
-          </motion.div>
-
-          <motion.div variants={item}>
-            <ToolCard
-              to="/tools#debt"
-              title="Debt Payoff"
-              emoji="📉"
-              desc="Estimate months to pay off your debt."
-            />
-          </motion.div>
-
-          <motion.div variants={item}>
-            <ToolCard
-              to="/tools#split"
-              title="Bill Splitter"
-              emoji="🧮"
-              desc="Split a bill fairly among friends."
-            />
-          </motion.div>
-
-          <motion.div variants={item}>
-            <ToolCard
-              to="/tools#emergency"
-              title="Emergency Fund"
-              emoji="🛟"
-              desc="Know your ideal safety net size."
-            />
-          </motion.div>
-
-          <motion.div variants={item}>
-            <ToolCard
-              to="/tools#networth"
-              title="Net Worth"
-              emoji="📊"
-              desc="Sum assets minus liabilities."
-            />
-          </motion.div>
-        </motion.div>
-      </motion.section>
-
-      {/* TESTIMONIALS */}
-      <motion.section
-        className="pt-0"
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true, amount: 0.25 }}
-        variants={containerStagger}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-      >
-        <motion.div
-          className="max-w-5xl mx-auto text-center mb-6"
-          variants={item}
-        >
-          <p className="text-xs font-semibold tracking-wide text-emerald-700 uppercase">
-            What people say
-          </p>
-          <h2 className="mt-2 text-2xl font-semibold text-slate-900">
-            BuddyMoney makes money feel less scary.
-          </h2>
-          <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto">
-            These are the kinds of wins people are having when they use the
-            tools to map out their budgets, savings, and payoff plans.
-          </p>
-        </motion.div>
-
-        <motion.div
-          className="max-w-5xl mx-auto grid gap-5 md:grid-cols-3"
+        {/* TESTIMONIALS */}
+        <motion.section
+          className="pt-0"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.25 }}
           variants={containerStagger}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          {/* Card 1 */}
           <motion.div
+            className="max-w-5xl mx-auto text-center mb-6 px-4"
             variants={item}
-            className="rounded-2xl border border-emerald-100 bg-white/90 p-5 shadow-sm"
           >
-            <p className="text-sm text-slate-700">
-              “I finally understand how long my debt payoff will take. Seeing it
-              on a simple chart made me feel in control instead of ashamed.”
+            <p className="text-xs font-semibold tracking-wide text-emerald-700 uppercase">
+              What people say
             </p>
-            <div className="mt-4 flex items-center gap-3">
-              <div className="h-8 w-8 rounded-full bg-emerald-100 flex items-center justify-center text-[11px] font-semibold text-emerald-800">
-                CJ
-              </div>
-              <div className="text-xs text-slate-600">
-                <p className="font-semibold text-slate-800">Carlos J.</p>
-                <p>New to budgeting</p>
-              </div>
-            </div>
+            <h2 className="mt-2 text-2xl font-semibold text-slate-900">
+              BuddyMoney makes money feel less scary.
+            </h2>
+            <p className="mt-2 text-sm text-slate-600 max-w-2xl mx-auto">
+              These are the kinds of wins people are having when they use the
+              tools to map out their budgets, savings, and payoff plans.
+            </p>
           </motion.div>
 
-          {/* Card 2 */}
           <motion.div
-            variants={item}
-            className="rounded-2xl border border-emerald-100 bg-white/90 p-5 shadow-sm"
+            className="max-w-5xl mx-auto grid gap-5 md:grid-cols-3 px-4"
+            variants={containerStagger}
           >
-            <p className="text-sm text-slate-700">
-              “The emergency fund calculator gave me an actual number to aim
-              for. Now my savings account has a purpose, not just random money.”
-            </p>
-            <div className="mt-4 flex items-center gap-3">
-              <div className="h-8 w-8 rounded-full bg-sky-100 flex items-center justify-center text-[11px] font-semibold text-sky-900">
-                AM
-              </div>
-              <div className="text-xs text-slate-600">
-                <p className="font-semibold text-slate-800">Alicia M.</p>
-                <p>Freelance designer</p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Card 3 */}
-          <motion.div
-            variants={item}
-            className="rounded-2xl border border-emerald-100 bg-white/90 p-5 shadow-sm"
-          >
-            <p className="text-sm text-slate-700">
-              “My partner and I use the tools to talk through bills without
-              arguing. Having numbers in front of us calms everyone down.”
-            </p>
-            <div className="mt-4 flex items-center gap-3">
-              <div className="h-8 w-8 rounded-full bg-amber-100 flex items-center justify-center text-[11px] font-semibold text-amber-900">
-                LN
-              </div>
-              <div className="text-xs text-slate-600">
-                <p className="font-semibold text-slate-800">Lena &amp; Noah</p>
-                <p>Roommates &amp; buddies</p>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      </motion.section>
-
-      {/* NEWSLETTER */}
-      <motion.section
-        id="newsletter"
-        className="mt-0 md:mt-2"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true }}
-      >
-        <div className="max-w-3xl mx-auto">
-          <div className="rounded-2xl border border-emerald-100 bg-emerald-50/80 p-6 sm:p-8 shadow-sm">
-            <NewsletterSignup />
-          </div>
-        </div>
-      </motion.section>
-
-      {/* FOOTER CTA BAR */}
-      <motion.section
-        className="mt-0 border-t border-emerald-100/70 bg-white/80"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.3 }}
-      >
-        <div className="max-w-5xl mx-auto px-4 py-6 md:py-7 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-center md:text-left">
-            <p className="text-sm font-semibold text-slate-900">
-              Ready to feel calmer about your money?
-            </p>
-            <p className="text-xs text-slate-600 mt-1">
-              Explore all the BuddyMoney tools, or hop onto the weekly email
-              list for friendly money tips.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <Link
-              to="/tools"
-              className="px-5 py-2.5 rounded-xl bg-brand-700 text-white text-sm font-medium hover:bg-brand-800 shadow-soft transition-transform duration-150 hover:-translate-y-0.5"
+            {/* Card 1 */}
+            <motion.div
+              variants={item}
+              className="rounded-2xl border border-emerald-100 bg-white/90 p-5 shadow-sm"
             >
-              Explore All Tools
-            </Link>
+              <p className="text-sm text-slate-700">
+                “I finally understand how long my debt payoff will take. Seeing
+                it on a simple chart made me feel in control instead of
+                ashamed.”
+              </p>
+              <div className="mt-4 flex items-center gap-3">
+                <div className="h-8 w-8 rounded-full bg-emerald-100 flex items-center justify-center text-[11px] font-semibold text-emerald-800">
+                  CJ
+                </div>
+                <div className="text-xs text-slate-600">
+                  <p className="font-semibold text-slate-800">Carlos J.</p>
+                  <p>New to budgeting</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 2 */}
+            <motion.div
+              variants={item}
+              className="rounded-2xl border border-emerald-100 bg-white/90 p-5 shadow-sm"
+            >
+              <p className="text-sm text-slate-700">
+                “The emergency fund calculator gave me an actual number to aim
+                for. Now my savings account has a purpose, not just random
+                money.”
+              </p>
+              <div className="mt-4 flex items-center gap-3">
+                <div className="h-8 w-8 rounded-full bg-sky-100 flex items-center justify-center text-[11px] font-semibold text-sky-900">
+                  AM
+                </div>
+                <div className="text-xs text-slate-600">
+                  <p className="font-semibold text-slate-800">Alicia M.</p>
+                  <p>Freelance designer</p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 3 */}
+            <motion.div
+              variants={item}
+              className="rounded-2xl border border-emerald-100 bg-white/90 p-5 shadow-sm"
+            >
+              <p className="text-sm text-slate-700">
+                “My partner and I use the tools to talk through bills without
+                arguing. Having numbers in front of us calms everyone down.”
+              </p>
+              <div className="mt-4 flex items-center gap-3">
+                <div className="h-8 w-8 rounded-full bg-amber-100 flex items-center justify-center text-[11px] font-semibold text-amber-900">
+                  LN
+                </div>
+                <div className="text-xs text-slate-600">
+                  <p className="font-semibold text-slate-800">Lena &amp; Noah</p>
+                  <p>Roommates &amp; buddies</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </motion.section>
+
+        {/* NEWSLETTER */}
+        <motion.section
+          id="newsletter"
+          className="mt-0 md:mt-2"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <div className="max-w-3xl mx-auto px-4">
+            <div className="rounded-2xl border border-emerald-100 bg-emerald-50/80 p-6 sm:p-8 shadow-sm">
+              <NewsletterSignup />
+            </div>
           </div>
-        </div>
-      </motion.section>
-    </div>
+        </motion.section>
+
+        {/* 🔽 BOTTOM SHARE STRIP – good “tell a friend” moment */}
+        <section className="max-w-5xl mx-auto px-4 mt-4">
+          <ShareBar
+            variant="bottom"
+            label="Share BuddyMoney with a friend"
+            title="I’m using BuddyMoney’s free tools to feel calmer about my money."
+          />
+        </section>
+
+        {/* FOOTER CTA BAR */}
+        <motion.section
+          className="mt-0 border-t border-emerald-100/70 bg-white/80"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView="animate"
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <div className="max-w-5xl mx-auto px-4 py-6 md:py-7 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="text-center md:text-left">
+              <p className="text-sm font-semibold text-slate-900">
+                Ready to feel calmer about your money?
+              </p>
+              <p className="text-xs text-slate-600 mt-1">
+                Explore all the BuddyMoney tools, or hop onto the weekly email
+                list for friendly money tips.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <Link
+                to="/tools"
+                className="px-5 py-2.5 rounded-xl bg-brand-700 text-white text-sm font-medium hover:bg-brand-800 shadow-soft transition-transform duration-150 hover:-translate-y-0.5"
+              >
+                Explore All Tools
+              </Link>
+            </div>
+          </div>
+        </motion.section>
+      </div>
+    </>
   );
 }
