@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"; 
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -11,6 +11,14 @@ import NetWorth from "../tools/NetWorth";
 import ShareBar from "../components/ShareBar";
 
 const TOOL_CARDS = [
+  {
+    id: "credit-cards",
+    name: "Credit Card Finder (Beta)",
+    tagline:
+      "Preview a smarter way to compare credit cards by score, rewards, and fees.",
+    badge: "New",
+    icon: "💳",
+  },
   {
     id: "budget-tracker",
     name: "Budget Tracker",
@@ -308,6 +316,34 @@ export default function Tools() {
 
             {/* ACTUAL TOOLS */}
             <section className="space-y-12">
+              {/* Credit Cards preview */}
+              <section id="credit-cards" className="scroll-mt-24">
+                <div className="rounded-2xl border border-emerald-100 bg-emerald-50/60 px-4 py-4 sm:px-5 sm:py-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="space-y-1">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+                      New • Beta
+                    </p>
+                    <h2 className="text-sm sm:text-base font-semibold text-slate-900">
+                      Credit Card Finder (preview mode)
+                    </h2>
+                    <p className="text-xs sm:text-sm text-slate-700 max-w-xl">
+                      We&apos;re building a smarter way to browse credit cards by
+                      credit score, rewards type, and annual fee. Right now it&apos;s
+                      in preview mode with sample data—perfect for exploring the
+                      layout before live partner offers go in.
+                    </p>
+                  </div>
+                  <div className="flex-shrink-0">
+                    <Link
+                      to="/tools/credit-cards"
+                      className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
+                    >
+                      Open Credit Card Finder →
+                    </Link>
+                  </div>
+                </div>
+              </section>
+
               {/* Budget */}
               <section id="budget" className="scroll-mt-24">
                 <div id="budget-tracker">
