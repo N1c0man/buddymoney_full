@@ -471,14 +471,24 @@ export default function CreditCardFinder() {
 
             {/* Results */}
             <div className="space-y-3">
-              <p className="text-xs text-slate-500">
-                Showing{" "}
-                <span className="font-semibold text-slate-800">
-                  {filteredCards.length}
-                </span>{" "}
-                card{filteredCards.length === 1 ? "" : "s"} based on your
-                filters.
-              </p>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <p className="text-xs text-slate-500">
+                  Showing{" "}
+                  <span className="font-semibold text-slate-800">
+                    {filteredCards.length}
+                  </span>{" "}
+                  card{filteredCards.length === 1 ? "" : "s"} based on your
+                  filters.
+                </p>
+
+                {selectedForCompare.length > 0 && (
+                  <p className="text-[11px] text-emerald-700">
+                    Tip: Scroll down to the{" "}
+                    <span className="font-semibold">“Compare cards”</span> bar
+                    to see your selected cards side by side.
+                  </p>
+                )}
+              </div>
 
               <div className="grid gap-4 lg:grid-cols-2">
                 {filteredCards.map((card) => (
