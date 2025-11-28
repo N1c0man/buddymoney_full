@@ -3,6 +3,10 @@ import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { getPostBySlug, posts } from "./postsIndex";
 import RelatedCreditCardGuides from "../components/RelatedCreditCardGuides";
+import ShareBar from "../components/ShareBar";
+
+const SITE_URL = "https://www.buddymoney.com";
+
 
 // ------------------------------------------
 // Helpers
@@ -120,6 +124,23 @@ function getRelatedTools(post) {
       {
         title: "Savings Goal Planner",
         description: "Create a monthly plan to reach your safety cushion.",
+        path: "/tools",
+      },
+      ALL_TOOLS_LINK,
+    ];
+  }
+  if (slug.includes("secured-credit")) {
+    return [
+      {
+        title: "Credit Card Finder (Preview)",
+            description:
+          "Compare sample cards by credit score, type, and annual fee.",
+        path: "/tools/credit-cards",
+      },
+      {
+        title: "Budget Tracker",
+        description:
+          "Make room in your budget for the security deposit and payments.",
         path: "/tools",
       },
       ALL_TOOLS_LINK,
@@ -548,89 +569,11 @@ export default function BlogPost() {
           )}
 
           {/* Social share — top */}
-          <div className="mb-8">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="uppercase tracking-[0.18em] text-slate-400 font-semibold text-[11px]">
-                Share
-              </span>
-
-              {/* Copy Link */}
-              <button
-                type="button"
-                onClick={handleCopyLink}
-                aria-label="Copy article link"
-                className="flex items-center gap-1 px-3 py-1.5 rounded-full border border-slate-200 text-slate-600 bg-white hover:border-emerald-400 hover:bg-emerald-50/60 hover:text-emerald-700 transition-all text-[11px]"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-[12px] w-[12px]"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M13.828 10.172a4 4 0 0 1 0 5.656l-3 3a4 4 0 1 1-5.656-5.656l1.172-1.172" />
-                  <path d="M10.172 13.828a4 4 0 0 1 0-5.656l3-3a4 4 0 1 1 5.656 5.656l-1.172 1.172" />
-                </svg>
-                {copied ? "Copied!" : "Copy link"}
-              </button>
-
-              {/* X */}
-              <a
-                aria-label="Share on X (Twitter)"
-                href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 px-3 py-1.5 rounded-full border border-slate-200 text-slate-600 bg-white hover:border-emerald-400 hover:bg-emerald-50/60 hover:text-emerald-700 transition-all text-[11px]"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-[12px] w-[12px]"
-                  viewBox="0 0 1200 1227"
-                  fill="currentColor"
-                >
-                  <path d="M714 519L1160 0H1049L659 447L370 0H0L461 687L0 1227H111L514 748L830 1227H1200L714 519Z" />
-                </svg>
-                X
-              </a>
-
-              {/* Facebook */}
-              <a
-                aria-label="Share on Facebook"
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 px-3 py-1.5 rounded-full border border-slate-200 text-slate-600 bg-white hover:border-emerald-400 hover:bg-emerald-50/60 hover:text-emerald-700 transition-all text-[11px]"
-              >
-                <svg
-                  className="h-[12px] w-[12px]"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1 .9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0 0 22 12" />
-                </svg>
-                Facebook
-              </a>
-
-              {/* LinkedIn */}
-              <a
-                aria-label="Share on LinkedIn"
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-1 px-3 py-1.5 rounded-full border border-slate-200 text-slate-600 bg-white hover:border-emerald-400 hover:bg-emerald-50/60 hover:text-emerald-700 transition-all text-[11px]"
-              >
-                <svg
-                  className="h-[12px] w-[12px]"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M4.98 3.5C3.88 3.5 3 4.4 3 5.5s.88 2 1.98 2h.02c1.1 0 2-.9 2-2s-.9-2-2.02-2zM3 8.98h4v12H3zM15.5 8.9c-2.04 0-3 1.12-3.5 1.9V9H8v12h4v-6c0-1.17.67-2.03 2-2.03 1.33 0 2 .86 2 2.03v6h4v-7.5c0-3.67-2.33-5.5-4.5-5.5z" />
-                </svg>
-                LinkedIn
-              </a>
-            </div>
-          </div>
+          <ShareBar
+  variant="top"
+  title="AI Budget Coach – BuddyMoney"
+  // pageUrl optional; if omitted it uses window.location.href
+/>
 
           {/* MAIN GRID: Sidebar TOC + Article + Related Tools */}
           <div className="mt-4 lg:grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,2.1fr)] lg:gap-10">
@@ -785,7 +728,11 @@ export default function BlogPost() {
 
               {/* Related credit card guides (global block) */}
               <RelatedCreditCardGuides />
-
+<ShareBar
+  variant="bottom"
+  label="Share this tool"
+  title="I’m using BuddyMoney’s Tools to help me plan for my next money moves."
+/>
               {/* Related tools section */}
               {!loading && !error && (
                 <section className="border border-slate-200 rounded-2xl bg-white/90 p-4 shadow-sm">
@@ -842,8 +789,10 @@ export default function BlogPost() {
                         {nextPost.title}
                       </p>
                     </Link>
+                    
                   )}
                 </nav>
+                
               )}
 
               {/* Disclaimer */}

@@ -121,6 +121,24 @@ export const posts = [
     heroImageAlt:
       "Bar chart showing typical salary ranges by age",
   },
+  {
+  slug: "best-secured-credit-cards",
+  title: "Best Secured Credit Cards (Beginner’s Guide)",
+  tag: "Credit Cards",
+  level: "Beginner",
+  readTime: "7 min read",
+  excerpt:
+    "If you’re rebuilding credit or starting from scratch, a secured card can be your safest, lowest-risk path forward. Here are the best options and how to use them right.",
+  file: "/posts/best-secured-credit-cards.md",
+
+  author: "BuddyMoney Editorial",
+  authorAvatar: "/icons/editorial.png",
+  date: "2025-11-28",
+
+  heroImage: "/icons/hero-secured-cards.png",
+  heroImageAlt: "A secured credit card with a small lock symbol representing credit building",
+},
+
 ];
 
 export function getPostBySlug(slug) {

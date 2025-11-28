@@ -622,9 +622,9 @@ export default function CreditCardFinder() {
   );
 }
 
-// ---------------------------------------------------------
-// CardResult: single card visual
-// ---------------------------------------------------------
+// ----------------------------------------------------------------------
+// CardResult Component — with card thumbnail + highlights
+// ----------------------------------------------------------------------
 function CardResult({ card, isSelected, onToggleCompare }) {
   const {
     name,
@@ -644,21 +644,57 @@ function CardResult({ card, isSelected, onToggleCompare }) {
   const annualFeeLabel =
     annualFee === 0 ? "No annual fee" : `$${annualFee.toLocaleString()}/year`;
 
+  // Small “at-a-glance” line under the title
+  const highlights = [
+    rewards?.split(".")[0] || null,
+    annualFee === 0 ? "No annual fee" : null,
+    introApr && introApr !== "N/A" ? introApr : null,
+  ].filter(Boolean);
+
   const canApply = AFFILIATE_ENABLED && link && link !== "#";
 
   return (
     <article className="flex h-full flex-col justify-between rounded-2xl border border-slate-200 bg-white/95 p-4 sm:p-5 shadow-soft">
       <div className="space-y-3">
-        {/* Top row: name + issuer + badges + compare */}
+        {/* Top row: thumbnail + basic info + badges + compare */}
         <div className="flex items-start justify-between gap-3">
-          <div>
-            <h2 className="text-base sm:text-lg font-semibold text-slate-900">
-              {name}
-            </h2>
-            <p className="text-xs text-slate-500">
-              {issuer} &bull; {network}
-            </p>
+          {/* Left side: thumbnail + name/issuer */}
+          <div className="flex items-start gap-3">
+            {/* Card thumbnail (no external image needed) */}
+            <div className="hidden sm:flex h-16 w-28 flex-shrink-0 flex-col justify-between rounded-xl border border-emerald-100 bg-gradient-to-br from-emerald-50 via-white to-emerald-100 px-2.5 py-2 shadow-inner">
+              <div className="flex items-center justify-between text-[9px] text-slate-500">
+                <span className="font-medium truncate max-w-[70%]">
+                  {issuer}
+                </span>
+                <span className="rounded-full border border-emerald-200 bg-white/80 px-1.5 py-[1px] text-[8px] font-semibold uppercase tracking-[0.14em] text-emerald-700">
+                  {network}
+                </span>
+              </div>
+              <div className="text-[10px] font-semibold text-slate-800 leading-tight line-clamp-2">
+                {name}
+              </div>
+              <div className="flex items-center justify-between text-[8px] text-slate-500 mt-1">
+                <span className="rounded-full bg-emerald-600/90 px-1.5 py-[1px] text-[8px] font-semibold uppercase tracking-[0.16em] text-white">
+                  {CARD_TYPE_LABELS[cardType] || "Credit"}
+                </span>
+                <span className="text-[8px] text-emerald-800/90">
+                  {CREDIT_SCORE_LABELS[creditScore] || ""}
+                </span>
+              </div>
+            </div>
+
+            {/* Text info */}
+            <div>
+              <h2 className="text-base sm:text-lg font-semibold text-slate-900">
+                {name}
+              </h2>
+              <p className="text-xs text-slate-500">
+                {issuer} • {network}
+              </p>
+            </div>
           </div>
+
+          {/* Right side: badges + compare toggle */}
           <div className="flex flex-col items-end gap-1 text-right">
             <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
               {CARD_TYPE_LABELS[cardType] || "Credit card"}
@@ -690,7 +726,19 @@ function CardResult({ card, isSelected, onToggleCompare }) {
           </div>
         </div>
 
-        {/* Bonus & rewards */}
+        {/* NEW: Highlights mini-row */}
+        {highlights.length > 0 && (
+          <p className="text-[11px] text-emerald-700/90 font-medium flex flex-wrap gap-x-3 gap-y-1">
+            {highlights.map((h, i) => (
+              <span key={i} className="flex items-center gap-1">
+                <span className="text-emerald-600">⭐</span>
+                <span>{h.trim()}</span>
+              </span>
+            ))}
+          </p>
+        )}
+
+        {/* Bonus & rewards text block */}
         <div className="space-y-2">
           <p className="text-sm font-medium text-slate-900">{bonus}</p>
           <p className="text-sm text-slate-700">{rewards}</p>
@@ -731,12 +779,12 @@ function CardResult({ card, isSelected, onToggleCompare }) {
         )}
       </div>
 
-      {/* CTA */}
+      {/* CTA row */}
       <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-slate-100 pt-3">
         <p className="text-[11px] text-slate-500">
           Application links are{" "}
           <span className="font-semibold text-slate-800">coming soon</span> as
-          we finalize partnerships.
+          partnerships go live.
         </p>
 
         {canApply ? (

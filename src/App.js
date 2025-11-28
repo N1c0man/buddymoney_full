@@ -23,6 +23,8 @@ import MainLayout from "./layouts/MainLayout";
 
 // ⭐ New: Credit Card Finder Tool
 import CreditCardFinder from "./tools/CreditCardFinder";
+import CreditCardsHub from "./pages/CreditCardsHub";
+
 
 // ⭐ New: Credit Card Supporting Guides
 import BestCashBackCards from "./pages/BestCashBackCards";
@@ -49,6 +51,8 @@ export default function App() {
         <Route path="/tools/credit-cards" element={<CreditCardFinder />} />
 
         {/* Credit card supporting guides */}
+        <Route path="/credit-cards" element={<CreditCardsHub />} />
+
         <Route
           path="/credit-cards/cash-back"
           element={<BestCashBackCards />}

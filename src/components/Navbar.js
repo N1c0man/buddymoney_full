@@ -115,7 +115,7 @@ export default function Navbar() {
           </NavLink>
 
           {/* Credit Cards */}
-          <NavLink to="/tools/credit-cards" className={desktopNavLinkClass}>
+          <NavLink to="/credit-cards" className={desktopNavLinkClass}>
             <span className="inline-flex items-center gap-1.5">
               <span aria-hidden="true">💳</span>
               <span>Credit Cards</span>
@@ -274,7 +274,7 @@ export default function Navbar() {
 
           {/* Credit Cards */}
           <NavLink
-            to="/tools/credit-cards"
+            to="/credit-cards"
             onClick={closeMobile}
             className={({ isActive }) =>
               "block px-3 py-2 rounded-md text-base font-medium transition-colors " +
