@@ -113,7 +113,8 @@ export default function Navbar() {
               <span>Home</span>
             </span>
           </NavLink>
-
+{/* Divider */}
+          <span className="h-6 w-px bg-emerald-100 mx-1" aria-hidden="true" />
           {/* Credit Cards */}
           <NavLink to="/credit-cards" className={desktopNavLinkClass}>
             <span className="inline-flex items-center gap-1.5">
@@ -121,7 +122,8 @@ export default function Navbar() {
               <span>Credit Cards</span>
             </span>
           </NavLink>
-
+{/* Divider */}
+          <span className="h-6 w-px bg-emerald-100 mx-1" aria-hidden="true" />
           {/* Budget Coach */}
           <NavLink to="/coach" className={desktopNavLinkClass}>
             <span className="inline-flex items-center gap-1.5">
@@ -129,7 +131,8 @@ export default function Navbar() {
               <span>Budget Coach</span>
             </span>
           </NavLink>
-
+{/* Divider */}
+          <span className="h-6 w-px bg-emerald-100 mx-1" aria-hidden="true" />
           {/* Mortgage Payoff Calculator */}
           <NavLink to="/mortgage" className={desktopNavLinkClass}>
             <span className="inline-flex items-center gap-1.5">
@@ -148,7 +151,8 @@ export default function Navbar() {
               <span>Tools</span>
             </span>
           </NavLink>
-
+{/* Divider */}
+          <span className="h-6 w-px bg-emerald-100 mx-1" aria-hidden="true" />
           {/* Guides dropdown */}
           <DesktopDropdown label="Guides" icon="📚">
             <ul className="space-y-1">
@@ -214,7 +218,8 @@ export default function Navbar() {
               </li>
             </ul>
           </DesktopDropdown>
-
+{/* Divider */}
+          <span className="h-6 w-px bg-emerald-100 mx-1" aria-hidden="true" />
           {/* Blog */}
           <NavLink to="/blog" className={desktopNavLinkClass}>
             <span className="inline-flex items-center gap-1.5">

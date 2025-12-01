@@ -138,6 +138,22 @@ export const posts = [
   heroImage: "/icons/hero-secured-cards.png",
   heroImageAlt: "A secured credit card with a small lock symbol representing credit building",
 },
+{
+  slug: "budget-traps-to-avoid",
+  title: "The 7 Budget Traps Keeping You Broke (And How to Fix Them)",
+  tag: "Budgeting",
+  level: "Intermediate",
+  readTime: "8 min read",
+  excerpt: "Common budgeting mistakes that silently drain your money — and simple fixes for each.",
+  file: "/posts/budget-traps-to-avoid.md",
+
+  author: "BuddyMoney Editorial",
+  authorAvatar: "/icons/editorial.png",
+  date: "2025-12-01",
+
+  heroImage: "/icons/budget-traps-hero.png",
+  heroImageAlt: "Person stepping over financial traps labeled bills, spending, debt",
+},
 
 ];
 

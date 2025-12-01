@@ -535,11 +535,29 @@ export default function BlogPost() {
             </h1>
 
             {/* Author line */}
-            <p className="text-[11px] text-slate-500 mb-3">
-              By{" "}
-              <span className="font-medium text-slate-700">BuddyMoney</span>
-              {post.readTime && <> • Updated {post.readTime}</>}
-            </p>
+            {/* Author line */}
+<div className="flex items-center gap-3 text-[11px] text-slate-500 mb-3">
+  {post.authorAvatar && (
+    <img
+      src={post.authorAvatar}
+      alt={post.author || "BuddyMoney Editorial"}
+      className="h-8 w-8 rounded-full border border-slate-200 object-cover"
+    />
+  )}
+
+  <div>
+    <p>
+      By{" "}
+      <span className="font-medium text-slate-700">
+        {post.author || "BuddyMoney Editorial"}
+      </span>
+    </p>
+    <p className="text-[10px] text-slate-400">
+      {post.readTime && post.readTime}
+    </p>
+  </div>
+</div>
+
 
             <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
               {post.level && (

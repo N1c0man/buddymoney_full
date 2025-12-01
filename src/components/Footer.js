@@ -74,6 +74,17 @@ export default function Footer() {
               <span>Affiliate Disclosure</span>
             </Link>
           </nav>
+          <div className="w-full text-center mt-2">
+  <p className="text-sm text-slate-600">
+    📩 Email:{" "}
+    <a
+      href="mailto:contact&#64;buddymoney&#46;com"
+      className="inline-flex items-center rounded-md px-2 py-1 text-emerald-600 hover:text-emerald-800 hover:bg-emerald-50 underline-offset-2 hover:underline transition-colors duration-150"
+    >
+      contact&#64;buddymoney&#46;com
+    </a>
+  </p>
+</div>
 
           {/* Centered Affiliate Disclosure text */}
           <p className="text-[11px] text-gray-400 mt-3 leading-relaxed max-w-lg mx-auto text-center">
@@ -83,6 +94,7 @@ export default function Footer() {
             provide value.
           </p>
         </div>
+        
 
         {/* Right side — copyright (unchanged) */}
         <div className="text-center md:text-right mt-4 md:mt-0">
