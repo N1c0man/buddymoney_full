@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Point crawlers to your XML sitemap
-Sitemap: https://buddymoney.com/sitemap.xml
+Sitemap: https://www.buddymoney.com/sitemap.xml

@@ -1,33 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset 
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml"
->
-  <!-- Main pages -->
-  <url><loc>https://buddymoney.com/</loc></url>
-  <url><loc>https://buddymoney.com/blog</loc></url>
-  <url><loc>https://buddymoney.com/tools</loc></url>
-  <url><loc>https://buddymoney.com/about</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- AI Coach Tool -->
+  <!-- Core pages -->
   <url>
-    <loc>https://buddymoney.com/coach</loc>
-    <lastmod>2025-11-12</lastmod>
+    <loc>https://www.buddymoney.com/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/tools</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Mortgage Payoff Calculator -->
   <url>
-    <loc>https://buddymoney.com/tools/mortgage-payoff</loc>
-    <lastmod>2025-11-12</lastmod>
+    <loc>https://www.buddymoney.com/blog</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
-  <!-- Blog post examples -->
-  <url><loc>https://buddymoney.com/blog/how-to-start-a-budget</loc></url>
-  <url><loc>https://buddymoney.com/blog/emergency-fund-basics</loc></url>
-  <url><loc>https://buddymoney.com/blog/side-hustle-income-tips</loc></url>
-  <url><loc>https://buddymoney.com/privacy</loc></url>
-<url><loc>https://buddymoney.com/terms</loc></url>
+  <url>
+    <loc>https://www.buddymoney.com/credit-cards</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/coach</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/mortgage-payoff</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/about</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/terms</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/affiliate-disclosure</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Blog posts -->
+  <url>
+    <loc>https://www.buddymoney.com/blog/save-your-first-1000</loc>
+    <lastmod>2025-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/blog/emergency-fund-basics</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/blog/how-to-start-a-budget-in-10-minutes</loc>
+    <lastmod>2025-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/blog/side-hustle-income-tips</loc>
+    <lastmod>2025-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/blog/crush-credit-card-debt</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/blog/side-hustle-ideas</loc>
+    <lastmod>2025-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/blog/salary-by-age</loc>
+    <lastmod>2025-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/blog/best-secured-credit-cards</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.buddymoney.com/blog/budget-traps-to-avoid</loc>
+    <lastmod>2025-12-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
 
 </urlset>
