@@ -2,15 +2,23 @@
   "name": "BuddyMoney",
   "short_name": "BuddyMoney",
   "description": "Beginner-friendly financial tools, tips, and resources to budget, save, and grow.",
-  "start_url": "/",
+  "lang": "en-US",
+
+  "id": "/",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+
   "display": "standalone",
-  "background_color": "#1e3a8a",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
   "theme_color": "#1e3a8a",
+
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/icons/icon-256x256.png",
@@ -25,7 +33,52 @@
     {
       "src": "/icons/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+
+  "categories": ["finance", "productivity"],
+
+  "shortcuts": [
+    {
+      "name": "Open Budget Coach",
+      "short_name": "Budget Coach",
+      "description": "Get a quick, personalized budget breakdown.",
+      "url": "/coach",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Mortgage Payoff Planner",
+      "short_name": "Mortgage Payoff",
+      "description": "See how extra payments cut years off your loan.",
+      "url": "/mortgage",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "All Money Tools",
+      "short_name": "Money Tools",
+      "description": "Browse all BuddyMoney tools in one place.",
+      "url": "/tools",
+      "icons": [
+        {
+          "src": "/icons/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }
