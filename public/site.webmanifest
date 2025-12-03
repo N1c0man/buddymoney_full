@@ -68,10 +68,10 @@
       ]
     },
     {
-      "name": "All Money Tools",
-      "short_name": "Money Tools",
-      "description": "Browse all BuddyMoney tools in one place.",
-      "url": "/tools",
+      "name": "Credit Card Tool",
+      "short_name": "Credit Card Finder",
+      "description": "Find the right credit card for your money needs.",
+      "url": "/credit-cards",
       "icons": [
         {
           "src": "/icons/icon-192x192.png",
