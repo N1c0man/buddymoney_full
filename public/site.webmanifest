@@ -4,7 +4,7 @@
   "description": "Beginner-friendly financial tools, tips, and resources to budget, save, and grow.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1e3a8a",
+  "background_color": "#ffffff",
   "theme_color": "#1e3a8a",
   "icons": [
     {
