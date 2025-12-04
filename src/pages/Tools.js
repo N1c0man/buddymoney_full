@@ -71,10 +71,7 @@ export default function Tools() {
   const description =
     "Use BuddyMoney’s free money tools and calculators to plan your budget, savings goals, debt payoff, emergency fund, and net worth. No logins, no fees—just simple tools to support calmer money decisions.";
 
-  const pageUrl =
-    typeof window !== "undefined"
-      ? window.location.href
-      : "https://buddymoney.com/tools";
+  const pageUrl = "https://buddymoney.com/tools";
 
   // JSON-LD structured data for the tools collection
   const jsonLd = {

@@ -260,25 +260,27 @@ const markdownComponents = {
   },
 
   // Images with captions (use title or alt)
-  img({ node, ...props }) {
-    const { alt, title, ...rest } = props;
-    const caption = title || alt;
+// Images with captions (use title or alt)
+img({ node, ...props }) {
+  const { alt, title, ...rest } = props;
+  const caption = title || alt;
 
-    return (
-      <figure className="my-6">
-        <img
-          alt={alt || ""}
-          {...rest}
-          className="rounded-xl shadow-soft max-h-[420px] w-full object-cover"
-        />
-        {caption && (
-          <figcaption className="mt-2 text-xs text-slate-500 text-center">
-            {caption}
-          </figcaption>
-        )}
-      </figure>
-    );
-  },
+  return (
+    <figure className="my-6">
+      <img
+        alt={alt || ""}
+        loading="lazy"
+        {...rest}
+        className="rounded-xl shadow-soft max-h-[420px] w-full object-cover"
+      />
+      {caption && (
+        <figcaption className="mt-2 text-xs text-slate-500 text-center">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+},
 };
 
 export default function BlogPost() {
@@ -571,25 +573,28 @@ export default function BlogPost() {
           </header>
 
           {/* Optional hero image */}
-          {post.heroImage && (
-            <figure className="overflow-hidden rounded-2xl border border-slate-200 shadow-soft mb-6">
-              <img
-                src={post.heroImage}
-                alt={post.heroImageAlt || post.title}
-                className="w-full h-auto"
-              />
-              {post.heroImageAlt && (
-                <figcaption className="px-4 py-3 text-xs text-slate-500">
-                  {post.heroImageAlt}
-                </figcaption>
-              )}
-            </figure>
-          )}
+          {/* Optional hero image */}
+{post.heroImage && (
+  <figure className="overflow-hidden rounded-2xl border border-slate-200 shadow-soft mb-6">
+    <img
+      src={post.heroImage}
+      alt={post.heroImageAlt || post.title}
+      loading="lazy"
+      className="w-full h-auto"
+    />
+    {post.heroImageAlt && (
+      <figcaption className="px-4 py-3 text-xs text-slate-500">
+        {post.heroImageAlt}
+      </figcaption>
+    )}
+  </figure>
+)}
+
 
           {/* Social share — top */}
           <ShareBar
   variant="top"
-  title="AI Budget Coach – BuddyMoney"
+  title={`${post.title} – BuddyMoney`}
   // pageUrl optional; if omitted it uses window.location.href
 />
 
