@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { posts } from "./postsIndex";
+import ShareBar from "../components/ShareBar";
 
 export default function BlogList() {
   const [search, setSearch] = useState("");
@@ -112,8 +113,11 @@ export default function BlogList() {
                 <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
                   ⏱ Most reads under 7 minutes
                 </span>
+                
               </div>
+              
             </div>
+          
 
             {/* Right info card */}
             <div className="hidden md:block">
@@ -133,7 +137,11 @@ export default function BlogList() {
           </div>
         </section>
         {/* 👆 END BLOG HERO */}
-
+<ShareBar
+  variant="top"
+ title="BuddyMoney Blog – Money Guides & Articles"
+  // pageUrl optional; if omitted it uses window.location.href
+/>
         {/* MAIN WHITE CARD WRAPPER */}
         <div className="rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8">
 
@@ -230,7 +238,11 @@ export default function BlogList() {
               ))}
             </div>
           )}
-
+<ShareBar
+  variant="bottom"
+  label="Share this tool"
+ title="BuddyMoney Blog – Money Guides & Articles"
+/>
           {/* Note */}
           <p className="mt-8 text-xs text-slate-500">
             We&apos;re continuing to add more guides over time. Check back for new

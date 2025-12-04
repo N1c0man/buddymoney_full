@@ -527,7 +527,8 @@ export default function BlogPost() {
           {/* Header */}
           <header className="mb-6">
             {post.tag && (
-              <p className="text-xsRet font-semibold tracking-[0.2em] uppercase text-emerald-500 mb-2">
+              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-emerald-500 mb-2">
+
                 {post.tag}
               </p>
             )}
@@ -754,7 +755,8 @@ export default function BlogPost() {
 <ShareBar
   variant="bottom"
   label="Share this tool"
-  title="I’m using BuddyMoney’s Tools to help me plan for my next money moves."
+  title={`${post.title} – BuddyMoney`}
+
 />
               {/* Related tools section */}
               {!loading && !error && (
