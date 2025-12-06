@@ -4,7 +4,6 @@ Credit card debt feels heavy. The interest is high, the balances never seem to m
 
 But here’s the truth:
 
-
 **Debt becomes manageable the moment you give it a system.**
 
 Below is a clear, step-by-step plan used by thousands of people to take control, stay motivated, and wipe out high-interest debt for good.
@@ -25,6 +24,12 @@ Make a simple list with:
 A notebook works, or if you want to be precise, use a spreadsheet or the BuddyMoney debt planner (coming soon).
 
 This step alone reduces stress — your brain no longer has to “track everything” silently.
+
+> **TIP:** Want an easy way to see all your balances, APRs, and due dates in one place?  
+> **SmartCredit** provides a clear view of your accounts and credit score in a single dashboard.  
+> *(affiliate link — helps support BuddyMoney at no extra cost to you)*  
+> 👉 [https://www.smartcredit.com/lpg/get-started-trial](https://www.kqzyfj.com/click-101601912-16983231)
+
 
 ---
 

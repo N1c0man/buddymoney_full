@@ -140,7 +140,7 @@ export default function BlogList() {
 <ShareBar
   variant="top"
  title="BuddyMoney Blog – Money Guides & Articles"
-  // pageUrl optional; if omitted it uses window.location.href
+  label="Share this blog"
 />
         {/* MAIN WHITE CARD WRAPPER */}
         <div className="rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8">
@@ -240,7 +240,7 @@ export default function BlogList() {
           )}
 <ShareBar
   variant="bottom"
-  label="Share this tool"
+  label="Share this blog"
  title="BuddyMoney Blog – Money Guides & Articles"
 />
           {/* Note */}
