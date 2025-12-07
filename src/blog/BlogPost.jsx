@@ -353,10 +353,12 @@ export default function BlogPost() {
       author: {
         "@type": "Organization",
         name: "BuddyMoney",
+        url: "https://www.buddymoney.com",
       },
       publisher: {
         "@type": "Organization",
         name: "BuddyMoney",
+        url: "https://www.buddymoney.com",
         logo: {
           "@type": "ImageObject",
           url: "https://buddymoney.com/images/buddymoney-logo.png",
