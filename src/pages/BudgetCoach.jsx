@@ -20,41 +20,39 @@ export default function BudgetCoachPage() {
       document.head.appendChild(meta);
     }
 
-    // JSON-LD (WebPage + FAQ-style info about the coach)
+    // JSON-LD (WebPage + FAQ)
     const jsonLd = {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "AI Budget Coach | BuddyMoney",
-      "url": "https://buddymoney.com/coach",
-      "description": description,
-      "publisher": {
+      "@type": ["WebPage", "FAQPage"],
+      name: "AI Budget Coach | BuddyMoney",
+      url: "https://buddymoney.com/coach",
+      description: description,
+      publisher: {
         "@type": "Organization",
-        "name": "BuddyMoney",
-        "url": "https://buddymoney.com"
+        name: "BuddyMoney",
+        url: "https://buddymoney.com",
       },
-      "mainEntity": {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What is the AI Budget Coach?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text":
-                "The AI Budget Coach is a friendly tool that helps you understand budgeting, saving, debt payoff, and financial planning in simple terms."
-            }
+      // ✅ mainEntity is now an array of Questions (valid FAQ schema)
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What is the AI Budget Coach?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "The AI Budget Coach is a friendly tool that helps you understand budgeting, saving, debt payoff, and financial planning in simple terms.",
           },
-          {
-            "@type": "Question",
-            "name": "Is the AI Budget Coach free to use?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text":
-                "Yes, the AI Budget Coach on BuddyMoney is completely free to use."
-            }
-          }
-        ]
-      }
+        },
+        {
+          "@type": "Question",
+          name: "Is the AI Budget Coach free to use?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text:
+              "Yes, the AI Budget Coach on BuddyMoney is completely free to use.",
+          },
+        },
+      ],
     };
 
     const script = document.createElement("script");

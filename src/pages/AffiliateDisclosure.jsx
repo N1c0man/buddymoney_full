@@ -56,9 +56,6 @@ export default function AffiliateDisclosure() {
 
         <section
           className="space-y-8 text-slate-700 text-base leading-relaxed bg-white/70 border border-emerald-100 rounded-2xl shadow-sm p-6 sm:p-8"
-          itemProp="mainEntity"
-          itemScope
-          itemType="https://schema.org/FAQPage"
         >
           {/* Why this page exists */}
           <div>

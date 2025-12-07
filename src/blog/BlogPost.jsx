@@ -6,9 +6,7 @@ import RelatedCreditCardGuides from "../components/RelatedCreditCardGuides";
 import ShareBar from "../components/ShareBar";
 import AffiliateCalloutSmartCredit from "../components/AffiliateCalloutSmartCredit";
 
-
 const SITE_URL = "https://www.buddymoney.com";
-
 
 // ------------------------------------------
 // Helpers
@@ -131,11 +129,12 @@ function getRelatedTools(post) {
       ALL_TOOLS_LINK,
     ];
   }
+
   if (slug.includes("secured-credit")) {
     return [
       {
         title: "Credit Card Finder (Preview)",
-            description:
+        description:
           "Compare sample cards by credit score, type, and annual fee.",
         path: "/tools/credit-cards",
       },
@@ -262,27 +261,26 @@ const markdownComponents = {
   },
 
   // Images with captions (use title or alt)
-// Images with captions (use title or alt)
-img({ node, ...props }) {
-  const { alt, title, ...rest } = props;
-  const caption = title || alt;
+  img({ node, ...props }) {
+    const { alt, title, ...rest } = props;
+    const caption = title || alt;
 
-  return (
-    <figure className="my-6">
-      <img
-        alt={alt || ""}
-        loading="lazy"
-        {...rest}
-        className="rounded-xl shadow-soft max-h-[420px] w-full object-cover"
-      />
-      {caption && (
-        <figcaption className="mt-2 text-xs text-slate-500 text-center">
-          {caption}
-        </figcaption>
-      )}
-    </figure>
-  );
-},
+    return (
+      <figure className="my-6">
+        <img
+          alt={alt || ""}
+          loading="lazy"
+          {...rest}
+          className="rounded-xl shadow-soft max-h-[420px] w-full object-cover"
+        />
+        {caption && (
+          <figcaption className="mt-2 text-xs text-slate-500 text-center">
+            {caption}
+          </figcaption>
+        )}
+      </figure>
+    );
+  },
 };
 
 export default function BlogPost() {
@@ -311,7 +309,7 @@ export default function BlogPost() {
 
   const relatedTools = useMemo(() => getRelatedTools(post), [post]);
 
-  // 🔹 SEO + BlogPosting JSON-LD
+  // 🔹 SEO + BlogPosting + optional FAQ JSON-LD
   useEffect(() => {
     if (!post) return;
 
@@ -341,10 +339,10 @@ export default function BlogPost() {
         ? window.location.href
         : `https://buddymoney.com/blog/${post.slug}`;
 
-    // Base BlogPosting schema
+    // Base BlogPosting schema (array type so we can add FAQPage)
     const jsonLd = {
       "@context": "https://schema.org",
-      "@type": "BlogPosting",
+      "@type": ["BlogPosting"],
       headline: post.title,
       description,
       mainEntityOfPage: {
@@ -376,19 +374,22 @@ export default function BlogPost() {
       jsonLd.dateModified = post.dateModified || post.lastUpdated;
     }
 
-    // Optional FAQ enhancement if you later add post.faq = [{ question, answer }]
+    // ✅ Valid FAQ enhancement
     if (Array.isArray(post.faq) && post.faq.length > 0) {
-      jsonLd.mainEntity = {
-        "@type": "FAQPage",
-        mainEntity: post.faq.map((item) => ({
-          "@type": "Question",
-          name: item.question,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: item.answer,
-          },
-        })),
-      };
+      // mark page as also FAQPage
+      if (!jsonLd["@type"].includes("FAQPage")) {
+        jsonLd["@type"].push("FAQPage");
+      }
+
+      // FAQ questions as mainEntity array
+      jsonLd.mainEntity = post.faq.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      }));
     }
 
     const script = document.createElement("script");
@@ -530,7 +531,6 @@ export default function BlogPost() {
           <header className="mb-6">
             {post.tag && (
               <p className="text-xs font-semibold tracking-[0.2em] uppercase text-emerald-500 mb-2">
-
                 {post.tag}
               </p>
             )}
@@ -540,29 +540,27 @@ export default function BlogPost() {
             </h1>
 
             {/* Author line */}
-            {/* Author line */}
-<div className="flex items-center gap-3 text-[11px] text-slate-500 mb-3">
-  {post.authorAvatar && (
-    <img
-      src={post.authorAvatar}
-      alt={post.author || "BuddyMoney Editorial"}
-      className="h-8 w-8 rounded-full border border-slate-200 object-cover"
-    />
-  )}
+            <div className="flex items-center gap-3 text-[11px] text-slate-500 mb-3">
+              {post.authorAvatar && (
+                <img
+                  src={post.authorAvatar}
+                  alt={post.author || "BuddyMoney Editorial"}
+                  className="h-8 w-8 rounded-full border border-slate-200 object-cover"
+                />
+              )}
 
-  <div>
-    <p>
-      By{" "}
-      <span className="font-medium text-slate-700">
-        {post.author || "BuddyMoney Editorial"}
-      </span>
-    </p>
-    <p className="text-[10px] text-slate-400">
-      {post.readTime && post.readTime}
-    </p>
-  </div>
-</div>
-
+              <div>
+                <p>
+                  By{" "}
+                  <span className="font-medium text-slate-700">
+                    {post.author || "BuddyMoney Editorial"}
+                  </span>
+                </p>
+                <p className="text-[10px] text-slate-400">
+                  {post.readTime && post.readTime}
+                </p>
+              </div>
+            </div>
 
             <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
               {post.level && (
@@ -576,31 +574,29 @@ export default function BlogPost() {
           </header>
 
           {/* Optional hero image */}
-          {/* Optional hero image */}
-{post.heroImage && (
-  <figure className="overflow-hidden rounded-2xl border border-slate-200 shadow-soft mb-6">
-    <img
-      src={post.heroImage}
-      alt={post.heroImageAlt || post.title}
-      loading="lazy"
-      className="w-full h-auto"
-    />
-    {post.heroImageAlt && (
-      <figcaption className="px-4 py-3 text-xs text-slate-500">
-        {post.heroImageAlt}
-      </figcaption>
-    )}
-  </figure>
-)}
-
+          {post.heroImage && (
+            <figure className="overflow-hidden rounded-2xl border border-slate-200 shadow-soft mb-6">
+              <img
+                src={post.heroImage}
+                alt={post.heroImageAlt || post.title}
+                loading="lazy"
+                className="w-full h-auto"
+              />
+              {post.heroImageAlt && (
+                <figcaption className="px-4 py-3 text-xs text-slate-500">
+                  {post.heroImageAlt}
+                </figcaption>
+              )}
+            </figure>
+          )}
 
           {/* Social share — top */}
           <ShareBar
-  variant="top"
-  label="Share this article"
-  title={`${post.title} – BuddyMoney`}
-  // pageUrl optional; if omitted it uses window.location.href
-/>
+            variant="top"
+            label="Share this article"
+            title={`${post.title} – BuddyMoney`}
+            // pageUrl optional; if omitted it uses window.location.href
+          />
 
           {/* MAIN GRID: Sidebar TOC + Article + Related Tools */}
           <div className="mt-4 lg:grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,2.1fr)] lg:gap-10">
@@ -672,10 +668,10 @@ export default function BlogPost() {
               <div className="mb-8">
                 <div className="flex flex-wrap items-center gap-3">
                   <ShareBar
-  variant="bottom"
-  label="Share this article"
-  title={`${post.title} – BuddyMoney`}
-/>
+                    variant="bottom"
+                    label="Share this article"
+                    title={`${post.title} – BuddyMoney`}
+                  />
                 </div>
               </div>
 
@@ -738,10 +734,8 @@ export default function BlogPost() {
                         {nextPost.title}
                       </p>
                     </Link>
-                    
                   )}
                 </nav>
-                
               )}
 
               {/* Disclaimer */}
