@@ -139,8 +139,8 @@ export default function BlogList() {
         {/* 👆 END BLOG HERO */}
 <ShareBar
   variant="top"
+  label="Share these money guides with someone who is learning about personal finance"
  title="BuddyMoney Blog – Money Guides & Articles"
-  label="Share this blog"
 />
         {/* MAIN WHITE CARD WRAPPER */}
         <div className="rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8">
@@ -240,7 +240,7 @@ export default function BlogList() {
           )}
 <ShareBar
   variant="bottom"
-  label="Share this blog"
+  label="Share these money guides with someone who is learning about personal finance"
  title="BuddyMoney Blog – Money Guides & Articles"
 />
           {/* Note */}

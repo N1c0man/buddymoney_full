@@ -251,6 +251,7 @@ export default function Tools() {
           {/* 🔼 TOP SHARE BAR FOR TOOLS PAGE */}
           <ShareBar
             variant="top"
+            label="Share BuddyMoney's simple money tools with a friend"
             title="I’m using BuddyMoney’s free money tools to plan my next money moves."
           />
 
@@ -387,7 +388,7 @@ export default function Tools() {
             {/* 🔽 BOTTOM SHARE STRIP INSIDE TOOLS CARD */}
             <ShareBar
               variant="bottom"
-              label="Share these tools"
+              label="Share BuddyMoney's simple money tools with a friend"
               title="I’m using BuddyMoney’s free money tools to plan my next money moves."
             />
 
