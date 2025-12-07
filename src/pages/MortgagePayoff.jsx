@@ -598,6 +598,7 @@ export default function MortgagePayoff() {
           {/* Social share bar */}
           <ShareBar
             variant="top"
+            label="Share this mortgage payoff calculator with a homeowner"
             title="Mortgage Payoff Calculator – BuddyMoney"
           />
 
@@ -1098,7 +1099,7 @@ export default function MortgagePayoff() {
             {/* Bottom share strip (smaller) */}
             <ShareBar
               variant="bottom"
-              label="Share this tool"
+              label="Share this mortgage payoff calculator with a homeowner"
               title="I’m using BuddyMoney’s Mortgage Payoff Calculator to see how extra payments can knock years off my mortgage."
             />
 

@@ -102,6 +102,7 @@ export default function Home() {
         <section className="max-w-5xl mx-auto px-4 -mt-2">
           <ShareBar
             variant="top"
+            label="Share BuddyMoney with a friend who loves simple money tools"
             title="BuddyMoney – Free Money Tools for Budgeting, Saving & Debt Payoff"
           />
         </section>
@@ -334,7 +335,7 @@ export default function Home() {
         <section className="max-w-5xl mx-auto px-4 mt-4">
           <ShareBar
             variant="bottom"
-            label="Share BuddyMoney with a friend"
+            label="Share BuddyMoney with a friend who loves simple money tools"
             title="I’m using BuddyMoney’s free tools to feel calmer about my money."
           />
         </section>

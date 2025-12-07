@@ -196,6 +196,7 @@ export default function CreditCardsHub() {
           {/* Top share bar */}
           <ShareBar
             variant="top"
+            label="Share this compare credit card tool with a friend"
             title="I’m using BuddyMoney’s credit card hub to understand my options before I apply."
           />
 
@@ -265,7 +266,7 @@ export default function CreditCardsHub() {
           {/* Bottom share bar */}
           <ShareBar
             variant="bottom"
-            label="Share this hub"
+            label="Share this compare credit card tool with a friend"
             title="I’m using BuddyMoney’s credit card hub to learn about cards before I apply."
           />
         </div>

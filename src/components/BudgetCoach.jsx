@@ -341,7 +341,7 @@ export default function BudgetCoach() {
           {/* Social share — Premium BuddyMoney version (no motion) */}
 <ShareBar
   variant="top"
-  label="Share this tool"
+  label="Share this friendly budgeting coach with someone who needs it"
   title="I’m using BuddyMoney’s AI Budget Coach to get a calm, realistic monthly plan."
 />
           {/* MAIN COACH CARD */}
@@ -529,7 +529,7 @@ export default function BudgetCoach() {
           {/* Bottom share strip (smaller) */}
           <ShareBar
   variant="bottom"
-  label="Share this tool"
+  label="Share this friendly budgeting coach with someone who needs it"
   title="I’m using BuddyMoney’s AI Budget Coach to get a calm, realistic monthly plan."
 />
         </div>
