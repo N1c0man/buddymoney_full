@@ -333,7 +333,7 @@ export default function BlogPost() {
       document.head.appendChild(meta);
     }
 
-    // URL
+    // Canonical URL for this post
     const url =
       typeof window !== "undefined"
         ? window.location.href
@@ -381,14 +381,15 @@ export default function BlogPost() {
         jsonLd["@type"].push("FAQPage");
       }
 
-      // FAQ questions as mainEntity array
-      jsonLd.mainEntity = post.faq.map((item) => ({
+      // FAQ questions as mainEntity array, each with its own url (optional but recommended)
+      jsonLd.mainEntity = post.faq.map((item, index) => ({
         "@type": "Question",
         name: item.question,
         acceptedAnswer: {
           "@type": "Answer",
           text: item.answer,
         },
+        url: `${url}#faq-${index + 1}`,
       }));
     }
 
