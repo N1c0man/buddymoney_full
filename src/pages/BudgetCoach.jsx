@@ -20,10 +20,10 @@ export default function BudgetCoachPage() {
       document.head.appendChild(meta);
     }
 
-    // JSON-LD (WebPage + FAQ)
+    // ✅ JSON-LD: pure FAQPage schema with mainEntity array
     const jsonLd = {
       "@context": "https://schema.org",
-      "@type": ["WebPage", "FAQPage"],
+      "@type": "FAQPage",
       name: "AI Budget Coach | BuddyMoney",
       url: "https://buddymoney.com/coach",
       description: description,
@@ -32,7 +32,6 @@ export default function BudgetCoachPage() {
         name: "BuddyMoney",
         url: "https://buddymoney.com",
       },
-      // ✅ mainEntity is now an array of Questions (valid FAQ schema)
       mainEntity: [
         {
           "@type": "Question",
