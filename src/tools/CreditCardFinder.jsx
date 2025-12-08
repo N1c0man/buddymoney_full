@@ -337,6 +337,7 @@ export default function CreditCardFinder() {
           {/* Top share bar */}
           <ShareBar
             variant="top"
+            label="Share this compare credit card tool with a buddy"
             title="I’m using BuddyMoney’s credit card finder to explore card options."
           />
 
@@ -613,7 +614,7 @@ export default function CreditCardFinder() {
           {/* Bottom share bar */}
           <ShareBar
             variant="bottom"
-            label="Share this tool"
+            label="Share this compare credit card tool with a buddy"
             title="I’m using BuddyMoney’s credit card finder to explore card options."
           />
         </div>
