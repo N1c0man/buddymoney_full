@@ -2,27 +2,34 @@
 // Dynamic sitemap for BuddyMoney (Create React App on Vercel)
 
 // IMPORTANT: Update this if your canonical domain ever changes
-const SITE_URL = "https://www.buddymoney.com";
-
-// List all key static pages + tools here
-// 👉 Make sure each `path` matches exactly what you use in <Route path="...">
 const STATIC_ROUTES = [
   // Core
   { path: "/", priority: 1.0, changefreq: "daily" },
   { path: "/blog", priority: 0.8, changefreq: "weekly" },
 
-  // Tools
-  { path: "/budget-coach", priority: 0.9, changefreq: "weekly" },
-  { path: "/mortgage", priority: 0.9, changefreq: "weekly" },
-  { path: "/credit-card-finder", priority: 0.9, changefreq: "weekly" },
-  { path: "/best-bad-credit-cards", priority: 0.8, changefreq: "monthly" },
+  // Tools hub
+  { path: "/tools", priority: 0.9, changefreq: "weekly" },
 
-  // Info pages
+  // Individual tools
+  { path: "/coach", priority: 0.9, changefreq: "weekly" },          // Budget Coach
+  { path: "/mortgage", priority: 0.9, changefreq: "weekly" },       // Mortgage Payoff
+  { path: "/tools/credit-cards", priority: 0.9, changefreq: "weekly" }, // Credit Card Finder
+
+  // Credit card hub + guides
+  { path: "/credit-cards", priority: 0.8, changefreq: "monthly" },
+  { path: "/credit-cards/cash-back", priority: 0.8, changefreq: "monthly" },
+  { path: "/credit-cards/bad-credit", priority: 0.8, changefreq: "monthly" },
+  { path: "/credit-cards/travel", priority: 0.8, changefreq: "monthly" },
+  { path: "/credit-cards/0-apr", priority: 0.8, changefreq: "monthly" },
+  { path: "/credit-cards/student", priority: 0.8, changefreq: "monthly" },
+
+  // Info & legal
   { path: "/about", priority: 0.4, changefreq: "yearly" },
-  { path: "/contact", priority: 0.4, changefreq: "yearly" },
   { path: "/privacy", priority: 0.2, changefreq: "yearly" },
   { path: "/terms", priority: 0.2, changefreq: "yearly" },
+  { path: "/affiliate-disclosure", priority: 0.2, changefreq: "yearly" },
 ];
+
 
 // Helper to format one <url> entry
 function buildUrlTag({ loc, lastmod, changefreq, priority }) {
