@@ -1,0 +1,22 @@
+{
+  "home": "/",
+  "tools": "/tools",
+  "about": "/about",
+
+  "coach": "/coach",
+  "mortgage": "/mortgage",
+  "creditCardTool": "/tools/credit-cards",
+
+  "creditCardsHub": "/credit-cards",
+  "creditCardsCashBack": "/credit-cards/cash-back",
+  "creditCardsBadCredit": "/credit-cards/bad-credit",
+  "creditCardsTravel": "/credit-cards/travel",
+  "creditCardsZeroApr": "/credit-cards/0-apr",
+  "creditCardsStudent": "/credit-cards/student",
+
+  "blogList": "/blog",
+
+  "privacy": "/privacy",
+  "terms": "/terms",
+  "affiliateDisclosure": "/affiliate-disclosure"
+}

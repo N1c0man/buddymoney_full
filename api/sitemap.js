@@ -1,34 +1,32 @@
 // api/sitemap.js
+const ROUTES = require("../src/routePaths.json");
+
 // Dynamic sitemap for BuddyMoney (Create React App on Vercel)
 
 // IMPORTANT: Update this if your canonical domain ever changes
 const STATIC_ROUTES = [
-  // Core
-  { path: "/", priority: 1.0, changefreq: "daily" },
-  { path: "/blog", priority: 0.8, changefreq: "weekly" },
+  { path: ROUTES.home, priority: 1.0, changefreq: "daily" },
+  { path: ROUTES.blogList, priority: 0.8, changefreq: "weekly" },
+  { path: ROUTES.tools, priority: 0.9, changefreq: "weekly" },
 
-  // Tools hub
-  { path: "/tools", priority: 0.9, changefreq: "weekly" },
+  { path: ROUTES.coach, priority: 0.9, changefreq: "weekly" },
+  { path: ROUTES.mortgage, priority: 0.9, changefreq: "weekly" },
+  { path: ROUTES.creditCardTool, priority: 0.9, changefreq: "weekly" },
 
-  // Individual tools
-  { path: "/coach", priority: 0.9, changefreq: "weekly" },          // Budget Coach
-  { path: "/mortgage", priority: 0.9, changefreq: "weekly" },       // Mortgage Payoff
-  { path: "/tools/credit-cards", priority: 0.9, changefreq: "weekly" }, // Credit Card Finder
+  { path: ROUTES.creditCardsHub, priority: 0.8, changefreq: "monthly" },
+  { path: ROUTES.creditCardsCashBack, priority: 0.8, changefreq: "monthly" },
+  { path: ROUTES.creditCardsBadCredit, priority: 0.8, changefreq: "monthly" },
+  { path: ROUTES.creditCardsTravel, priority: 0.8, changefreq: "monthly" },
+  { path: ROUTES.creditCardsZeroApr, priority: 0.8, changefreq: "monthly" },
+  { path: ROUTES.creditCardsStudent, priority: 0.8, changefreq: "monthly" },
 
-  // Credit card hub + guides
-  { path: "/credit-cards", priority: 0.8, changefreq: "monthly" },
-  { path: "/credit-cards/cash-back", priority: 0.8, changefreq: "monthly" },
-  { path: "/credit-cards/bad-credit", priority: 0.8, changefreq: "monthly" },
-  { path: "/credit-cards/travel", priority: 0.8, changefreq: "monthly" },
-  { path: "/credit-cards/0-apr", priority: 0.8, changefreq: "monthly" },
-  { path: "/credit-cards/student", priority: 0.8, changefreq: "monthly" },
-
-  // Info & legal
-  { path: "/about", priority: 0.4, changefreq: "yearly" },
-  { path: "/privacy", priority: 0.2, changefreq: "yearly" },
-  { path: "/terms", priority: 0.2, changefreq: "yearly" },
-  { path: "/affiliate-disclosure", priority: 0.2, changefreq: "yearly" },
+  { path: ROUTES.about, priority: 0.4, changefreq: "yearly" },
+  { path: ROUTES.privacy, priority: 0.2, changefreq: "yearly" },
+  { path: ROUTES.terms, priority: 0.2, changefreq: "yearly" },
+  { path: ROUTES.affiliateDisclosure, priority: 0.2, changefreq: "yearly" }
 ];
+
+
 
 
 // Helper to format one <url> entry

@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 
 // Components
 import ScrollToTop from "./components/ScrollToTop";
+import ROUTES from "./routePaths.json";
+
 
 // Pages
 import Home from "./pages/Home";
@@ -40,44 +42,38 @@ export default function App() {
       <ScrollToTop />
 
       <Routes>
-        {/* Main pages */}
-        <Route path="/" element={<Home />} />
-        <Route path="/tools" element={<Tools />} />
-        <Route path="/about" element={<About />} />
+  {/* Main pages */}
+  <Route path={ROUTES.home} element={<Home />} />
+  <Route path={ROUTES.tools} element={<Tools />} />
+  <Route path={ROUTES.about} element={<About />} />
 
-        {/* Tools */}
-        <Route path="/coach" element={<BudgetCoachPage />} />
-        <Route path="/mortgage" element={<MortgagePayoff />} />
-        <Route path="/tools/credit-cards" element={<CreditCardFinder />} />
+  {/* Tools */}
+  <Route path={ROUTES.coach} element={<BudgetCoachPage />} />
+  <Route path={ROUTES.mortgage} element={<MortgagePayoff />} />
+  <Route path={ROUTES.creditCardTool} element={<CreditCardFinder />} />
 
-        {/* Credit card supporting guides */}
-        <Route path="/credit-cards" element={<CreditCardsHub />} />
+  {/* Credit card supporting guides */}
+  <Route path={ROUTES.creditCardsHub} element={<CreditCardsHub />} />
+  <Route path={ROUTES.creditCardsCashBack} element={<BestCashBackCards />} />
+  <Route path={ROUTES.creditCardsBadCredit} element={<BestBadCreditCards />} />
+  <Route path={ROUTES.creditCardsTravel} element={<BestTravelCards />} />
+  <Route path={ROUTES.creditCardsZeroApr} element={<BestIntroAprCards />} />
+  <Route path={ROUTES.creditCardsStudent} element={<BestStudentCards />} />
 
-        <Route
-          path="/credit-cards/cash-back"
-          element={<BestCashBackCards />}
-        />
-        <Route
-          path="/credit-cards/bad-credit"
-          element={<BestBadCreditCards />}
-        />
-        <Route path="/credit-cards/travel" element={<BestTravelCards />} />
-        <Route path="/credit-cards/0-apr" element={<BestIntroAprCards />} />
-        <Route path="/credit-cards/student" element={<BestStudentCards />} />
+  {/* Blog */}
+  <Route path={ROUTES.blogList} element={<BlogList />} />
+  {/* Slug route can stay literal for now */}
+  <Route path="/blog/:slug" element={<BlogPost />} />
 
-        {/* Blog */}
-        <Route path="/blog" element={<BlogList />} />
-        <Route path="/blog/:slug" element={<BlogPost />} />
+  {/* Legal */}
+  <Route path={ROUTES.privacy} element={<Privacy />} />
+  <Route path={ROUTES.terms} element={<Terms />} />
+  <Route
+    path={ROUTES.affiliateDisclosure}
+    element={<AffiliateDisclosure />}
+  />
+</Routes>
 
-        {/* Legal */}
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route
-          path="/affiliate-disclosure"
-          element={<AffiliateDisclosure />}
-        />{" "}
-        {/* <-- added */}
-      </Routes>
     </MainLayout>
   );
 }
