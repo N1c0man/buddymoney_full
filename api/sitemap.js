@@ -1,7 +1,8 @@
 // api/sitemap.js
 const ROUTES = require("../src/routePaths.json");
-// Canonical domain for your site
 const SITE_URL = "https://www.buddymoney.com";
+const BLOG_POSTS = require("../src/blog/blogPosts.json");
+
 
 
 // Dynamic sitemap for BuddyMoney (Create React App on Vercel)
@@ -16,6 +17,7 @@ const STATIC_ROUTES = [
   { path: ROUTES.mortgage, priority: 0.9, changefreq: "weekly" },
   { path: ROUTES.creditCardTool, priority: 0.9, changefreq: "weekly" },
 
+
   { path: ROUTES.creditCardsHub, priority: 0.8, changefreq: "monthly" },
   { path: ROUTES.creditCardsCashBack, priority: 0.8, changefreq: "monthly" },
   { path: ROUTES.creditCardsBadCredit, priority: 0.8, changefreq: "monthly" },
@@ -28,9 +30,6 @@ const STATIC_ROUTES = [
   { path: ROUTES.terms, priority: 0.2, changefreq: "yearly" },
   { path: ROUTES.affiliateDisclosure, priority: 0.2, changefreq: "yearly" }
 ];
-
-
-
 
 // Helper to format one <url> entry
 function buildUrlTag({ loc, lastmod, changefreq, priority }) {
@@ -53,21 +52,30 @@ module.exports = (req, res) => {
   const today = new Date().toISOString().split("T")[0];
 
   const staticUrls = STATIC_ROUTES.map((route) => {
-    const path = route.path === "/" ? "" : route.path; // avoid double slash for home
+    const path = route.path === "/" ? "" : route.path;
     return buildUrlTag({
       loc: `${SITE_URL}${path}`,
       lastmod: today,
       changefreq: route.changefreq || "monthly",
-      priority: route.priority ?? 0.5,
+      priority: route.priority ?? 0.5
     });
   });
 
+  const blogUrls = BLOG_POSTS.map((post) =>
+    buildUrlTag({
+      loc: `${SITE_URL}/blog/${post.slug}`,
+      lastmod: post.lastmod || today,
+      changefreq: "monthly",
+      priority: post.priority ?? 0.8
+    })
+  );
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${staticUrls.join("")}
+${blogUrls.join("")}
 </urlset>`;
 
   res.status(200).send(xml);
 };
+
