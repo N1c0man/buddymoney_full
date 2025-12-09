@@ -20,8 +20,9 @@
     "tailwindcss": "^3.4.7"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "generate:blog": "node scripts/generateBlogPosts.cjs",
+    "start": "npm run generate:blog && react-scripts start",
+    "build": "npm run generate:blog && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

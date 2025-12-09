@@ -1,3 +1,17 @@
+---
+slug: how-to-start-a-budget-in-10-minutes
+title: How to Start a Budget in 10 Minutes
+tag: Budgeting
+level: Beginner
+readTime: 7 min read
+excerpt: A quick-start method to give every dollar a job today.
+author: BuddyMoney Editorial
+authorAvatar: /icons/editorial.png
+date: 2025-11-18
+heroImage: /icons/quick-budget-hero.png
+heroImageAlt: Notebook, phone, and coffee cup on a desk used for budgeting
+---
+
 # How to Start a Budget in 10 Minutes
 
 **Budgeting doesn’t have to be complicated or time-consuming.**  
@@ -30,14 +44,14 @@ Open a spreadsheet, a free budgeting app, or even a notepad and make three secti
 * **Wants:** Dining out, streaming services, hobbies.  
 * **Savings/Debt Payoff:** Emergency fund, retirement contributions, extra loan payments.
 
-Add your numbers quickly. Round to the nearest \$10 if that saves time.
+Add your numbers quickly. Round to the nearest $10 if that saves time.
 
 ## 4. Spot the Gaps (2 minutes)
 Now, compare your totals:
 
 * Are **needs** more than 50% of income? Look for one bill to lower (cheaper cell plan, renegotiated insurance).  
 * Are **wants** crowding out savings? Pick one expense to trim for next month.  
-* Savings too small? Automate a transfer—even \$20 a week builds momentum.
+* Savings too small? Automate a transfer—even $20 a week builds momentum.
 
 Remember, the goal is progress, not perfection.
 
@@ -51,7 +65,7 @@ Set up these simple habits so your budget runs itself:
 Automation prevents “oops, I forgot to save” moments.
 
 ## Quick Tips for Success
-* **Start small:** Even a \$5 weekly transfer builds the habit.  
+* **Start small:** Even a $5 weekly transfer builds the habit.  
 * **Use cash or a debit card** for wants to stay aware of spending.  
 * **Celebrate wins:** Paid off a credit card? Treat yourself—within budget.
 

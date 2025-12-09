@@ -1,3 +1,17 @@
+---
+slug: salary-by-age
+title: How Much Salary Should You Be Making for Your Age in 2025?
+tag: Income
+level: Beginner
+readTime: 10 min read
+excerpt: A breakdown of what people typically earn at each age in 2025.
+author: BuddyMoney Editorial
+authorAvatar: /icons/editorial.png
+date: 2025-11-22
+heroImage: /icons/salary-by-age-hero.png
+heroImageAlt: Bar chart showing typical salary ranges by age
+---
+
 # How Much Salary Should You Be Making for Your Age in 2025?
 
 > INFO: Knowing whether you're “on track” financially isn’t about comparing yourself to others — it’s about understanding national averages, market value, and what you can do to grow.

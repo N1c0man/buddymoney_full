@@ -1,3 +1,17 @@
+---
+slug: side-hustle-income-tips
+title: Side Hustle Income Tips
+tag: Side Hustles
+level: Intermediate
+readTime: 8 min read
+excerpt: Ideas and guardrails to earn more without burning yourself out.
+author: BuddyMoney Editorial
+authorAvatar: /icons/editorial.png
+date: 2025-11-19
+heroImage: /icons/side-hustle-hero.png
+heroImageAlt: Person working on a laptop at night with side hustle ideas
+---
+
 # Side Hustle Income Tips for Beginners
 
 Looking for a way to boost your savings or pay off debt faster?  
@@ -24,9 +38,9 @@ Tip: Start small—choose something you can test in a weekend.
 ## Step 2: Set a Clear Money Goal
 Before accepting your first gig, decide **why** you’re hustling.
 
-* Pay off a \$1,000 credit-card balance?  
-* Save \$5,000 for an emergency fund?  
-* Add \$200/month to your retirement account?
+* Pay off a $1,000 credit-card balance?  
+* Save $5,000 for an emergency fund?  
+* Add $200/month to your retirement account?
 
 Having a specific target keeps you motivated and helps you measure success.
 
@@ -41,7 +55,7 @@ Side hustle income can slip through the cracks if you’re not careful.
 Many beginners forget that side hustle income is taxable.
 
 * **Self-employment tax:** You’re responsible for both employer and employee portions of Social Security and Medicare.  
-* **Quarterly estimates:** If you expect to owe more than \$1,000, you may need to pay estimated taxes.  
+* **Quarterly estimates:** If you expect to owe more than $1,000, you may need to pay estimated taxes.  
 * **Deductions:** Track expenses—mileage, supplies, software—to reduce taxable income.
 
 Consider consulting a tax professional once your hustle grows beyond a few hundred dollars a month.

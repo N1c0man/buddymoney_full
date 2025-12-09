@@ -1,3 +1,17 @@
+---
+slug: side-hustle-ideas
+title: 7 Best Side Hustles You Can Start This Week
+tag: Side Hustles
+level: Beginner
+readTime: 9 min read
+excerpt: Practical, fast-start side hustles you can launch this weekend.
+author: BuddyMoney Editorial
+authorAvatar: /icons/editorial.png
+date: 2025-11-21
+heroImage: /icons/side-hustle-hero2.png
+heroImageAlt: Person juggling multiple side hustles
+---
+
 # 7 Best Side Hustles You Can Start This Week (Even If You're Not Sure Where to Begin)
 
 > TIP: Start with just one side hustle so you don’t burn out — consistency beats intensity.
@@ -12,7 +26,7 @@ Below are the **7 best side hustles you can realistically start this week**, bas
 
 ## 1. Rideshare & Delivery Driving  
 **Best for:** People with a car + flexible schedule  
-**Earning potential:** $18–$32/hr depending on city
+**Eearning potential:** $18–$32/hr depending on city
 
 Uber, Lyft, DoorDash, and Instacart are the fastest ways to begin earning immediately.
 
@@ -105,7 +119,7 @@ Where to find them:
 - Amazon MTurk  
 - Clickworker  
 - Appen  
-- UserTesting
+- UserTesting  
 
 They won’t make you rich — but they add up.
 

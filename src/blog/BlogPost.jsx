@@ -7,28 +7,34 @@ import ShareBar from "../components/ShareBar";
 import AffiliateCalloutSmartCredit from "../components/AffiliateCalloutSmartCredit";
 import { setCanonical } from "../utils/seo";
 
+/* ------------------------------------------
+   Strip frontmatter (--- ... ---) from markdown
+------------------------------------------ */
+function stripFrontmatter(raw) {
+  const FRONTMATTER_REGEX = /^---\s*[\s\S]*?---\s*/;
+  const match = raw.match(FRONTMATTER_REGEX);
+  if (!match) return raw;
+  return raw.slice(match[0].length);
+}
 
 const SITE_URL = "https://www.buddymoney.com";
 
-// ------------------------------------------
-// Helpers
-// ------------------------------------------
+/* ------------------------------------------
+   Helpers
+------------------------------------------ */
 
-// Detect callout type based on first word: TIP, NOTE, WARNING, INFO
+// Detect callout type based on first word
 function classifyCallout(text) {
   if (!text) return null;
-
   const lower = String(text).toLowerCase();
-
   if (lower.startsWith("tip:")) return { label: "TIP", color: "emerald" };
   if (lower.startsWith("note:")) return { label: "NOTE", color: "blue" };
   if (lower.startsWith("warning:")) return { label: "WARNING", color: "red" };
   if (lower.startsWith("info:")) return { label: "INFO", color: "yellow" };
-
   return null;
 }
 
-// Slugify heading text for IDs / anchors
+// Slugify heading for anchor links
 function slugify(text) {
   return String(text)
     .toLowerCase()
@@ -37,20 +43,16 @@ function slugify(text) {
     .replace(/\s+/g, "-");
 }
 
-// Convert ReactMarkdown children into plain text
+// Convert ReactMarkdown children to plain text
 function childrenToText(children) {
   if (typeof children === "string") return children;
   if (typeof children === "number") return String(children);
-  if (Array.isArray(children)) {
-    return children.map(childrenToText).join("");
-  }
-  if (children && typeof children === "object" && "props" in children) {
-    return childrenToText(children.props.children);
-  }
+  if (Array.isArray(children)) return children.map(childrenToText).join("");
+  if (children?.props?.children) return childrenToText(children.props.children);
   return "";
 }
 
-// Extract headings from raw markdown (##, ###, ####)
+// Extract ##, ###, #### headings
 function extractHeadings(markdown = "") {
   const lines = markdown.split("\n");
   const headings = [];
@@ -58,19 +60,17 @@ function extractHeadings(markdown = "") {
   for (const line of lines) {
     const match = /^(#{2,4})\s+(.*)/.exec(line.trim());
     if (!match) continue;
-
-    const level = match[1].length; // 2, 3, or 4
+    const level = match[1].length;
     const text = match[2].trim();
     const id = slugify(text);
     headings.push({ level, text, id });
   }
-
   return headings;
 }
 
-// ------------------------------------------
-// Related tools (internal links)
-// ------------------------------------------
+/* ------------------------------------------
+   Related Tools
+------------------------------------------ */
 
 const ALL_TOOLS_LINK = {
   title: "See all BuddyMoney tools",
@@ -80,10 +80,8 @@ const ALL_TOOLS_LINK = {
 
 function getRelatedTools(post) {
   if (!post) return [ALL_TOOLS_LINK];
-
   const slug = post.slug || "";
 
-  // Match by slug keywords
   if (slug.includes("side-hustle")) {
     return [
       {
@@ -109,7 +107,7 @@ function getRelatedTools(post) {
       },
       {
         title: "Net Worth Tracker",
-        description: "See the big picture of how your salary affects wealth.",
+        description: "See your finances from a higher level.",
         path: "/tools",
       },
       ALL_TOOLS_LINK,
@@ -120,12 +118,12 @@ function getRelatedTools(post) {
     return [
       {
         title: "Emergency Fund Calculator",
-        description: "Dial in your ideal 3–6 month cash safety net.",
+        description: "Dial in your ideal 3–6 month safety net.",
         path: "/tools",
       },
       {
         title: "Savings Goal Planner",
-        description: "Create a monthly plan to reach your safety cushion.",
+        description: "Create a plan to reach your cushion.",
         path: "/tools",
       },
       ALL_TOOLS_LINK,
@@ -136,14 +134,12 @@ function getRelatedTools(post) {
     return [
       {
         title: "Credit Card Finder (Preview)",
-        description:
-          "Compare sample cards by credit score, type, and annual fee.",
+        description: "Compare real cards by score, type, annual fee.",
         path: "/tools/credit-cards",
       },
       {
         title: "Budget Tracker",
-        description:
-          "Make room in your budget for the security deposit and payments.",
+        description: "Make room for the deposit and payments.",
         path: "/tools",
       },
       ALL_TOOLS_LINK,
@@ -154,39 +150,39 @@ function getRelatedTools(post) {
     return [
       {
         title: "Debt Payoff Planner",
-        description: "Use snowball or avalanche to crush credit card debt.",
+        description: "Use snowball or avalanche to pay off balances.",
         path: "/tools",
       },
       {
         title: "Budget Tracker",
-        description: "Free up cash to throw at your balances.",
+        description: "Free cash to accelerate payoff.",
         path: "/tools",
       },
       ALL_TOOLS_LINK,
     ];
   }
 
-  // Default / fallback
   return [
     {
       title: "Budget Tracker",
-      description: "Build a simple spending plan that actually works.",
+      description: "Build a simple spending plan.",
       path: "/tools",
     },
     {
       title: "Emergency Fund Calculator",
-      description: "Know exactly how much cash you should keep on hand.",
+      description: "Know how much you should keep on hand.",
       path: "/tools",
     },
     ALL_TOOLS_LINK,
   ];
 }
 
-// ------------------------------------------
-// Markdown component overrides
-// ------------------------------------------
+/* ------------------------------------------
+   Markdown component overrides
+------------------------------------------ */
+
 const markdownComponents = {
-  blockquote({ node, children, ...props }) {
+  blockquote({ children }) {
     const raw = childrenToText(children);
     const callout = classifyCallout(raw);
 
@@ -208,63 +204,53 @@ const markdownComponents = {
       );
     }
 
-    // Normal blockquote styling
     return (
-      <blockquote
-        className="border-l-4 border-emerald-400 bg-emerald-50 px-4 py-3 rounded-xl not-italic text-sm md:text-base text-slate-800"
-        {...props}
-      >
+      <blockquote className="border-l-4 border-emerald-400 bg-emerald-50 px-4 py-3 rounded-xl text-sm md:text-base text-slate-800">
         {children}
       </blockquote>
     );
   },
 
-  // Headings with IDs so TOC links can target them
-  h2({ node, children, ...props }) {
+  h2({ children }) {
     const text = childrenToText(children);
     const id = slugify(text);
     return (
       <h2
         id={id}
         className="scroll-mt-24 text-2xl md:text-3xl font-semibold text-slate-900 mt-8 mb-3"
-        {...props}
       >
         {children}
       </h2>
     );
   },
 
-  h3({ node, children, ...props }) {
+  h3({ children }) {
     const text = childrenToText(children);
     const id = slugify(text);
     return (
       <h3
         id={id}
         className="scroll-mt-24 text-xl md:text-2xl font-semibold text-slate-900 mt-6 mb-2"
-        {...props}
       >
         {children}
       </h3>
     );
   },
 
-  h4({ node, children, ...props }) {
+  h4({ children }) {
     const text = childrenToText(children);
     const id = slugify(text);
     return (
       <h4
         id={id}
         className="scroll-mt-24 text-lg font-semibold text-slate-900 mt-5 mb-2"
-        {...props}
       >
         {children}
       </h4>
     );
   },
 
-  // Images with captions (use title or alt)
-  img({ node, ...props }) {
-    const { alt, title, ...rest } = props;
+  img({ alt, title, ...props }) {
     const caption = title || alt;
 
     return (
@@ -272,7 +258,7 @@ const markdownComponents = {
         <img
           alt={alt || ""}
           loading="lazy"
-          {...rest}
+          {...props}
           className="rounded-xl shadow-soft max-h-[420px] w-full object-cover"
         />
         {caption && (
@@ -285,18 +271,20 @@ const markdownComponents = {
   },
 };
 
+/* ------------------------------------------
+   Component
+------------------------------------------ */
+
 export default function BlogPost() {
   const { slug } = useParams();
-
   const post = slug ? getPostBySlug(slug) : null;
-  // --------------------------
-  // Canonical Tag for Blog Post
-  // --------------------------
+
+  // Canonical tag
   useEffect(() => {
     if (!slug) return;
     setCanonical(`/blog/${slug}`);
   }, [slug]);
-  
+
   const [markdown, setMarkdown] = useState("");
   const [headings, setHeadings] = useState([]);
   const [shareUrl, setShareUrl] = useState("");
@@ -318,56 +306,46 @@ export default function BlogPost() {
 
   const relatedTools = useMemo(() => getRelatedTools(post), [post]);
 
-  // 🔹 SEO + BlogPosting + optional FAQ JSON-LD
+  /* ------------------------------------------
+     SEO + JSON-LD
+  ------------------------------------------ */
   useEffect(() => {
     if (!post) return;
 
-    // Title
     const title = `${post.seoTitle || post.title} | BuddyMoney`;
     document.title = title;
 
-    // Description
     const description =
       post.metaDescription ||
       post.excerpt ||
-      "Read this BuddyMoney guide to learn about budgeting, saving, debt payoff, and more in plain English.";
+      "Read this BuddyMoney guide to learn about budgeting, saving, debt payoff, and more.";
 
+    // Meta description
     let meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute("content", description);
-    } else {
+    if (meta) meta.setAttribute("content", description);
+    else {
       meta = document.createElement("meta");
       meta.name = "description";
       meta.content = description;
       document.head.appendChild(meta);
     }
 
-    // Canonical URL for this post
     const url =
       typeof window !== "undefined"
         ? window.location.href
         : `https://buddymoney.com/blog/${post.slug}`;
 
-    // Base BlogPosting schema (array type so we can add FAQPage)
     const jsonLd = {
       "@context": "https://schema.org",
       "@type": ["BlogPosting"],
       headline: post.title,
       description,
-      mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": url,
-      },
+      mainEntityOfPage: { "@type": "WebPage", "@id": url },
       url,
-      author: {
-        "@type": "Organization",
-        name: "BuddyMoney",
-        url: "https://www.buddymoney.com",
-      },
+      author: { "@type": "Organization", name: "BuddyMoney" },
       publisher: {
         "@type": "Organization",
         name: "BuddyMoney",
-        url: "https://www.buddymoney.com",
         logo: {
           "@type": "ImageObject",
           url: "https://buddymoney.com/images/buddymoney-logo.png",
@@ -375,32 +353,19 @@ export default function BlogPost() {
       },
     };
 
-    if (post.heroImage) {
-      jsonLd.image = post.heroImage;
-    }
-    if (post.datePublished) {
-      jsonLd.datePublished = post.datePublished;
-    }
-    if (post.dateModified || post.lastUpdated) {
+    if (post.heroImage) jsonLd.image = post.heroImage;
+    if (post.datePublished) jsonLd.datePublished = post.datePublished;
+    if (post.dateModified || post.lastUpdated)
       jsonLd.dateModified = post.dateModified || post.lastUpdated;
-    }
 
-    // ✅ Valid FAQ enhancement
+    // FAQ schema
     if (Array.isArray(post.faq) && post.faq.length > 0) {
-      // mark page as also FAQPage
-      if (!jsonLd["@type"].includes("FAQPage")) {
-        jsonLd["@type"].push("FAQPage");
-      }
-
-      // FAQ questions as mainEntity array, each with its own url (optional but recommended)
-      jsonLd.mainEntity = post.faq.map((item, index) => ({
+      jsonLd["@type"].push("FAQPage");
+      jsonLd.mainEntity = post.faq.map((q, i) => ({
         "@type": "Question",
-        name: item.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: item.answer,
-        },
-        url: `${url}#faq-${index + 1}`,
+        name: q.question,
+        acceptedAnswer: { "@type": "Answer", text: q.answer },
+        url: `${url}#faq-${i + 1}`,
       }));
     }
 
@@ -409,14 +374,12 @@ export default function BlogPost() {
     script.innerHTML = JSON.stringify(jsonLd);
     document.head.appendChild(script);
 
-    return () => {
-      if (script && script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-    };
+    return () => script.remove();
   }, [post]);
 
-  // Load markdown
+  /* ------------------------------------------
+     Load Markdown (strip frontmatter)
+  ------------------------------------------ */
   useEffect(() => {
     if (!post) {
       setError("We couldn’t find this article.");
@@ -428,8 +391,6 @@ export default function BlogPost() {
 
     setLoading(true);
     setError("");
-    setMarkdown("");
-    setHeadings([]);
 
     if (post.file) {
       fetch(post.file)
@@ -438,8 +399,9 @@ export default function BlogPost() {
           return res.text();
         })
         .then((text) => {
-          setMarkdown(text);
-          setHeadings(extractHeadings(text));
+          const cleaned = stripFrontmatter(text); // 🔥 REMOVE FRONTMATTER
+          setMarkdown(cleaned);
+          setHeadings(extractHeadings(cleaned));
           setLoading(false);
         })
         .catch(() => {
@@ -454,14 +416,13 @@ export default function BlogPost() {
     }
   }, [post]);
 
-  // Share URL
+  /* ------------------------------------------
+     Sharing
+  ------------------------------------------ */
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      setShareUrl(window.location.href);
-    }
+    if (typeof window !== "undefined") setShareUrl(window.location.href);
   }, []);
 
-  // Scroll progress bar
   useEffect(() => {
     const handleScroll = () => {
       const doc = document.documentElement;
@@ -476,12 +437,8 @@ export default function BlogPost() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const encodedUrl = encodeURIComponent(shareUrl || "");
-  const encodedTitle = encodeURIComponent(post?.title || "BuddyMoney article");
-
   const handleCopyLink = async () => {
     if (!navigator?.clipboard || !shareUrl) return;
-
     try {
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
@@ -491,6 +448,9 @@ export default function BlogPost() {
     }
   };
 
+  /* ------------------------------------------
+     Not Found State
+  ------------------------------------------ */
   if (!post) {
     return (
       <main className="pt-2 lg:pt-4 pb-16">
@@ -511,9 +471,12 @@ export default function BlogPost() {
     );
   }
 
+  /* ------------------------------------------
+     MAIN RENDER
+  ------------------------------------------ */
   return (
     <main className="pt-2 lg:pt-4 pb-16">
-      {/* Reading progress bar */}
+      {/* Progress bar */}
       <div className="fixed inset-x-0 top-0 z-[1000000] h-1 bg-sky-100/40">
         <div
           className="h-full bg-gradient-to-r from-sky-500 via-emerald-400 to-sky-500 transition-[width] duration-150 ease-out"
@@ -522,9 +485,8 @@ export default function BlogPost() {
       </div>
 
       <div className="max-w-5xl mx-auto px-4">
-        {/* ✅ Rounded card shell around your existing layout */}
         <section className="mt-4 rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8">
-          {/* Back link */}
+          {/* Back */}
           <div className="mb-4">
             <Link
               to="/blog"
@@ -551,7 +513,7 @@ export default function BlogPost() {
               {post.title}
             </h1>
 
-            {/* Author line */}
+            {/* Author */}
             <div className="flex items-center gap-3 text-[11px] text-slate-500 mb-3">
               {post.authorAvatar && (
                 <img
@@ -560,7 +522,6 @@ export default function BlogPost() {
                   className="h-8 w-8 rounded-full border border-slate-200 object-cover"
                 />
               )}
-
               <div>
                 <p>
                   By{" "}
@@ -574,6 +535,7 @@ export default function BlogPost() {
               </div>
             </div>
 
+            {/* Tags */}
             <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
               {post.level && (
                 <span className="inline-flex items-center gap-1">
@@ -585,7 +547,7 @@ export default function BlogPost() {
             </div>
           </header>
 
-          {/* Optional hero image */}
+          {/* Hero Image */}
           {post.heroImage && (
             <figure className="overflow-hidden rounded-2xl border border-slate-200 shadow-soft mb-6">
               <img
@@ -602,15 +564,14 @@ export default function BlogPost() {
             </figure>
           )}
 
-          {/* Social share — top */}
+          {/* Social share top */}
           <ShareBar
             variant="top"
             label="Share this article"
             title={`${post.title} – BuddyMoney`}
-            // pageUrl optional; if omitted it uses window.location.href
           />
 
-          {/* MAIN GRID: Sidebar TOC + Article + Related Tools */}
+          {/* Main layout grid */}
           <div className="mt-4 lg:grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,2.1fr)] lg:gap-10">
             {/* Sidebar TOC */}
             <aside className="mb-6 lg:mb-0 lg:self-start lg:sticky lg:top-24">
@@ -641,9 +602,9 @@ export default function BlogPost() {
               )}
             </aside>
 
-            {/* Right column: Article + related tools + nav */}
+            {/* Article column */}
             <div className="space-y-10">
-              {/* Loading / Error */}
+              {/* Loader / error */}
               {loading && (
                 <p className="text-sm text-slate-500">Loading article...</p>
               )}
@@ -656,18 +617,18 @@ export default function BlogPost() {
                 <div className="bg-gradient-to-br from-emerald-50 to-white p-6 rounded-2xl border border-slate-200 shadow-soft">
                   <article
                     className="
-                    blog-article-body
-                    prose prose-slate max-w-none leading-relaxed
-                    prose-headings:text-slate-900
-                    prose-strong:text-slate-900
-                    prose-a:text-emerald-600
-                    prose-blockquote:border-l-emerald-400
-                    prose-li:marker:text-emerald-500
-                    prose-ul:my-3
-                    prose-ol:my-3
-                    prose-hr:border-emerald-200
-                    prose-img:rounded-xl prose-img:shadow-soft
-                  "
+                      blog-article-body
+                      prose prose-slate max-w-none leading-relaxed
+                      prose-headings:text-slate-900
+                      prose-strong:text-slate-900
+                      prose-a:text-emerald-600
+                      prose-blockquote:border-l-emerald-400
+                      prose-li:marker:text-emerald-500
+                      prose-ul:my-3
+                      prose-ol:my-3
+                      prose-hr:border-emerald-200
+                      prose-img:rounded-xl prose-img:shadow-soft
+                    "
                   >
                     <ReactMarkdown components={markdownComponents}>
                       {markdown}
@@ -676,21 +637,19 @@ export default function BlogPost() {
                 </div>
               )}
 
-              {/* Social share — bottom */}
+              {/* Share bottom */}
               <div className="mb-8">
-                <div className="flex flex-wrap items-center gap-3">
-                  <ShareBar
-                    variant="bottom"
-                    label="Share this article"
-                    title={`${post.title} – BuddyMoney`}
-                  />
-                </div>
+                <ShareBar
+                  variant="bottom"
+                  label="Share this article"
+                  title={`${post.title} – BuddyMoney`}
+                />
               </div>
 
-              {/* Related credit card guides (global block) */}
+              {/* Related credit card guides */}
               <RelatedCreditCardGuides />
 
-              {/* Related tools section */}
+              {/* Related tools */}
               {!loading && !error && (
                 <section className="border border-slate-200 rounded-2xl bg-white/90 p-4 shadow-sm">
                   <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 mb-2">
@@ -699,6 +658,7 @@ export default function BlogPost() {
                   <p className="text-[11px] text-slate-500 mb-3">
                     Use these tools to put this guide into action.
                   </p>
+
                   <div className="grid gap-3 sm:grid-cols-2">
                     {relatedTools.map((tool) => (
                       <Link
@@ -718,7 +678,7 @@ export default function BlogPost() {
                 </section>
               )}
 
-              {/* Prev / Next navigation */}
+              {/* Prev / Next */}
               {(prevPost || nextPost) && (
                 <nav className="mt-4 grid gap-3 sm:grid-cols-2 text-xs">
                   {prevPost && (
@@ -734,6 +694,7 @@ export default function BlogPost() {
                       </p>
                     </Link>
                   )}
+
                   {nextPost && (
                     <Link
                       to={`/blog/${nextPost.slug}`}

@@ -1,3 +1,17 @@
+---
+slug: budget-traps-to-avoid
+title: The 7 Budget Traps Keeping You Broke (And How to Fix Them)
+tag: Budgeting
+level: Intermediate
+readTime: 8 min read
+excerpt: Common budgeting mistakes that silently drain your money — and simple fixes for each.
+author: BuddyMoney Editorial
+authorAvatar: /icons/editorial.png
+date: 2025-12-01
+heroImage: /icons/budget-traps-hero.png
+heroImageAlt: Person stepping over financial traps labeled bills, spending, debt
+---
+
 # The 7 Budget Traps Keeping You Broke (And How to Fix Them)
 
 Most people aren’t bad with money — they’ve just fallen into budgeting traps that quietly drain their wallet month after month.

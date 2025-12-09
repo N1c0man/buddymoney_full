@@ -1,3 +1,17 @@
+---
+slug: crush-credit-card-debt
+title: Crush Credit Card Debt
+tag: Debt
+level: Intermediate
+readTime: 9 min read
+excerpt: A step-by-step game plan to pay off high-interest cards faster.
+author: BuddyMoney Editorial
+authorAvatar: /icons/editorial.png
+date: 2025-11-20
+heroImage: /icons/credit-card-crush-hero.png
+heroImageAlt: Cut-up credit cards and a payoff plan on a notepad
+---
+
 # Crush Credit Card Debt
 
 Credit card debt feels heavy. The interest is high, the balances never seem to move, and minimum payments barely make a dent.
@@ -25,11 +39,10 @@ A notebook works, or if you want to be precise, use a spreadsheet or the BuddyMo
 
 This step alone reduces stress — your brain no longer has to “track everything” silently.
 
-> **TIP:** Want an easy way to see all your balances, APRs, and due dates in one place?  
+> TIP: Want an easy way to see all your balances, APRs, and due dates in one place?  
 > **SmartCredit** provides a clear view of your accounts and credit score in a single dashboard.  
 > *(affiliate link — helps support BuddyMoney at no extra cost to you)*  
-> 👉 [https://www.smartcredit.com/lpg/get-started-trial](https://www.kqzyfj.com/click-101601912-16983231)
-
+> 👉 https://www.kqzyfj.com/click-101601912-16983231
 
 ---
 

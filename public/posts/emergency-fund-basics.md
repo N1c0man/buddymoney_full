@@ -1,3 +1,17 @@
+---
+slug: emergency-fund-basics
+title: Emergency Fund Basics
+tag: Emergency Fund
+level: Beginner
+readTime: 6 min read
+excerpt: Why every household needs one and how much you should save.
+author: BuddyMoney Editorial
+authorAvatar: /icons/editorial.png
+date: 2025-11-17
+heroImage: /icons/emergency-fund-hero.png
+heroImageAlt: Piggy bank and cash jars labeled as an emergency fund
+---
+
 # Emergency Fund Basics: Your Safety Net for Life’s Surprises
 
 Life has a way of throwing curveballs—medical bills, job changes, car repairs.  
@@ -20,11 +34,11 @@ That means rent or mortgage, utilities, food, insurance, and minimum debt paymen
 
 Tip: Freelancers or those with variable income may aim for closer to **six months**.
 
-> **TIP:** Want to potentially *lower the interest you pay* on credit cards or loans?  
+> TIP: Want to potentially *lower the interest you pay* on credit cards or loans?  
 > Checking and improving your credit score can qualify you for better APRs and lower costs.  
 > **SmartCredit** gives you an easy way to see your score, track changes, and understand what lenders see.  
 > *(affiliate link — helps support BuddyMoney at no extra cost to you)*  
-> 👉 [https://www.smartcredit.com/lpg/get-started-trial](https://www.kqzyfj.com/click-101601912-16983231)
+> 👉 https://www.kqzyfj.com/click-101601912-16983231
 
 ## Where to Keep Your Emergency Fund
 You want safety and easy access, not risky returns.
