@@ -1,8 +1,11 @@
 // api/sitemap.js
 const ROUTES = require("../src/routePaths.json");
+// Canonical domain for your site
+const SITE_URL = "https://www.buddymoney.com";
+
 
 // Dynamic sitemap for BuddyMoney (Create React App on Vercel)
-
+// List of static pages using shared route config
 // IMPORTANT: Update this if your canonical domain ever changes
 const STATIC_ROUTES = [
   { path: ROUTES.home, priority: 1.0, changefreq: "daily" },
