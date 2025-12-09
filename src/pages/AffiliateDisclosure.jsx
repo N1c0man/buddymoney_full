@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { setCanonical } from "../utils/seo";
 
 export default function AffiliateDisclosure() {
-  // SEO: title + meta description
+  // SEO: title + meta description + canonical
   useEffect(() => {
     document.title = "Affiliate Disclosure | BuddyMoney";
 
@@ -18,6 +19,9 @@ export default function AffiliateDisclosure() {
       metaDescription.content = content;
       document.head.appendChild(metaDescription);
     }
+
+    // ✅ Canonical URL for /affiliate-disclosure
+    setCanonical("/affiliate-disclosure");
   }, []);
 
   return (

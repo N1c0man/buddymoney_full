@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { setCanonical } from "../utils/seo";
 
 export default function Terms() {
   useEffect(() => {
@@ -18,6 +19,9 @@ export default function Terms() {
       meta.content = description;
       document.head.appendChild(meta);
     }
+
+    // ✅ Add canonical for Terms of Service page
+    setCanonical("/terms");
 
     // JSON-LD structured data (TermsOfService)
     const jsonLd = {

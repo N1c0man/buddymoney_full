@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
-
+import { setCanonical } from "../utils/seo"; //
 
 // 50/30/20 baseline, can adapt based on income
 const BASE_RULES = {
@@ -49,6 +49,11 @@ export default function BudgetCoach() {
   const [utilities, setUtilities] = useState("");
   const [debt, setDebt] = useState("");
   const [wants, setWants] = useState("");
+
+    //  Canonical for /tools/budget-coach
+  useEffect(() => {
+    setCanonical("/tools/budget-coach");
+  }, []);
 
   // Load from localStorage (safely)
   useEffect(() => {

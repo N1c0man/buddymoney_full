@@ -1,8 +1,9 @@
 // src/pages/BestStudentCards.jsx
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
+import { setCanonical } from "../utils/seo";
 
 // Sample student cards (preview mode – no affiliate links yet)
 const STUDENT_CARDS = [
@@ -72,6 +73,11 @@ export default function BestStudentCards() {
     typeof window !== "undefined"
       ? window.location.href
       : "https://buddymoney.com/credit-cards/student";
+
+  // ✅ Canonical for /credit-cards/student
+  useEffect(() => {
+    setCanonical("/credit-cards/student");
+  }, []);
 
   // JSON-LD structured data (ItemList of sample student cards)
   const jsonLd = useMemo(() => {

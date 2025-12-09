@@ -5,6 +5,8 @@ import { getPostBySlug, posts } from "./postsIndex";
 import RelatedCreditCardGuides from "../components/RelatedCreditCardGuides";
 import ShareBar from "../components/ShareBar";
 import AffiliateCalloutSmartCredit from "../components/AffiliateCalloutSmartCredit";
+import { setCanonical } from "../utils/seo";
+
 
 const SITE_URL = "https://www.buddymoney.com";
 
@@ -287,7 +289,14 @@ export default function BlogPost() {
   const { slug } = useParams();
 
   const post = slug ? getPostBySlug(slug) : null;
-
+  // --------------------------
+  // Canonical Tag for Blog Post
+  // --------------------------
+  useEffect(() => {
+    if (!slug) return;
+    setCanonical(`/blog/${slug}`);
+  }, [slug]);
+  
   const [markdown, setMarkdown] = useState("");
   const [headings, setHeadings] = useState([]);
   const [shareUrl, setShareUrl] = useState("");

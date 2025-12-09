@@ -1,8 +1,9 @@
 // src/pages/BestBadCreditCards.jsx
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
+import { setCanonical } from "../utils/seo"; // ✅ added
 
 // Sample "bad / rebuilding credit" cards (preview mode, no affiliate links yet)
 const BAD_CREDIT_CARDS = [
@@ -67,6 +68,11 @@ export default function BestBadCreditCards() {
     typeof window !== "undefined"
       ? window.location.href
       : "https://buddymoney.com/credit-cards/bad-credit";
+
+  // ✅ Canonical for this page
+  useEffect(() => {
+    setCanonical("/credit-cards/bad-credit");
+  }, []);
 
   // JSON-LD structured data (ItemList of sample “bad credit” cards)
   const jsonLd = useMemo(() => {

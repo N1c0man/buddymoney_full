@@ -3,6 +3,7 @@ import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
+import { setCanonical } from "../utils/seo"; //
 
 const HUB_ITEMS = [
   {
@@ -64,6 +65,12 @@ const HUB_ITEMS = [
 ];
 
 export default function CreditCardsHub() {
+  // Canonical for /credit-cards
+  useEffect(() => {
+    setCanonical("/credit-cards");
+  }, []);
+
+  // existing scroll-to-top effect
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

@@ -1,8 +1,9 @@
 // src/pages/BestTravelCards.jsx
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
+import { setCanonical } from "../utils/seo";
 
 // Sample travel rewards cards (preview mode – no affiliate links yet)
 const TRAVEL_CARDS = [
@@ -73,6 +74,11 @@ export default function BestTravelCards() {
     typeof window !== "undefined"
       ? window.location.href
       : "https://buddymoney.com/credit-cards/travel";
+
+  // ✅ Canonical for /credit-cards/travel
+  useEffect(() => {
+    setCanonical("/credit-cards/travel");
+  }, []);
 
   // JSON-LD structured data (ItemList of sample travel cards)
   const jsonLd = useMemo(() => {

@@ -1,4 +1,4 @@
-import React from "react"; 
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -9,6 +9,7 @@ import BillSplitter from "../tools/BillSplitter";
 import EmergencyFund from "../tools/EmergencyFund";
 import NetWorth from "../tools/NetWorth";
 import ShareBar from "../components/ShareBar";
+import { setCanonical } from "../utils/seo";
 
 const TOOL_CARDS = [
   {
@@ -64,6 +65,11 @@ const TOOL_CARDS = [
 ];
 
 export default function Tools() {
+  // ✅ Canonical for /tools
+  useEffect(() => {
+    setCanonical("/tools");
+  }, []);
+
   // Basic SEO data
   const title =
     "Free Money Tools & Calculators | Budget, Savings, Debt & More | BuddyMoney";

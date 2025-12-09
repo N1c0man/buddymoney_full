@@ -1,8 +1,9 @@
 // src/pages/BestCashBackCards.jsx
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
+import { setCanonical } from "../utils/seo"; // ✅ added
 
 // Sample cash back card data (preview mode, no affiliate links yet)
 const CASHBACK_CARDS = [
@@ -56,6 +57,11 @@ export default function BestCashBackCards() {
     typeof window !== "undefined"
       ? window.location.href
       : "https://buddymoney.com/credit-cards/cash-back";
+
+  // ✅ Canonical for /credit-cards/cash-back
+  useEffect(() => {
+    setCanonical("/credit-cards/cash-back");
+  }, []);
 
   // JSON-LD structured data (ItemList of sample cash back cards)
   const jsonLd = useMemo(() => {

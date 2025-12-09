@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { setCanonical } from "../utils/seo";
 
 export default function About() {
-  // SEO: title + meta description + JSON-LD
+  // SEO: title + meta description + JSON-LD + canonical
   useEffect(() => {
-    document.title = "About BuddyMoney | Simple Tools for Better Money Decisions";
+    document.title =
+      "About BuddyMoney | Simple Tools for Better Money Decisions";
 
     const content =
       "Learn what BuddyMoney is about — simple money tools, friendly guides, no jargon. Budgeting, debt payoff, savings, emergency fund planning and more.";
 
+    // Meta description
     let metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute("content", content);
@@ -19,22 +22,25 @@ export default function About() {
       document.head.appendChild(metaDescription);
     }
 
+    // ✅ Canonical URL for /about
+    setCanonical("/about");
+
     // 🔧 JSON-LD structured data for AboutPage
     const jsonLd = {
       "@context": "https://schema.org",
       "@type": "AboutPage",
-      "name": "About BuddyMoney",
-      "url": "https://buddymoney.com/about",
-      "description": content,
-      "publisher": {
+      name: "About BuddyMoney",
+      url: "https://buddymoney.com/about",
+      description: content,
+      publisher: {
         "@type": "Organization",
-        "name": "BuddyMoney",
-        "url": "https://buddymoney.com"
+        name: "BuddyMoney",
+        url: "https://buddymoney.com",
       },
-      "mainEntityOfPage": {
+      mainEntityOfPage: {
         "@type": "WebPage",
-        "@id": "https://buddymoney.com/about"
-      }
+        "@id": "https://buddymoney.com/about",
+      },
     };
 
     const script = document.createElement("script");
@@ -88,7 +94,10 @@ export default function About() {
           itemType="https://schema.org/Article"
         >
           {/* Intro */}
-          <div className="space-y-4 text-slate-700 leading-relaxed" itemProp="articleBody">
+          <div
+            className="space-y-4 text-slate-700 leading-relaxed"
+            itemProp="articleBody"
+          >
             <p>
               Money can feel overwhelming, especially when every website sounds like
               it’s written for experts. BuddyMoney was built for real people — anyone
@@ -116,8 +125,13 @@ export default function About() {
               </span>
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-slate-900">Our Mission</h2>
-              <p className="text-sm text-slate-700 leading-relaxed" itemProp="missionStatement">
+              <h2 className="text-lg font-semibold text-slate-900">
+                Our Mission
+              </h2>
+              <p
+                className="text-sm text-slate-700 leading-relaxed"
+                itemProp="missionStatement"
+              >
                 To make money feel less scary and more doable — one simple tool,
                 one clear explanation, and one small step at a time.
               </p>
@@ -154,7 +168,10 @@ export default function About() {
                   <span className="text-lg">📊</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-slate-900 mb-1" itemProp="name">
+                  <h3
+                    className="font-semibold text-slate-900 mb-1"
+                    itemProp="name"
+                  >
                     Easy Tools
                   </h3>
                   <p itemProp="description">
@@ -173,7 +190,10 @@ export default function About() {
                   <span className="text-lg">📚</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-slate-900 mb-1" itemProp="name">
+                  <h3
+                    className="font-semibold text-slate-900 mb-1"
+                    itemProp="name"
+                  >
                     Friendly Guides
                   </h3>
                   <p itemProp="description">
@@ -192,7 +212,10 @@ export default function About() {
                   <span className="text-lg">📝</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-slate-900 mb-1" itemProp="name">
+                  <h3
+                    className="font-semibold text-slate-900 mb-1"
+                    itemProp="name"
+                  >
                     Blog & Tips
                   </h3>
                   <p itemProp="description">
@@ -211,7 +234,10 @@ export default function About() {
                   <span className="text-lg">🤝</span>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-slate-900 mb-1" itemProp="name">
+                  <h3
+                    className="font-semibold text-slate-900 mb-1"
+                    itemProp="name"
+                  >
                     Supportive Tone
                   </h3>
                   <p itemProp="description">
@@ -224,7 +250,9 @@ export default function About() {
 
           {/* Get in Touch */}
           <div itemScope itemType="https://schema.org/ContactPage">
-            <h2 className="text-xl font-semibold text-slate-900 mb-2">Get in Touch</h2>
+            <h2 className="text-xl font-semibold text-slate-900 mb-2">
+              Get in Touch
+            </h2>
             <p className="text-slate-700" itemProp="description">
               We always love hearing from our readers. If you have suggestions or want
               to reach out, you can contact us using the email provided on the{" "}
@@ -251,7 +279,9 @@ export default function About() {
         <section className="mt-8">
           <div className="rounded-2xl bg-emerald-600 text-white px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-sm">
             <div>
-              <h2 className="text-lg font-semibold">Ready to start exploring your money?</h2>
+              <h2 className="text-lg font-semibold">
+                Ready to start exploring your money?
+              </h2>
               <p className="text-sm text-emerald-50">
                 Try our free calculators and tools to see your numbers more clearly.
               </p>

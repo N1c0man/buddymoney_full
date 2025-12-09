@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { setCanonical } from "../utils/seo";
 
 export default function Privacy() {
   useEffect(() => {
@@ -18,6 +19,9 @@ export default function Privacy() {
       meta.content = description;
       document.head.appendChild(meta);
     }
+
+    // ✅ CANONICAL URL for the Privacy Policy page
+    setCanonical("/privacy");
 
     // JSON-LD structured data (PrivacyPolicy)
     const jsonLd = {

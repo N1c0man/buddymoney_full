@@ -1,8 +1,9 @@
 // src/pages/BestIntroAprCards.jsx
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
+import { setCanonical } from "../utils/seo"; // ✅ added
 
 // Sample 0% / intro APR cards (preview mode – no affiliate links yet)
 const INTRO_APR_CARDS = [
@@ -66,6 +67,11 @@ export default function BestIntroAprCards() {
     typeof window !== "undefined"
       ? window.location.href
       : "https://buddymoney.com/credit-cards/0-apr";
+
+  // ✅ Canonical for /credit-cards/0-apr
+  useEffect(() => {
+    setCanonical("/credit-cards/0-apr");
+  }, []);
 
   // JSON-LD structured data (ItemList of sample 0% / intro APR cards)
   const jsonLd = useMemo(() => {

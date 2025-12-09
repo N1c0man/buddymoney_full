@@ -2,6 +2,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
+import { setCanonical } from "../utils/seo"; //
 
 const AFFILIATE_ENABLED = false; // flip to true later when you have real links
 
@@ -119,6 +120,11 @@ export default function CreditCardFinder() {
 
   // Compare selection (up to 3 cards)
   const [compareIds, setCompareIds] = useState([]);
+
+  // Canonical for /tools/credit-cards
+  useEffect(() => {
+    setCanonical("/tools/credit-cards");
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);

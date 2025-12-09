@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -6,6 +6,7 @@ import Hero from "../components/Hero";
 import ToolCard from "../components/ToolCard";
 import NewsletterSignup from "../components/NewsletterSignup";
 import ShareBar from "../components/ShareBar";
+import { setCanonical } from "../utils/seo";
 
 // Shared variants
 const fadeUp = {
@@ -51,6 +52,11 @@ export default function Home() {
       "query-input": "required name=search_term_string",
     },
   };
+
+  // ✅ Canonical for homepage
+  useEffect(() => {
+    setCanonical("/");
+  }, []);
 
   return (
     <>

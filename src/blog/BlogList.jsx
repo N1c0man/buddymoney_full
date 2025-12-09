@@ -2,10 +2,15 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { posts } from "./postsIndex";
 import ShareBar from "../components/ShareBar";
+import { setCanonical } from "../utils/seo";
 
 export default function BlogList() {
   const [search, setSearch] = useState("");
 
+    // Canonical for /blog – its own top-level hook
+  useEffect(() => {
+    setCanonical("/blog");
+  }, []);
   // SEO + JSON-LD for Blog collection
   useEffect(() => {
     const description =
