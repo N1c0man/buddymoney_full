@@ -86,6 +86,14 @@ If 2 or more apply, you may be underpaid — and it’s fixable.
 
 ---
 
+> **TIP: Want to boost your income *and* your financial confidence?**  
+> Improving your credit score can make a huge difference when applying for new jobs, rentals, car loans, and even negotiating offers.  
+> **SmartCredit** shows your score, accounts, alerts, and action plan all in one dashboard.  
+> *(affiliate link — helps support BuddyMoney at no extra cost)*  
+> 👉 **[Start your SmartCredit Trial — Click Here](https://www.kqzyfj.com/click-101601912-16983231)**
+
+---
+
 ## How to Increase Your Salary in 2025
 
 ### 1. Ask for a Raise (With the Right Script)
@@ -130,6 +138,13 @@ Popular options include:
 - eBay reselling  
 
 Extra income makes raises less stressful — you’re not desperate.
+
+---
+
+> **INFO: Raising income is powerful, but protecting it is just as important.**  
+> Monitoring your credit helps you qualify for better apartments, job offers, and lower-interest loans as your salary grows.  
+> **SmartCredit** gives you a simple dashboard to track your score and avoid costly surprises.  
+> 👉 **[Start your SmartCredit Trial — Click Here](https://www.kqzyfj.com/click-101601912-16983231)**
 
 ---
 

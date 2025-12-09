@@ -38,7 +38,7 @@ Tip: Freelancers or those with variable income may aim for closer to **six month
 > Checking and improving your credit score can qualify you for better APRs and lower costs.  
 > **SmartCredit** gives you an easy way to see your score, track changes, and understand what lenders see.  
 > *(affiliate link — helps support BuddyMoney at no extra cost to you)*  
-> 👉 https://www.kqzyfj.com/click-101601912-16983231
+>👉**[Start your SmartCredit Trial — Click Here](https://www.kqzyfj.com/click-101601912-16983231)**
 
 ## Where to Keep Your Emergency Fund
 You want safety and easy access, not risky returns.

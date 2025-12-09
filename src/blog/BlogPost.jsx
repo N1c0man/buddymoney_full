@@ -269,6 +269,28 @@ const markdownComponents = {
       </figure>
     );
   },
+
+  // External link handling: add rel="nofollow sponsored" + new tab
+  a({ href, children, ...props }) {
+    const isExternal =
+      href && /^https?:\/\//i.test(href) && !href.includes("buddymoney.com");
+
+    return (
+      <a
+        href={href}
+        {...props}
+        {...(isExternal
+          ? {
+              target: "_blank",
+              rel: "nofollow sponsored noopener noreferrer",
+            }
+          : {})}
+        className="text-emerald-600 hover:text-emerald-700 underline underline-offset-2"
+      >
+        {children}
+      </a>
+    );
+  },
 };
 
 /* ------------------------------------------
@@ -399,7 +421,7 @@ export default function BlogPost() {
           return res.text();
         })
         .then((text) => {
-          const cleaned = stripFrontmatter(text); // 🔥 REMOVE FRONTMATTER
+          const cleaned = stripFrontmatter(text);
           setMarkdown(cleaned);
           setHeadings(extractHeadings(cleaned));
           setLoading(false);
