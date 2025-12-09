@@ -328,6 +328,20 @@ export default function BlogPost() {
 
   const relatedTools = useMemo(() => getRelatedTools(post), [post]);
 
+  // Auto SmartCredit logic: show on credit/debt/secured posts
+  const isCreditIntent = useMemo(() => {
+    if (!post) return false;
+    const s = (post.slug || "").toLowerCase();
+    const t = (post.tag || "").toLowerCase();
+    return (
+      s.includes("credit") ||
+      s.includes("debt") ||
+      s.includes("secured") ||
+      t.includes("credit") ||
+      t.includes("debt")
+    );
+  }, [post]);
+
   /* ------------------------------------------
      SEO + JSON-LD
   ------------------------------------------ */
@@ -584,6 +598,13 @@ export default function BlogPost() {
                 </figcaption>
               )}
             </figure>
+          )}
+
+          {/* Auto SmartCredit callout for credit/debt posts */}
+          {isCreditIntent && (
+            <div className="mb-6">
+              <AffiliateCalloutSmartCredit />
+            </div>
           )}
 
           {/* Social share top */}
