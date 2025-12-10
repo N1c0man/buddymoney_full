@@ -54,8 +54,8 @@ export default function NewsletterSignup() {
 
           <p className="text-sm sm:text-base text-gray-600 mb-6">
             Get one friendly email each week with simple money moves, new tools,
-            and clear ideas to help you budget, save, and pay off debt—
-            without the jargon.
+            and clear ideas to help you budget, save, and pay off debt—without
+            the jargon.
           </p>
 
           {/* Form */}
@@ -64,10 +64,7 @@ export default function NewsletterSignup() {
             className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center"
           >
             <div className="flex-1">
-              <label
-                htmlFor="newsletter-email"
-                className="sr-only"
-              >
+              <label htmlFor="newsletter-email" className="sr-only">
                 Email address
               </label>
               <input
@@ -92,7 +89,9 @@ export default function NewsletterSignup() {
 
           {/* Tiny reassurance line */}
           <p className="mt-3 text-xs text-gray-400 text-left">
-            No spam. Unsubscribe in one click anytime.
+            Emails are sent from{" "}
+            <span className="font-mono">newsletter@buddymoney.com</span>. No
+            spam. Unsubscribe in one click anytime.
           </p>
 
           {/* Success */}
