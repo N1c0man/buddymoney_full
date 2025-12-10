@@ -360,6 +360,7 @@ export default function BudgetCoach() {
             >
               <div className="flex items-start justify-between gap-4 flex-wrap">
                 <div>
+                  
                   <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900">
                     AI-Powered Budget Coach
                   </h2>
@@ -369,14 +370,13 @@ export default function BudgetCoach() {
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Badge>beta</Badge>
+                  <Badge>New</Badge>
                   <button
-                    type="button"
-                    onClick={handleReset}
-                    className="text-xs text-slate-500 underline underline-offset-2 hover:text-slate-700"
-                  >
-                    Reset to defaults
-                  </button>
+                onClick={handleReset}
+                className="text-sm text-indigo-600 hover:underline"
+              >
+                Reset to defaults
+              </button>
                 </div>
               </div>
 
