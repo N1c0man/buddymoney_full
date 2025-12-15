@@ -1,4 +1,7 @@
 // api/sitemap.js
+const fs = require("fs");
+const path = require("path");
+
 const ROUTES = require("../src/routePaths.json");
 const SITE_URL = "https://www.buddymoney.com";
 const BLOG_POSTS = require("../src/blog/blogPosts.json");
@@ -42,6 +45,47 @@ function buildUrlTag({ loc, lastmod, changefreq, priority }) {
   </url>`;
 }
 
+// Resolve markdown file path for a post
+function getMarkdownPath(post) {
+  // If JSON has a file like "/posts/save-your-first-1000.md"
+  if (post.file && typeof post.file === "string") {
+    const relative = post.file.replace(/^\//, ""); // strip leading slash
+    return path.join(__dirname, "..", "public", relative);
+  }
+
+  // Fallback to /public/posts/<slug>.md
+  if (post.slug) {
+    return path.join(__dirname, "..", "public", "posts", `${post.slug}.md`);
+  }
+
+  return null;
+}
+
+// Compute best lastmod for a post
+function getPostLastmod(post, today) {
+  // 1) Explicit lastmod in JSON wins
+  if (post.lastmod) return post.lastmod;
+
+  // 2) Try filesystem mtime from the markdown file
+  const mdPath = getMarkdownPath(post);
+  if (mdPath) {
+    try {
+      const stats = fs.statSync(mdPath);
+      const fileDate = stats.mtime.toISOString().split("T")[0];
+      return fileDate;
+    } catch (err) {
+      // If file missing or fs fails, just fall through to other options
+      // console.error("Sitemap lastmod fs error for", mdPath, err);
+    }
+  }
+
+  // 3) Fallback to publish date if present
+  if (post.date) return post.date;
+
+  // 4) Absolute fallback: today
+  return today;
+}
+
 // Vercel Node API route (CommonJS style for safety with CRA)
 module.exports = (req, res) => {
   res.setHeader("Content-Type", "application/xml; charset=utf-8");
@@ -49,20 +93,19 @@ module.exports = (req, res) => {
   const today = new Date().toISOString().split("T")[0];
 
   const staticUrls = STATIC_ROUTES.map((route) => {
-    const path = route.path === "/" ? "" : route.path;
+    const pathPart = route.path === "/" ? "" : route.path;
     return buildUrlTag({
-      loc: `${SITE_URL}${path}`,
+      loc: `${SITE_URL}${pathPart}`,
       lastmod: today,
       changefreq: route.changefreq || "monthly",
       priority: route.priority ?? 0.5
     });
   });
 
-  // ⭐ Only change: better lastmod fallback using post.date
   const blogUrls = BLOG_POSTS.map((post) =>
     buildUrlTag({
       loc: `${SITE_URL}/blog/${post.slug}`,
-      lastmod: post.lastmod || post.date || today,
+      lastmod: getPostLastmod(post, today),
       changefreq: "monthly",
       priority: post.priority ?? 0.8
     })
