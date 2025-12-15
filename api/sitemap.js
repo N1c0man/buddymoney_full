@@ -61,26 +61,35 @@ function getMarkdownPath(post) {
   return null;
 }
 
-// Compute best lastmod for a post
 function getPostLastmod(post, today) {
   // 1) Explicit lastmod in JSON wins
   if (post.lastmod) return post.lastmod;
 
-  // 2) Try filesystem mtime from the markdown file
+  const candidates = [];
+
+  // 2) Publish date from JSON, if present
+  if (post.date) {
+    candidates.push(post.date);
+  }
+
+  // 3) Filesystem mtime from markdown file, if available
   const mdPath = getMarkdownPath(post);
   if (mdPath) {
     try {
       const stats = fs.statSync(mdPath);
       const fileDate = stats.mtime.toISOString().split("T")[0];
-      return fileDate;
+      candidates.push(fileDate);
     } catch (err) {
-      // If file missing or fs fails, just fall through to other options
-      // console.error("Sitemap lastmod fs error for", mdPath, err);
+      // Ignore FS errors and just fall back to other options
     }
   }
 
-  // 3) Fallback to publish date if present
-  if (post.date) return post.date;
+  // If we have any candidate dates, return the most recent
+  if (candidates.length > 0) {
+    // dates are in YYYY-MM-DD format, so string compare works
+    candidates.sort();          // ascending
+    return candidates[candidates.length - 1]; // latest
+  }
 
   // 4) Absolute fallback: today
   return today;
