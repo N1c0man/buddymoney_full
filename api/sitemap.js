@@ -3,8 +3,6 @@ const ROUTES = require("../src/routePaths.json");
 const SITE_URL = "https://www.buddymoney.com";
 const BLOG_POSTS = require("../src/blog/blogPosts.json");
 
-
-
 // Dynamic sitemap for BuddyMoney (Create React App on Vercel)
 // List of static pages using shared route config
 // IMPORTANT: Update this if your canonical domain ever changes
@@ -16,7 +14,6 @@ const STATIC_ROUTES = [
   { path: ROUTES.coach, priority: 0.9, changefreq: "weekly" },
   { path: ROUTES.mortgage, priority: 0.9, changefreq: "weekly" },
   { path: ROUTES.creditCardTool, priority: 0.9, changefreq: "weekly" },
-
 
   { path: ROUTES.creditCardsHub, priority: 0.8, changefreq: "monthly" },
   { path: ROUTES.creditCardsCashBack, priority: 0.8, changefreq: "monthly" },
@@ -61,10 +58,11 @@ module.exports = (req, res) => {
     });
   });
 
+  // ⭐ Only change: better lastmod fallback using post.date
   const blogUrls = BLOG_POSTS.map((post) =>
     buildUrlTag({
       loc: `${SITE_URL}/blog/${post.slug}`,
-      lastmod: post.lastmod || today,
+      lastmod: post.lastmod || post.date || today,
       changefreq: "monthly",
       priority: post.priority ?? 0.8
     })
@@ -78,4 +76,3 @@ ${blogUrls.join("")}
 
   res.status(200).send(xml);
 };
-
