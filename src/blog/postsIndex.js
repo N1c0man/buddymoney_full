@@ -41,6 +41,44 @@ const faqBySlug = {
     },
   ],
 
+  "emergency-fund-3-to-6-months": [
+    {
+      question: "How do I know whether I need a 3-month or a 6-month emergency fund?",
+      answer:
+        "If you have stable income, few dependents, and low monthly expenses, a 3-month fund may be enough. If you have variable income, children, medical needs, or a less stable job, aim for 6 months or more for added protection.",
+    },
+    {
+      question: "What expenses should be included when calculating my emergency fund?",
+      answer:
+        "Include only essential living costs such as rent or mortgage, groceries, utilities, insurance, transportation, and minimum debt payments. Exclude discretionary spending like dining out, subscriptions, and entertainment.",
+    },
+    {
+      question: "Where should I keep my 3–6 month emergency fund?",
+      answer:
+        "A high-yield savings account is usually the best place. It keeps your money safe, easy to access in a real emergency, and earns interest. Avoid investing emergency funds in stocks or crypto, which can lose value quickly.",
+    },
+    {
+      question: "What’s the fastest way to jump-start my emergency fund?",
+      answer:
+        "Some quick wins include selling unused items, redirecting tax refunds or bonuses, cutting one or two expenses temporarily, or taking a short-term side hustle. Even one-time boosts can significantly accelerate your progress.",
+    },
+    {
+      question: "What should I do if I need to use the emergency fund?",
+      answer:
+        "Use only what you need, stay calm, and revisit your budget. After the emergency passes, rebuild the fund using the same automatic transfers or weekly contributions that helped you build it initially.",
+    },
+    {
+      question: "Is it okay to start with a smaller emergency fund first?",
+      answer:
+        "Absolutely. Many people start with a $500–$1,000 starter emergency fund before working toward 3–6 months. This smaller cushion helps you avoid debt while building momentum toward a larger safety net.",
+    },
+    {
+      question: "How long does it usually take to save a full 3–6 month fund?",
+      answer:
+        "It varies widely. Some reach it in a few months with high savings or extra income, while others save over a year or more. The key is consistency—saving even small amounts weekly builds a strong fund over time.",
+    },
+  ],
+
   // ⭐ All your other FAQ objects remain unchanged
   "emergency-fund-basics": [ /* ...existing content... */ ],
   "how-to-start-a-budget-in-10-minutes": [ /* ...existing content... */ ],
