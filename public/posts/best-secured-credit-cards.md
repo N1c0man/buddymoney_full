@@ -62,7 +62,7 @@ Many banks review your account after a few months and give you:
 > Tracking score changes, utilization, and alerts helps you spot progress and avoid mistakes while building credit.  
 > **SmartCredit** shows all your accounts, balances, score changes, and alerts in one simple dashboard.  
 > *(affiliate link — supports BuddyMoney at no extra cost)*  
-> 👉 **[Start your SmartCredit Trial — Click Here](https://www.kqzyfj.com/click-101601912-16983231)**
+> 👉 **[Start your SmartCredit Trial — Click Here](/go/smartcredit)**
 
 ---
 
@@ -161,7 +161,7 @@ Most users see:
 > **TIP: Want to track your credit improvements in real time?**  
 > Watching utilization, alerts, and score changes gives you motivation to stay consistent.  
 > **SmartCredit** makes it easy to follow your progress and avoid mistakes as you build credit.  
-> 👉 **[Start your SmartCredit Trial — Click Here](https://www.kqzyfj.com/click-101601912-16983231)**
+> 👉 **[Start your SmartCredit Trial — Click Here](/go/smartcredit)**
 
 ---
 

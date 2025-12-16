@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { posts } from "./postsIndex";
 import ShareBar from "../components/ShareBar";
 import { setCanonical } from "../utils/seo";
+import AffiliateCalloutSmartCredit from "../components/AffiliateCalloutSmartCredit";
 
 // Category → left-border accent styles
 const CATEGORY_STYLES = {
@@ -174,7 +175,9 @@ export default function BlogList() {
               Short, friendly guides on budgeting, saving, emergency funds, side
               hustles, and debt—written for real people, not finance pros.
             </p>
+
           </header>
+<AffiliateCalloutSmartCredit />
 
           {/* Search */}
           <div className="mb-8">

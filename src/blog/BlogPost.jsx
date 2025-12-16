@@ -342,6 +342,37 @@ export default function BlogPost() {
     );
   }, [post]);
 
+  // ✅ NEW: personalize CTA text based on article intent
+  const smartCreditIntent = useMemo(() => {
+    if (!post) return "general";
+    const s = (post.slug || "").toLowerCase();
+    const t = (post.tag || "").toLowerCase();
+
+    if (s.includes("debt") || t.includes("debt")) return "debt";
+
+    // "secured" or "rebuild" intent
+    if (
+      s.includes("secured") ||
+      s.includes("rebuild") ||
+      s.includes("rebuilding") ||
+      s.includes("bad-credit") ||
+      t.includes("credit")
+    ) {
+      return "rebuild";
+    }
+
+    // "cards" intent
+    if (
+      s.includes("credit-card") ||
+      s.includes("credit-cards") ||
+      s.includes("cards")
+    ) {
+      return "cards";
+    }
+
+    return "general";
+  }, [post]);
+
   /* ------------------------------------------
      SEO + JSON-LD
   ------------------------------------------ */
@@ -603,7 +634,7 @@ export default function BlogPost() {
           {/* Auto SmartCredit callout for credit/debt posts */}
           {isCreditIntent && (
             <div className="mb-6">
-              <AffiliateCalloutSmartCredit />
+              <AffiliateCalloutSmartCredit intent={smartCreditIntent} />
             </div>
           )}
 

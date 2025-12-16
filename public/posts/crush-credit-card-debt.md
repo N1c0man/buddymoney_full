@@ -42,7 +42,7 @@ This step alone reduces stress — your brain no longer has to “track everythi
 > TIP: Want an easy way to see all your balances, APRs, and due dates in one place?  
 > **SmartCredit** provides a clear view of your accounts and credit score in a single dashboard.  
 > *(affiliate link — helps support BuddyMoney at no extra cost to you)*  
->👉**[Start your SmartCredit Trial — Click Here](https://www.kqzyfj.com/click-101601912-16983231)**
+>👉**[Start your SmartCredit Trial — Click Here](/go/smartcredit)**
 
 ---
 
