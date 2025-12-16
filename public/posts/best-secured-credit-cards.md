@@ -158,6 +158,7 @@ Most users see:
 
 ---
 
+
 > **TIP: Want to track your credit improvements in real time?**  
 > Watching utilization, alerts, and score changes gives you motivation to stay consistent.  
 > **SmartCredit** makes it easy to follow your progress and avoid mistakes as you build credit.  

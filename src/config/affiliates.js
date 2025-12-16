@@ -44,6 +44,19 @@ export const AFFILIATES = {
       "Affiliate disclosure: This link may earn BuddyMoney a commission at no extra cost to you. We only recommend tools we believe are genuinely useful for managing money more confidently.",
   },
 
+  wallethub: {
+    key: "wallethub",
+    brand: "WalletHub",
+    goPath: "/go/wallethub",
+    outboundUrl: "https://www.kqzyfj.com/click-101601912-16952385",
+    headline: "Easily monitor and grow your net worth in one place",
+    subheadline:
+      "WalletHub Premium helps you track net worth, credit, and financial progress with simple insights.",
+    ctaText: "View your WalletHub overview →",
+    disclosure:
+      "Affiliate disclosure: This link may earn BuddyMoney a commission at no extra cost to you.",
+  },
+
   // Future affiliates will be easy:
   // fiverr: {
   //   key: "fiverr",

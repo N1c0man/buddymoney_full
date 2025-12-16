@@ -138,5 +138,19 @@
     "date": "2025-11-19",
     "heroImage": "/icons/side-hustle-hero.png",
     "heroImageAlt": "Person working on a laptop at night with side hustle ideas"
+  },
+  {
+    "slug": "why-your-net-worth-matters",
+    "title": "Why Knowing Your Net Worth Matters (Even If It’s Low)",
+    "tag": "Basics",
+    "level": "Beginner",
+    "readTime": "6 min read",
+    "excerpt": "Your net worth isn’t about being rich — it’s about knowing where you stand so you can move forward with clarity and confidence.",
+    "file": "/posts/why-your-net-worth-matters.md",
+    "author": "BuddyMoney Editorial",
+    "authorAvatar": "/icons/editorial.png",
+    "date": "2025-12-01",
+    "heroImage": "/icons/hero-net-worth.png",
+    "heroImageAlt": "A handsome owl showing off his stacks of gold coins."
   }
 ]

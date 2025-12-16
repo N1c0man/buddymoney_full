@@ -751,7 +751,34 @@ export default function BlogPost() {
                   </div>
                 </section>
               )}
+{/* FAQs */}
+{!loading && !error && Array.isArray(post.faq) && post.faq.length > 0 && (
+  <section className="rounded-2xl border border-sky-200 bg-sky-50/70 p-4 shadow-sm">
+    <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700 mb-3">
+      Frequently asked questions
+    </h2>
 
+    <div className="space-y-3">
+      {post.faq.map((item, idx) => (
+        <details
+          key={`${post.slug}-faq-${idx}`}
+          className="group rounded-xl border border-sky-200 bg-white/80 px-4 py-3"
+        >
+          <summary className="cursor-pointer list-none text-sm font-semibold text-slate-800 group-hover:text-sky-700 flex items-center justify-between">
+            {item.question}
+            <span className="ml-2 text-sky-500 group-open:rotate-180 transition-transform">
+              ▼
+            </span>
+          </summary>
+
+          <p className="mt-2 text-sm text-slate-700 leading-relaxed">
+            {item.answer}
+          </p>
+        </details>
+      ))}
+    </div>
+  </section>
+)}
               {/* Prev / Next */}
               {(prevPost || nextPost) && (
                 <nav className="mt-4 grid gap-3 sm:grid-cols-2 text-xs">

@@ -43,12 +43,14 @@ const faqBySlug = {
 
   "emergency-fund-3-to-6-months": [
     {
-      question: "How do I know whether I need a 3-month or a 6-month emergency fund?",
+      question:
+        "How do I know whether I need a 3-month or a 6-month emergency fund?",
       answer:
         "If you have stable income, few dependents, and low monthly expenses, a 3-month fund may be enough. If you have variable income, children, medical needs, or a less stable job, aim for 6 months or more for added protection.",
     },
     {
-      question: "What expenses should be included when calculating my emergency fund?",
+      question:
+        "What expenses should be included when calculating my emergency fund?",
       answer:
         "Include only essential living costs such as rent or mortgage, groceries, utilities, insurance, transportation, and minimum debt payments. Exclude discretionary spending like dining out, subscriptions, and entertainment.",
     },
@@ -79,14 +81,48 @@ const faqBySlug = {
     },
   ],
 
+  // ✅ NEW: FAQs for "Why Knowing Your Net Worth Matters"
+  "why-your-net-worth-matters": [
+    {
+      question: "What is net worth in simple terms?",
+      answer:
+        "Your net worth is what you own minus what you owe. Add up assets like cash, savings, and investments, then subtract debts like credit cards, loans, and mortgages. The result is your net worth.",
+    },
+    {
+      question: "Why is net worth more important than income?",
+      answer:
+        "Income shows how much money you earn, but net worth shows how much you actually keep. Someone with high income and high debt can have a lower net worth than someone earning less but saving consistently.",
+    },
+    {
+      question: "Is it bad if my net worth is negative?",
+      answer:
+        "No. A negative net worth is very common, especially for beginners, students, or people rebuilding credit. What matters most is tracking it and improving it over time.",
+    },
+    {
+      question: "How often should I check my net worth?",
+      answer:
+        "Once a month or once a quarter is ideal. This gives you enough time to see real progress without obsessing over small day-to-day changes.",
+    },
+    {
+      question: "What’s the easiest way to track net worth?",
+      answer:
+        "The easiest way is using a tool or dashboard that helps you see balances and debts in one place. That saves time and reduces errors compared to manually updating spreadsheets.",
+    },
+    {
+      question: "Does tracking my net worth hurt my credit score?",
+      answer:
+        "No. Tracking your net worth or viewing credit information does not hurt your credit score. Monitoring tools typically use soft checks, which do not impact your score.",
+    },
+  ],
+
   // ⭐ All your other FAQ objects remain unchanged
-  "emergency-fund-basics": [ /* ...existing content... */ ],
-  "how-to-start-a-budget-in-10-minutes": [ /* ...existing content... */ ],
-  "side-hustle-income-tips": [ /* ...existing content... */ ],
-  "crush-credit-card-debt": [ /* ...existing content... */ ],
-  "salary-by-age": [ /* ...existing content... */ ],
-  "best-secured-credit-cards": [ /* ...existing content... */ ],
-  "budget-traps-to-avoid": [ /* ...existing content... */ ],
+  "emergency-fund-basics": [/* ...existing content... */],
+  "how-to-start-a-budget-in-10-minutes": [/* ...existing content... */],
+  "side-hustle-income-tips": [/* ...existing content... */],
+  "crush-credit-card-debt": [/* ...existing content... */],
+  "salary-by-age": [/* ...existing content... */],
+  "best-secured-credit-cards": [/* ...existing content... */],
+  "budget-traps-to-avoid": [/* ...existing content... */],
   "side-hustle-ideas": [],
 };
 
