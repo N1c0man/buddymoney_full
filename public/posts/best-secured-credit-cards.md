@@ -158,6 +158,13 @@ Most users see:
 
 ---
 
+> **TIP: Want to see the bigger financial picture as your credit improves?**  
+> As your score rises, it helps to track more than just credit — things like net worth, total balances, and long-term progress.  
+> **WalletHub Premium** gives you a clean overview of your credit, net worth, and financial trends in one place.  
+> 👉 **[View your WalletHub overview](/go/wallethub)**  
+> *(affiliate link — helps support BuddyMoney at no extra cost to you)*
+
+---
 
 > **TIP: Want to track your credit improvements in real time?**  
 > Watching utilization, alerts, and score changes gives you motivation to stay consistent.  
