@@ -23,7 +23,10 @@ export default function About() {
     }
 
     // ✅ Canonical URL for /about
+    useEffect(() => {
     setCanonical("/about");
+    }, []);
+
 
     // 🔧 JSON-LD structured data for AboutPage
     const jsonLd = {

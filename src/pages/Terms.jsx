@@ -3,6 +3,9 @@ import { setCanonical } from "../utils/seo";
 
 export default function Terms() {
   useEffect(() => {
+    // ✅ CANONICAL URL (canonical-only implementation)
+    setCanonical("/terms");
+
     const description =
       "Read the BuddyMoney Terms of Service. Learn the rules for using our free budgeting, savings, and debt payoff tools, and important disclaimers.";
 
@@ -20,9 +23,6 @@ export default function Terms() {
       document.head.appendChild(meta);
     }
 
-    // ✅ Add canonical for Terms of Service page
-    setCanonical("/terms");
-
     // JSON-LD structured data (TermsOfService)
     const jsonLd = {
       "@context": "https://schema.org",
@@ -33,9 +33,9 @@ export default function Terms() {
       "publisher": {
         "@type": "Organization",
         "name": "BuddyMoney",
-        "url": "https://buddymoney.com"
+        "url": "https://buddymoney.com",
       },
-      "inLanguage": "en"
+      "inLanguage": "en",
     };
 
     const script = document.createElement("script");
@@ -54,7 +54,6 @@ export default function Terms() {
   return (
     <main className="pt-2 lg:pt-4 pb-16">
       <div className="max-w-3xl mx-auto rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8">
-
         <header className="mb-6">
           <p className="text-xs font-semibold tracking-[0.2em] uppercase text-emerald-500 mb-3">
             Terms of Service
@@ -71,7 +70,6 @@ export default function Terms() {
         </header>
 
         <div className="space-y-6 text-sm md:text-base text-slate-700 leading-relaxed">
-
           <section>
             <h2 className="text-xl font-semibold text-slate-900 mb-2">
               1. Use of Our Tools
@@ -120,7 +118,6 @@ export default function Terms() {
             Last updated: November 12, 2025
           </p>
         </div>
-
       </div>
     </main>
   );

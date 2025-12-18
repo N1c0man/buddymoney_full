@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { setCanonical } from "../utils/seo";
 
 const POSTS = [
   {
@@ -21,6 +22,10 @@ const POSTS = [
 
 export default function Blog() {
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    setCanonical("/blog");
+  }, []);
 
   const filtered = useMemo(() => {
     if (!search) return POSTS;

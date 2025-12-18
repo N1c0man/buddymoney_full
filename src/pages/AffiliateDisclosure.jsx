@@ -58,17 +58,15 @@ export default function AffiliateDisclosure() {
           </p>
         </header>
 
-        <section
-          className="space-y-8 text-slate-700 text-base leading-relaxed bg-white/70 border border-emerald-100 rounded-2xl shadow-sm p-6 sm:p-8"
-        >
+        <section className="space-y-8 text-slate-700 text-base leading-relaxed bg-white/70 border border-emerald-100 rounded-2xl shadow-sm p-6 sm:p-8">
           {/* Why this page exists */}
           <div>
             <h2 className="text-xl font-semibold text-slate-900 mb-2">
               Why you&apos;re seeing this disclosure
             </h2>
             <p>
-              BuddyMoney is a free resource that provides tools, calculators, and
-              educational content to help you make more confident money
+              BuddyMoney is a free resource that provides tools, calculators,
+              and educational content to help you make more confident money
               decisions. To keep the site free to use, we sometimes earn
               compensation when you click on certain links or sign up for
               products we mention.
@@ -99,8 +97,8 @@ export default function AffiliateDisclosure() {
                 <strong>not by you</strong>. You don&apos;t pay anything extra.
               </li>
               <li>
-                In many cases, you may even receive a special bonus or promo
-                for using our link.
+                In many cases, you may even receive a special bonus or promo for
+                using our link.
               </li>
             </ul>
           </div>
@@ -162,9 +160,9 @@ export default function AffiliateDisclosure() {
               factors, depending on your settings and consent.
             </p>
             <p className="mt-3">
-              Display ads help support the costs of running this site
-              (hosting, development, design, and content creation) while keeping
-              the tools and articles free for you to use.
+              Display ads help support the costs of running this site (hosting,
+              development, design, and content creation) while keeping the tools
+              and articles free for you to use.
             </p>
           </div>
 
@@ -174,10 +172,11 @@ export default function AffiliateDisclosure() {
               No extra cost to you
             </h2>
             <p>
-              Using our affiliate links <strong>never increases your price</strong>.
-              In many cases, you&apos;ll see the same pricing you would get by
-              going directly to the company&apos;s website — or occasionally a
-              better promotional offer.
+              Using our affiliate links{" "}
+              <strong>never increases your price</strong>. In many cases,
+              you&apos;ll see the same pricing you would get by going directly
+              to the company&apos;s website — or occasionally a better
+              promotional offer.
             </p>
           </div>
 

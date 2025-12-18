@@ -3,6 +3,9 @@ import { setCanonical } from "../utils/seo";
 
 export default function Privacy() {
   useEffect(() => {
+    // ✅ CANONICAL URL (canonical-only implementation)
+    setCanonical("/privacy");
+
     const description =
       "Read the BuddyMoney Privacy Policy. Learn how we collect, use, and protect your information when you use our free money tools and guides.";
 
@@ -20,9 +23,6 @@ export default function Privacy() {
       document.head.appendChild(meta);
     }
 
-    // ✅ CANONICAL URL for the Privacy Policy page
-    setCanonical("/privacy");
-
     // JSON-LD structured data (PrivacyPolicy)
     const jsonLd = {
       "@context": "https://schema.org",
@@ -33,9 +33,9 @@ export default function Privacy() {
       "publisher": {
         "@type": "Organization",
         "name": "BuddyMoney",
-        "url": "https://buddymoney.com"
+        "url": "https://buddymoney.com",
       },
-      "inLanguage": "en"
+      "inLanguage": "en",
     };
 
     const script = document.createElement("script");
@@ -54,7 +54,6 @@ export default function Privacy() {
   return (
     <main className="pt-2 lg:pt-4 pb-16">
       <div className="max-w-3xl mx-auto rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8">
-        
         <header className="mb-6">
           <p className="text-xs font-semibold tracking-[0.2em] uppercase text-emerald-500 mb-3">
             Privacy Policy
