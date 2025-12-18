@@ -2,21 +2,27 @@
   "redirects": [
     {
       "source": "/(.*)",
+      "has": [{ "type": "host", "value": "buddymoney.com" }],
+      "destination": "https://www.buddymoney.com/$1",
+      "permanent": true
+    },
+    {
+  "source": "/sitemap.xml",
+  "destination": "/api/sitemap",
+  "permanent": true
+},
+    {
+      "source": "/(.*)",
       "has": [
-        { "type": "host", "value": "buddymoney.com" }
+        { "type": "host", "value": "www.buddymoney.com" },
+        { "type": "header", "key": "x-forwarded-proto", "value": "http" }
       ],
       "destination": "https://www.buddymoney.com/$1",
       "permanent": true
     }
   ],
   "rewrites": [
-    {
-      "source": "/api/:match*",
-      "destination": "/api/:match*"
-    },
-    {
-      "source": "/:match*",
-      "destination": "/"
-    }
+    { "source": "/api/:match*", "destination": "/api/:match*" },
+    { "source": "/:match*", "destination": "/" }
   ]
 }

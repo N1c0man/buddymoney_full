@@ -12,7 +12,7 @@ heroImage: /icons/how-freelancers-can-increase-income-hero.png
 heroImageAlt: Friendly owl freelancer working on laptop with money growth icons
 ---
 
-# How Freelancers Can Increase Income (Without Working More Hours)
+# How Freelancers Can Increase Income (Without Burning Out)
 
 Freelancing offers flexibility, independence, and control over your schedule — but increasing income can sometimes feel like an endless grind.
 

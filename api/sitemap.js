@@ -3,12 +3,20 @@ const fs = require("fs");
 const path = require("path");
 
 const ROUTES = require("../src/routePaths.json");
-const SITE_URL = "https://www.buddymoney.com";
 const BLOG_POSTS = require("../src/blog/blogPosts.json");
 
+// ✅ Canonical domain (NO trailing slash)
+const SITE_URL = "https://www.buddymoney.com";
+
+// ✅ Safe URL joiner (always returns absolute URL, homepage gets trailing slash)
+function urlFor(p) {
+  if (!p || p === "/") return `${SITE_URL}/`;
+  const cleanPath = String(p).startsWith("/") ? p : `/${p}`;
+  return `${SITE_URL}${cleanPath}`;
+}
+
 // Dynamic sitemap for BuddyMoney (Create React App on Vercel)
-// List of static pages using shared route config
-// IMPORTANT: Update this if your canonical domain ever changes
+// IMPORTANT: Update SITE_URL if your canonical domain ever changes
 const STATIC_ROUTES = [
   { path: ROUTES.home, priority: 1.0, changefreq: "daily" },
   { path: ROUTES.blogList, priority: 0.8, changefreq: "weekly" },
@@ -28,7 +36,7 @@ const STATIC_ROUTES = [
   { path: ROUTES.about, priority: 0.4, changefreq: "yearly" },
   { path: ROUTES.privacy, priority: 0.2, changefreq: "yearly" },
   { path: ROUTES.terms, priority: 0.2, changefreq: "yearly" },
-  { path: ROUTES.affiliateDisclosure, priority: 0.2, changefreq: "yearly" }
+  { path: ROUTES.affiliateDisclosure, priority: 0.2, changefreq: "yearly" },
 ];
 
 // Helper to format one <url> entry
@@ -68,9 +76,7 @@ function getPostLastmod(post, today) {
   const candidates = [];
 
   // 2) Publish date from JSON, if present
-  if (post.date) {
-    candidates.push(post.date);
-  }
+  if (post.date) candidates.push(post.date);
 
   // 3) Filesystem mtime from markdown file, if available
   const mdPath = getMarkdownPath(post);
@@ -80,43 +86,39 @@ function getPostLastmod(post, today) {
       const fileDate = stats.mtime.toISOString().split("T")[0];
       candidates.push(fileDate);
     } catch (err) {
-      // Ignore FS errors and just fall back to other options
+      // Ignore FS errors
     }
   }
 
-  // If we have any candidate dates, return the most recent
   if (candidates.length > 0) {
-    // dates are in YYYY-MM-DD format, so string compare works
-    candidates.sort();          // ascending
-    return candidates[candidates.length - 1]; // latest
+    candidates.sort(); // YYYY-MM-DD sorts correctly
+    return candidates[candidates.length - 1];
   }
 
-  // 4) Absolute fallback: today
   return today;
 }
 
-// Vercel Node API route (CommonJS style for safety with CRA)
+// Vercel Node API route (CommonJS style for CRA)
 module.exports = (req, res) => {
   res.setHeader("Content-Type", "application/xml; charset=utf-8");
 
   const today = new Date().toISOString().split("T")[0];
 
-  const staticUrls = STATIC_ROUTES.map((route) => {
-    const pathPart = route.path === "/" ? "" : route.path;
-    return buildUrlTag({
-      loc: `${SITE_URL}${pathPart}`,
+  const staticUrls = STATIC_ROUTES.map((route) =>
+    buildUrlTag({
+      loc: urlFor(route.path),
       lastmod: today,
       changefreq: route.changefreq || "monthly",
-      priority: route.priority ?? 0.5
-    });
-  });
+      priority: route.priority ?? 0.5,
+    })
+  );
 
   const blogUrls = BLOG_POSTS.map((post) =>
     buildUrlTag({
-      loc: `${SITE_URL}/blog/${post.slug}`,
+      loc: urlFor(`/blog/${post.slug}`),
       lastmod: getPostLastmod(post, today),
       changefreq: "monthly",
-      priority: post.priority ?? 0.8
+      priority: post.priority ?? 0.8,
     })
   );
 
