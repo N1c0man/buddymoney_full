@@ -247,10 +247,6 @@ export default function CreditCardFinder() {
 
         {/* Basic meta */}
         <meta name="description" content={pageDescription} />
-        <link
-          rel="canonical"
-          href="https://buddymoney.com/tools/credit-cards"
-        />
 
         {/* Open Graph */}
         <meta property="og:type" content="website" />

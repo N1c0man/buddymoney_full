@@ -127,7 +127,7 @@ export default function Tools() {
           name="keywords"
           content="money tools, budget calculator, savings goal calculator, debt payoff calculator, emergency fund calculator, net worth tracker, bill splitter, BuddyMoney"
         />
-        <link rel="canonical" href="https://buddymoney.com/tools" />
+      
 
         {/* Open Graph */}
         <meta property="og:title" content={title} />

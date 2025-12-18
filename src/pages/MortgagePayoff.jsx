@@ -2,11 +2,17 @@ import React, { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
+import { setCanonical } from "../utils/seo";
 
 const DEFAULT_PRINCIPAL = 300000;
 const DEFAULT_RATE = 6.5;
 const DEFAULT_YEARS = 30;
 const DEFAULT_EXTRA = 100;
+
+export default function MortgagePayoff() {
+  useEffect(() => {
+    setCanonical("/mortgage");
+  }, []);
 
 function toNumber(raw) {
   if (raw === null || raw === undefined) return 0;
@@ -131,8 +137,7 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
     yearsSaved,
   };
 }
-
-export default function MortgagePayoff() {
+ {
   // Helmet SEO data
   const title =
     "Mortgage Payoff Calculator – Extra Payment & Bi-Weekly Tool | BuddyMoney";
@@ -545,7 +550,6 @@ export default function MortgagePayoff() {
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="robots" content="index,follow" />
-        <link rel="canonical" href="https://buddymoney.com/mortgage" />
 
         {/* Open Graph / Twitter */}
         <meta property="og:title" content={title} />
@@ -1215,4 +1219,5 @@ function RelatedToolCard({ title, description, href }) {
       <p className="text-[11px] text-slate-600">{description}</p>
     </a>
   );
+}
 }

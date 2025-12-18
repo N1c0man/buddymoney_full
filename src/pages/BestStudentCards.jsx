@@ -114,10 +114,6 @@ export default function BestStudentCards() {
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="robots" content="index,follow" />
-        <link
-          rel="canonical"
-          href="https://buddymoney.com/credit-cards/student"
-        />
 
         {/* Open Graph */}
         <meta property="og:title" content={title} />

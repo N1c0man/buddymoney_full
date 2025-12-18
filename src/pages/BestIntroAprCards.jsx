@@ -3,7 +3,7 @@ import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
-import { setCanonical } from "../utils/seo"; // ✅ added
+import { setCanonical } from "../utils/seo";
 
 // Sample 0% / intro APR cards (preview mode – no affiliate links yet)
 const INTRO_APR_CARDS = [
@@ -108,10 +108,6 @@ export default function BestIntroAprCards() {
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="robots" content="index,follow" />
-        <link
-          rel="canonical"
-          href="https://buddymoney.com/credit-cards/0-apr"
-        />
 
         {/* Open Graph */}
         <meta property="og:title" content={title} />

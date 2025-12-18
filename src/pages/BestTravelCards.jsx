@@ -115,10 +115,6 @@ export default function BestTravelCards() {
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="robots" content="index,follow" />
-        <link
-          rel="canonical"
-          href="https://buddymoney.com/credit-cards/travel"
-        />
 
         {/* Open Graph */}
         <meta property="og:title" content={title} />

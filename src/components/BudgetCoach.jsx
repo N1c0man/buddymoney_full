@@ -290,10 +290,6 @@ export default function BudgetCoach() {
           name="description"
           content="Use BuddyMoney’s free AI Budget Coach to rate your monthly budget, compare it to a flexible 50/30/20 rule, and get friendly tips to improve your money plan."
         />
-        <link
-          rel="canonical"
-          href="https://buddymoney.com/tools/budget-coach"
-        />
         {/* Basic OG/Twitter tags */}
         <meta property="og:title" content={shareTitle} />
         <meta

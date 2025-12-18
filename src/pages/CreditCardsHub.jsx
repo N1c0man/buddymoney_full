@@ -108,7 +108,6 @@ export default function CreditCardsHub() {
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <link rel="canonical" href="https://buddymoney.com/credit-cards" />
 
         {/* Open Graph */}
         <meta property="og:type" content="website" />

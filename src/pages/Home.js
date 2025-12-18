@@ -32,8 +32,8 @@ export default function Home() {
     "BuddyMoney – Free Money Tools for Budgeting, Saving & Debt Payoff";
   const description =
     "BuddyMoney helps beginners feel calmer about money with free tools for budgeting, debt payoff, savings goals, mortgage payoff, emergency fund planning, and more.";
-  const url = "https://buddymoney.com/";
-  const ogImage = "https://buddymoney.com/og-image-buddymoney-home.jpg"; // swap when you have a real one
+  const url = "https://www.buddymoney.com/";
+  const ogImage = "https://www.buddymoney.com/og-image-buddymoney-home.jpg"; // swap when you have a real one
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -48,7 +48,7 @@ export default function Home() {
     },
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://buddymoney.com/search?q={search_term_string}",
+      target: "https://www.buddymoney.com/search?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };
@@ -64,7 +64,6 @@ export default function Home() {
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href={url} />
 
         {/* Open Graph */}
         <meta property="og:type" content="website" />
