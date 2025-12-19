@@ -1,5 +1,20 @@
 [
   {
+  "slug": "debt-consolidation-guide",
+  "title": "Debt Consolidation Guide (Beginner-Friendly, No Jargon)",
+  "tag": "Debt",
+  "level": "Beginner",
+  "readTime": "9 min read",
+  "excerpt": "Struggling with multiple debts? Debt consolidation can simplify payments and help you regain control — if you choose the right option.",
+  "file": "/posts/debt-consolidation-guide.md",
+  "author": "Savi The Wonder",
+  "authorAvatar": "/icons/savi-editorial.png",
+  "date": "2025-12-18",
+  "heroImage": "/icons/hero-debt-consolidation.png",
+  "heroImageAlt": "Illustration showing multiple debts combining into one simple payment"
+},
+
+  {
     "slug": "best-secured-credit-cards",
     "title": "Best Secured Credit Cards (Beginner’s Guide)",
     "tag": "Credit Cards",

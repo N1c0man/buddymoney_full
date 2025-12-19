@@ -3,6 +3,49 @@ import rawPosts from "./blogPosts.json";
 
 // Keep ALL FAQs here, keyed by slug (unchanged)
 const faqBySlug = {
+    "debt-consolidation-guide": [
+    {
+      question: "What is debt consolidation in simple terms?",
+      answer:
+        "Debt consolidation means combining multiple debts into one payment. This is usually done by using a personal loan, balance transfer card, or a structured repayment plan so you have fewer due dates and one clear payoff path.",
+    },
+    {
+      question: "Does debt consolidation lower my interest rate automatically?",
+      answer:
+        "Not always. Debt consolidation only lowers your interest cost if the new rate is lower than your current average rate (and fees don’t outweigh the savings). Always compare the total cost, not just the monthly payment.",
+    },
+    {
+      question: "Will debt consolidation hurt my credit score?",
+      answer:
+        "It can cause a small temporary dip, especially if a lender checks your credit or you open a new account. Over time, consolidation can help your score if it helps you make on-time payments and lowers your credit utilization.",
+    },
+    {
+      question: "What’s the difference between debt consolidation and debt settlement?",
+      answer:
+        "Debt consolidation reorganizes your debt into one payment so you can pay it off more predictably. Debt settlement involves negotiating to pay less than what you owe, which can seriously impact your credit and often includes fees and risks.",
+    },
+    {
+      question: "Is a balance transfer card a good way to consolidate debt?",
+      answer:
+        "It can be, especially if you qualify for a 0% introductory APR and can pay the balance down before the promo period ends. Watch for balance transfer fees and higher interest rates after the intro period.",
+    },
+    {
+      question: "Can I consolidate debt if my credit is fair or rebuilding?",
+      answer:
+        "Yes, it’s possible. Approval and rates depend on your credit profile, income, and debt-to-income ratio. If rates are too high, a debt management plan or credit counseling may be a safer option.",
+    },
+    {
+      question: "What debts can usually be consolidated?",
+      answer:
+        "Common debts include credit cards, personal loans, medical bills, and some types of high-interest installment debt. Mortgages and federal student loans usually have separate rules and may not be a fit for standard consolidation loans.",
+    },
+    {
+      question: "What’s the biggest mistake people make after consolidating?",
+      answer:
+        "The biggest mistake is running balances back up after paying cards off. Consolidation works best when you stop adding new debt, set a realistic budget, and automate payments so the plan stays on track.",
+    },
+  ],
+
   "save-your-first-1000": [
     {
       question: "Why is saving the first $1,000 so important?",
