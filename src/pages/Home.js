@@ -237,7 +237,8 @@ export default function Home() {
         </motion.section>
 
         {/* 🔼 TOP SHARE BAR – lets people share the whole BuddyMoney homepage */}
-        <section className="max-w-5xl mx-auto px-4 -mt-2">
+        <section className="max-w-5xl mx-auto px-4 md:-mt-2">
+
           <ShareBar
             variant="top"
             label="Share BuddyMoney with a friend who loves simple money tools"
