@@ -575,29 +575,45 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
           className="max-w-6xl mx-auto px-4 space-y-6"
         >
           {/* MORTGAGE HERO */}
-          <section className="rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 px-5 py-7 md:px-8 md:py-9 shadow-soft">
-            <div className="space-y-3">
-              <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-600">
-                Mortgage Payoff Lab
-              </p>
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-                See how extra payments can knock years off your mortgage.
-              </h1>
-              <p className="text-sm md:text-base text-brand-800/80 max-w-xl">
-                Plug in your balance, rate, and extra payments to see how much
-                interest you could save—and how soon you could be free from the bank.
-              </p>
+<section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[220px] md:h-[260px] lg:h-[300px]">
+  {/* Background hero image */}
+  <img
+    src="/icons/hero-mortgage-payoff.png"
+    alt="Mortgage Payoff Calculator hero image"
+    className="absolute inset-0 h-full w-full object-cover"
+    loading="eager"
+  />
 
-              <div className="flex flex-wrap gap-2 text-[11px] mt-2">
-                <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
-                  🧮 Compare normal vs. extra payments
-                </span>
-                <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
-                  📈 See years saved and interest avoided
-                </span>
-              </div>
-            </div>
-          </section>
+  {/* Soft overlay so text stays readable */}
+  <div className="absolute inset-0 bg-white/80 md:bg-white/65" />
+
+  {/* Content */}
+  <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
+    <div className="space-y-3 max-w-2xl">
+      <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-700">
+        Mortgage Payoff Lab
+      </p>
+
+      <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
+        See how extra payments can knock years off your mortgage.
+      </h1>
+
+      <p className="text-sm md:text-base text-brand-800/80">
+        Plug in your balance, rate, and extra payments to see how much interest
+        you could save—and how soon you could be free from the bank.
+      </p>
+
+      <div className="flex flex-wrap gap-2 text-[11px] mt-2">
+        <span className="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+          🧮 Compare normal vs. extra payments
+        </span>
+        <span className="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
+          📉 See years saved and interest avoided
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
 
           {/* Social share bar */}
           <ShareBar
