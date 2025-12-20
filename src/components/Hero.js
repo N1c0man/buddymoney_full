@@ -19,41 +19,41 @@ export default function Hero() {
         transition={{ duration: 1.4, ease: "easeOut", delay: 0.2 }}
       />
 
-      <div className="relative max-w-6xl mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+      <div className="relative max-w-6xl mx-auto px-4 py-8 sm:py-10 md:py-16 grid md:grid-cols-2 gap-8 md:gap-10 items-center">
         {/* Text side */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="space-y-5"
+          className="space-y-4 sm:space-y-5"
         >
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-emerald-700 shadow-sm border border-emerald-50">
+          <div className="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-[11px] sm:text-xs font-medium text-emerald-700 shadow-sm border border-emerald-50">
             <span className="inline-flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
             BuddyMoney • Free tools & guides to calm your money stress
           </div>
 
-          <h1 className="text-4xl md:text-5xl font-extrabold text-brand-900 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-brand-900 leading-tight">
             Take control of your money,{" "}
             <span className="text-emerald-700">one small step</span> at a time.
           </h1>
 
-          <p className="text-lg text-brand-800/80 max-w-prose">
+          <p className="text-base sm:text-lg text-brand-800/80 max-w-prose">
             BuddyMoney gives you simple calculators and friendly guides for
             budgeting, debt, emergency funds, and more. No jargon, no guilt—
             just clear next steps that actually feel doable.
           </p>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-col sm:flex-row gap-3">
             <Link
               to="/tools"
-              className="px-6 py-3 rounded-xl bg-brand-700 text-white hover:bg-brand-800 shadow-soft transition-transform duration-150 hover:-translate-y-0.5 inline-flex items-center gap-2"
+              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-brand-700 text-white hover:bg-brand-800 shadow-soft transition-transform duration-150 hover:-translate-y-0.5 inline-flex items-center justify-center gap-2"
             >
               Explore money tools
               <span aria-hidden="true">→</span>
             </Link>
             <Link
               to="/blog"
-              className="px-6 py-3 rounded-xl bg-white text-brand-800 border border-brand-200 hover:bg-brand-50 shadow-soft transition-transform duration-150 hover:-translate-y-0.5"
+              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-white text-brand-800 border border-brand-200 hover:bg-brand-50 shadow-soft transition-transform duration-150 hover:-translate-y-0.5 inline-flex items-center justify-center"
             >
               Start with guides
             </Link>
@@ -95,22 +95,22 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.95, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
-          className="flex justify-center"
+          className="flex justify-center md:justify-end"
         >
           {/* Floating card with subtle up/down animation */}
           <motion.div
-            className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-soft p-5 md:p-6 border border-emerald-50"
+            className="w-full max-w-sm sm:max-w-md bg-white/90 backdrop-blur-sm rounded-2xl shadow-soft p-4 sm:p-5 md:p-6 border border-emerald-50"
             animate={{ y: [0, -6, 0] }}
             transition={{
               duration: 4,
               repeat: Infinity,
               repeatType: "reverse",
               ease: "easeInOut",
-              delay: 1.2
+              delay: 1.2,
             }}
           >
             <img
-              className="w-72 md:w-96 lg:w-[26rem]"
+              className="w-64 sm:w-72 md:w-96 lg:w-[26rem] max-w-full mx-auto"
               src="/icons/heroowl.png"
               alt="BuddyMoney smart owl illustration"
             />
