@@ -166,12 +166,12 @@ export default function Tools() {
             <img
               src="/icons/hero-tools.png"
               alt="BuddyMoney tools hero image"
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover object right"
               loading="eager"
             />
 
             {/* Soft overlay so text stays readable */}
-            <div className="absolute inset-0 bg-white/80 md:bg-white/65" />
+            <div className="absolute inset-0 bg-white/50 md:bg-white/35" />
 
             {/* background blobs (kept EXACTLY from your original hero) */}
             <motion.div

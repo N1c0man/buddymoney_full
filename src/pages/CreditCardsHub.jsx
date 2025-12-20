@@ -113,10 +113,7 @@ export default function CreditCardsHub() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
-        <meta
-          property="og:url"
-          content="https://buddymoney.com/credit-cards"
-        />
+        <meta property="og:url" content="https://buddymoney.com/credit-cards" />
         <meta
           property="og:image"
           content="https://buddymoney.com/icons/buddymoney-og-default.png"
@@ -132,68 +129,70 @@ export default function CreditCardsHub() {
         />
 
         {/* JSON-LD */}
-        <script type="application/ld+json">
-          {JSON.stringify(schemaOrg)}
-        </script>
+        <script type="application/ld+json">{JSON.stringify(schemaOrg)}</script>
       </Helmet>
 
       <main className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50/40 pb-16 pt-4">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 space-y-6">
-          {/* HERO */}
-          <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 px-5 py-7 md:px-8 md:py-9 shadow-soft">
-            {/* soft blobs */}
+          {/* HERO — Tools-style image hero with overlay text */}
+          <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[220px] md:h-[260px] lg:h-[300px]">
+            {/* Background hero image */}
+            <img
+              src="/icons/hero-credit-cards-hub.png"
+              alt="BuddyMoney credit card hub hero image"
+              className="absolute inset-0 h-full w-full object-cover object-right"
+              loading="eager"
+            />
+
+            {/* Soft overlay so text stays readable */}
+            <div className="absolute inset-0 bg-white/50 md:bg-white/35" />
+
+            {/* soft blobs (same vibe as Tools) */}
             <div className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl" />
 
-            <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.7fr)_minmax(0,1.3fr)] items-center">
-              <div className="space-y-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
-                  BuddyMoney Credit Card Hub
-                </p>
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-                  One place for all your credit card research.
-                </h1>
-                <p className="text-sm md:text-base text-brand-800/85 max-w-xl">
-                  Start with a high-level guide or jump straight into the
-                  interactive finder. Everything here is written in plain
-                  English, so you can understand how each type of card fits into
-                  your bigger money plan.
-                </p>
-                <ul className="ml-4 list-disc text-[12px] text-slate-700 space-y-1">
-                  <li>
-                    Guides for bad credit, travel, 0% intro APR, and student
-                    cards.
-                  </li>
-                  <li>
-                    A preview credit card finder tool to explore sample card
-                    lineups.
-                  </li>
-                  <li>
-                    Education-first. No hype, no pressure—just information to
-                    help you choose calmly.
-                  </li>
-                </ul>
-              </div>
+            {/* Content */}
+            <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
+              <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-center w-full">
+                <div className="space-y-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                    BuddyMoney Credit Card Hub
+                  </p>
+                  <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
+                    One place for all your credit card research.
+                  </h1>
+                  <p className="text-sm md:text-base text-brand-800/85 max-w-xl">
+                    Start with a high-level guide or jump into the interactive
+                    finder. Everything is in plain English so you can choose
+                    calmly and confidently.
+                  </p>
 
-              <div className="relative">
-                <div className="rounded-2xl bg-white/95 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 text-sm text-slate-800 space-y-3">
-                  <p className="text-xs font-semibold text-slate-700">
-                    How to use this hub
-                  </p>
-                  <ol className="ml-4 list-decimal space-y-1 text-[12px]">
-                    <li>Pick the guide that matches your current goal.</li>
-                    <li>
-                      Learn what to watch out for (fees, APRs, teaser offers).
-                    </li>
-                    <li>
-                      When you&apos;re ready, use the finder to explore card
-                      options.
-                    </li>
-                  </ol>
-                  <p className="text-[11px] text-slate-500">
-                    As partner offers go live, this hub will become the central
-                    place where education and live card options meet.
-                  </p>
+                  <div className="flex flex-wrap gap-2 text-[11px] mt-2">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+                      🧭 Guides + a preview finder tool
+                    </span>
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
+                      ✅ Fees, APR, rewards—explained simply
+                    </span>
+                  </div>
+                </div>
+
+                {/* Right info card */}
+                <div className="hidden md:block">
+                  <div className="rounded-2xl bg-white/95 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 text-sm text-slate-800 space-y-3">
+                    <p className="text-xs font-semibold text-slate-700">
+                      How to use this hub
+                    </p>
+                    <ol className="ml-4 list-decimal space-y-1 text-[12px]">
+                      <li>Pick the guide that matches your current goal.</li>
+                      <li>Learn what to watch out for (fees, APRs, fine print).</li>
+                      <li>Use the finder to explore sample card lineups.</li>
+                    </ol>
+                    <p className="text-[11px] text-slate-500">
+                      As partner offers go live, this hub becomes where education
+                      and real card options meet.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -225,7 +224,7 @@ export default function CreditCardsHub() {
                 <Link
                   key={item.id}
                   to={item.path}
-                  className="group relative flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-4 shadow-sm transition hover:border-emerald-400 hover:bg:white"
+                  className="group relative flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-4 shadow-sm transition hover:border-emerald-400 hover:bg-white"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>

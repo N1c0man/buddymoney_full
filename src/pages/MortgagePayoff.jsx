@@ -585,7 +585,7 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
   />
 
   {/* Soft overlay so text stays readable */}
-  <div className="absolute inset-0 bg-white/80 md:bg-white/65" />
+  <div className="absolute inset-0 bg-white/55 md:bg-white/40" />
 
   {/* Content */}
   <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
