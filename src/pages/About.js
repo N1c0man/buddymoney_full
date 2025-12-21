@@ -22,33 +22,30 @@ export default function About() {
       document.head.appendChild(metaDescription);
     }
 
-    // ✅ Canonical URL for /about
-    useEffect(() => {
+    // ✅ Canonical URL for /about (NO nested hook)
     setCanonical("/about");
-    }, []);
-
 
     // 🔧 JSON-LD structured data for AboutPage
     const jsonLd = {
       "@context": "https://schema.org",
       "@type": "AboutPage",
       name: "About BuddyMoney",
-      url: "https://buddymoney.com/about",
+      url: "https://www.buddymoney.com/about",
       description: content,
       publisher: {
         "@type": "Organization",
         name: "BuddyMoney",
-        url: "https://buddymoney.com",
+        url: "https://www.buddymoney.com",
       },
       mainEntityOfPage: {
         "@type": "WebPage",
-        "@id": "https://buddymoney.com/about",
+        "@id": "https://www.buddymoney.com/about",
       },
     };
 
     const script = document.createElement("script");
     script.type = "application/ld+json";
-    script.innerHTML = JSON.stringify(jsonLd);
+    script.textContent = JSON.stringify(jsonLd);
     document.head.appendChild(script);
 
     return () => {
@@ -85,8 +82,8 @@ export default function About() {
             className="text-base text-slate-600 leading-relaxed max-w-lg mx-auto"
             itemProp="description"
           >
-            BuddyMoney helps beginners grow confident with money using simple tools,
-            clear guides, and a supportive tone — no jargon, no judgment.
+            BuddyMoney helps beginners grow confident with money using simple
+            tools, clear guides, and a supportive tone — no jargon, no judgment.
           </p>
         </header>
 
@@ -102,17 +99,17 @@ export default function About() {
             itemProp="articleBody"
           >
             <p>
-              Money can feel overwhelming, especially when every website sounds like
-              it’s written for experts. BuddyMoney was built for real people — anyone
-              who wants practical steps, clear numbers, and tools that make the
-              complicated feel simple.
+              Money can feel overwhelming, especially when every website sounds
+              like it’s written for experts. BuddyMoney was built for real
+              people — anyone who wants practical steps, clear numbers, and tools
+              that make the complicated feel simple.
             </p>
 
             <p>
-              Our mission is to remove stress from everyday money decisions. Whether
-              you're budgeting your first paycheck, paying off debt, or building your
-              emergency fund, BuddyMoney gives you clarity and confidence through easy
-              calculators and friendly education.
+              Our mission is to remove stress from everyday money decisions.
+              Whether you're budgeting your first paycheck, paying off debt, or
+              building your emergency fund, BuddyMoney gives you clarity and
+              confidence through easy calculators and friendly education.
             </p>
           </div>
 
@@ -128,9 +125,7 @@ export default function About() {
               </span>
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-slate-900">
-                Our Mission
-              </h2>
+              <h2 className="text-lg font-semibold text-slate-900">Our Mission</h2>
               <p
                 className="text-sm text-slate-700 leading-relaxed"
                 itemProp="missionStatement"
@@ -147,10 +142,10 @@ export default function About() {
               Why BuddyMoney Exists
             </h2>
             <p className="text-slate-700 leading-relaxed">
-              We believe everyone deserves access to financial tools that are simple,
-              beautiful, and easy to understand. No hidden motives. No complicated
-              jargon. Just clear guidance and helpful calculators that empower you to
-              take the next step forward.
+              We believe everyone deserves access to financial tools that are
+              simple, beautiful, and easy to understand. No hidden motives. No
+              complicated jargon. Just clear guidance and helpful calculators
+              that empower you to take the next step forward.
             </p>
           </div>
 
@@ -171,10 +166,7 @@ export default function About() {
                   <span className="text-lg">📊</span>
                 </div>
                 <div>
-                  <h3
-                    className="font-semibold text-slate-900 mb-1"
-                    itemProp="name"
-                  >
+                  <h3 className="font-semibold text-slate-900 mb-1" itemProp="name">
                     Easy Tools
                   </h3>
                   <p itemProp="description">
@@ -193,10 +185,7 @@ export default function About() {
                   <span className="text-lg">📚</span>
                 </div>
                 <div>
-                  <h3
-                    className="font-semibold text-slate-900 mb-1"
-                    itemProp="name"
-                  >
+                  <h3 className="font-semibold text-slate-900 mb-1" itemProp="name">
                     Friendly Guides
                   </h3>
                   <p itemProp="description">
@@ -215,10 +204,7 @@ export default function About() {
                   <span className="text-lg">📝</span>
                 </div>
                 <div>
-                  <h3
-                    className="font-semibold text-slate-900 mb-1"
-                    itemProp="name"
-                  >
+                  <h3 className="font-semibold text-slate-900 mb-1" itemProp="name">
                     Blog & Tips
                   </h3>
                   <p itemProp="description">
@@ -237,10 +223,7 @@ export default function About() {
                   <span className="text-lg">🤝</span>
                 </div>
                 <div>
-                  <h3
-                    className="font-semibold text-slate-900 mb-1"
-                    itemProp="name"
-                  >
+                  <h3 className="font-semibold text-slate-900 mb-1" itemProp="name">
                     Supportive Tone
                   </h3>
                   <p itemProp="description">
@@ -257,8 +240,8 @@ export default function About() {
               Get in Touch
             </h2>
             <p className="text-slate-700" itemProp="description">
-              We always love hearing from our readers. If you have suggestions or want
-              to reach out, you can contact us using the email provided on the{" "}
+              We always love hearing from our readers. If you have suggestions or
+              want to reach out, you can contact us using the email provided on the{" "}
               <Link
                 to="/affiliate-disclosure"
                 className="text-green-700 font-medium hover:text-green-800"
