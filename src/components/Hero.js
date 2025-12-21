@@ -19,7 +19,7 @@ export default function Hero() {
         transition={{ duration: 1.4, ease: "easeOut", delay: 0.2 }}
       />
 
-      <div className="relative max-w-6xl mx-auto px-4 py-8 sm:py-10 md:py-16 grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+      <div className="relative max-w-6xl mx-auto px-4 pt-24 pb-8 sm:pt-28 sm:pb-10 md:py-16 grid md:grid-cols-2 gap-8 md:gap-10 items-center">
         {/* Text side */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
