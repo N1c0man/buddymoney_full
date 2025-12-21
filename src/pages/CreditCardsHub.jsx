@@ -145,7 +145,7 @@ export default function CreditCardsHub() {
             />
 
             {/* Soft overlay so text stays readable */}
-            <div className="absolute inset-0 bg-white/50 md:bg-white/35" />
+            <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
 
             {/* soft blobs (same vibe as Tools) */}
             <div className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl" />
@@ -161,7 +161,7 @@ export default function CreditCardsHub() {
                   <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
                     One place for all your credit card research.
                   </h1>
-                  <p className="text-sm md:text-base text-brand-800/85 max-w-xl">
+                  <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
                     Start with a high-level guide or jump into the interactive
                     finder. Everything is in plain English so you can choose
                     calmly and confidently.

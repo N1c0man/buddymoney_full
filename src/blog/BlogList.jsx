@@ -124,7 +124,7 @@ export default function BlogList() {
           />
 
           {/* Soft overlay so text stays readable */}
-          <div className="absolute inset-0 bg-white/50 md:bg-white/35" />
+          <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
 
           {/* background blobs (kept like Tools) */}
           <motion.div
@@ -152,7 +152,7 @@ export default function BlogList() {
                   Learn money in plain English, one realistic guide at a time.
                 </h1>
 
-                <p className="text-sm md:text-base text-brand-800/80 max-w-xl">
+                <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
                   Short, friendly explainers on salary, side hustles, emergency
                   funds, debt payoff, and more. No jargon, no guilt—just clear
                   steps you can actually take.

@@ -172,7 +172,7 @@ export default function Tools() {
       loading="eager"
     />
     {/* Soft overlay so text stays readable */}
-    <div className="absolute inset-0 bg-white/50 md:bg-white/35" />
+    <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
 
     {/* background blobs */}
     <motion.div
@@ -201,7 +201,7 @@ export default function Tools() {
           Your free toolbox for calmer money decisions.
         </h1>
 
-        <p className="text-sm md:text-base text-brand-800/80 max-w-xl">
+        <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
           Plan your budget, goals, debt payoff, and safety net with simple
           calculators. No logins, no fees—just tools to help you and your
           buddies stay on the same money page.

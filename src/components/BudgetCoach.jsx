@@ -329,7 +329,7 @@ export default function BudgetCoach() {
             />
 
             {/* Soft overlay so text stays readable */}
-            <div className="absolute inset-0 bg-white/50 md:bg-white/35" />
+            <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
 
             {/* background blobs (kept like Tools) */}
             <motion.div
@@ -358,7 +358,7 @@ export default function BudgetCoach() {
                     money.
                   </h1>
 
-                  <p className="text-sm md:text-base text-brand-800/80 max-w-xl">
+                  <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
                     Enter your real numbers and see how your budget stacks up against a
                     simple rule of thumb. Then get clear suggestions on what to tweak
                     next.

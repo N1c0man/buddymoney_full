@@ -598,7 +598,7 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
         See how extra payments can knock years off your mortgage.
       </h1>
 
-      <p className="text-sm md:text-base text-brand-800/80">
+      <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
         Plug in your balance, rate, and extra payments to see how much interest
         you could save—and how soon you could be free from the bank.
       </p>
