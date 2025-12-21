@@ -44,10 +44,10 @@ export default function Hero() {
             <img
               src="/icons/hero-home.png"
               alt="BuddyMoney hero illustration"
-              className="h-full w-full object-cover object-center opacity-40 sm:opacity-100"
+              className="h-full w-full object-cover object-center opacity-80 sm:opacity-100"
               loading="eager"
             />
-            <div className="absolute inset-0 bg-white/80 sm:bg-white/60" />
+            <div className="absolute inset-0 bg-white/65 sm:bg-white/55" />
           </div>
 
           {/* Foreground content */}
