@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import ToolCard from "../components/ToolCard";
 import NewsletterSignup from "../components/NewsletterSignup";
 import ShareBar from "../components/ShareBar";
+import Hero from "../components/Hero";
 import { setCanonical } from "../utils/seo";
 
 // Shared variants
@@ -88,157 +89,11 @@ export default function Home() {
         itemScope
         itemType="https://schema.org/WebPage"
       >
-        {/* HERO v2 — image hero with overlay text (matches Tools / Coach / Hub style) */}
-        <motion.section
-          className="pt-0"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          variants={fadeUp}
-        >
-          <div className="max-w-5xl mx-auto px-4">
-            <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[240px] md:h-[280px] lg:h-[320px]">
-              {/* Background hero image (swap in the final production image here) */}
-              <img
-                src="/icons/hero-home.png"
-                alt="BuddyMoney hero illustration"
-                className="absolute inset-0 h-full w-full object-cover object-right"
-                loading="eager"
-              />
-
-              {/* Soft overlay so text stays readable */}
-              <div className="absolute inset-0 bg-white/55 md:bg-white/40" />
-
-              {/* background blobs */}
-              <motion.div
-                className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl"
-                initial={{ opacity: 0, scale: 0.9, y: -10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-              />
-              <motion.div
-                className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl"
-                initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 1.1, ease: "easeOut", delay: 0.15 }}
-              />
-
-              {/* Content */}
-              <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
-                <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.7fr)_minmax(0,1.3fr)] items-center w-full">
-                  <div className="space-y-4">
-                    <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-600">
-                      BuddyMoney • Free Money Tools
-                    </p>
-
-                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-                      Take control of your money, one small step at a time.
-                    </h1>
-
-                    <p className="text-sm md:text-base text-brand-800/80 max-w-xl">
-                      Beginner-friendly tools and guides to budget, save, pay off
-                      debt, and plan your next move—without jargon or guilt.
-                    </p>
-
-                    <div className="flex flex-wrap gap-2 text-[11px]">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                        Free • No account needed
-                      </span>
-                      <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
-                        🧠 Plain English
-                      </span>
-                      <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
-                        🧭 Next-step guidance
-                      </span>
-                    </div>
-
-                    <div className="flex flex-wrap gap-3 pt-1">
-                      <Link
-                        to="/tools"
-                        className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-2 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-emerald-700 transition"
-                      >
-                        Explore money tools →
-                      </Link>
-                      <Link
-                        to="/blog"
-                        className="inline-flex items-center justify-center rounded-full bg-white/90 px-5 py-2 text-xs sm:text-sm font-semibold text-emerald-700 border border-emerald-100 shadow-sm hover:bg-white transition"
-                      >
-                        Start with guides →
-                      </Link>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 text-[11px] pt-1">
-                      <Link
-                        to="/coach"
-                        className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm hover:border-emerald-200 hover:bg-white transition"
-                      >
-                        🧭 Budget Coach
-                      </Link>
-                      <Link
-                        to="/mortgage"
-                        className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm hover:border-emerald-200 hover:bg-white transition"
-                      >
-                        🏠 Mortgage Payoff
-                      </Link>
-                      <Link
-                        to="/credit-cards"
-                        className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm hover:border-emerald-200 hover:bg-white transition"
-                      >
-                        💳 Credit Cards Hub
-                      </Link>
-                    </div>
-                  </div>
-
-                  {/* Right “how it works” card */}
-                  <motion.div
-                    className="relative hidden md:block"
-                    initial={{ opacity: 0, scale: 0.98, y: 10 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.08 }}
-                  >
-                    <div className="rounded-2xl bg-white/95 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 text-sm text-slate-800 space-y-3">
-                      <p className="text-xs font-semibold text-slate-700">
-                        Your BuddyMoney roadmap
-                      </p>
-
-                      <ol className="ml-4 list-decimal space-y-1 text-[12px] text-slate-700">
-                        <li>Pick a tool (budget, debt, savings, payoff).</li>
-                        <li>Get targets + a clear next step.</li>
-                        <li>Repeat weekly—calm progress compounds.</li>
-                      </ol>
-
-                      <div className="grid grid-cols-2 gap-2 text-[12px] pt-1">
-                        <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-2">
-                          ✅ Score
-                        </span>
-                        <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-2">
-                          🎯 Targets
-                        </span>
-                        <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-2">
-                          📊 Breakdown
-                        </span>
-                        <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-2">
-                          🧭 Next steps
-                        </span>
-                      </div>
-
-                      <p className="text-[11px] text-emerald-700 font-semibold">
-                        Scroll down to see popular tools ↓
-                      </p>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
-            </section>
-          </div>
-        </motion.section>
+        {/* ✅ Use the shared card hero (matches Tools / Coach / Hub style) */}
+        <Hero />
 
         {/* 🔼 TOP SHARE BAR – lets people share the whole BuddyMoney homepage */}
         <section className="max-w-5xl mx-auto px-4 sm:-mt-1 md:-mt-2">
-
           <ShareBar
             variant="top"
             label="Share BuddyMoney with a friend who loves simple money tools"
