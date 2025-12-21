@@ -145,7 +145,7 @@ export default function BlogList() {
             <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-center w-full">
               <div className="space-y-4">
                 <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-600">
-                  BuddyMoney Guides
+                  BuddyMoney Guides and Articles
                 </p>
 
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
