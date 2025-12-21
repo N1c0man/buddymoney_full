@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section
       className="
-        relative overflow-hidden
+        relative
         bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70
         pt-20 sm:pt-24 lg:pt-10
         pb-10 sm:pb-12
@@ -49,14 +49,23 @@ export default function Hero() {
                 Beginner-friendly money tools
               </div>
 
-              <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+              <h1
+                className="
+                  mt-4
+                  pt-1 pb-1
+                  text-3xl font-extrabold tracking-tight text-slate-900
+                  leading-[1.1]
+                  sm:text-4xl lg:text-5xl
+                "
+              >
                 Smart tools to budget, save, and grow —{" "}
                 <span className="text-emerald-700">without the jargon</span>
               </h1>
 
               <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-700 sm:text-lg">
-                Use calculators, checklists, and simple guides built for real life.
-                Start with your budget, knock out debt, and build your emergency fund.
+                Use calculators, checklists, and simple guides built for real
+                life. Start with your budget, knock out debt, and build your
+                emergency fund.
               </p>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
