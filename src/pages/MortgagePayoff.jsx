@@ -9,11 +9,6 @@ const DEFAULT_RATE = 6.5;
 const DEFAULT_YEARS = 30;
 const DEFAULT_EXTRA = 100;
 
-export default function MortgagePayoff() {
-  useEffect(() => {
-    setCanonical("/mortgage");
-  }, []);
-
 function toNumber(raw) {
   if (raw === null || raw === undefined) return 0;
   const cleaned = String(raw).replace(/[^0-9.]/g, "");
@@ -91,9 +86,7 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
   }
 
   const effectiveExtra =
-    frequency === "biweekly" && basePayment > 0
-      ? extra + basePayment / 12
-      : extra;
+    frequency === "biweekly" && basePayment > 0 ? extra + basePayment / 12 : extra;
 
   const normalResult = buildScenarioSchedule(
     principal,
@@ -125,8 +118,7 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
     (payoffMonthsNormal - payoffMonthsExtra) / 12,
     0
   );
-  const yearsSaved =
-    rawYearsSaved > 0.05 ? rawYearsSaved.toFixed(1) : null;
+  const yearsSaved = rawYearsSaved > 0.05 ? rawYearsSaved.toFixed(1) : null;
 
   return {
     payoffYears,
@@ -137,8 +129,13 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
     yearsSaved,
   };
 }
- {
-  // Helmet SEO data
+
+export default function MortgagePayoff() {
+  useEffect(() => {
+    setCanonical("/mortgage");
+  }, []);
+
+  // Helmet SEO data (UNCHANGED)
   const title =
     "Mortgage Payoff Calculator – Extra Payment & Bi-Weekly Tool | BuddyMoney";
 
@@ -164,7 +161,7 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
       "extra payment mortgage calculator",
       "bi-weekly mortgage calculator",
       "amortization calculator",
-      "pay off mortgage faster"
+      "pay off mortgage faster",
     ],
     offers: {
       "@type": "Offer",
@@ -216,14 +213,9 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
   }, [principalNum, monthlyRate, termMonths]);
 
   // Effective extra payment:
-  // - Monthly mode: just user extra
-  // - Bi-weekly mode: user extra + 1/12 of base payment (approx 1 extra payment/year)
   const effectiveExtra =
-    frequency === "biweekly" && basePayment > 0
-      ? extraNum + basePayment / 12
-      : extraNum;
+    frequency === "biweekly" && basePayment > 0 ? extraNum + basePayment / 12 : extraNum;
 
-  // Build amortization with optional extra monthly payment
   function buildSchedule(extraPayment) {
     return buildScenarioSchedule(
       principalNum,
@@ -259,8 +251,7 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
     (payoffMonthsNormal - payoffMonthsExtra) / 12,
     0
   );
-  const yearsSaved =
-    rawYearsSaved > 0.05 ? rawYearsSaved.toFixed(1) : null;
+  const yearsSaved = rawYearsSaved > 0.05 ? rawYearsSaved.toFixed(1) : null;
 
   // --- CHART DATA ---
   const chartPoints = useMemo(() => {
@@ -438,8 +429,7 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
     const originalRemMonths = payoffMonthsNormal % 12;
     const strategyLabel = frequency === "biweekly" ? "bi-weekly" : "monthly";
 
-    const extraLabel =
-      extraNum > 0 ? formatMoney(extraNum) : "$0";
+    const extraLabel = extraNum > 0 ? formatMoney(extraNum) : "$0";
 
     const extraBiweeklyNote =
       frequency === "biweekly" && extraNum > 0
@@ -492,7 +482,7 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
     }
   }
 
-  // Copy link for social share buttons (now used only by ShareBar via URL; keeping in case needed elsewhere)
+  // Copy link for social share buttons (keeping your existing vars)
   const encodedUrl = encodeURIComponent(pageUrl);
   const encodedTitle = encodeURIComponent(
     "I’m using BuddyMoney’s Mortgage Payoff Calculator to see how extra payments can knock years off my mortgage."
@@ -562,9 +552,7 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
         <meta name="twitter:description" content={description} />
 
         {/* JSON-LD */}
-        <script type="application/ld+json">
-          {JSON.stringify(jsonLd)}
-        </script>
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
       <main className="pt-2 lg:pt-4 pb-16 bg-brand-50/40">
@@ -575,45 +563,40 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
           className="max-w-6xl mx-auto px-4 space-y-6"
         >
           {/* MORTGAGE HERO */}
-<section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[220px] md:h-[260px] lg:h-[300px]">
-  {/* Background hero image */}
-  <img
-    src="/icons/hero-mortgage-payoff.png"
-    alt="Mortgage Payoff Calculator hero image"
-    className="absolute inset-0 h-full w-full object-cover"
-    loading="eager"
-  />
+          <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[220px] md:h-[260px] lg:h-[300px]">
+            <img
+              src="/icons/hero-mortgage-payoff.png"
+              alt="Mortgage Payoff Calculator hero image"
+              className="absolute inset-0 h-full w-full object-cover"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-white/55 md:bg-white/40" />
+            <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
+              <div className="space-y-3 max-w-2xl">
+                <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-700">
+                  Mortgage Payoff Lab
+                </p>
 
-  {/* Soft overlay so text stays readable */}
-  <div className="absolute inset-0 bg-white/55 md:bg-white/40" />
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
+                  See how extra payments can knock years off your mortgage.
+                </h1>
 
-  {/* Content */}
-  <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
-    <div className="space-y-3 max-w-2xl">
-      <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-700">
-        Mortgage Payoff Lab
-      </p>
+                <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
+                  Plug in your balance, rate, and extra payments to see how much interest
+                  you could save—and how soon you could be free from the bank.
+                </p>
 
-      <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-        See how extra payments can knock years off your mortgage.
-      </h1>
-
-      <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
-        Plug in your balance, rate, and extra payments to see how much interest
-        you could save—and how soon you could be free from the bank.
-      </p>
-
-      <div className="flex flex-wrap gap-2 text-[11px] mt-2">
-        <span className="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
-          🧮 Compare normal vs. extra payments
-        </span>
-        <span className="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
-          📉 See years saved and interest avoided
-        </span>
-      </div>
-    </div>
-  </div>
-</section>
+                <div className="flex flex-wrap gap-2 text-[11px] mt-2">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+                    🧮 Compare normal vs. extra payments
+                  </span>
+                  <span className="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
+                    📉 See years saved and interest avoided
+                  </span>
+                </div>
+              </div>
+            </div>
+          </section>
 
           {/* Social share bar */}
           <ShareBar
@@ -656,13 +639,9 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
                 {interestSaved > 0 && yearsSaved && (
                   <span className="whitespace-normal text-xs md:text-sm">
                     You&apos;ll pay off about{" "}
-                    <span className="font-semibold">
-                      {yearsSaved} years
-                    </span>{" "}
+                    <span className="font-semibold">{yearsSaved} years</span>{" "}
                     sooner and avoid roughly{" "}
-                    <span className="font-semibold">
-                      {formatMoney(interestSaved)}
-                    </span>{" "}
+                    <span className="font-semibold">{formatMoney(interestSaved)}</span>{" "}
                     in interest compared with the normal schedule.
                   </span>
                 )}
@@ -702,34 +681,15 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
 
             {/* Inputs */}
             <div className="grid gap-4 md:grid-cols-4 mb-6">
-              <InputBox
-                label="Loan Amount ($)"
-                value={principal}
-                onChange={setPrincipal}
-              />
-              <InputBox
-                label="Interest Rate (%)"
-                value={rate}
-                onChange={setRate}
-              />
-              <InputBox
-                label="Term (Years)"
-                value={years}
-                onChange={setYears}
-              />
-              <InputBox
-                label="Extra Payment ($/mo)"
-                value={extra}
-                onChange={setExtra}
-              />
+              <InputBox label="Loan Amount ($)" value={principal} onChange={setPrincipal} />
+              <InputBox label="Interest Rate (%)" value={rate} onChange={setRate} />
+              <InputBox label="Term (Years)" value={years} onChange={setYears} />
+              <InputBox label="Extra Payment ($/mo)" value={extra} onChange={setExtra} />
             </div>
 
             {/* Summary */}
             <div className="grid gap-4 md:grid-cols-4 mb-4">
-              <SummaryCard
-                title="Base Monthly Payment"
-                value={formatMoney(basePayment)}
-              />
+              <SummaryCard title="Base Monthly Payment" value={formatMoney(basePayment)} />
               <SummaryCard
                 title="Payoff Time (with strategy)"
                 value={`${payoffYears} yr ${payoffRemMonths} mo`}
@@ -1051,9 +1011,7 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
                 }
               />
               {copyStatus && (
-                <p className="mt-1 text-[11px] text-emerald-600">
-                  {copyStatus}
-                </p>
+                <p className="mt-1 text-[11px] text-emerald-600">{copyStatus}</p>
               )}
             </section>
 
@@ -1188,6 +1146,8 @@ function computeScenarioMetrics({ principal, rate, years, extra, frequency }) {
 
 /* --- Small components --- */
 
+// ✅ Fix: change to text + inputMode to prevent number-input focus/caret weirdness.
+// Keeps the same "string state" approach you're using everywhere.
 function InputBox({ label, value, onChange }) {
   return (
     <div className="flex flex-col">
@@ -1195,10 +1155,20 @@ function InputBox({ label, value, onChange }) {
         {label}
       </label>
       <input
-        type="number"
+        type="text"
+        inputMode="decimal"
         className="rounded-lg border border-slate-200 px-3 py-2 text-sm bg-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+        value={String(value ?? "")}
+        onChange={(e) => {
+          let raw = e.target.value.replace(/[^0-9.]/g, "");
+          // allow only one decimal point
+          const firstDot = raw.indexOf(".");
+          if (firstDot !== -1) {
+            raw =
+              raw.slice(0, firstDot + 1) + raw.slice(firstDot + 1).replace(/\./g, "");
+          }
+          onChange(raw);
+        }}
       />
     </div>
   );
@@ -1229,11 +1199,8 @@ function RelatedToolCard({ title, description, href }) {
       href={href}
       className="block rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-transform"
     >
-      <div className="text-xs font-semibold text-slate-800 mb-1">
-        {title}
-      </div>
+      <div className="text-xs font-semibold text-slate-800 mb-1">{title}</div>
       <p className="text-[11px] text-slate-600">{description}</p>
     </a>
   );
-}
 }
