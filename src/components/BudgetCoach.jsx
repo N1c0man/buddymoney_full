@@ -14,12 +14,13 @@ const BASE_RULES = {
 // Helper to clamp a number
 const clamp = (n, min, max) => Math.min(Math.max(n, min), max);
 
-// Helper to safely coerce numeric input (no NaN, no negatives)
 const toNumber = (value) => {
-  const n = parseFloat(value);
+  const cleaned = String(value ?? "").replace(/,/g, "");
+  const n = parseFloat(cleaned);
   if (!Number.isFinite(n) || Number.isNaN(n)) return 0;
   return n < 0 ? 0 : n;
 };
+
 
 // Small badge
 const Badge = ({ children, color = "bg-green-100 text-green-800" }) => (
@@ -40,13 +41,21 @@ const Bar = ({ value, color = "bg-indigo-900" }) => (
   </div>
 );
 
-// Allow digits + one decimal dot
 function sanitizeDecimalInput(s) {
-  let raw = String(s ?? "").replace(/[^0-9.]/g, "");
+  // Allow digits, commas, and one decimal point
+  let raw = String(s ?? "").replace(/[^0-9.,]/g, "");
+
+  // Remove all commas for processing
+  raw = raw.replace(/,/g, "");
+
+  // Allow only one decimal point
   const firstDot = raw.indexOf(".");
   if (firstDot !== -1) {
-    raw = raw.slice(0, firstDot + 1) + raw.slice(firstDot + 1).replace(/\./g, "");
+    raw =
+      raw.slice(0, firstDot + 1) +
+      raw.slice(firstDot + 1).replace(/\./g, "");
   }
+
   return raw;
 }
 
