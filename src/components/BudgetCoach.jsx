@@ -40,6 +40,16 @@ const Bar = ({ value, color = "bg-indigo-900" }) => (
   </div>
 );
 
+// Allow digits + one decimal dot
+function sanitizeDecimalInput(s) {
+  let raw = String(s ?? "").replace(/[^0-9.]/g, "");
+  const firstDot = raw.indexOf(".");
+  if (firstDot !== -1) {
+    raw = raw.slice(0, firstDot + 1) + raw.slice(firstDot + 1).replace(/\./g, "");
+  }
+  return raw;
+}
+
 export default function BudgetCoach() {
   // Form state
   const [income, setIncome] = useState("");
@@ -173,13 +183,7 @@ export default function BudgetCoach() {
   }, [numbers.needsPct, numbers.wantsPct, numbers.savingsPct, targets]);
 
   const scoreLabel =
-    score >= 85
-      ? "Excellent"
-      : score >= 70
-      ? "Good"
-      : score >= 50
-      ? "Fair"
-      : "Needs Attention";
+    score >= 85 ? "Excellent" : score >= 70 ? "Good" : score >= 50 ? "Fair" : "Needs Attention";
 
   const scoreColor =
     score >= 85
@@ -202,8 +206,7 @@ export default function BudgetCoach() {
   // Tips
   const tips = useMemo(() => {
     const t = [];
-    if (numbers.i <= 0)
-      return ["Add your monthly take-home income to begin."];
+    if (numbers.i <= 0) return ["Add your monthly take-home income to begin."];
 
     if (numbers.needsPct > targets.needs * 100) {
       t.push(
@@ -212,24 +215,16 @@ export default function BudgetCoach() {
     }
 
     if (numbers.wantsPct > targets.wants * 100) {
-      t.push(
-        "Wants are above target. Try a 14-day pause on dining out or subscriptions."
-      );
+      t.push("Wants are above target. Try a 14-day pause on dining out or subscriptions.");
     }
 
     if (numbers.savingsPct < targets.savings * 100) {
       const suggested = targets.savings * numbers.i;
-      t.push(
-        `Savings below target. Automate at least ${suggested.toFixed(
-          0
-        )} this month.`
-      );
+      t.push(`Savings below target. Automate at least ${suggested.toFixed(0)} this month.`);
     }
 
     if (numbers.leftover < 0) {
-      t.push(
-        "You’re overspending. Aim to trim 5–10% from the highest non-essential category."
-      );
+      t.push("You’re overspending. Aim to trim 5–10% from the highest non-essential category.");
     }
 
     if (t.length === 0) {
@@ -240,9 +235,9 @@ export default function BudgetCoach() {
   }, [numbers, targets]);
 
   // Suggested target dollars
-  const targetNeeds = (targets.needs * numbers.i) || 0;
-  const targetWants = (targets.wants * numbers.i) || 0;
-  const targetSavings = (targets.savings * numbers.i) || 0;
+  const targetNeeds = targets.needs * numbers.i || 0;
+  const targetWants = targets.wants * numbers.i || 0;
+  const targetSavings = targets.savings * numbers.i || 0;
 
   const handleReset = () => {
     setIncome("");
@@ -305,9 +300,7 @@ export default function BudgetCoach() {
           content="Use BuddyMoney’s free AI Budget Coach to get a calm, realistic monthly budget plan based on your real numbers."
         />
         {/* FAQ structured data */}
-        <script type="application/ld+json">
-          {JSON.stringify(faqJsonLd)}
-        </script>
+        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
 
       <main className="pt-2 lg:pt-4 pb-16 bg-brand-50/40">
@@ -354,14 +347,12 @@ export default function BudgetCoach() {
                   </p>
 
                   <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-                    AI Budget Coach: Get a calm, realistic plan for your monthly
-                    money.
+                    AI Budget Coach: Get a calm, realistic plan for your monthly money.
                   </h1>
 
                   <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
-                    Enter your real numbers and see how your budget stacks up against a
-                    simple rule of thumb. Then get clear suggestions on what to tweak
-                    next.
+                    Enter your real numbers and see how your budget stacks up against a simple rule
+                    of thumb. Then get clear suggestions on what to tweak next.
                   </p>
 
                   <div className="flex flex-wrap gap-3 text-xs">
@@ -455,8 +446,8 @@ export default function BudgetCoach() {
                     AI-Powered Budget Coach
                   </h2>
                   <p className="text-sm md:text-base text-slate-600 mt-1">
-                    Enter your monthly numbers to get a budget health score, targets,
-                    and friendly, actionable tips.
+                    Enter your monthly numbers to get a budget health score, targets, and friendly,
+                    actionable tips.
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
@@ -477,12 +468,11 @@ export default function BudgetCoach() {
                     Monthly take-home income
                   </label>
                   <input
-                    type="number"
+                    type="text"
                     inputMode="decimal"
-                    min={0}
                     className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                     value={income}
-                    onChange={(e) => setIncome(e.target.value)}
+                    onChange={(e) => setIncome(sanitizeDecimalInput(e.target.value))}
                     placeholder="e.g., 5200"
                   />
                 </div>
@@ -532,20 +522,15 @@ export default function BudgetCoach() {
                 <div className="md:col-span-2 bg-emerald-50 rounded-xl p-4 border border-emerald-100">
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className={`text-3xl font-extrabold ${scoreColor}`}>
-                        {score}
-                      </div>
-                      <div className="text-sm text-slate-600 -mt-1">
-                        {scoreLabel}
-                      </div>
+                      <div className={`text-3xl font-extrabold ${scoreColor}`}>{score}</div>
+                      <div className="text-sm text-slate-600 -mt-1">{scoreLabel}</div>
                     </div>
                     <div className="w-28">
                       <Bar value={score} color={scoreBar} />
                     </div>
                   </div>
                   <p className="text-sm text-slate-700 mt-3">
-                    Based on your inputs and the{" "}
-                    {Math.round(targets.needs * 100)}/
+                    Based on your inputs and the {Math.round(targets.needs * 100)}/
                     {Math.round(targets.wants * 100)}/
                     {Math.round(targets.savings * 100)} rule of thumb.
                   </p>
@@ -554,16 +539,8 @@ export default function BudgetCoach() {
                 <div className="md:col-span-3 bg-white rounded-xl p-4 border border-slate-200">
                   <h4 className="font-semibold text-slate-800 mb-3">Your mix</h4>
                   <div className="space-y-3">
-                    <Row
-                      label="Needs"
-                      value={numbers.needsPct}
-                      target={targets.needs * 100}
-                    />
-                    <Row
-                      label="Wants"
-                      value={numbers.wantsPct}
-                      target={targets.wants * 100}
-                    />
+                    <Row label="Needs" value={numbers.needsPct} target={targets.needs * 100} />
+                    <Row label="Wants" value={numbers.wantsPct} target={targets.wants * 100} />
                     <Row
                       label="Savings (leftover)"
                       value={numbers.savingsPct}
@@ -610,14 +587,14 @@ export default function BudgetCoach() {
               How to use this Budget Coach
             </h2>
             <p>
-              Start by entering your real monthly take-home income and your typical
-              spending in each category. The Budget Coach compares your mix to a
-              flexible version of the 50/30/20 rule and gives you a score out of 100.
+              Start by entering your real monthly take-home income and your typical spending in
+              each category. The Budget Coach compares your mix to a flexible version of the
+              50/30/20 rule and gives you a score out of 100.
             </p>
             <p>
-              You’ll see how much you’re spending on needs, wants, and savings, plus
-              suggested dollar amounts to aim for each month. Update your numbers
-              any time your income or expenses change.
+              You’ll see how much you’re spending on needs, wants, and savings, plus suggested
+              dollar amounts to aim for each month. Update your numbers any time your income or
+              expenses change.
             </p>
           </section>
 
@@ -636,16 +613,13 @@ export default function BudgetCoach() {
 function InputField({ label, value, onChange, placeholder }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-slate-700 mb-1">
-        {label}
-      </label>
+      <label className="block text-sm font-medium text-slate-700 mb-1">{label}</label>
       <input
-        type="number"
+        type="text"
         inputMode="decimal"
-        min={0}
         className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
+        value={String(value ?? "")}
+        onChange={(e) => onChange(sanitizeDecimalInput(e.target.value))}
         placeholder={placeholder}
       />
     </div>
@@ -666,15 +640,11 @@ function Row({ label, value, target }) {
         <div className="font-medium text-slate-800">{label}</div>
         <div className="flex items-center gap-2">
           <span className="text-slate-700">{value.toFixed(1)}%</span>
-          <Badge color={color}>
-            {diff > 0 ? `+${diff}%` : `${diff}%`}
-          </Badge>
+          <Badge color={color}>{diff > 0 ? `+${diff}%` : `${diff}%`}</Badge>
         </div>
       </div>
       <Bar value={value} />
-      <div className="text-xs text-slate-500 mt-1">
-        Target: {target.toFixed(0)}%
-      </div>
+      <div className="text-xs text-slate-500 mt-1">Target: {target.toFixed(0)}%</div>
     </div>
   );
 }
