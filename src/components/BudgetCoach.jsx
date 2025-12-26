@@ -21,7 +21,6 @@ const toNumber = (value) => {
   return n < 0 ? 0 : n;
 };
 
-
 // Small badge
 const Badge = ({ children, color = "bg-green-100 text-green-800" }) => (
   <span
@@ -69,9 +68,9 @@ export default function BudgetCoach() {
   const [debt, setDebt] = useState("");
   const [wants, setWants] = useState("");
 
-  //  Canonical for /tools/budget-coach
+  // Canonical for /coach
   useEffect(() => {
-    setCanonical("/tools/budget-coach");
+    setCanonical("/coach");
   }, []);
 
   // Load from localStorage (safely)
@@ -115,10 +114,10 @@ export default function BudgetCoach() {
   // 🔗 SOCIAL SHARE STATE & HELPERS
   const [copied, setCopied] = useState(false);
 
+  const canonicalUrl = "https://www.buddymoney.com/coach";
+
   const pageUrl =
-    typeof window !== "undefined"
-      ? window.location.href
-      : "https://buddymoney.com/tools/budget-coach";
+    typeof window !== "undefined" ? window.location.href : canonicalUrl;
 
   const shareTitle = "AI Budget Coach – BuddyMoney";
   const encodedUrl = encodeURIComponent(pageUrl);
@@ -192,7 +191,13 @@ export default function BudgetCoach() {
   }, [numbers.needsPct, numbers.wantsPct, numbers.savingsPct, targets]);
 
   const scoreLabel =
-    score >= 85 ? "Excellent" : score >= 70 ? "Good" : score >= 50 ? "Fair" : "Needs Attention";
+    score >= 85
+      ? "Excellent"
+      : score >= 70
+      ? "Good"
+      : score >= 50
+      ? "Fair"
+      : "Needs Attention";
 
   const scoreColor =
     score >= 85
@@ -224,16 +229,22 @@ export default function BudgetCoach() {
     }
 
     if (numbers.wantsPct > targets.wants * 100) {
-      t.push("Wants are above target. Try a 14-day pause on dining out or subscriptions.");
+      t.push(
+        "Wants are above target. Try a 14-day pause on dining out or subscriptions."
+      );
     }
 
     if (numbers.savingsPct < targets.savings * 100) {
       const suggested = targets.savings * numbers.i;
-      t.push(`Savings below target. Automate at least ${suggested.toFixed(0)} this month.`);
+      t.push(
+        `Savings below target. Automate at least ${suggested.toFixed(0)} this month.`
+      );
     }
 
     if (numbers.leftover < 0) {
-      t.push("You’re overspending. Aim to trim 5–10% from the highest non-essential category.");
+      t.push(
+        "You’re overspending. Aim to trim 5–10% from the highest non-essential category."
+      );
     }
 
     if (t.length === 0) {
@@ -300,8 +311,8 @@ export default function BudgetCoach() {
           property="og:description"
           content="Use BuddyMoney’s free AI Budget Coach to get a calm, realistic monthly budget plan based on your real numbers."
         />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={pageUrl} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:url" content={canonicalUrl} />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={shareTitle} />
         <meta
