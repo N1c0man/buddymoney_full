@@ -7,12 +7,6 @@
       "permanent": true
     },
     {
-  "redirects": [
-    { "source": "/tools/budget-coach", "destination": "/coach", "permanent": true },
-    { "source": "/tools/coach", "destination": "/coach", "permanent": true }
-  ]
-},
-    {
   "source": "/sitemap.xml",
   "destination": "/api/sitemap",
   "permanent": true
