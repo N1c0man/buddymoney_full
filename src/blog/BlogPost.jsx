@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+import { Helmet } from "react-helmet";
 import { getPostBySlug, posts } from "./postsIndex";
 import RelatedCreditCardGuides from "../components/RelatedCreditCardGuides";
 import ShareBar from "../components/ShareBar";
@@ -194,9 +195,7 @@ const markdownComponents = {
             bg-${callout.color}-50 border-${callout.color}-400
           `}
         >
-          <strong className={`text-${callout.color}-700`}>
-            {callout.label}
-          </strong>
+          <strong className={`text-${callout.color}-700`}>{callout.label}</strong>
           <div className="mt-1 text-slate-700">
             {String(raw).replace(/^[^:]+:\s*/i, "")}
           </div>
@@ -301,7 +300,13 @@ export default function BlogPost() {
   const { slug } = useParams();
   const post = slug ? getPostBySlug(slug) : null;
 
-  // Canonical tag
+  // ✅ Stable canonical URL (www + slug)
+  const canonicalUrl = useMemo(() => {
+    if (!slug) return `${SITE_URL}/blog`;
+    return `${SITE_URL}/blog/${slug}`;
+  }, [slug]);
+
+  // Canonical tag (DOM helper)
   useEffect(() => {
     if (!slug) return;
     setCanonical(`/blog/${slug}`);
@@ -397,10 +402,8 @@ export default function BlogPost() {
       document.head.appendChild(meta);
     }
 
-    const url =
-      typeof window !== "undefined"
-        ? window.location.href
-        : `https://buddymoney.com/blog/${post.slug}`;
+    // ✅ Use stable canonical URL (not window.location.href)
+    const url = canonicalUrl;
 
     const jsonLd = {
       "@context": "https://schema.org",
@@ -415,7 +418,7 @@ export default function BlogPost() {
         name: "BuddyMoney",
         logo: {
           "@type": "ImageObject",
-          url: "https://buddymoney.com/images/buddymoney-logo.png",
+          url: "https://www.buddymoney.com/images/buddymoney-logo.png",
         },
       },
     };
@@ -442,7 +445,7 @@ export default function BlogPost() {
     document.head.appendChild(script);
 
     return () => script.remove();
-  }, [post]);
+  }, [post, canonicalUrl]);
 
   /* ------------------------------------------
      Load Markdown (strip frontmatter)
@@ -472,9 +475,7 @@ export default function BlogPost() {
           setLoading(false);
         })
         .catch(() => {
-          setError(
-            "This article is still being written or could not be loaded."
-          );
+          setError("This article is still being written or could not be loaded.");
           setLoading(false);
         });
     } else {
@@ -487,8 +488,9 @@ export default function BlogPost() {
      Sharing
   ------------------------------------------ */
   useEffect(() => {
-    if (typeof window !== "undefined") setShareUrl(window.location.href);
-  }, []);
+    // ✅ Share stable canonical URL
+    setShareUrl(canonicalUrl);
+  }, [canonicalUrl]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -542,285 +544,291 @@ export default function BlogPost() {
      MAIN RENDER
   ------------------------------------------ */
   return (
-    <main className="pt-2 lg:pt-4 pb-16">
-      {/* Progress bar */}
-      <div className="fixed inset-x-0 top-0 z-[1000000] h-1 bg-sky-100/40">
-        <div
-          className="h-full bg-gradient-to-r from-sky-500 via-emerald-400 to-sky-500 transition-[width] duration-150 ease-out"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
+    <>
+      {/* ✅ This is what fixes “User-declared canonical: None” in GSC */}
+      <Helmet>
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:url" content={canonicalUrl} />
+      </Helmet>
 
-      <div className="max-w-5xl mx-auto px-4">
-        <section className="mt-4 rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8">
-          {/* Back */}
-          <div className="mb-4">
-            <Link
-              to="/blog"
-              className="inline-flex items-center text-xs font-medium text-slate-500 hover:text-slate-700"
-            >
-              ← Back to articles
-            </Link>
-          </div>
+      <main className="pt-2 lg:pt-4 pb-16">
+        {/* Progress bar */}
+        <div className="fixed inset-x-0 top-0 z-[1000000] h-1 bg-sky-100/40">
+          <div
+            className="h-full bg-gradient-to-r from-sky-500 via-emerald-400 to-sky-500 transition-[width] duration-150 ease-out"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
 
-          {/* Featured Ribbon */}
-          <div className="inline-block bg-emerald-600 text-white text-[10px] font-semibold px-2 py-0.5 rounded-md mb-2 shadow-sm">
-            Featured
-          </div>
+        <div className="max-w-5xl mx-auto px-4">
+          <section className="mt-4 rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8">
+            {/* Back */}
+            <div className="mb-4">
+              <Link
+                to="/blog"
+                className="inline-flex items-center text-xs font-medium text-slate-500 hover:text-slate-700"
+              >
+                ← Back to articles
+              </Link>
+            </div>
 
-          {/* Header */}
-          <header className="mb-6">
-            {post.tag && (
-              <p className="text-xs font-semibold tracking-[0.2em] uppercase text-emerald-500 mb-2">
-                {post.tag}
-              </p>
+            {/* Featured Ribbon */}
+            <div className="inline-block bg-emerald-600 text-white text-[10px] font-semibold px-2 py-0.5 rounded-md mb-2 shadow-sm">
+              Featured
+            </div>
+
+            {/* Header */}
+            <header className="mb-6">
+              {post.tag && (
+                <p className="text-xs font-semibold tracking-[0.2em] uppercase text-emerald-500 mb-2">
+                  {post.tag}
+                </p>
+              )}
+
+              <h1 className="text-3xl font-bold text-slate-900 mb-3">
+                {post.title}
+              </h1>
+
+              {/* Author */}
+              <div className="flex items-center gap-3 text-[11px] text-slate-500 mb-3">
+                {post.authorAvatar && (
+                  <img
+                    src={post.authorAvatar}
+                    alt={post.author || "BuddyMoney Editorial"}
+                    className="h-8 w-8 rounded-full border border-slate-200 object-cover"
+                  />
+                )}
+                <div>
+                  <p>
+                    By{" "}
+                    <span className="font-medium text-slate-700">
+                      {post.author || "BuddyMoney Editorial"}
+                    </span>
+                  </p>
+                  <p className="text-[10px] text-slate-400">
+                    {post.readTime && post.readTime}
+                  </p>
+                </div>
+              </div>
+
+              {/* Tags */}
+              <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
+                {post.level && (
+                  <span className="inline-flex items-center gap-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                    {post.level}
+                  </span>
+                )}
+                {post.readTime && <span>{post.readTime}</span>}
+              </div>
+            </header>
+
+            {/* Hero Image */}
+            {post.heroImage && (
+              <figure className="overflow-hidden rounded-2xl border border-slate-200 shadow-soft mb-6">
+                <img
+                  src={post.heroImage}
+                  alt={post.heroImageAlt || post.title}
+                  loading="lazy"
+                  className="w-full h-auto"
+                />
+                {post.heroImageAlt && (
+                  <figcaption className="px-4 py-3 text-xs text-slate-500">
+                    {post.heroImageAlt}
+                  </figcaption>
+                )}
+              </figure>
             )}
 
-            <h1 className="text-3xl font-bold text-slate-900 mb-3">
-              {post.title}
-            </h1>
-
-            {/* Author */}
-            <div className="flex items-center gap-3 text-[11px] text-slate-500 mb-3">
-              {post.authorAvatar && (
-                <img
-                  src={post.authorAvatar}
-                  alt={post.author || "BuddyMoney Editorial"}
-                  className="h-8 w-8 rounded-full border border-slate-200 object-cover"
-                />
-              )}
-              <div>
-                <p>
-                  By{" "}
-                  <span className="font-medium text-slate-700">
-                    {post.author || "BuddyMoney Editorial"}
-                  </span>
-                </p>
-                <p className="text-[10px] text-slate-400">
-                  {post.readTime && post.readTime}
-                </p>
+            {/* Auto SmartCredit callout for credit/debt posts */}
+            {isCreditIntent && (
+              <div className="mb-6">
+                <AffiliateCalloutSmartCredit intent={smartCreditIntent} />
               </div>
-            </div>
+            )}
 
-            {/* Tags */}
-            <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
-              {post.level && (
-                <span className="inline-flex items-center gap-1">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                  {post.level}
-                </span>
-              )}
-              {post.readTime && <span>{post.readTime}</span>}
-            </div>
-          </header>
+            {/* Social share top */}
+            <ShareBar
+              variant="top"
+              label="Share this article"
+              title={`${post.title} – BuddyMoney`}
+            />
 
-          {/* Hero Image */}
-          {post.heroImage && (
-            <figure className="overflow-hidden rounded-2xl border border-slate-200 shadow-soft mb-6">
-              <img
-                src={post.heroImage}
-                alt={post.heroImageAlt || post.title}
-                loading="lazy"
-                className="w-full h-auto"
-              />
-              {post.heroImageAlt && (
-                <figcaption className="px-4 py-3 text-xs text-slate-500">
-                  {post.heroImageAlt}
-                </figcaption>
-              )}
-            </figure>
-          )}
+            {/* Main layout grid */}
+            <div className="mt-4 lg:grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,2.1fr)] lg:gap-10">
+              {/* Sidebar TOC */}
+              <aside className="mb-6 lg:mb-0 lg:self-start lg:sticky lg:top-24">
+                {headings.length > 0 && (
+                  <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-[11px]">
+                    <p className="mb-1 font-semibold text-slate-600 uppercase tracking-[0.18em]">
+                      In this article
+                    </p>
+                    <ul className="space-y-1">
+                      {headings.map((h) => (
+                        <li key={h.id} className="leading-snug">
+                          <a
+                            href={`#${h.id}`}
+                            className={`hover:text-emerald-600 ${
+                              h.level === 2
+                                ? "font-medium text-slate-700"
+                                : h.level === 3
+                                ? "pl-3 text-slate-600"
+                                : "pl-5 text-slate-500"
+                            }`}
+                          >
+                            {h.text}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </aside>
 
-          {/* Auto SmartCredit callout for credit/debt posts */}
-          {isCreditIntent && (
-            <div className="mb-6">
-              <AffiliateCalloutSmartCredit intent={smartCreditIntent} />
-            </div>
-          )}
+              {/* Article column */}
+              <div className="space-y-10">
+                {/* Loader / error */}
+                {loading && <p className="text-sm text-slate-500">Loading article...</p>}
+                {error && !loading && <p className="text-sm text-slate-500">{error}</p>}
 
-          {/* Social share top */}
-          <ShareBar
-            variant="top"
-            label="Share this article"
-            title={`${post.title} – BuddyMoney`}
-          />
+                {/* ARTICLE BODY */}
+                {!loading && !error && markdown && (
+                  <div className="bg-gradient-to-br from-emerald-50 to-white p-6 rounded-2xl border border-slate-200 shadow-soft">
+                    <article
+                      className="
+                        blog-article-body
+                        prose prose-slate max-w-none leading-relaxed
+                        prose-headings:text-slate-900
+                        prose-strong:text-slate-900
+                        prose-a:text-emerald-600
+                        prose-blockquote:border-l-emerald-400
+                        prose-li:marker:text-emerald-500
+                        prose-ul:my-3
+                        prose-ol:my-3
+                        prose-hr:border-emerald-200
+                        prose-img:rounded-xl prose-img:shadow-soft
+                      "
+                    >
+                      <ReactMarkdown components={markdownComponents}>
+                        {markdown}
+                      </ReactMarkdown>
+                    </article>
+                  </div>
+                )}
 
-          {/* Main layout grid */}
-          <div className="mt-4 lg:grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,2.1fr)] lg:gap-10">
-            {/* Sidebar TOC */}
-            <aside className="mb-6 lg:mb-0 lg:self-start lg:sticky lg:top-24">
-              {headings.length > 0 && (
-                <div className="rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3 text-[11px]">
-                  <p className="mb-1 font-semibold text-slate-600 uppercase tracking-[0.18em]">
-                    In this article
-                  </p>
-                  <ul className="space-y-1">
-                    {headings.map((h) => (
-                      <li key={h.id} className="leading-snug">
-                        <a
-                          href={`#${h.id}`}
-                          className={`hover:text-emerald-600 ${
-                            h.level === 2
-                              ? "font-medium text-slate-700"
-                              : h.level === 3
-                              ? "pl-3 text-slate-600"
-                              : "pl-5 text-slate-500"
-                          }`}
+                {/* Share bottom */}
+                <div className="mb-8">
+                  <ShareBar
+                    variant="bottom"
+                    label="Share this article"
+                    title={`${post.title} – BuddyMoney`}
+                  />
+                </div>
+
+                {/* Related credit card guides */}
+                <RelatedCreditCardGuides />
+
+                {/* Related tools */}
+                {!loading && !error && (
+                  <section className="border border-slate-200 rounded-2xl bg-white/90 p-4 shadow-sm">
+                    <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 mb-2">
+                      Related BuddyMoney tools
+                    </h2>
+                    <p className="text-[11px] text-slate-500 mb-3">
+                      Use these tools to put this guide into action.
+                    </p>
+
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      {relatedTools.map((tool) => (
+                        <Link
+                          key={tool.title}
+                          to={tool.path}
+                          className="group rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-3 hover:border-emerald-400 hover:bg-white transition-colors"
                         >
-                          {h.text}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </aside>
+                          <p className="text-xs font-semibold text-slate-800 group-hover:text-emerald-700">
+                            {tool.title}
+                          </p>
+                          <p className="mt-1 text-[11px] text-slate-500 leading-snug">
+                            {tool.description}
+                          </p>
+                        </Link>
+                      ))}
+                    </div>
+                  </section>
+                )}
 
-            {/* Article column */}
-            <div className="space-y-10">
-              {/* Loader / error */}
-              {loading && (
-                <p className="text-sm text-slate-500">Loading article...</p>
-              )}
-              {error && !loading && (
-                <p className="text-sm text-slate-500">{error}</p>
-              )}
+                {/* FAQs */}
+                {!loading && !error && Array.isArray(post.faq) && post.faq.length > 0 && (
+                  <section className="rounded-2xl border border-sky-200 bg-sky-50/70 p-4 shadow-sm">
+                    <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700 mb-3">
+                      Frequently asked questions
+                    </h2>
 
-              {/* ARTICLE BODY */}
-              {!loading && !error && markdown && (
-                <div className="bg-gradient-to-br from-emerald-50 to-white p-6 rounded-2xl border border-slate-200 shadow-soft">
-                  <article
-                    className="
-                      blog-article-body
-                      prose prose-slate max-w-none leading-relaxed
-                      prose-headings:text-slate-900
-                      prose-strong:text-slate-900
-                      prose-a:text-emerald-600
-                      prose-blockquote:border-l-emerald-400
-                      prose-li:marker:text-emerald-500
-                      prose-ul:my-3
-                      prose-ol:my-3
-                      prose-hr:border-emerald-200
-                      prose-img:rounded-xl prose-img:shadow-soft
-                    "
-                  >
-                    <ReactMarkdown components={markdownComponents}>
-                      {markdown}
-                    </ReactMarkdown>
-                  </article>
-                </div>
-              )}
+                    <div className="space-y-3">
+                      {post.faq.map((item, idx) => (
+                        <details
+                          key={`${post.slug}-faq-${idx}`}
+                          className="group rounded-xl border border-sky-200 bg-white/80 px-4 py-3"
+                        >
+                          <summary className="cursor-pointer list-none text-sm font-semibold text-slate-800 group-hover:text-sky-700 flex items-center justify-between">
+                            {item.question}
+                            <span className="ml-2 text-sky-500 group-open:rotate-180 transition-transform">
+                              ▼
+                            </span>
+                          </summary>
 
-              {/* Share bottom */}
-              <div className="mb-8">
-                <ShareBar
-                  variant="bottom"
-                  label="Share this article"
-                  title={`${post.title} – BuddyMoney`}
-                />
-              </div>
+                          <p className="mt-2 text-sm text-slate-700 leading-relaxed">
+                            {item.answer}
+                          </p>
+                        </details>
+                      ))}
+                    </div>
+                  </section>
+                )}
 
-              {/* Related credit card guides */}
-              <RelatedCreditCardGuides />
-
-              {/* Related tools */}
-              {!loading && !error && (
-                <section className="border border-slate-200 rounded-2xl bg-white/90 p-4 shadow-sm">
-                  <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 mb-2">
-                    Related BuddyMoney tools
-                  </h2>
-                  <p className="text-[11px] text-slate-500 mb-3">
-                    Use these tools to put this guide into action.
-                  </p>
-
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {relatedTools.map((tool) => (
+                {/* Prev / Next */}
+                {(prevPost || nextPost) && (
+                  <nav className="mt-4 grid gap-3 sm:grid-cols-2 text-xs">
+                    {prevPost && (
                       <Link
-                        key={tool.title}
-                        to={tool.path}
-                        className="group rounded-xl border border-slate-200 bg-slate-50/70 px-3 py-3 hover:border-emerald-400 hover:bg-white transition-colors"
+                        to={`/blog/${prevPost.slug}`}
+                        className="group border border-slate-200 rounded-xl p-3 bg-slate-50/60 hover:border-emerald-400 hover:bg-white transition-colors"
                       >
-                        <p className="text-xs font-semibold text-slate-800 group-hover:text-emerald-700">
-                          {tool.title}
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400 mb-1">
+                          Previous
                         </p>
-                        <p className="mt-1 text-[11px] text-slate-500 leading-snug">
-                          {tool.description}
+                        <p className="font-medium text-slate-700 group-hover:text-emerald-700 line-clamp-2">
+                          {prevPost.title}
                         </p>
                       </Link>
-                    ))}
-                  </div>
-                </section>
-              )}
-{/* FAQs */}
-{!loading && !error && Array.isArray(post.faq) && post.faq.length > 0 && (
-  <section className="rounded-2xl border border-sky-200 bg-sky-50/70 p-4 shadow-sm">
-    <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-700 mb-3">
-      Frequently asked questions
-    </h2>
+                    )}
 
-    <div className="space-y-3">
-      {post.faq.map((item, idx) => (
-        <details
-          key={`${post.slug}-faq-${idx}`}
-          className="group rounded-xl border border-sky-200 bg-white/80 px-4 py-3"
-        >
-          <summary className="cursor-pointer list-none text-sm font-semibold text-slate-800 group-hover:text-sky-700 flex items-center justify-between">
-            {item.question}
-            <span className="ml-2 text-sky-500 group-open:rotate-180 transition-transform">
-              ▼
-            </span>
-          </summary>
+                    {nextPost && (
+                      <Link
+                        to={`/blog/${nextPost.slug}`}
+                        className="group border border-slate-200 rounded-xl p-3 bg-slate-50/60 hover:border-emerald-400 hover:bg-white transition-colors text-right sm:text-left"
+                      >
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400 mb-1">
+                          Next
+                        </p>
+                        <p className="font-medium text-slate-700 group-hover:text-emerald-700 line-clamp-2">
+                          {nextPost.title}
+                        </p>
+                      </Link>
+                    )}
+                  </nav>
+                )}
 
-          <p className="mt-2 text-sm text-slate-700 leading-relaxed">
-            {item.answer}
-          </p>
-        </details>
-      ))}
-    </div>
-  </section>
-)}
-              {/* Prev / Next */}
-              {(prevPost || nextPost) && (
-                <nav className="mt-4 grid gap-3 sm:grid-cols-2 text-xs">
-                  {prevPost && (
-                    <Link
-                      to={`/blog/${prevPost.slug}`}
-                      className="group border border-slate-200 rounded-xl p-3 bg-slate-50/60 hover:border-emerald-400 hover:bg-white transition-colors"
-                    >
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400 mb-1">
-                        Previous
-                      </p>
-                      <p className="font-medium text-slate-700 group-hover:text-emerald-700 line-clamp-2">
-                        {prevPost.title}
-                      </p>
-                    </Link>
-                  )}
-
-                  {nextPost && (
-                    <Link
-                      to={`/blog/${nextPost.slug}`}
-                      className="group border border-slate-200 rounded-xl p-3 bg-slate-50/60 hover:border-emerald-400 hover:bg-white transition-colors text-right sm:text-left"
-                    >
-                      <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400 mb-1">
-                        Next
-                      </p>
-                      <p className="font-medium text-slate-700 group-hover:text-emerald-700 line-clamp-2">
-                        {nextPost.title}
-                      </p>
-                    </Link>
-                  )}
-                </nav>
-              )}
-
-              {/* Disclaimer */}
-              <p className="mt-4 text-[11px] text-slate-500 leading-relaxed">
-                BuddyMoney articles are for education and planning only. They
-                are not financial, legal, or tax advice.
-              </p>
+                {/* Disclaimer */}
+                <p className="mt-4 text-[11px] text-slate-500 leading-relaxed">
+                  BuddyMoney articles are for education and planning only. They
+                  are not financial, legal, or tax advice.
+                </p>
+              </div>
             </div>
-          </div>
-        </section>
-      </div>
-    </main>
+          </section>
+        </div>
+      </main>
+    </>
   );
 }
