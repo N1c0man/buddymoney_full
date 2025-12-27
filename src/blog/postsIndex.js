@@ -3,6 +3,33 @@ import rawPosts from "./blogPosts.json";
 
 // Keep ALL FAQs here, keyed by slug (unchanged)
 const faqBySlug = {
+  "first-30-days-taking-control-of-your-money": [
+  {
+    question: "What should I focus on first when taking control of my money?",
+    answer:
+      "In the first few weeks, focus on awareness rather than perfection. Track your income and expenses, understand where your money goes, and avoid making drastic changes all at once."
+  },
+  {
+    question: "Is it normal to feel overwhelmed at the beginning?",
+    answer:
+      "Yes. Feeling overwhelmed is very common when you first look closely at your finances. That discomfort usually fades as clarity improves and small habits form."
+  },
+  {
+    question: "Do I need a perfect budget in the first month?",
+    answer:
+      "No. The first 30 days are about learning, not perfection. A simple, flexible plan works better than a strict budget that’s hard to maintain."
+  },
+  {
+    question: "What if I make mistakes during the first month?",
+    answer:
+      "Mistakes are part of the process. Progress comes from consistency, not flawless execution. One off-week does not undo forward momentum."
+  },
+  {
+    question: "How long does it take to feel confident with money?",
+    answer:
+      "Many people begin to feel calmer and more confident after the first month. Long-term confidence builds over time as habits become routine."
+  }
+],
     "debt-consolidation-guide": [
     {
       question: "What is debt consolidation in simple terms?",
@@ -156,6 +183,7 @@ const faqBySlug = {
       answer:
         "No. Tracking your net worth or viewing credit information does not hurt your credit score. Monitoring tools typically use soft checks, which do not impact your score.",
     },
+    
   ],
 
   // ⭐ All your other FAQ objects remain unchanged
