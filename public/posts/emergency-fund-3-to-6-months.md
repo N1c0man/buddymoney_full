@@ -47,7 +47,7 @@ Once you know your monthly essentials, multiply by:
 
 - **3 months** → basic starter fund  
 - **6 months** → full security for most households  
-- **9+ months** → great for freelancers or variable income
+- **9+ months** → great for freelancers or variable income  
 
 ## Step 2: Set a Realistic Monthly Savings Goal
 Saving hundreds per month might feel overwhelming, so start simple:
@@ -120,6 +120,9 @@ Avoid using it for:
 * Non-essential recurring expenses  
 
 Your fund is for protection, not convenience.
+
+> **Important:**  
+> One of the biggest benefits of a solid emergency fund is avoiding new debt altogether. When unexpected expenses hit, having cash on hand means you don’t have to rely on credit cards—especially when deciding between a **[secured or unsecured credit card for rebuilding credit](/blog/secured-vs-unsecured-credit-cards)**.
 
 ## Step 8: Rebuild After Every Emergency
 If you dip into your fund—don’t feel guilty.

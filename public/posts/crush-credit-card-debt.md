@@ -66,6 +66,17 @@ Choose the method that keeps you consistent, not the one that sounds best on pap
 
 ---
 
+### ⚠️ Avoid This Common Mistake While Paying Off Debt
+
+A common mistake is opening a new credit card too early.
+
+If you’re actively paying down balances or rebuilding after credit card debt, the *type* of card matters more than the brand. In many cases, a **secured credit card** is safer than an unsecured one while your credit score is recovering.
+
+If you’re unsure which option fits your situation, see our breakdown of  
+**[secured vs unsecured credit cards](/blog/secured-vs-unsecured-credit-cards)** before applying.
+
+---
+
 ## 3. Find Your “Extra Payment” Number
 
 You don’t need huge amounts to make progress.
@@ -123,6 +134,9 @@ Acknowledging progress keeps motivation alive.
 ---
 
 ## Final Encouragement
+
+Paying off credit card debt is step one.  
+Rebuilding smart credit afterward is what keeps it from coming back.
 
 You *can* break free from high-interest credit card debt.
 

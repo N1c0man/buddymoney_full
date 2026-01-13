@@ -76,6 +76,9 @@ Look at the big picture and ask a few simple questions:
 * Is savings too small?  
   → Automate even a small transfer — $20 per week builds momentum.
 
+> **Budgeting note:**  
+> If credit cards are part of your plan — whether for emergencies or rebuilding credit — understanding the **[difference between secured and unsecured cards](/blog/secured-vs-unsecured-credit-cards)** helps you avoid expensive mistakes early on.
+
 The goal isn’t perfection. It’s awareness and forward movement.
 
 ---

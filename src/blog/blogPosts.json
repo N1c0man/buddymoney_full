@@ -14,32 +14,18 @@
     "heroImageAlt": "A secured credit card with a lock symbol representing safe credit building"
   },
   {
-  "slug": "secured-vs-unsecured-credit-cards",
-  "title": "Secured vs Unsecured Credit Cards: Which Is Better for Rebuilding Credit?",
-  "tag": "Credit Cards",
-  "level": "Beginner",
-  "readTime": "7 min read",
-  "excerpt":
-    "Not sure whether to choose a secured or unsecured credit card? Learn the differences, pros and cons, and which option is best for rebuilding credit.",
-  "file": "/posts/secured-vs-unsecured-credit-cards.md",
-  "author": "BuddyMoney Editorial",
-  "authorAvatar": "/icons/editorial.png",
-  "date": "2026-01-12",
-  "heroImage": "/icons/hero-secured-vs-unsecured.png"
-},
-  {
     "slug": "budget-traps-to-avoid",
     "title": "The 7 Budget Traps Keeping You Broke (And How to Fix Them)",
     "tag": "Budgeting",
     "level": "Intermediate",
     "readTime": "8 min read",
-    "excerpt": "Common budgeting mistakes that silently drain your money — and simple fixes for each.",
+    "excerpt": "Common budgeting mistakes that silently drain your money — and simple, realistic fixes for each.",
     "file": "/posts/budget-traps-to-avoid.md",
     "author": "BuddyMoney Editorial",
     "authorAvatar": "/icons/editorial.png",
     "date": "2025-12-01",
     "heroImage": "/icons/budget-traps-hero.png",
-    "heroImageAlt": "Person stepping over financial traps labeled bills, spending, debt"
+    "heroImageAlt": "Person stepping over financial traps labeled bills, spending, and debt"
   },
   {
     "slug": "crush-credit-card-debt",
@@ -47,13 +33,13 @@
     "tag": "Debt",
     "level": "Intermediate",
     "readTime": "9 min read",
-    "excerpt": "A step-by-step game plan to pay off high-interest cards faster.",
+    "excerpt": "A step-by-step game plan to pay off high-interest credit cards faster and regain control of your money.",
     "file": "/posts/crush-credit-card-debt.md",
     "author": "BuddyMoney Editorial",
     "authorAvatar": "/icons/editorial.png",
     "date": "2025-11-20",
     "heroImage": "/icons/credit-card-crush-hero.png",
-    "heroImageAlt": "Cut-up credit cards and a payoff plan on a notepad"
+    "heroImageAlt": "Cut-up credit cards and a payoff plan written on a notepad"
   },
   {
     "slug": "debt-consolidation-guide",
@@ -89,7 +75,7 @@
     "tag": "Emergency Fund",
     "level": "Beginner",
     "readTime": "6 min read",
-    "excerpt": "Why every household needs one and how much you should save.",
+    "excerpt": "Why every household needs an emergency fund and how much you should save to stay protected from life’s surprises.",
     "file": "/posts/emergency-fund-basics.md",
     "author": "BuddyMoney Editorial",
     "authorAvatar": "/icons/editorial.png",
@@ -131,7 +117,7 @@
     "tag": "Budgeting",
     "level": "Beginner",
     "readTime": "7 min read",
-    "excerpt": "A quick-start method to give every dollar a job today.",
+    "excerpt": "A quick-start budgeting method that helps you give every dollar a job — without stress or spreadsheets.",
     "file": "/posts/how-to-start-a-budget-in-10-minutes.md",
     "author": "BuddyMoney Editorial",
     "authorAvatar": "/icons/editorial.png",
@@ -141,15 +127,15 @@
   },
   {
     "slug": "salary-by-age",
-    "title": "How Much Salary Should You Be Making for Your Age in 2025?",
+    "title": "How Much Salary Should You Be Making for Your Age in 2026?",
     "tag": "Income",
     "level": "Beginner",
     "readTime": "10 min read",
-    "excerpt": "A breakdown of what people typically earn at each age in 2025.",
+    "excerpt": "A realistic breakdown of what people typically earn at each age in 2026 — and how to increase your income over time.",
     "file": "/posts/salary-by-age.md",
     "author": "BuddyMoney Editorial",
     "authorAvatar": "/icons/editorial.png",
-    "date": "2025-11-22",
+    "date": "2026-01-11",
     "heroImage": "/icons/salary-by-age-hero.png",
     "heroImageAlt": "Bar chart showing typical salary ranges by age"
   },
@@ -168,12 +154,26 @@
     "heroImageAlt": "Owl saving for his first 1000 dollars"
   },
   {
+    "slug": "secured-vs-unsecured-credit-cards",
+    "title": "Secured vs Unsecured Credit Cards: Which Is Better for Rebuilding Credit?",
+    "tag": "Credit Cards",
+    "level": "Beginner",
+    "readTime": "7 min read",
+    "excerpt": "Not sure whether to choose a secured or unsecured credit card? Learn the key differences, pros and cons, and which option is best for rebuilding your credit safely.",
+    "file": "/posts/secured-vs-unsecured-credit-cards.md",
+    "author": "BuddyMoney Editorial",
+    "authorAvatar": "/icons/editorial.png",
+    "date": "2026-01-12",
+    "heroImage": "/icons/hero-secured-vs-unsecured.png",
+    "heroImageAlt": "Comparison of secured and unsecured credit cards representing different paths to credit building"
+  },
+  {
     "slug": "side-hustle-ideas",
     "title": "7 Best Side Hustles You Can Start This Week",
     "tag": "Side Hustles",
     "level": "Beginner",
     "readTime": "9 min read",
-    "excerpt": "Practical, fast-start side hustles you can launch this weekend.",
+    "excerpt": "Practical, fast-start side hustles you can realistically launch this week — even with no experience.",
     "file": "/posts/side-hustle-ideas.md",
     "author": "BuddyMoney Editorial",
     "authorAvatar": "/icons/editorial.png",
@@ -187,13 +187,13 @@
     "tag": "Side Hustles",
     "level": "Intermediate",
     "readTime": "8 min read",
-    "excerpt": "Ideas and guardrails to earn more without burning yourself out.",
+    "excerpt": "Practical ideas and guardrails to earn extra income without burning yourself out.",
     "file": "/posts/side-hustle-income-tips.md",
     "author": "BuddyMoney Editorial",
     "authorAvatar": "/icons/editorial.png",
     "date": "2025-11-19",
     "heroImage": "/icons/side-hustle-hero.png",
-    "heroImageAlt": "Person working on a laptop at night with side hustle ideas"
+    "heroImageAlt": "Person working on a laptop at night exploring side hustle ideas"
   },
   {
     "slug": "why-your-net-worth-matters",
