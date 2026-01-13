@@ -14,7 +14,7 @@ const HUB_ITEMS = [
     badge: "Start here",
     description:
       "Filter sample cards by credit score, type, and annual fee. Compare a few side by side and get a feel for what’s out there.",
-    highlight: "Interactive tool • Compare up to 3 cards",
+    highlight: "Preview cards • No credit score impact",
     tone: "tool",
   },
   {
@@ -61,7 +61,6 @@ const HUB_ITEMS = [
     highlight: "First card guidance for students",
     tone: "warm",
   },
-  // If you later add a secured-only guide, you can slot it here.
 ];
 
 export default function CreditCardsHub() {
@@ -82,7 +81,7 @@ export default function CreditCardsHub() {
   const schemaOrg = useMemo(() => {
     return {
       "@context": "https://schema.org",
-      "@type": "CollectionPage",
+      "@type": ["CollectionPage", "WebPage"],
       name: "Credit Card Guides & Finder Hub",
       url: "https://buddymoney.com/credit-cards",
       description: pageDescription,
@@ -129,14 +128,15 @@ export default function CreditCardsHub() {
         />
 
         {/* JSON-LD */}
-        <script type="application/ld+json">{JSON.stringify(schemaOrg)}</script>
+        <script type="application/ld+json">
+          {JSON.stringify(schemaOrg)}
+        </script>
       </Helmet>
 
       <main className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50/40 pb-16 pt-4">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 space-y-6">
-          {/* HERO — Tools-style image hero with overlay text */}
+          {/* HERO */}
           <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[220px] md:h-[260px] lg:h-[300px]">
-            {/* Background hero image */}
             <img
               src="/icons/hero-credit-cards-hub.png"
               alt="BuddyMoney credit card hub hero image"
@@ -144,14 +144,11 @@ export default function CreditCardsHub() {
               loading="eager"
             />
 
-            {/* Soft overlay so text stays readable */}
             <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
 
-            {/* soft blobs (same vibe as Tools) */}
             <div className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl" />
 
-            {/* Content */}
             <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
               <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-center w-full">
                 <div className="space-y-4">
@@ -159,13 +156,20 @@ export default function CreditCardsHub() {
                     BuddyMoney Credit Card Hub
                   </p>
                   <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-                    One place for all your credit card research.
+                    Credit card guides, comparisons, and a simple finder — all in
+                    one place.
                   </h1>
                   <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
                     Start with a high-level guide or jump into the interactive
                     finder. Everything is in plain English so you can choose
                     calmly and confidently.
                   </p>
+
+                  <ul className="mt-2 text-[12px] text-brand-800 space-y-1">
+                    <li>✔ First-time card applicants</li>
+                    <li>✔ Rebuilding or improving credit</li>
+                    <li>✔ Comparing cards before applying</li>
+                  </ul>
 
                   <div className="flex flex-wrap gap-2 text-[11px] mt-2">
                     <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
@@ -177,7 +181,6 @@ export default function CreditCardsHub() {
                   </div>
                 </div>
 
-                {/* Right info card */}
                 <div className="hidden md:block">
                   <div className="rounded-2xl bg-white/95 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 text-sm text-slate-800 space-y-3">
                     <p className="text-xs font-semibold text-slate-700">
@@ -185,7 +188,9 @@ export default function CreditCardsHub() {
                     </p>
                     <ol className="ml-4 list-decimal space-y-1 text-[12px]">
                       <li>Pick the guide that matches your current goal.</li>
-                      <li>Learn what to watch out for (fees, APRs, fine print).</li>
+                      <li>
+                        Learn what to watch out for (fees, APRs, fine print).
+                      </li>
                       <li>Use the finder to explore sample card lineups.</li>
                     </ol>
                     <p className="text-[11px] text-slate-500">
@@ -198,25 +203,31 @@ export default function CreditCardsHub() {
             </div>
           </section>
 
+          {/* Affiliate disclosure */}
+          <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 px-4 py-3 text-[11px] text-emerald-900">
+            <strong>Disclosure:</strong> BuddyMoney may earn compensation from
+            partners when you click certain links or apply for products. This
+            does not affect how we explain cards or tools. We focus on clarity,
+            not commissions.
+          </div>
+
           {/* Top share bar */}
           <ShareBar
             variant="top"
-            label="Share this credit card finder tool with a buddy"
+            label="Share this credit card hub with someone comparing cards"
             title="I’m using BuddyMoney’s credit card hub to understand my options before I apply."
           />
 
-          {/* GRID OF GUIDES + TOOL */}
+          {/* GRID */}
           <section className="rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8 space-y-5">
-            <header className="flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <h2 className="text-sm font-semibold text-slate-900">
-                  Credit card guides & tools
-                </h2>
-                <p className="text-[11px] text-slate-500">
-                  Start with a guide, then use the finder when you&apos;re ready
-                  to explore specific cards.
-                </p>
-              </div>
+            <header>
+              <h2 className="text-sm font-semibold text-slate-900">
+                Credit card guides & tools
+              </h2>
+              <p className="text-[11px] text-slate-500">
+                Start with a guide, then use the finder when you&apos;re ready to
+                explore specific cards.
+              </p>
             </header>
 
             <div className="grid gap-4 md:grid-cols-2">
@@ -224,7 +235,12 @@ export default function CreditCardsHub() {
                 <Link
                   key={item.id}
                   to={item.path}
-                  className="group relative flex flex-col justify-between rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-4 shadow-sm transition hover:border-emerald-400 hover:bg-white"
+                  className={`group relative flex flex-col justify-between rounded-2xl border px-4 py-4 shadow-sm transition
+                    ${
+                      item.id === "finder"
+                        ? "border-emerald-400 bg-emerald-50/60 hover:bg-white"
+                        : "border-slate-200 bg-slate-50/80 hover:border-emerald-400 hover:bg-white"
+                    }`}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
@@ -246,10 +262,13 @@ export default function CreditCardsHub() {
 
                   {item.highlight && (
                     <p className="mt-3 inline-flex items-center gap-1 rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-medium text-emerald-800">
-                      <span aria-hidden="true">⭐</span>
-                      <span>{item.highlight}</span>
+                      ⭐ {item.highlight}
                     </p>
                   )}
+
+                  <span className="mt-2 inline-flex items-center text-[10px] text-slate-500">
+                    Offers shown when available • Always review issuer terms
+                  </span>
 
                   <span className="mt-3 inline-flex items-center text-[11px] font-semibold text-emerald-700">
                     Open{" "}
@@ -271,7 +290,7 @@ export default function CreditCardsHub() {
           {/* Bottom share bar */}
           <ShareBar
             variant="bottom"
-            label="Share this compare credit card tool with a friend"
+            label="Share this credit card hub with someone comparing cards"
             title="I’m using BuddyMoney’s credit card hub to learn about cards before I apply."
           />
         </div>

@@ -25,6 +25,14 @@ Let’s break down how secured cards work — and which ones are actually worth 
 
 ---
 
+> **Not sure if a secured card is your best option?**  
+> Secured credit cards are often the safest choice when rebuilding credit, but they’re not always the right fit for every situation. In some cases, an unsecured card may make sense — especially as your credit improves.  
+>  
+> If you’re deciding between the two, see our breakdown of  
+> **[secured vs unsecured credit cards](/blog/secured-vs-unsecured-credit-cards)** before applying.
+
+---
+
 ## What Is a Secured Credit Card?
 
 A secured credit card works like a normal credit card, except you provide a **refundable security deposit**. That deposit usually becomes your credit limit.
