@@ -1,176 +1,172 @@
 ---
 slug: salary-by-age
-title: How Much Salary Should You Be Making for Your Age in 2025?
+title: How Much Salary Should You Be Making for Your Age in 2026?
 tag: Income
 level: Beginner
 readTime: 10 min read
-excerpt: A breakdown of what people typically earn at each age in 2025.
+excerpt: A realistic breakdown of what people typically earn at each age in 2026 — and how to increase your income over time.
 author: BuddyMoney Editorial
 authorAvatar: /icons/editorial.png
-date: 2025-11-22
+date: 2026-01-11
 heroImage: /icons/salary-by-age-hero.png
 heroImageAlt: Bar chart showing typical salary ranges by age
 ---
 
-# How Much Salary Should You Be Making for Your Age in 2025?
+# How Much Salary Should You Be Making for Your Age in 2026?
 
-> INFO: Knowing whether you're “on track” financially isn’t about comparing yourself to others — it’s about understanding national averages, market value, and what you can do to grow.
+> **Important:** Knowing whether you’re “on track” financially isn’t about comparing yourself to others.  
+> It’s about understanding benchmarks, market value, and what steps you can take to grow.
 
 It’s one of the most common questions people ask:  
 **“How much money should I be making for my age?”**
 
-The truth is, salaries vary based on career, education, industry, and location — but national data can still give you a solid benchmark to understand where you stand and how to improve.
+Salaries vary widely based on industry, education, location, and experience — but national data still provides a useful reference point.
 
-Below is a clear, updated breakdown of **median salary by age for 2025**, plus tips for negotiating a raise and tools to help you maximize your income.
+Below is a clear breakdown of **median salary by age in 2026**, along with practical ways to increase your income if you feel behind.
 
 ---
 
-## Median Salary by Age in the U.S. (2025)
+## Median Salary by Age in the U.S. (2026)
 
-These numbers are based on national data from the Bureau of Labor Statistics (rounded to the nearest thousand):
+These figures are based on national data from the U.S. Bureau of Labor Statistics and rounded for simplicity.
 
-### Age 16–19  
-**Median Salary:** ~$30,000  
-Most earnings here come from part-time work, entry-level jobs, or early internships.
+### Ages 16–19  
+**Median salary:** ~$30,000  
+Mostly part-time, entry-level jobs, or early internships.
 
-### Age 20–24  
-**Median Salary:** ~$36,000  
-This includes early career roles, retail, service work, and entry-level office positions.
+### Ages 20–24  
+**Median salary:** ~$36,000  
+Early career roles, service work, and entry-level office positions.
 
-### Age 25–34  
-**Median Salary:** ~$52,000  
-This age group has the biggest salary jumps due to skill-building and career changes.
+### Ages 25–34  
+**Median salary:** ~$52,000  
+The biggest growth period for most careers due to skill-building and job changes.
 
-### Age 35–44  
-**Median Salary:** ~$62,000  
-Often peak growth years — management roles, raises, and specialization.
+### Ages 35–44  
+**Median salary:** ~$62,000  
+Often peak earning acceleration years with leadership or specialized roles.
 
-### Age 45–54  
-**Median Salary:** ~$64,000  
-Salaries plateau slightly but remain strong; experience drives value.
+### Ages 45–54  
+**Median salary:** ~$64,000  
+Earnings often plateau as experience replaces rapid growth.
 
-### Age 55–64  
-**Median Salary:** ~$62,000  
-Often steady or slightly declining as workers change careers, reduce hours, or prepare for retirement.
+### Ages 55–64  
+**Median salary:** ~$62,000  
+Many shift priorities, reduce hours, or transition roles.
 
-### Age 65+  
-**Median Salary:** ~$46,000  
-Many work part-time or transition to consulting or flexible work.
+### Ages 65+  
+**Median salary:** ~$46,000  
+Part-time work, consulting, or flexible arrangements are common.
 
 ---
 
 ## What These Numbers Actually Mean
 
-Before you compare yourself, remember:
+Before comparing yourself, keep this in mind:
 
-- These are **national medians**, not “shoulds.”  
-- Your city can raise or lower expectations dramatically.  
-- Skills, certifications, and industry matter *even more* than age.  
-- Many people are underpaid and don’t realize it — until they negotiate.
+- These are **national medians**, not requirements  
+- Cost of living can dramatically change expectations  
+- Industry and skills matter more than age alone  
+- Many people are underpaid simply because they haven’t negotiated  
 
-> NOTE: Being below the median doesn’t mean you’re doing poorly. It means you’re early in your skill-building or in a lower-paying industry, which is completely normal.
+> **Reminder:** Being below the median doesn’t mean you’re failing — it often means you’re early in your earning curve.
 
 ---
 
 ## Are You Underpaid for Your Age?
 
-Here are signs you might be earning less than your market value:
+You may be earning less than your market value if:
 
 - You haven’t received a meaningful raise in 18–24 months  
-- You’re doing more work than your job description  
-- You trained or help new employees  
-- You see job postings offering more than you’re paid  
-- You haven’t negotiated in years  
+- Your responsibilities exceed your job description  
+- You train or mentor others without added pay  
+- Job postings show higher salaries for similar roles  
+- You haven’t negotiated compensation in years  
 
-If 2 or more apply, you may be underpaid — and it’s fixable.
+If two or more apply, it’s likely fixable.
 
 ---
 
-> **TIP: Want to boost your income *and* your financial confidence?**  
-> Improving your credit score can make a huge difference when applying for new jobs, rentals, car loans, and even negotiating offers.  
-> **SmartCredit** shows your score, accounts, alerts, and action plan all in one dashboard.  
-> *(affiliate link — helps support BuddyMoney at no extra cost)*  
+> **TIP: Want to strengthen your negotiating position?**  
+> A strong credit profile can improve job applications, rentals, and financial flexibility during career moves.  
+> **SmartCredit** shows your score, accounts, alerts, and action steps in one dashboard.  
+> *(Affiliate link — supports BuddyMoney at no extra cost)*  
 > 👉 **[Start your SmartCredit Trial — Click Here](https://www.kqzyfj.com/click-101601912-16983231)**
 
 ---
 
-## How to Increase Your Salary in 2025
+## How to Increase Your Salary in 2027
 
-### 1. Ask for a Raise (With the Right Script)
-You're not “begging” — you're presenting your value.
+### 1. Ask for a Raise (With Data)
+You’re not asking for a favor — you’re presenting value.
 
-Here’s a simple raise script:
+Simple raise script:
+> “I’ve taken on additional responsibilities including _____. Based on my performance and current market rates, I’d like to discuss adjusting my compensation.”
 
-> “I’ve taken on additional responsibilities including _______. Based on my performance and today’s market rate for this role, I’d like to discuss an adjustment to my compensation.”
-
-Confidence + data beats fear every time.
+Preparation beats anxiety.
 
 ---
 
-### 2. Apply for New Jobs Every 6–12 Months  
-Most salary growth happens when you **change companies**, not inside them.
+### 2. Apply for New Roles Every 6–12 Months  
+Most significant salary jumps happen when people **change companies**, not when they wait.
 
-A 10–20% jump is common when switching roles.
+A 10–20% increase is common with a well-timed move.
 
 ---
 
 ### 3. Learn One Monetizable Skill  
-High-growth skills in 2025 include:
+High-demand skills in 2026 include:
 - Copywriting  
 - Project management  
 - Data analysis  
 - UX/UI design  
 - Sales  
-- Basic coding (HTML, CSS, JavaScript)
+- Basic web development  
 
-These can raise your earning potential *dramatically* in 3–12 months.
+Even one new skill can change your earning ceiling.
 
 ---
 
 ### 4. Start a Side Hustle  
-Increasing income doesn’t have to rely on your 9-to-5.
+Extra income reduces pressure and increases leverage.
 
-Popular options include:
-- Rideshare  
+Popular options:
+- Rideshare or delivery apps  
 - Freelancing  
-- Digital product creation  
-- Pet sitting  
-- eBay reselling  
+- Digital products  
+- Pet sitting or reselling  
 
-Extra income makes raises less stressful — you’re not desperate.
+Side income creates breathing room — and confidence.
 
 ---
 
-> **INFO: Raising income is powerful, but protecting it is just as important.**  
-> Monitoring your credit helps you qualify for better apartments, job offers, and lower-interest loans as your salary grows.  
-> **SmartCredit** gives you a simple dashboard to track your score and avoid costly surprises.  
+> **INFO: Growing income is powerful, but protecting it matters too.**  
+> Monitoring your credit helps you qualify for better housing, loans, and job opportunities as your salary grows.  
+> **SmartCredit** makes tracking simple and proactive.  
 > 👉 **[Start your SmartCredit Trial — Click Here](https://www.kqzyfj.com/click-101601912-16983231)**
 
 ---
 
 ## Recommended BuddyMoney Tools
 
-BuddyMoney has tools that make tracking your financial progress effortless:
+BuddyMoney tools help you turn income into progress:
 
-- **Budget Tracker** → Organize income & expenses  
-- **Emergency Fund Calculator** → Know how much security you need  
-- **Net Worth Tracker** → See the big financial picture  
-- **Debt Payoff Tool** → Accelerate life-changing money wins  
+- **Budget Tracker** → Organize income and expenses  
+- **Emergency Fund Calculator** → Build financial stability  
+- **Net Worth Tracker** → See your big-picture progress  
+- **Debt Payoff Tool** → Reduce interest faster  
 
-These tools help you take control, regardless of where your salary lands today.
+Your salary is just the starting point — what you do with it matters most.
 
 ---
 
 ## Final Thoughts
 
-Knowing the average salary for your age is a helpful benchmark — but it’s not your destiny.  
-What matters is your direction, not your starting point.
+Average salary by age is a **reference point**, not a verdict.
 
-If you’re below the median:  
-**You can change that.**  
-If you’re above the median:  
-**Keep growing and protecting your income.**
+If you’re below the median, you have options.  
+If you’re above it, you still have room to grow.
 
-Each step you take — learning a skill, negotiating, or optimizing your budget — builds toward more freedom.
+Income growth is a skill — and skills can be learned.
 
-You deserve a career and income that support the life you want. Let’s get you there.
+BuddyMoney is here to help you build a career and financial life that actually works for you.

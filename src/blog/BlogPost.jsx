@@ -21,6 +21,31 @@ function stripFrontmatter(raw) {
 const SITE_URL = "https://www.buddymoney.com";
 
 /* ------------------------------------------
+   ✅ NEW: Schema helpers (minimal + safe)
+------------------------------------------ */
+
+function toAbsoluteUrl(urlOrPath) {
+  if (!urlOrPath) return "";
+  const s = String(urlOrPath);
+  if (s.startsWith("http://") || s.startsWith("https://")) return s;
+  if (s.startsWith("/")) return `${SITE_URL}${s}`;
+  return `${SITE_URL}/${s}`;
+}
+
+const buildFaqJsonLd = (faq = []) => ({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((q) => ({
+    "@type": "Question",
+    name: q.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: q.answer,
+    },
+  })),
+});
+
+/* ------------------------------------------
    Helpers
 ------------------------------------------ */
 
@@ -379,7 +404,47 @@ export default function BlogPost() {
   }, [post]);
 
   /* ------------------------------------------
-     SEO + JSON-LD
+     ✅ NEW: Stable schema objects (keeps your old meta logic intact)
+  ------------------------------------------ */
+
+  const seoDescription = useMemo(() => {
+    return (
+      post?.metaDescription ||
+      post?.excerpt ||
+      "Read this BuddyMoney guide to learn about budgeting, saving, debt payoff, and more."
+    );
+  }, [post]);
+
+  const blogPostingJsonLd = useMemo(() => {
+    if (!post) return null;
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: post.title,
+      description: seoDescription,
+      mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+      url: canonicalUrl,
+      author: { "@type": "Organization", name: "BuddyMoney" },
+      publisher: {
+        "@type": "Organization",
+        name: "BuddyMoney",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://www.buddymoney.com/images/buddymoney-logo.png",
+        },
+      },
+      ...(post.heroImage ? { image: toAbsoluteUrl(post.heroImage) } : {}),
+      ...(post.datePublished ? { datePublished: post.datePublished } : {}),
+      ...(post.dateModified || post.lastUpdated
+        ? { dateModified: post.dateModified || post.lastUpdated }
+        : {}),
+    };
+  }, [post, canonicalUrl, seoDescription]);
+
+  /* ------------------------------------------
+     SEO (title + meta description) — unchanged behavior
+     ✅ Removed manual JSON-LD script injection to prevent duplicates
   ------------------------------------------ */
   useEffect(() => {
     if (!post) return;
@@ -387,10 +452,7 @@ export default function BlogPost() {
     const title = `${post.seoTitle || post.title} | BuddyMoney`;
     document.title = title;
 
-    const description =
-      post.metaDescription ||
-      post.excerpt ||
-      "Read this BuddyMoney guide to learn about budgeting, saving, debt payoff, and more.";
+    const description = seoDescription;
 
     // Meta description
     let meta = document.querySelector('meta[name="description"]');
@@ -401,51 +463,7 @@ export default function BlogPost() {
       meta.content = description;
       document.head.appendChild(meta);
     }
-
-    // ✅ Use stable canonical URL (not window.location.href)
-    const url = canonicalUrl;
-
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": ["BlogPosting"],
-      headline: post.title,
-      description,
-      mainEntityOfPage: { "@type": "WebPage", "@id": url },
-      url,
-      author: { "@type": "Organization", name: "BuddyMoney" },
-      publisher: {
-        "@type": "Organization",
-        name: "BuddyMoney",
-        logo: {
-          "@type": "ImageObject",
-          url: "https://www.buddymoney.com/images/buddymoney-logo.png",
-        },
-      },
-    };
-
-    if (post.heroImage) jsonLd.image = post.heroImage;
-    if (post.datePublished) jsonLd.datePublished = post.datePublished;
-    if (post.dateModified || post.lastUpdated)
-      jsonLd.dateModified = post.dateModified || post.lastUpdated;
-
-    // FAQ schema
-    if (Array.isArray(post.faq) && post.faq.length > 0) {
-      jsonLd["@type"].push("FAQPage");
-      jsonLd.mainEntity = post.faq.map((q, i) => ({
-        "@type": "Question",
-        name: q.question,
-        acceptedAnswer: { "@type": "Answer", text: q.answer },
-        url: `${url}#faq-${i + 1}`,
-      }));
-    }
-
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.innerHTML = JSON.stringify(jsonLd);
-    document.head.appendChild(script);
-
-    return () => script.remove();
-  }, [post, canonicalUrl]);
+  }, [post, seoDescription]);
 
   /* ------------------------------------------
      Load Markdown (strip frontmatter)
@@ -545,10 +563,24 @@ export default function BlogPost() {
   ------------------------------------------ */
   return (
     <>
-      {/* ✅ This is what fixes “User-declared canonical: None” in GSC */}
+      {/* ✅ Canonical + OG + ✅ BlogPosting schema + ✅ FAQPage schema */}
       <Helmet>
         <link rel="canonical" href={canonicalUrl} />
         <meta property="og:url" content={canonicalUrl} />
+
+        {/* BlogPosting JSON-LD */}
+        {blogPostingJsonLd && (
+          <script type="application/ld+json">
+            {JSON.stringify(blogPostingJsonLd)}
+          </script>
+        )}
+
+        {/* FAQPage JSON-LD (separate object — Google compliant) */}
+        {Array.isArray(post.faq) && post.faq.length > 0 && (
+          <script type="application/ld+json">
+            {JSON.stringify(buildFaqJsonLd(post.faq))}
+          </script>
+        )}
       </Helmet>
 
       <main className="pt-2 lg:pt-4 pb-16">

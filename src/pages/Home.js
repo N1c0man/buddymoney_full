@@ -27,13 +27,12 @@ const item = {
 };
 
 export default function Home() {
-  // Centralized SEO values
   const title =
     "BuddyMoney – Free Money Tools for Budgeting, Saving & Debt Payoff";
   const description =
     "BuddyMoney helps beginners feel calmer about money with free tools for budgeting, debt payoff, savings goals, mortgage payoff, emergency fund planning, and more.";
   const url = "https://www.buddymoney.com/";
-  const ogImage = "https://www.buddymoney.com/og-image-buddymoney-home.jpg"; // swap when you have a real one
+  const ogImage = "https://www.buddymoney.com/og-image-buddymoney-home.jpg";
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -53,46 +52,76 @@ export default function Home() {
     },
   };
 
-  // ✅ Canonical for homepage
   useEffect(() => {
     setCanonical("/");
   }, []);
 
   return (
     <>
-      {/* 🔍 SEO + JSON-LD via Helmet */}
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
-
-        {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="BuddyMoney" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={url} />
         <meta property="og:image" content={ogImage} />
-
-        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={ogImage} />
-
-        {/* JSON-LD structured data */}
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
-      {/* PAGE CONTENT */}
-      <div
-        className="min-h-screen bg-brand-50/40 space-y-8 md:space-y-10"
-        itemScope
-        itemType="https://schema.org/WebPage"
-      >
-        {/* ✅ Use the shared card hero (matches Tools / Coach / Hub style) */}
+      <div className="min-h-screen bg-brand-50/40 space-y-8 md:space-y-10">
         <Hero />
 
-        {/* 🔼 TOP SHARE BAR – lets people share the whole BuddyMoney homepage */}
+        {/* ⭐ FEATURED GUIDES */}
+        <motion.section
+          className="max-w-5xl mx-auto px-4"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerStagger}
+        >
+          <motion.div
+            className="rounded-2xl border border-emerald-100 bg-white/90 p-5 md:p-6 shadow-sm"
+            variants={item}
+          >
+            <p className="text-xs font-semibold tracking-wide text-emerald-700 uppercase">
+              Featured Guides
+            </p>
+
+            <h2 className="mt-2 text-xl md:text-2xl font-semibold text-slate-900">
+              Start here if you’re building or rebuilding credit
+            </h2>
+
+            <p className="mt-2 text-sm text-slate-600 max-w-2xl">
+              These beginner-friendly guides walk you through choosing the
+              right credit card and avoiding common mistakes — calmly and
+              without jargon.
+            </p>
+
+            <div className="mt-4 flex flex-col sm:flex-row gap-3">
+              <Link
+                to="/blog/best-secured-credit-cards"
+                className="inline-flex items-center justify-center rounded-xl bg-brand-700 px-5 py-2.5 text-sm font-medium text-white shadow-soft hover:bg-brand-800 transition"
+              >
+                Best Secured Credit Cards
+              </Link>
+
+              <Link
+                to="/blog/secured-vs-unsecured-credit-cards"
+                className="inline-flex items-center justify-center rounded-xl border border-emerald-200 bg-white px-5 py-2.5 text-sm font-medium text-emerald-800 hover:bg-emerald-50 transition"
+              >
+                Secured vs Unsecured Cards
+              </Link>
+            </div>
+          </motion.div>
+        </motion.section>
+
+        {/* 🔼 TOP SHARE BAR */}
         <section className="max-w-5xl mx-auto px-4 sm:-mt-1 md:-mt-2">
           <ShareBar
             variant="top"
@@ -100,7 +129,7 @@ export default function Home() {
             title="BuddyMoney – Free Money Tools for Budgeting, Saving & Debt Payoff"
           />
         </section>
-
+        
         {/* TOOLS grid title + staggered cards */}
         <motion.section
           className="pt-0 max-w-5xl mx-auto px-4"

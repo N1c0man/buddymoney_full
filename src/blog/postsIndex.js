@@ -2,7 +2,386 @@
 import rawPosts from "./blogPosts.json";
 
 // Keep ALL FAQs here, keyed by slug (unchanged)
+
 const faqBySlug = {
+    "side-hustle-ideas": [
+    {
+      question: "What is the easiest side hustle to start?",
+      answer:
+        "The easiest side hustles usually have low barriers to entry, such as rideshare driving, delivery apps, selling unused items, or basic online tasks. These can often be started within a day or two."
+    },
+    {
+      question: "Do I need experience to start a side hustle?",
+      answer:
+        "No. Many side hustles require little to no experience. Skills can be learned as you go, especially with freelancing, reselling, or gig-based work."
+    },
+    {
+      question: "How much money can I make from a side hustle?",
+      answer:
+        "Income varies widely based on the hustle, time invested, and demand. Some people earn a few hundred dollars per month, while others earn significantly more with consistent effort."
+    },
+    {
+      question: "How quickly can I start earning?",
+      answer:
+        "Some side hustles, like delivery driving or selling items, can generate income within days. Others, such as digital products, take longer to build but offer long-term potential."
+    },
+    {
+      question: "Is side hustle income taxable?",
+      answer:
+        "Yes. Side hustle income is generally taxable. You may need to pay self-employment taxes and should track income and expenses carefully."
+    },
+    {
+      question: "How do I avoid burnout from side hustles?",
+      answer:
+        "Focus on one hustle at a time, set clear time limits, and choose something that fits your lifestyle. Consistency matters more than working nonstop."
+    },
+    {
+      question: "Should I keep side hustle income separate from my main income?",
+      answer:
+        "Keeping side hustle income in a separate account can make budgeting, tracking progress, and tax preparation easier."
+    },
+    {
+      question: "What should I do with side hustle income first?",
+      answer:
+        "Many people use side hustle income to build an emergency fund, pay down high-interest debt, or reach specific savings goals faster."
+    }
+  ],
+    "budget-traps-to-avoid": [
+    {
+      question: "What are budget traps?",
+      answer:
+        "Budget traps are common habits or mistakes that quietly drain your money, such as overspending without tracking, forgetting irregular expenses, or relying on credit cards for emergencies."
+    },
+    {
+      question: "Why do budgets fail so often?",
+      answer:
+        "Budgets usually fail because they’re too restrictive, unrealistic, or not connected to clear goals. A flexible budget is easier to maintain long-term."
+    },
+    {
+      question: "How can I tell if I’m stuck in a budget trap?",
+      answer:
+        "Signs include living paycheck to paycheck, relying on credit cards, feeling stressed about money despite earning enough, or not knowing where your money goes each month."
+    },
+    {
+      question: "What is the easiest budget trap to fix first?",
+      answer:
+        "Tracking spending is often the fastest fix. Once you see where your money is going, many leaks become obvious and easy to correct."
+    },
+    {
+      question: "Do I need a complicated budget to avoid these traps?",
+      answer:
+        "No. Simple systems are often more effective. A basic budget with tracking, automation, and clear goals works better than a complex plan."
+    },
+    {
+      question: "How do subscriptions affect my budget?",
+      answer:
+        "Subscriptions can silently drain your budget because small recurring charges add up over time. Reviewing them monthly helps free up money quickly."
+    },
+    {
+      question: "Can automation really improve budgeting?",
+      answer:
+        "Yes. Automating bills and savings removes human error and willpower from the process, making it easier to stay consistent."
+    },
+    {
+      question: "How long does it take to break bad budgeting habits?",
+      answer:
+        "Many people see improvement within one to two months of tracking spending and making small adjustments. Consistency matters more than speed."
+    }
+  ],
+    "salary-by-age": [
+    {
+      question: "What is the average salary by age in the U.S.?",
+      answer:
+        "Average salaries vary by age, industry, and location. National median salary data provides a general benchmark, but individual earnings depend heavily on skills, experience, and cost of living."
+    },
+    {
+      question: "Is it bad if I earn less than the average salary for my age?",
+      answer:
+        "No. Being below the average doesn’t mean you’re failing. Many people earn less early in their careers or work in lower-paying industries. What matters most is progress over time."
+    },
+    {
+      question: "Why does salary increase with age?",
+      answer:
+        "Salary often increases with age because of experience, skill development, promotions, and job changes. Growth tends to slow later in careers as roles stabilize."
+    },
+    {
+      question: "Does location affect how much I should earn?",
+      answer:
+        "Yes. Cost of living plays a major role. Salaries in large cities are often higher, while rural areas tend to pay less. Always compare income alongside living costs."
+    },
+    {
+      question: "How often should I negotiate my salary?",
+      answer:
+        "Many people review their compensation every 12–24 months or after taking on new responsibilities. Negotiating regularly helps prevent long-term underpayment."
+    },
+    {
+      question: "Is changing jobs the fastest way to increase salary?",
+      answer:
+        "For many people, yes. Job changes often lead to larger pay increases than staying at the same company for long periods."
+    },
+    {
+      question: "Can side hustles really improve income long-term?",
+      answer:
+        "Yes. Side hustles can supplement income, reduce financial pressure, and sometimes grow into full-time opportunities or valuable skills."
+    },
+    {
+      question: "Should I compare myself to others my age?",
+      answer:
+        "Comparison can be useful for awareness, but it shouldn’t define your self-worth. Focus on your own growth, goals, and financial direction."
+    }
+  ],
+    "crush-credit-card-debt": [
+    {
+      question: "What is the fastest way to pay off credit card debt?",
+      answer:
+        "The fastest method for most people is the debt avalanche, which focuses on paying off the highest-interest card first. This minimizes interest and speeds up payoff overall."
+    },
+    {
+      question: "Is the debt snowball or avalanche method better?",
+      answer:
+        "Both methods work. The avalanche saves more money on interest, while the snowball can feel more motivating by producing quicker wins. The best method is the one you can stick with consistently."
+    },
+    {
+      question: "Should I pay more than the minimum payment?",
+      answer:
+        "Yes. Paying only the minimum keeps you in debt longer and increases interest costs. Even small extra payments can significantly reduce payoff time."
+    },
+    {
+      question: "What if I can only afford a small extra payment?",
+      answer:
+        "That’s completely fine. Extra payments of $25 or even $10 still reduce principal and build momentum. Consistency matters more than the amount."
+    },
+    {
+      question: "Should I stop saving while paying off credit card debt?",
+      answer:
+        "Most people benefit from keeping a small emergency fund while paying off debt. This helps prevent new debt when unexpected expenses arise."
+    },
+    {
+      question: "Will paying off credit card debt improve my credit score?",
+      answer:
+        "Yes. Lower balances improve credit utilization, which is a major factor in your credit score. On-time payments also strengthen your payment history."
+    },
+    {
+      question: "What should I do if an emergency interrupts my payoff plan?",
+      answer:
+        "Pause extra payments temporarily, continue making minimum payments, and resume your plan once the emergency passes. Progress doesn’t require perfection."
+    },
+    {
+      question: "How long does it usually take to pay off credit card debt?",
+      answer:
+        "The timeline depends on balances, interest rates, and extra payments. With a clear plan and consistent effort, many people see meaningful progress within the first few months."
+    }
+  ],
+    "side-hustle-income-tips": [
+    {
+      question: "What is a side hustle?",
+      answer:
+        "A side hustle is any way you earn extra income outside your main job. It can include freelance work, gig economy jobs, selling products online, or offering services in your spare time."
+    },
+    {
+      question: "How much money can I realistically make from a side hustle?",
+      answer:
+        "Income varies widely depending on the hustle, time commitment, and demand. Some people earn a few hundred dollars per month, while others build side hustles that bring in thousands."
+    },
+    {
+      question: "Do I need special skills to start a side hustle?",
+      answer:
+        "No. Many side hustles require little to no experience, such as delivery driving, pet sitting, reselling items, or basic online tasks. Skills can be developed over time."
+    },
+    {
+      question: "How do I choose the right side hustle?",
+      answer:
+        "Choose a side hustle that fits your schedule, energy level, and financial goals. Starting with something low-pressure and flexible helps you stay consistent."
+    },
+    {
+      question: "Is side hustle income taxable?",
+      answer:
+        "Yes. Side hustle income is generally taxable, even if it’s part-time. You may owe self-employment taxes and should track income and expenses carefully."
+    },
+    {
+      question: "How do I avoid burnout from a side hustle?",
+      answer:
+        "Set clear time limits, automate repetitive tasks, and regularly reassess whether the hustle still aligns with your goals. Extra income should improve your life, not overwhelm it."
+    },
+    {
+      question: "Should I keep side hustle money separate?",
+      answer:
+        "Keeping side hustle income in a separate account can make tracking easier and help you stay organized for taxes and goal planning."
+    },
+    {
+      question: "What should I do with my side hustle income first?",
+      answer:
+        "Many people use side hustle income to build an emergency fund, pay down high-interest debt, or reach specific savings goals faster."
+    }
+  ],
+    "how-to-start-a-budget-in-10-minutes": [
+    {
+      question: "Can I really start a budget in just 10 minutes?",
+      answer:
+        "Yes. A 10-minute budget focuses on awareness and structure, not perfection. The goal is to get a clear snapshot of your income and expenses so you can start making better decisions immediately."
+    },
+    {
+      question: "What budgeting method is best for beginners?",
+      answer:
+        "There’s no single best method, but beginners often succeed with the 50/30/20 rule, a simple zero-based budget, or a pay-yourself-first approach. The best method is the one you can stick with consistently."
+    },
+    {
+      question: "Do I need a budgeting app to get started?",
+      answer:
+        "No. You can start with a notebook, spreadsheet, or notes app. Budgeting apps can help automate tracking later, but they’re not required to begin."
+    },
+    {
+      question: "What if my numbers aren’t accurate at first?",
+      answer:
+        "That’s normal. Your first budget is an estimate, not a final version. Accuracy improves after one or two months of tracking and adjusting."
+    },
+    {
+      question: "How often should I review my budget?",
+      answer:
+        "A quick review once per month is enough for most people. This helps you adjust for changes without feeling overwhelmed by constant tracking."
+    },
+    {
+      question: "Should I budget weekly or monthly?",
+      answer:
+        "Most people find monthly budgeting easier because bills and income are usually monthly. Weekly check-ins can help if your income or expenses fluctuate."
+    },
+    {
+      question: "What if I go over budget?",
+      answer:
+        "Going over budget doesn’t mean you failed. It’s a signal to adjust categories or expectations. Budgeting is a learning process, not a test you pass or fail."
+    },
+    {
+      question: "Is budgeting only for people with financial problems?",
+      answer:
+        "No. Budgeting is for anyone who wants clarity and control over their money. It helps people at all income levels plan, save, and reduce stress."
+    }
+  ],
+    "emergency-fund-basics": [
+    {
+      question: "What is an emergency fund?",
+      answer:
+        "An emergency fund is money set aside specifically for unexpected expenses like medical bills, car repairs, or job loss. It acts as a financial safety net so you don’t have to rely on credit cards or loans."
+    },
+    {
+      question: "Why is an emergency fund so important?",
+      answer:
+        "An emergency fund helps prevent debt, reduces financial stress, and gives you flexibility when life throws surprises your way. It allows you to handle emergencies calmly instead of reacting under pressure."
+    },
+    {
+      question: "How much should I save in an emergency fund?",
+      answer:
+        "Most experts recommend saving three to six months of essential expenses. Many people start with a smaller goal, like $1,000, and then build toward the full amount over time."
+    },
+    {
+      question: "Should I save for emergencies or pay off debt first?",
+      answer:
+        "A common approach is to save a small starter emergency fund (around $1,000) while making minimum debt payments. After that, you can focus on paying down high-interest debt while continuing to grow your emergency savings."
+    },
+    {
+      question: "Where should I keep my emergency fund?",
+      answer:
+        "Emergency funds are best kept in a high-yield savings account or money market account. These options keep your money safe, accessible, and earning some interest without risking losses."
+    },
+    {
+      question: "What counts as a true emergency?",
+      answer:
+        "True emergencies include medical expenses, essential car or home repairs, unexpected job loss, or urgent travel for family reasons. Planned expenses or non-essentials should not come from your emergency fund."
+    },
+    {
+      question: "What if I have irregular or freelance income?",
+      answer:
+        "If your income varies, base your emergency fund on average monthly essential expenses and consider aiming closer to six months of savings for added stability."
+    },
+    {
+      question: "How fast should I build my emergency fund?",
+      answer:
+        "There’s no perfect speed. Consistency matters more than pace. Even saving $25–$50 per week adds up over time and builds strong financial habits."
+    },
+    {
+      question: "What should I do after I use my emergency fund?",
+      answer:
+        "After using your emergency fund, focus on replenishing it as soon as possible. Restart automatic transfers and adjust your budget until the fund is back to its target level."
+    }
+  ],
+    "best-secured-credit-cards": [
+    {
+      question: "What is a secured credit card?",
+      answer:
+        "A secured credit card is a credit card that requires a refundable security deposit, which usually becomes your credit limit. It works like a normal card and can help you build or rebuild credit when used responsibly."
+    },
+    {
+      question: "Are secured credit cards good for bad or no credit?",
+      answer:
+        "Yes. Secured credit cards are one of the best options for people with bad credit or no credit because approval is easier and they help establish positive payment history."
+    },
+    {
+      question: "Do secured credit cards build credit the same way as regular cards?",
+      answer:
+        "Yes. As long as the card reports to all three credit bureaus and you make on-time payments, secured cards build credit just like unsecured cards."
+    },
+    {
+      question: "How much should I put down for a secured credit card?",
+      answer:
+        "Most secured cards require a deposit between $200 and $500. Choose an amount you can comfortably afford while keeping your balance low to maintain healthy credit utilization."
+    },
+    {
+      question: "How long does it take to build credit with a secured card?",
+      answer:
+        "Many people see small improvements within 30–60 days, with more noticeable progress after 3–6 months of consistent, on-time payments."
+    },
+    {
+      question: "Will I get my security deposit back?",
+      answer:
+        "In most cases, yes. Your deposit is usually returned when you upgrade to an unsecured card or close the account in good standing."
+    },
+    {
+      question: "Can secured credit cards have fees?",
+      answer:
+        "Some secured cards charge annual or maintenance fees, but many reputable options have no annual fee. Always check the fee structure before applying."
+    },
+    {
+      question: "What’s the biggest mistake people make with secured credit cards?",
+      answer:
+        "The biggest mistakes are missing payments, maxing out the card, and closing the account too early. Consistency and low balances matter more than speed."
+    }
+  ],
+    "secured-vs-unsecured-credit-cards": [
+    {
+      question: "Is a secured credit card better than an unsecured card for rebuilding credit?",
+      answer:
+        "For most people rebuilding credit, yes. Secured credit cards are easier to qualify for and carry less risk. When used responsibly, they build credit just as effectively as unsecured cards."
+    },
+    {
+      question: "Do secured credit cards actually improve your credit score?",
+      answer:
+        "Yes. Secured credit cards can improve your credit score as long as they report to all three credit bureaus and you make on-time payments while keeping balances low."
+    },
+    {
+      question: "Can an unsecured credit card hurt my credit if I’m rebuilding?",
+      answer:
+        "It can. Unsecured cards approved for bad or fair credit often come with higher interest rates, fees, and low limits. Missing payments or maxing out the card can hurt your score quickly."
+    },
+    {
+      question: "How long should I keep a secured credit card before upgrading?",
+      answer:
+        "Most people keep a secured card for 6–12 months. Upgrading too early can slow progress, while keeping the account open longer can help with credit age and stability."
+    },
+    {
+      question: "Will I get my security deposit back?",
+      answer:
+        "Yes. With most secured credit cards, your deposit is refundable when you upgrade to an unsecured card or close the account in good standing."
+    },
+    {
+      question: "Can I start with a secured card and switch to unsecured later?",
+      answer:
+        "Absolutely. Many people start with a secured card, build positive payment history, and then qualify for unsecured cards once their credit improves."
+    },
+    {
+      question: "What’s the biggest mistake people make when rebuilding credit?",
+      answer:
+        "The most common mistakes are missing payments, maxing out credit limits, closing accounts too early, and applying for too many cards at once."
+    }
+  ],
   "first-30-days-taking-control-of-your-money": [
   {
     question: "What should I focus on first when taking control of my money?",
@@ -150,8 +529,6 @@ const faqBySlug = {
         "It varies widely. Some reach it in a few months with high savings or extra income, while others save over a year or more. The key is consistency—saving even small amounts weekly builds a strong fund over time.",
     },
   ],
-
-  // ✅ NEW: FAQs for "Why Knowing Your Net Worth Matters"
   "why-your-net-worth-matters": [
     {
       question: "What is net worth in simple terms?",
@@ -185,16 +562,6 @@ const faqBySlug = {
     },
     
   ],
-
-  // ⭐ All your other FAQ objects remain unchanged
-  "emergency-fund-basics": [/* ...existing content... */],
-  "how-to-start-a-budget-in-10-minutes": [/* ...existing content... */],
-  "side-hustle-income-tips": [/* ...existing content... */],
-  "crush-credit-card-debt": [/* ...existing content... */],
-  "salary-by-age": [/* ...existing content... */],
-  "best-secured-credit-cards": [/* ...existing content... */],
-  "budget-traps-to-avoid": [/* ...existing content... */],
-  "side-hustle-ideas": [],
 };
 
 // ⭐ NEW: Merge JSON + inferred .md file + FAQ + URL

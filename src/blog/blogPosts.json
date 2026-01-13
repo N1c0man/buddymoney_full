@@ -1,18 +1,32 @@
 [
   {
     "slug": "best-secured-credit-cards",
-    "title": "Best Secured Credit Cards (Beginner’s Guide)",
+    "title": "Best Secured Credit Cards for Bad or No Credit (2026 Guide)",
     "tag": "Credit Cards",
     "level": "Beginner",
-    "readTime": "7 min read",
-    "excerpt": "If you’re rebuilding credit or starting from scratch, a secured card can be your safest, lowest-risk path forward. Here are the best options and how to use them right.",
+    "readTime": "8 min read",
+    "excerpt": "Rebuilding credit or starting from scratch? Secured credit cards are one of the safest ways to build credit. Compare the best options, deposits, fees, and upgrade paths.",
     "file": "/posts/best-secured-credit-cards.md",
     "author": "BuddyMoney Editorial",
     "authorAvatar": "/icons/editorial.png",
-    "date": "2025-11-28",
+    "date": "2026-01-12",
     "heroImage": "/icons/hero-secured-cards.png",
-    "heroImageAlt": "A secured credit card with a small lock symbol representing credit building"
+    "heroImageAlt": "A secured credit card with a lock symbol representing safe credit building"
   },
+  {
+  "slug": "secured-vs-unsecured-credit-cards",
+  "title": "Secured vs Unsecured Credit Cards: Which Is Better for Rebuilding Credit?",
+  "tag": "Credit Cards",
+  "level": "Beginner",
+  "readTime": "7 min read",
+  "excerpt":
+    "Not sure whether to choose a secured or unsecured credit card? Learn the differences, pros and cons, and which option is best for rebuilding credit.",
+  "file": "/posts/secured-vs-unsecured-credit-cards.md",
+  "author": "BuddyMoney Editorial",
+  "authorAvatar": "/icons/editorial.png",
+  "date": "2026-01-12",
+  "heroImage": "/icons/hero-secured-vs-unsecured.png"
+},
   {
     "slug": "budget-traps-to-avoid",
     "title": "The 7 Budget Traps Keeping You Broke (And How to Fix Them)",
