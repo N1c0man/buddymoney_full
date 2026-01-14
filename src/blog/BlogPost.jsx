@@ -6,6 +6,7 @@ import { getPostBySlug, posts } from "./postsIndex";
 import RelatedCreditCardGuides from "../components/RelatedCreditCardGuides";
 import ShareBar from "../components/ShareBar";
 import AffiliateCalloutSmartCredit from "../components/AffiliateCalloutSmartCredit";
+import AffiliateCalloutAmazonPlanner from "../components/AffiliateCalloutAmazonPlanner";
 import { setCanonical } from "../utils/seo";
 
 /* ------------------------------------------
@@ -16,6 +17,23 @@ function stripFrontmatter(raw) {
   const match = raw.match(FRONTMATTER_REGEX);
   if (!match) return raw;
   return raw.slice(match[0].length);
+}
+
+/* ------------------------------------------
+   ✅ NEW: Split intro paragraph from rest (so affiliate doesn't render at the very top)
+------------------------------------------ */
+function splitIntroParagraph(markdown = "") {
+  const text = String(markdown || "").trim();
+  if (!text) return { intro: "", rest: "" };
+
+  // split on first blank line
+  const parts = text.split(/\n\s*\n/);
+  if (parts.length <= 1) return { intro: text, rest: "" };
+
+  return {
+    intro: parts[0],
+    rest: parts.slice(1).join("\n\n"),
+  };
 }
 
 const SITE_URL = "https://www.buddymoney.com";
@@ -741,9 +759,52 @@ export default function BlogPost() {
                         prose-img:rounded-xl prose-img:shadow-soft
                       "
                     >
-                      <ReactMarkdown components={markdownComponents}>
-                        {markdown}
-                      </ReactMarkdown>
+                      <>
+                        {(() => {
+                          const { intro, rest } = splitIntroParagraph(markdown);
+
+                          // ✅ Marker approach (renders Amazon callout exactly where marker is placed)
+                          const AMAZON_MARKER = "[[AFFILIATE:AMAZON_PLANNER]]";
+                          const hasAmazonMarker =
+                            post.slug === "how-to-start-a-budget-in-10-minutes" &&
+                            rest.includes(AMAZON_MARKER);
+
+                          let beforeAmazon = rest;
+                          let afterAmazon = "";
+
+                          if (hasAmazonMarker) {
+                            const parts = rest.split(AMAZON_MARKER);
+                            beforeAmazon = parts.shift() || "";
+                            afterAmazon = parts.join(AMAZON_MARKER) || "";
+                          }
+
+                          return (
+                            <>
+                              {/* Intro */}
+                              <ReactMarkdown components={markdownComponents}>
+                                {intro}
+                              </ReactMarkdown>
+
+                              {/* Rest (part 1) */}
+                              <ReactMarkdown components={markdownComponents}>
+                                {beforeAmazon}
+                              </ReactMarkdown>
+
+                              {/* ✅ Amazon callout renders at marker position */}
+                              {hasAmazonMarker && (
+                                <div className="my-8">
+                                  <AffiliateCalloutAmazonPlanner />
+                                </div>
+                              )}
+
+                              {/* Rest (part 2) */}
+                              <ReactMarkdown components={markdownComponents}>
+                                {afterAmazon}
+                              </ReactMarkdown>
+                            </>
+                          );
+                        })()}
+                      </>
                     </article>
                   </div>
                 )}

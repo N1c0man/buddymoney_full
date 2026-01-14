@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
+import AffiliateCalloutAmazonPlanner from "../components/AffiliateCalloutAmazonPlanner";
 import { setCanonical } from "../utils/seo"; //
 
 // 50/30/20 baseline, can adapt based on income
@@ -600,6 +601,8 @@ export default function BudgetCoach() {
               </div>
             </motion.div>
           </section>
+{/* Offline option */}
+<AffiliateCalloutAmazonPlanner className="mt-8" />
 
           {/* How to use section (SEO helper) */}
           <section className="mt-10 space-y-4 text-sm text-slate-700">

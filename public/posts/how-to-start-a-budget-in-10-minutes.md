@@ -21,6 +21,8 @@ In fact, you can create a simple, effective budget in **just 10 minutes** — ev
 
 This guide walks you through a fast, beginner-friendly setup you can refine over time.
 
+[[AFFILIATE:AMAZON_PLANNER]]
+
 ---
 
 ## 1. Grab Your Numbers (2 minutes)
@@ -62,6 +64,7 @@ Open a spreadsheet, a free budgeting app, or even a notepad and create three sec
 Drop your numbers in quickly. Rounding is encouraged — speed matters more than precision right now.
 
 ---
+
 
 ## 4. Spot the Gaps (2 minutes)
 

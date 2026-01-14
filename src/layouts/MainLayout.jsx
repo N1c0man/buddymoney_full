@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 export default function MainLayout({ children }) {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50 text-gray-900">
+    <div className="min-h-screen flex flex-col bg-zinc-50 text-gray-900">
       {/* NAVBAR – rendered directly so its sticky + z-index work correctly */}
       <Navbar />
 
