@@ -20,7 +20,7 @@ const HUB_ITEMS = [
   {
     id: "bad-credit",
     label: "Guide",
-    title: "Best Credit Cards for Bad or Fair Credit",
+    title: "Best Secured & Starter Cards for Bad or Fair Credit",
     path: "/credit-cards/bad-credit",
     badge: "Rebuilding credit",
     description:
@@ -74,15 +74,15 @@ export default function CreditCardsHub() {
     window.scrollTo(0, 0);
   }, []);
 
-  const pageTitle = "Credit Card Guides & Finder Hub | BuddyMoney";
+  const pageTitle = "Credit Card Guides (2026): Compare Cards for Bad Credit, Travel & 0% APR | BuddyMoney";
   const pageDescription =
-    "Explore BuddyMoney’s credit card guides and preview credit card finder. Learn about cards for bad credit, travel, 0% intro APR, and students—all in one place.";
+  "Compare credit cards with beginner-friendly guides and a simple preview finder. Explore secured credit cards for bad or fair credit, travel rewards cards, and 0% intro APR / balance transfer options.";
 
   const schemaOrg = useMemo(() => {
     return {
       "@context": "https://schema.org",
       "@type": ["CollectionPage", "WebPage"],
-      name: "Credit Card Guides & Finder Hub",
+      name: "Credit Card Guides (2026): Compare Cards for Bad Credit, Travel & 0% APR",
       url: "https://buddymoney.com/credit-cards",
       description: pageDescription,
       isAccessibleForFree: true,
@@ -155,16 +155,18 @@ export default function CreditCardsHub() {
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
                     BuddyMoney Credit Card Hub
                   </p>
+                  <p className="mt-2 text-[12px] text-slate-700">
+  New to credit? Start here:{" "}
+  <Link to="/blog/best-secured-credit-cards" className="font-semibold text-emerald-700 underline underline-offset-2">
+    Best secured credit cards (2026)
+  </Link>
+</p>
                   <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-                    Credit card guides, comparisons, and a simple finder — all in
-                    one place.
-                  </h1>
-                  <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
-                    Start with a high-level guide or jump into the interactive
-                    finder. Everything is in plain English so you can choose
-                    calmly and confidently.
-                  </p>
-
+  Compare credit cards (secured, bad credit, travel & 0% APR) — all in one place.
+</h1>
+                 <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
+  Start with a guide that matches your goal—rebuilding credit with secured cards, earning rewards for travel, or using 0% intro APR to pay down balances. Plain English, no jargon.
+</p>
                   <ul className="mt-2 text-[12px] text-brand-800 space-y-1">
                     <li>✔ First-time card applicants</li>
                     <li>✔ Rebuilding or improving credit</li>
