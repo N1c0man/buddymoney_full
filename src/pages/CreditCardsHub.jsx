@@ -74,9 +74,10 @@ export default function CreditCardsHub() {
     window.scrollTo(0, 0);
   }, []);
 
-  const pageTitle = "Credit Card Guides (2026): Compare Cards for Bad Credit, Travel & 0% APR | BuddyMoney";
+  const pageTitle =
+    "Credit Card Guides (2026): Compare Cards for Bad Credit, Travel & 0% APR | BuddyMoney";
   const pageDescription =
-  "Compare credit cards with beginner-friendly guides and a simple preview finder. Explore secured credit cards for bad or fair credit, travel rewards cards, and 0% intro APR / balance transfer options.";
+    "Compare credit cards with beginner-friendly guides and a simple preview finder. Explore secured credit cards for bad or fair credit, travel rewards cards, and 0% intro APR / balance transfer options.";
 
   const schemaOrg = useMemo(() => {
     return {
@@ -156,17 +157,26 @@ export default function CreditCardsHub() {
                     BuddyMoney Credit Card Hub
                   </p>
                   <p className="mt-2 text-[12px] text-slate-700">
-  New to credit? Start here:{" "}
-  <Link to="/blog/best-secured-credit-cards" className="font-semibold text-emerald-700 underline underline-offset-2">
-    Best secured credit cards (2026)
-  </Link>
-</p>
+                    New to credit? Start here:{" "}
+                    <Link
+                      to="/blog/best-secured-credit-cards"
+                      className="font-semibold text-emerald-700 underline underline-offset-2"
+                    >
+                      Best secured credit cards (2026)
+                    </Link>
+                  </p>
+
                   <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-  Compare credit cards (secured, bad credit, travel & 0% APR) — all in one place.
-</h1>
-                 <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
-  Start with a guide that matches your goal—rebuilding credit with secured cards, earning rewards for travel, or using 0% intro APR to pay down balances. Plain English, no jargon.
-</p>
+                    Compare credit cards (secured, bad credit, travel & 0% APR) — all in one place.
+                  </h1>
+
+                  <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
+                    Start with a guide that matches your goal—rebuilding credit with secured cards,
+                    earning rewards for travel, or using 0% intro APR to pay down balances. Plain
+                    English, no jargon.
+                  </p>
+
+
                   <ul className="mt-2 text-[12px] text-brand-800 space-y-1">
                     <li>✔ First-time card applicants</li>
                     <li>✔ Rebuilding or improving credit</li>
