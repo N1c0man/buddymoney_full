@@ -9,6 +9,7 @@ import BillSplitter from "../tools/BillSplitter";
 import EmergencyFund from "../tools/EmergencyFund";
 import NetWorth from "../tools/NetWorth";
 import ShareBar from "../components/ShareBar";
+import WelcomeBackBanner from "../components/WelcomeBackBanner";   // 🌿 NEW IMPORT
 import { setCanonical } from "../utils/seo";
 
 const TOOL_CARDS = [
@@ -70,16 +71,24 @@ export default function Tools() {
     setCanonical("/tools");
   }, []);
 
+  // 🌿 NEW: persistent tool memory
+  const [lastTool, setLastTool] = React.useState(() => {
+    return localStorage.getItem("lastTool");
+  });
+
+  const handleToolClick = (toolId) => {
+    localStorage.setItem("lastTool", toolId);
+    setLastTool(toolId);
+  };
+
   // Basic SEO data
   const title =
     "Free Money Tools & Calculators | Budget, Savings, Debt & More | BuddyMoney";
-
   const description =
     "Use BuddyMoney’s free money tools and calculators to plan your budget, savings goals, debt payoff, emergency fund, and net worth. No logins, no fees—just simple tools to support calmer money decisions.";
-
   const pageUrl = "https://buddymoney.com/tools";
 
-  // JSON-LD structured data for the tools collection
+  // JSON-LD structured data
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -127,8 +136,6 @@ export default function Tools() {
           name="keywords"
           content="money tools, budget calculator, savings goal calculator, debt payoff calculator, emergency fund calculator, net worth tracker, bill splitter, BuddyMoney"
         />
-
-        {/* Open Graph */}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
@@ -138,8 +145,6 @@ export default function Tools() {
           content="https://buddymoney.com/images/icon-placeholder.png"
         />
         <meta property="og:site_name" content="BuddyMoney" />
-
-        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
@@ -147,139 +152,138 @@ export default function Tools() {
           name="twitter:image"
           content="https://buddymoney.com/images/icon-placeholder.png"
         />
-
-        {/* JSON-LD */}
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
       <main className="min-h-screen pt-2 lg:pt-4 pb-16 bg-gradient-to-b from-green-50 via-white to-emerald-50/40">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          {/* TOOLS HERO — Mortgage-style image hero with overlay text */}
-          {/* TOOLS HERO — fixed: no clipping on desktop/mobile */}
-<motion.section
-  className="relative rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft"
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true, amount: 0.4 }}
-  transition={{ duration: 0.7, ease: "easeOut" }}
->
-  {/* Background layer ONLY (this can be clipped) */}
-  <div className="absolute inset-0 overflow-hidden rounded-3xl">
-    <img
-      src="/icons/hero-tools.png"
-      alt="BuddyMoney tools hero image"
-      className="absolute inset-0 h-full w-full object-cover object-right"
-      loading="eager"
-    />
-    {/* Soft overlay so text stays readable */}
-    <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
-
-    {/* background blobs */}
-    <motion.div
-      className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl"
-      initial={{ opacity: 0, scale: 0.9, y: -10 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 1, ease: "easeOut" }}
-    />
-    <motion.div
-      className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl"
-      initial={{ opacity: 0, scale: 0.9, y: 10 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 1.1, ease: "easeOut", delay: 0.15 }}
-    />
-  </div>
-
-  {/* Content layer (NOT clipped) */}
-  <div className="relative px-5 py-7 md:px-8 md:py-8">
-    <div className="grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-start md:items-center">
-      <div className="space-y-4">
-        <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-600">
-          BuddyMoney Tools
-        </p>
-
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-[1.1] pt-1 pb-1">
-          Your free toolbox for calmer money decisions.
-        </h1>
-
-        <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
-          Plan your budget, goals, debt payoff, and safety net with simple
-          calculators. No logins, no fees—just tools to help you and your
-          buddies stay on the same money page.
-        </p>
-
-        <div className="flex flex-wrap gap-3 text-xs">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-            Free • No account needed
-          </span>
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
-            🛠️ New tools added over time
-          </span>
-        </div>
-      </div>
-
-      {/* mini “tool icons” cluster */}
-      <motion.div
-        className="relative flex justify-center"
-        initial={{ opacity: 0, scale: 0.95, y: 10 }}
-        whileInView={{ opacity: 1, scale: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-      >
-        <motion.div
-          className="rounded-2xl bg-white/90 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 w-full max-w-xs"
-          animate={{ y: [0, -5, 0] }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut",
-            delay: 1.2,
-          }}
-        >
-          <p className="text-xs font-semibold text-slate-800 mb-3">
-            Popular tools at a glance
-          </p>
-          <div className="grid grid-cols-2 gap-3 text-[11px] text-slate-700">
-            <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                💰
-              </span>
-              <span>Budget Tracker</span>
+          {/* HERO SECTION */}
+          <motion.section
+            className="relative rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
+            <div className="absolute inset-0 overflow-hidden rounded-3xl">
+              <img
+                src="/icons/hero-tools.png"
+                alt="BuddyMoney tools hero image"
+                className="absolute inset-0 h-full w-full object-cover object-right"
+                loading="eager"
+              />
+              <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
+              <motion.div
+                className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl"
+                initial={{ opacity: 0, scale: 0.9, y: -10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+              />
+              <motion.div
+                className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl"
+                initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{
+                  duration: 1.1,
+                  ease: "easeOut",
+                  delay: 0.15,
+                }}
+              />
             </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                🛟
-              </span>
-              <span>Emergency Fund</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                📉
-              </span>
-              <span>Debt Payoff</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                📊
-              </span>
-              <span>Net Worth</span>
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-    </div>
-  </div>
-</motion.section>
 
-          {/* 🔼 TOP SHARE BAR FOR TOOLS PAGE */}
+            <div className="relative px-5 py-7 md:px-8 md:py-8">
+              <div className="grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-start md:items-center">
+                <div className="space-y-4">
+                  <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-600">
+                    BuddyMoney Tools
+                  </p>
+                  <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-[1.1] pt-1 pb-1">
+                    Your free toolbox for calmer money decisions.
+                  </h1>
+                  <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
+                    Plan your budget, goals, debt payoff, and safety net with
+                    simple calculators. No logins, no fees — just tools to help
+                    you and your buddies stay on the same money page.
+                  </p>
+                  <div className="flex flex-wrap gap-3 text-xs">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      Free • No account needed
+                    </span>
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+                      🛠️ New tools added over time
+                    </span>
+                  </div>
+                </div>
+
+                <motion.div
+                  className="relative flex justify-center"
+                  initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{
+                    duration: 0.6,
+                    ease: "easeOut",
+                    delay: 0.1,
+                  }}
+                >
+                  <motion.div
+                    className="rounded-2xl bg-white/90 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 w-full max-w-xs"
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      ease: "easeInOut",
+                      delay: 1.2,
+                    }}
+                  >
+                    <p className="text-xs font-semibold text-slate-800 mb-3">
+                      Popular tools at a glance
+                    </p>
+                    <div className="grid grid-cols-2 gap-3 text-[11px] text-slate-700">
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                          💰
+                        </span>
+                        <span>Budget Tracker</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                          🛟
+                        </span>
+                        <span>Emergency Fund</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                          📉
+                        </span>
+                        <span>Debt Payoff</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                          📊
+                        </span>
+                        <span>Net Worth</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+          </motion.section>
+
+          {/* 🔼 TOP SHARE BAR */}
           <ShareBar
             variant="top"
             label="Share BuddyMoney's simple money tools with a friend"
             title="I’m using BuddyMoney’s free money tools to plan my next money moves."
           />
 
-          {/* MAIN CARD: tool nav + actual embedded tools */}
+          {/* 🌱 NEW: WELCOME BACK BANNER */}
+          <WelcomeBackBanner lastTool={lastTool} />
+
+          {/* MAIN TOOL SECTION */}
           <motion.div
             className="space-y-10 rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8 lg:px-8"
             initial={{ opacity: 0, y: 18 }}
@@ -302,9 +306,14 @@ export default function Tools() {
                   <motion.a
                     key={tool.id}
                     href={`#${tool.id}`}
+                    onClick={() => handleToolClick(tool.id)}  // 🌿 NEW CLICK HANDLER
                     whileHover={{ y: -4, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    transition={{ type: "spring", stiffness: 260, damping: 18 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 18,
+                    }}
                     className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm transition-shadow hover:shadow-md"
                   >
                     <div className="mb-3 flex items-start justify-between gap-3">
@@ -323,7 +332,9 @@ export default function Tools() {
                       </span>
                     </div>
 
-                    <p className="mb-3 text-xs text-slate-600">{tool.tagline}</p>
+                    <p className="mb-3 text-xs text-slate-600">
+                      {tool.tagline}
+                    </p>
 
                     <div className="flex items-center text-[11px] font-semibold text-emerald-600">
                       Open tool
@@ -338,7 +349,7 @@ export default function Tools() {
 
             {/* ACTUAL TOOLS */}
             <section className="space-y-12">
-              {/* Credit Cards preview */}
+              {/* CREDIT CARDS */}
               <section id="credit-cards" className="scroll-mt-24">
                 <div className="rounded-2xl border border-emerald-100 bg-emerald-50/60 px-4 py-4 sm:px-5 sm:py-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="space-y-1">
@@ -349,10 +360,10 @@ export default function Tools() {
                       Credit Card Finder (preview mode)
                     </h2>
                     <p className="text-xs sm:text-sm text-slate-700 max-w-xl">
-                      We&apos;re building a smarter way to browse credit cards by
-                      credit score, rewards type, and annual fee. Right now it&apos;s
-                      in preview mode with sample data—perfect for exploring the
-                      layout before live partner offers go in.
+                      We&apos;re building a smarter way to browse credit cards
+                      by credit score, rewards type, and annual fee. Right now
+                      it&apos;s in preview mode with sample data—perfect for
+                      exploring the layout before live partner offers go in.
                     </p>
                   </div>
                   <div className="flex-shrink-0">
@@ -366,50 +377,49 @@ export default function Tools() {
                 </div>
               </section>
 
-              {/* Budget */}
+              {/* BUDGET */}
               <section id="budget" className="scroll-mt-24">
                 <div id="budget-tracker">
                   <BudgetTracker />
                 </div>
               </section>
 
-              {/* Savings */}
+              {/* SAVINGS */}
               <section id="savings" className="scroll-mt-24">
                 <div id="savings-goal">
                   <SavingsGoal />
                 </div>
               </section>
 
-              {/* Debt */}
+              {/* DEBT */}
               <section id="debt" className="scroll-mt-24">
                 <div id="debt-payoff">
                   <DebtPayoff />
                 </div>
               </section>
 
-              {/* Bill Splitter */}
+              {/* BILL SPLITTER */}
               <section id="split" className="scroll-mt-24">
                 <div id="bill-splitter">
                   <BillSplitter />
                 </div>
               </section>
 
-              {/* Emergency Fund */}
+              {/* EMERGENCY FUND */}
               <section id="emergency" className="scroll-mt-24">
                 <div id="emergency-fund">
                   <EmergencyFund />
                 </div>
               </section>
 
-              {/* Net Worth */}
+              {/* NET WORTH */}
               <section id="networth" className="scroll-mt-24">
                 <div id="net-worth">
                   <NetWorth />
                 </div>
               </section>
             </section>
-
-            {/* 🔽 BOTTOM SHARE STRIP INSIDE TOOLS CARD */}
+            {/* 🔽 BOTTOM SHARE BAR */}
             <ShareBar
               variant="bottom"
               label="Share BuddyMoney's simple money tools with a friend"
@@ -424,8 +434,8 @@ export default function Tools() {
                     Want help deciding what to do first?
                   </h2>
                   <p className="text-sm text-emerald-50">
-                    Try Budget Coach — a guided experience that helps you choose your
-                    next best money move.
+                    Try Budget Coach — a guided experience that helps you choose
+                    your next best money move.
                   </p>
                 </div>
                 <Link
