@@ -1,6 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./public/index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+
+  // 🚀  Safelist guarantees these custom classes are always generated
+  safelist: [
+    "animate-flashHighlight",
+    "dark:animate-flashHighlight" // optional dark-mode variant
+  ],
+
   theme: {
     extend: {
       colors: {
@@ -14,7 +21,7 @@ module.exports = {
           600: "#2563eb",
           700: "#1d4ed8",
           800: "#1e40af",
-          900: "#1e3a8a"
+          900: "#1e3a8a",
         },
         accent: {
           100: "#ecfccb",
@@ -22,18 +29,19 @@ module.exports = {
           300: "#bef264",
           400: "#a3e635",
           500: "#84cc16",
-          600: "#65a30d"
-        }
+          600: "#65a30d",
+        },
       },
       boxShadow: {
-        soft: "0 10px 25px -10px rgba(0,0,0,0.15)"
+        soft: "0 10px 25px -10px rgba(0,0,0,0.15)",
       },
       borderRadius: {
-        "2xl": "1rem"
-      }
+        "2xl": "1rem",
+      },
     },
   },
+
   plugins: [
-    require("@tailwindcss/typography"),   // 👈 added
+    require("@tailwindcss/typography"), // 👈 existing plugin
   ],
-}
+};

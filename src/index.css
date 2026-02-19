@@ -11,6 +11,7 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
     Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
 }
+
 /* Subtle paper/noise texture */
 body::before {
   content: "";
@@ -20,9 +21,9 @@ body::before {
   z-index: 0;
 
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-
   background-repeat: repeat;
 }
+
 /* --- small fade-up animation for success/error messages --- */
 @keyframes fade-in-up {
   from {
@@ -46,21 +47,16 @@ body::before {
    PREMIUM DROP CAP — safe, stable version
    ------------------------------------------------------------- */
 .blog-article-body p:first-of-type::first-letter {
-  /* type + size */
-  font-size: 2.85rem;           /* slightly more elegant size */
-  line-height: 0.9;             /* improves vertical alignment */
-  font-weight: 800;             /* rich, premium look */
-  color: rgb(4 120 87);         /* emerald-700 */
+  font-size: 2.85rem;
+  line-height: 0.9;
+  font-weight: 800;
+  color: rgb(4 120 87);
 
-  /* layout */
   float: left;
-  margin-right: 0.35rem;        /* smoother spacing */
+  margin-right: 0.35rem;
   margin-top: 0.1rem;
 
-  /* subtle depth without altering layout */
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-
-  /* visual smoothing for Windows/Chrome */
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -70,4 +66,35 @@ body::before {
   .blog-article-body p:first-of-type::first-letter {
     font-size: 2.1rem;
   }
+}
+
+/* -------------------------------------------------------------
+   STRONG TOOL HIGHLIGHT FLASH (used by WelcomeBackBanner)
+   ------------------------------------------------------------- */
+@keyframes flashHighlight {
+  0% {
+    background-color: rgba(16, 185, 129, 0.4); /* brighter emerald tint */
+    box-shadow:
+      0 0 0 4px rgba(16, 185, 129, 0.55),
+      0 0 35px rgba(16, 185, 129, 0.65);
+  }
+  60% {
+    background-color: rgba(16, 185, 129, 0.25);
+    box-shadow:
+      0 0 0 2px rgba(16, 185, 129, 0.45),
+      0 0 25px rgba(16, 185, 129, 0.55);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.animate-flashHighlight {
+  animation: flashHighlight 1.2s ease-out;
+  position: relative;           /* ensures highlight sits above card bg */
+  z-index: 20;
+  border-radius: 1rem;          /* matches .rounded-2xl on cards */
+  overflow: visible;            /* keep shadow visible outside card */
+  transform: translateZ(0);     /* fixes GPU paint issues in Safari */
 }
