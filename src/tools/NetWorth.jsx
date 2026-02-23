@@ -45,9 +45,11 @@ export default function NetWorth() {
   const netWorthColor =
     nw > 0 ? "text-emerald-700" : nw < 0 ? "text-rose-700" : "text-slate-700";
   const netWorthBg =
-    nw > 0 ? "bg-emerald-50 border-emerald-100" :
-    nw < 0 ? "bg-rose-50 border-rose-100" :
-    "bg-slate-50 border-slate-100";
+    nw > 0
+      ? "bg-emerald-50 border-emerald-100"
+      : nw < 0
+      ? "bg-rose-50 border-rose-100"
+      : "bg-slate-50 border-slate-100";
 
   return (
     <section
@@ -74,7 +76,7 @@ export default function NetWorth() {
         </div>
       </div>
 
-      {/* MAIN GRID: ASSETS & LIABILITIES */}
+      {/* MAIN GRID */}
       <div className="grid sm:grid-cols-2 gap-6 mb-6">
         {/* ASSETS */}
         <div>
@@ -82,23 +84,25 @@ export default function NetWorth() {
           <p className="text-[11px] text-slate-500 mb-2">
             Examples: cash, checking, savings, investments, home value, car.
           </p>
-          <div className="flex gap-2 mb-2">
+
+          {/* INPUT ROW FIXED */}
+          <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_8rem_auto] gap-2 mb-2">
             <input
-              className="border border-slate-300 rounded-lg px-3 py-2 flex-1 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              className="border border-slate-300 rounded-lg px-3 py-2 w-full min-w-0 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               placeholder="Asset name (e.g. Savings)"
               value={an}
               onChange={(e) => setAn(e.target.value)}
             />
             <input
               type="number"
-              className="border border-slate-300 rounded-lg px-3 py-2 w-32 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              className="border border-slate-300 rounded-lg px-3 py-2 w-full min-w-0 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               placeholder="Value"
               value={av}
               onChange={(e) => setAv(e.target.value)}
             />
             <button
               type="button"
-              className="px-3 py-2 text-sm font-semibold bg-emerald-600 text-white rounded-lg shadow-sm hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full sm:w-auto px-3 py-2 text-sm font-semibold bg-emerald-600 text-white rounded-lg shadow-sm hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
               onClick={handleAddAsset}
             >
               Add
@@ -112,10 +116,7 @@ export default function NetWorth() {
           ) : (
             <ul className="text-sm divide-y divide-slate-100 mt-1">
               {assets.map((a, i) => (
-                <li
-                  key={i}
-                  className="flex items-center justify-between py-1.5"
-                >
+                <li key={i} className="flex items-center justify-between py-1.5">
                   <span className="text-slate-800">{a.n}</span>
                   <div className="flex items-center gap-3">
                     <span className="tabular-nums text-slate-800">
@@ -135,8 +136,7 @@ export default function NetWorth() {
           )}
 
           <div className="mt-2 text-sm font-medium text-slate-800">
-            Total assets:{" "}
-            <span className="tabular-nums">${ta.toFixed(2)}</span>
+            Total assets: <span className="tabular-nums">${ta.toFixed(2)}</span>
           </div>
         </div>
 
@@ -144,26 +144,27 @@ export default function NetWorth() {
         <div>
           <h3 className="font-semibold text-slate-900 mb-2">Liabilities</h3>
           <p className="text-[11px] text-slate-500 mb-2">
-            Examples: credit cards, student loans, car loans, mortgage, personal
-            loans.
+            Examples: credit cards, student loans, car loans, mortgage, personal loans.
           </p>
-          <div className="flex gap-2 mb-2">
+
+          {/* INPUT ROW FIXED */}
+          <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_8rem_auto] gap-2 mb-2">
             <input
-              className="border border-slate-300 rounded-lg px-3 py-2 flex-1 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              className="border border-slate-300 rounded-lg px-3 py-2 w-full min-w-0 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               placeholder="Liability name (e.g. Credit card)"
               value={ln}
               onChange={(e) => setLn(e.target.value)}
             />
             <input
               type="number"
-              className="border border-slate-300 rounded-lg px-3 py-2 w-32 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              className="border border-slate-300 rounded-lg px-3 py-2 w-full min-w-0 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
               placeholder="Amount"
               value={lv}
               onChange={(e) => setLv(e.target.value)}
             />
             <button
               type="button"
-              className="px-3 py-2 text-sm font-semibold bg-emerald-600 text-white rounded-lg shadow-sm hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full sm:w-auto px-3 py-2 text-sm font-semibold bg-emerald-600 text-white rounded-lg shadow-sm hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
               onClick={handleAddLiab}
             >
               Add
@@ -177,10 +178,7 @@ export default function NetWorth() {
           ) : (
             <ul className="text-sm divide-y divide-slate-100 mt-1">
               {liabs.map((l, i) => (
-                <li
-                  key={i}
-                  className="flex items-center justify-between py-1.5"
-                >
+                <li key={i} className="flex items-center justify-between py-1.5">
                   <span className="text-slate-800">{l.n}</span>
                   <div className="flex items-center gap-3">
                     <span className="tabular-nums text-slate-800">
@@ -200,15 +198,13 @@ export default function NetWorth() {
           )}
 
           <div className="mt-2 text-sm font-medium text-slate-800">
-            Total liabilities:{" "}
-            <span className="tabular-nums">${tl.toFixed(2)}</span>
+            Total liabilities: <span className="tabular-nums">${tl.toFixed(2)}</span>
           </div>
         </div>
       </div>
 
-      {/* SUMMARY + NET WORTH */}
+      {/* SUMMARY */}
       <div className="grid gap-4 md:grid-cols-3 items-stretch text-sm">
-        {/* Summary cards */}
         <div className="rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 flex flex-col gap-1">
           <span className="text-xs uppercase font-semibold text-slate-500">
             Total assets
@@ -227,15 +223,11 @@ export default function NetWorth() {
           </span>
         </div>
 
-        <div
-          className={`rounded-xl border px-4 py-3 flex flex-col gap-1 ${netWorthBg}`}
-        >
+        <div className={`rounded-xl border px-4 py-3 flex flex-col gap-1 ${netWorthBg}`}>
           <span className="text-xs uppercase font-semibold text-slate-600">
             Net worth
           </span>
-          <span
-            className={`text-lg font-bold tabular-nums ${netWorthColor}`}
-          >
+          <span className={`text-lg font-bold tabular-nums ${netWorthColor}`}>
             ${nw.toFixed(2)}
           </span>
           <span className="text-[11px] text-slate-500">
@@ -248,7 +240,7 @@ export default function NetWorth() {
         </div>
       </div>
 
-      {/* ASSETS VS LIABILITIES BAR */}
+      {/* BAR */}
       {totalAbsolute > 0 && (
         <div className="mt-4">
           <div className="flex justify-between text-xs text-slate-600 mb-1">
