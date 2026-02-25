@@ -3,64 +3,31 @@ import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
 import AffiliateCalloutAmazonPlanner from "../components/AffiliateCalloutAmazonPlanner";
-import { setCanonical } from "../utils/seo"; //
+import { setCanonical } from "../utils/seo";
 
-// 50/30/20 baseline, can adapt based on income
-const BASE_RULES = {
-  needs: 0.50,
-  wants: 0.30,
-  savings: 0.20,
-};
+// NEW imports (logic + UI)
+import {
+  sanitizeDecimalInput,
+  loadBudgetFromStorage,
+  saveBudgetToStorage,
+  computeBudgetNumbers,
+  computeTargets,
+  computeScore,
+  generateTips,
+} from "../utils/budgetLogic";
 
-// Helper to clamp a number
-const clamp = (n, min, max) => Math.min(Math.max(n, min), max);
-
-const toNumber = (value) => {
-  const cleaned = String(value ?? "").replace(/,/g, "");
-  const n = parseFloat(cleaned);
-  if (!Number.isFinite(n) || Number.isNaN(n)) return 0;
-  return n < 0 ? 0 : n;
-};
-
-// Small badge
-const Badge = ({ children, color = "bg-green-100 text-green-800" }) => (
-  <span
-    className={`inline-block px-2 py-0.5 rounded-full text-xs font-semibold ${color}`}
-  >
-    {children}
-  </span>
-);
-
-// Progress bar
-const Bar = ({ value, color = "bg-indigo-900" }) => (
-  <div className="w-full h-2 rounded bg-gray-200 overflow-hidden">
-    <div
-      className={`h-2 ${color}`}
-      style={{ width: `${clamp(value, 0, 100)}%` }}
-    />
-  </div>
-);
-
-function sanitizeDecimalInput(s) {
-  // Allow digits, commas, and one decimal point
-  let raw = String(s ?? "").replace(/[^0-9.,]/g, "");
-
-  // Remove all commas for processing
-  raw = raw.replace(/,/g, "");
-
-  // Allow only one decimal point
-  const firstDot = raw.indexOf(".");
-  if (firstDot !== -1) {
-    raw =
-      raw.slice(0, firstDot + 1) +
-      raw.slice(firstDot + 1).replace(/\./g, "");
-  }
-
-  return raw;
-}
+import {
+  InputField,
+  Badge,
+  Bar,
+  Row,
+  Card,
+  DoughnutChartSimple,
+  DoughnutChartAdvanced,
+} from "../components/BudgetUI";
 
 export default function BudgetCoach() {
-  // Form state
+  // Form state — now includes insurance + investments
   const [income, setIncome] = useState("");
   const [housing, setHousing] = useState("");
   const [transport, setTransport] = useState("");
@@ -68,36 +35,62 @@ export default function BudgetCoach() {
   const [utilities, setUtilities] = useState("");
   const [debt, setDebt] = useState("");
   const [wants, setWants] = useState("");
+  const [insurance, setInsurance] = useState("");
+  const [investments, setInvestments] = useState("");
 
-  // Canonical for /coach
+  // Chart mode: "simple" or "advanced"
+  const [chartMode, setChartMode] = useState("simple");
+
+  // Canonical for SEO
   useEffect(() => {
     setCanonical("/coach");
   }, []);
 
-  // Load from localStorage (safely)
+  // Load from localStorage
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem("bm_budget_coach");
-      if (!raw) return;
-      const saved = JSON.parse(raw);
-      if (!saved || typeof saved !== "object") return;
+    const saved = loadBudgetFromStorage();
+    if (!saved) return;
 
-      setIncome(saved.income ?? "");
-      setHousing(saved.housing ?? "");
-      setTransport(saved.transport ?? "");
-      setFood(saved.food ?? "");
-      setUtilities(saved.utilities ?? "");
-      setDebt(saved.debt ?? "");
-      setWants(saved.wants ?? "");
-    } catch {
-      // If anything goes wrong, just skip loading
-    }
+    setIncome(saved.income ?? "");
+    setHousing(saved.housing ?? "");
+    setTransport(saved.transport ?? "");
+    setFood(saved.food ?? "");
+    setUtilities(saved.utilities ?? "");
+    setDebt(saved.debt ?? "");
+    setWants(saved.wants ?? "");
+    setInsurance(saved.insurance ?? "");
+    setInvestments(saved.investments ?? "");
   }, []);
 
-  // Save to localStorage (safely)
+  // Save to localStorage on changes
   useEffect(() => {
-    try {
-      const payload = {
+    saveBudgetToStorage({
+      income,
+      housing,
+      transport,
+      food,
+      utilities,
+      debt,
+      wants,
+      insurance,
+      investments,
+    });
+  }, [
+    income,
+    housing,
+    transport,
+    food,
+    utilities,
+    debt,
+    wants,
+    insurance,
+    investments,
+  ]);
+
+  // Compute numbers
+  const numbers = useMemo(
+    () =>
+      computeBudgetNumbers({
         income,
         housing,
         transport,
@@ -105,157 +98,38 @@ export default function BudgetCoach() {
         utilities,
         debt,
         wants,
-      };
-      localStorage.setItem("bm_budget_coach", JSON.stringify(payload));
-    } catch {
-      // Ignore write errors (private mode, quota, etc.)
-    }
-  }, [income, housing, transport, food, utilities, debt, wants]);
-
-  // 🔗 SOCIAL SHARE STATE & HELPERS
-  const [copied, setCopied] = useState(false);
-
-  const canonicalUrl = "https://www.buddymoney.com/coach";
-
-  const pageUrl =
-    typeof window !== "undefined" ? window.location.href : canonicalUrl;
-
-  const shareTitle = "AI Budget Coach – BuddyMoney";
-  const encodedUrl = encodeURIComponent(pageUrl);
-  const encodedTitle = encodeURIComponent(
-    "I’m using this AI Budget Coach from BuddyMoney to get a calm, realistic plan for my monthly money."
+        insurance,
+        investments,
+      }),
+    [
+      income,
+      housing,
+      transport,
+      food,
+      utilities,
+      debt,
+      wants,
+      insurance,
+      investments,
+    ]
   );
 
-  const handleCopyLink = async () => {
-    try {
-      await navigator.clipboard.writeText(pageUrl);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy link:", err);
-    }
-  };
+  // Compute targets
+  const targets = useMemo(() => computeTargets(numbers.i), [numbers.i]);
 
-  // Numbers
-  const numbers = useMemo(() => {
-    const i = toNumber(income);
-    const h = toNumber(housing);
-    const t = toNumber(transport);
-    const f = toNumber(food);
-    const u = toNumber(utilities);
-    const d = toNumber(debt);
-    const w = toNumber(wants);
-
-    const needs = h + t + f + u + d; // simple “needs” bucket
-    const total = needs + w;
-    const leftover = i - total;
-
-    const needsPct = i > 0 ? (needs / i) * 100 : 0;
-    const wantsPct = i > 0 ? (w / i) * 100 : 0;
-    const savingsPct = i > 0 ? ((leftover > 0 ? leftover : 0) / i) * 100 : 0;
-
-    return {
-      i,
-      h,
-      t,
-      f,
-      u,
-      d,
-      w,
-      needs,
-      total,
-      leftover,
-      needsPct,
-      wantsPct,
-      savingsPct,
-    };
-  }, [income, housing, transport, food, utilities, debt, wants]);
-
-  // Adaptive targets (tiny nudge for lower income)
-  const targets = useMemo(() => {
-    const i = numbers.i;
-    if (i <= 0) return BASE_RULES;
-    // If income is small, relax savings to 15% and raise needs to 55%
-    if (i < 3000) return { needs: 0.55, wants: 0.30, savings: 0.15 };
-    // If income is high, aim for 25% savings
-    if (i > 8000) return { needs: 0.50, wants: 0.25, savings: 0.25 };
-    return BASE_RULES;
-  }, [numbers.i]);
-
-  // Score: out of 100, subtract penalties for exceeding targets
-  const score = useMemo(() => {
-    const nOver = Math.max(0, numbers.needsPct - targets.needs * 100);
-    const wOver = Math.max(0, numbers.wantsPct - targets.wants * 100);
-    const sUnder = Math.max(0, targets.savings * 100 - numbers.savingsPct);
-    const penalty = nOver * 0.6 + wOver * 0.6 + sUnder * 0.8;
-    return clamp(Math.round(100 - penalty), 0, 100);
-  }, [numbers.needsPct, numbers.wantsPct, numbers.savingsPct, targets]);
-
-  const scoreLabel =
-    score >= 85
-      ? "Excellent"
-      : score >= 70
-      ? "Good"
-      : score >= 50
-      ? "Fair"
-      : "Needs Attention";
-
-  const scoreColor =
-    score >= 85
-      ? "text-green-700"
-      : score >= 70
-      ? "text-emerald-700"
-      : score >= 50
-      ? "text-amber-700"
-      : "text-red-700";
-
-  const scoreBar =
-    score >= 85
-      ? "bg-green-500"
-      : score >= 70
-      ? "bg-emerald-500"
-      : score >= 50
-      ? "bg-amber-500"
-      : "bg-red-500";
+  // Compute score
+  const { score, scoreLabel, scoreColor, scoreBar } = useMemo(
+    () => computeScore(numbers, targets),
+    [numbers, targets]
+  );
 
   // Tips
-  const tips = useMemo(() => {
-    const t = [];
-    if (numbers.i <= 0) return ["Add your monthly take-home income to begin."];
+  const tips = useMemo(
+    () => generateTips(numbers, targets),
+    [numbers, targets]
+  );
 
-    if (numbers.needsPct > targets.needs * 100) {
-      t.push(
-        "Your essential expenses are running hot. Try reducing housing/transport or renegotiating bills."
-      );
-    }
-
-    if (numbers.wantsPct > targets.wants * 100) {
-      t.push(
-        "Wants are above target. Try a 14-day pause on dining out or subscriptions."
-      );
-    }
-
-    if (numbers.savingsPct < targets.savings * 100) {
-      const suggested = targets.savings * numbers.i;
-      t.push(
-        `Savings below target. Automate at least ${suggested.toFixed(0)} this month.`
-      );
-    }
-
-    if (numbers.leftover < 0) {
-      t.push(
-        "You’re overspending. Aim to trim 5–10% from the highest non-essential category."
-      );
-    }
-
-    if (t.length === 0) {
-      t.push("Nice balance! Consider nudging savings +2–5% for faster progress.");
-    }
-
-    return t.slice(0, 3);
-  }, [numbers, targets]);
-
-  // Suggested target dollars
+  // Target dollars
   const targetNeeds = targets.needs * numbers.i || 0;
   const targetWants = targets.wants * numbers.i || 0;
   const targetSavings = targets.savings * numbers.i || 0;
@@ -268,12 +142,16 @@ export default function BudgetCoach() {
     setUtilities("");
     setDebt("");
     setWants("");
+    setInsurance("");
+    setInvestments("");
     try {
       localStorage.removeItem("bm_budget_coach");
-    } catch {
-      // ignore
-    }
+    } catch {}
   };
+
+  // Social share static fields
+  const canonicalUrl = "https://www.buddymoney.com/coach";
+  const shareTitle = "AI Budget Coach – BuddyMoney";
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -306,7 +184,6 @@ export default function BudgetCoach() {
           name="description"
           content="Use BuddyMoney’s free AI Budget Coach to rate your monthly budget, compare it to a flexible 50/30/20 rule, and get friendly tips to improve your money plan."
         />
-        {/* Basic OG/Twitter tags */}
         <meta property="og:title" content={shareTitle} />
         <meta
           property="og:description"
@@ -320,139 +197,135 @@ export default function BudgetCoach() {
           name="twitter:description"
           content="Use BuddyMoney’s free AI Budget Coach to get a calm, realistic monthly budget plan based on your real numbers."
         />
-        {/* FAQ structured data */}
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
 
       <main className="pt-2 lg:pt-4 pb-16 bg-brand-50/40">
         <div className="max-w-5xl mx-auto px-4 space-y-6">
-          {/* COACH HERO (Tools-style) */}
+
+          {/* HERO (UNCHANGED) */}
           <motion.section
-            className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[220px] md:h-[260px] lg:h-[300px]"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-          >
-            {/* Background hero image */}
-            <img
-              src="/icons/hero-budget-coach.png"
-              alt="AI Budget Coach hero image"
-              className="absolute inset-0 h-full w-full object-cover object-right"
-              loading="eager"
-            />
+  className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[220px] md:h-[260px] lg:h-[300px]"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, amount: 0.4 }}
+  transition={{ duration: 0.7, ease: "easeOut" }}
+>
+  <img
+    src="/icons/hero-budget-coach.png"
+    alt="AI Budget Coach hero image"
+    className="absolute inset-0 h-full w-full object-cover object-right"
+    loading="eager"
+  />
 
-            {/* Soft overlay so text stays readable */}
-            <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
+  <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
 
-            {/* background blobs (kept like Tools) */}
-            <motion.div
-              className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl"
-              initial={{ opacity: 0, scale: 0.9, y: -10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            />
-            <motion.div
-              className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl"
-              initial={{ opacity: 0, scale: 0.9, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1.1, ease: "easeOut", delay: 0.15 }}
-            />
+  <motion.div
+    className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl"
+    initial={{ opacity: 0, scale: 0.9, y: -10 }}
+    animate={{ opacity: 1, scale: 1, y: 0 }}
+    transition={{ duration: 1, ease: "easeOut" }}
+  />
+  <motion.div
+    className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl"
+    initial={{ opacity: 0, scale: 0.9, y: 10 }}
+    animate={{ opacity: 1, scale: 1, y: 0 }}
+    transition={{
+      duration: 1.1,
+      ease: "easeOut",
+      delay: 0.15,
+    }}
+  />
 
-            {/* Content */}
-            <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
-              <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-center w-full">
-                <div className="space-y-4">
-                  <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-600">
-                    Budget & Money Coach
-                  </p>
+  <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
+    <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-center w-full">
+      <div className="space-y-4">
+        <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-600">
+          Budget & Money Coach
+        </p>
 
-                  <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-                    AI Budget Coach: Get a calm, realistic plan for your monthly money.
-                  </h1>
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
+          AI Budget Coach: Get a calm, realistic plan for your monthly money.
+        </h1>
 
-                  <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
-                    Enter your real numbers and see how your budget stacks up against a simple rule
-                    of thumb. Then get clear suggestions on what to tweak next.
-                  </p>
+        <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
+          Enter your real numbers and see how your budget stacks up against a simple rule
+          of thumb. Then get clear suggestions on what to tweak next.
+        </p>
 
-                  <div className="flex flex-wrap gap-3 text-xs">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
-                      ✍️ Uses your real monthly numbers
-                    </span>
-                    <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
-                      🎯 Simple, friendly tips—not guilt
-                    </span>
-                  </div>
-                </div>
+        <div className="flex flex-wrap gap-3 text-xs">
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+            ✍️ Uses your real monthly numbers
+          </span>
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+            🎯 Simple, friendly tips—not guilt
+          </span>
+        </div>
+      </div>
 
-                {/* Right mini card (Tools-style floating card) */}
-                <motion.div
-                  className="relative hidden md:flex justify-center"
-                  initial={{ opacity: 0, scale: 0.95, y: 10 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-                >
-                  <motion.div
-                    className="rounded-2xl bg-white/90 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 w-full max-w-xs"
-                    animate={{ y: [0, -5, 0] }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      repeatType: "reverse",
-                      ease: "easeInOut",
-                      delay: 1.2,
-                    }}
-                  >
-                    <p className="text-xs font-semibold text-slate-800 mb-3">
-                      What you’ll get
-                    </p>
+      <motion.div
+        className="relative hidden md:flex justify-center"
+        initial={{ opacity: 0, scale: 0.95, y: 10 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+      >
+        <motion.div
+          className="rounded-2xl bg-white/90 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 w-full max-w-xs"
+          animate={{ y: [0, -5, 0] }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            repeatType: "reverse",
+            ease: "easeInOut",
+            delay: 1.2,
+          }}
+        >
+          <p className="text-xs font-semibold text-slate-800 mb-3">
+            What you’ll get
+          </p>
 
-                    <div className="grid grid-cols-2 gap-3 text-[11px] text-slate-700">
-                      <div className="flex items-center gap-2">
-                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                          🧠
-                        </span>
-                        <span>Budget score</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                          🎯
-                        </span>
-                        <span>Targets</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                          🧾
-                        </span>
-                        <span>Breakdown</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                          ✅
-                        </span>
-                        <span>Next steps</span>
-                      </div>
-                    </div>
-
-                    <p className="mt-3 text-[11px] text-emerald-600 font-semibold">
-                      Fill in your numbers below ↓
-                    </p>
-                  </motion.div>
-                </motion.div>
-              </div>
+          <div className="grid grid-cols-2 gap-3 text-[11px] text-slate-700">
+            <div className="flex items-center gap-2">
+              <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                🧠
+              </span>
+              <span>Budget score</span>
             </div>
-          </motion.section>
+            <div className="flex items-center gap-2">
+              <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                🎯
+              </span>
+              <span>Targets</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                🧾
+              </span>
+              <span>Breakdown</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                ✅
+              </span>
+              <span>Next steps</span>
+            </div>
+          </div>
 
-          {/* Social share — Premium BuddyMoney version (no motion) */}
+          <p className="mt-3 text-[11px] text-emerald-600 font-semibold">
+            Fill in your numbers below ↓
+          </p>
+        </motion.div>
+      </motion.div>
+    </div>
+  </div>
+</motion.section>
           <ShareBar
             variant="top"
             label="Share this friendly budgeting coach with someone who needs it"
             title="I’m using BuddyMoney’s AI Budget Coach to get a calm, realistic monthly plan."
           />
 
-          {/* MAIN COACH CARD */}
           <section className="space-y-8">
             <motion.div
               className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8"
@@ -493,48 +366,24 @@ export default function BudgetCoach() {
                     inputMode="decimal"
                     className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                     value={income}
-                    onChange={(e) => setIncome(sanitizeDecimalInput(e.target.value))}
+                    onChange={(e) =>
+                      setIncome(sanitizeDecimalInput(e.target.value))
+                    }
                     placeholder="e.g., 5200"
                   />
                 </div>
 
                 <div className="md:col-span-2 grid grid-cols-2 gap-4">
-                  <InputField
-                    label="Housing / Rent"
-                    value={housing}
-                    onChange={setHousing}
-                    placeholder="e.g., 1600"
-                  />
-                  <InputField
-                    label="Transport"
-                    value={transport}
-                    onChange={setTransport}
-                    placeholder="e.g., 300"
-                  />
-                  <InputField
-                    label="Food / Groceries"
-                    value={food}
-                    onChange={setFood}
-                    placeholder="e.g., 450"
-                  />
-                  <InputField
-                    label="Utilities / Bills"
-                    value={utilities}
-                    onChange={setUtilities}
-                    placeholder="e.g., 220"
-                  />
-                  <InputField
-                    label="Debt payments"
-                    value={debt}
-                    onChange={setDebt}
-                    placeholder="e.g., 250"
-                  />
-                  <InputField
-                    label="Wants (shopping, dining, fun)"
-                    value={wants}
-                    onChange={setWants}
-                    placeholder="e.g., 400"
-                  />
+                  <InputField label="Housing / Rent" value={housing} onChange={setHousing} placeholder="e.g., 1600" />
+                  <InputField label="Transport" value={transport} onChange={setTransport} placeholder="e.g., 300" />
+                  <InputField label="Food / Groceries" value={food} onChange={setFood} placeholder="e.g., 450" />
+                  <InputField label="Utilities / Bills" value={utilities} onChange={setUtilities} placeholder="e.g., 220" />
+                  <InputField label="Debt payments" value={debt} onChange={setDebt} placeholder="e.g., 250" />
+                  <InputField label="Wants (shopping, dining, fun)" value={wants} onChange={setWants} placeholder="e.g., 400" />
+
+                  {/* NEW FIELDS */}
+                  <InputField label="Insurance" value={insurance} onChange={setInsurance} placeholder="e.g., 180" />
+                  <InputField label="Investments / Retirement" value={investments} onChange={setInvestments} placeholder="e.g., 300" />
                 </div>
               </div>
 
@@ -562,32 +411,49 @@ export default function BudgetCoach() {
                   <div className="space-y-3">
                     <Row label="Needs" value={numbers.needsPct} target={targets.needs * 100} />
                     <Row label="Wants" value={numbers.wantsPct} target={targets.wants * 100} />
-                    <Row
-                      label="Savings (leftover)"
-                      value={numbers.savingsPct}
-                      target={targets.savings * 100}
-                    />
+                    <Row label="Savings (including investments + leftover)" value={numbers.savingsPct} target={targets.savings * 100} />
                   </div>
                 </div>
               </div>
 
+              {/* Chart toggle */}
+              <div className="mt-8 flex gap-3">
+                <button
+                  onClick={() => setChartMode("simple")}
+                  className={`px-4 py-2 rounded-lg border text-sm ${
+                    chartMode === "simple"
+                      ? "bg-emerald-600 text-white border-emerald-700"
+                      : "bg-white text-slate-700 border-slate-300"
+                  }`}
+                >
+                  Simple Chart
+                </button>
+                <button
+                  onClick={() => setChartMode("advanced")}
+                  className={`px-4 py-2 rounded-lg border text-sm ${
+                    chartMode === "advanced"
+                      ? "bg-emerald-600 text-white border-emerald-700"
+                      : "bg-white text-slate-700 border-slate-300"
+                  }`}
+                >
+                  Advanced Chart
+                </button>
+              </div>
+
+              {/* Chart */}
+              <div className="mt-6 bg-white rounded-xl p-4 border border-slate-200">
+                {chartMode === "simple" ? (
+                  <DoughnutChartSimple numbers={numbers} />
+                ) : (
+                  <DoughnutChartAdvanced numbers={numbers} />
+                )}
+              </div>
+
               {/* Targets */}
               <div className="mt-8 grid md:grid-cols-3 gap-4">
-                <Card
-                  title="Suggested Monthly Needs"
-                  value={`$${targetNeeds.toFixed(0)}`}
-                  note={`${Math.round(targets.needs * 100)}% target`}
-                />
-                <Card
-                  title="Suggested Monthly Wants"
-                  value={`$${targetWants.toFixed(0)}`}
-                  note={`${Math.round(targets.wants * 100)}% target`}
-                />
-                <Card
-                  title="Suggested Monthly Savings"
-                  value={`$${targetSavings.toFixed(0)}`}
-                  note={`${Math.round(targets.savings * 100)}% target`}
-                />
+                <Card title="Suggested Monthly Needs" value={`$${targetNeeds.toFixed(0)}`} note={`${Math.round(targets.needs * 100)}% target`} />
+                <Card title="Suggested Monthly Wants" value={`$${targetWants.toFixed(0)}`} note={`${Math.round(targets.wants * 100)}% target`} />
+                <Card title="Suggested Monthly Savings" value={`$${targetSavings.toFixed(0)}`} note={`${Math.round(targets.savings * 100)}% target`} />
               </div>
 
               {/* Tips */}
@@ -601,10 +467,9 @@ export default function BudgetCoach() {
               </div>
             </motion.div>
           </section>
-{/* Offline option */}
-<AffiliateCalloutAmazonPlanner className="mt-8" />
 
-          {/* How to use section (SEO helper) */}
+          <AffiliateCalloutAmazonPlanner className="mt-8" />
+
           <section className="mt-10 space-y-4 text-sm text-slate-700">
             <h2 className="text-base md:text-lg font-semibold text-slate-900">
               How to use this Budget Coach
@@ -621,7 +486,6 @@ export default function BudgetCoach() {
             </p>
           </section>
 
-          {/* Bottom share strip (smaller) */}
           <ShareBar
             variant="bottom"
             label="Share this friendly budgeting coach with someone who needs it"
@@ -630,54 +494,5 @@ export default function BudgetCoach() {
         </div>
       </main>
     </>
-  );
-}
-
-function InputField({ label, value, onChange, placeholder }) {
-  return (
-    <div>
-      <label className="block text-sm font-medium text-slate-700 mb-1">{label}</label>
-      <input
-        type="text"
-        inputMode="decimal"
-        className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-emerald-500 focus:outline-none"
-        value={String(value ?? "")}
-        onChange={(e) => onChange(sanitizeDecimalInput(e.target.value))}
-        placeholder={placeholder}
-      />
-    </div>
-  );
-}
-
-function Row({ label, value, target }) {
-  const diff = Math.round(value - target);
-  const color =
-    diff > 3
-      ? "bg-red-100 text-red-800"
-      : diff < -3
-      ? "bg-amber-100 text-amber-800"
-      : "bg-green-100 text-green-800";
-  return (
-    <div>
-      <div className="flex items-center justify-between text-sm mb-1">
-        <div className="font-medium text-slate-800">{label}</div>
-        <div className="flex items-center gap-2">
-          <span className="text-slate-700">{value.toFixed(1)}%</span>
-          <Badge color={color}>{diff > 0 ? `+${diff}%` : `${diff}%`}</Badge>
-        </div>
-      </div>
-      <Bar value={value} />
-      <div className="text-xs text-slate-500 mt-1">Target: {target.toFixed(0)}%</div>
-    </div>
-  );
-}
-
-function Card({ title, value, note }) {
-  return (
-    <div className="rounded-xl border border-slate-200 p-4 bg-white">
-      <div className="text-sm text-slate-600">{title}</div>
-      <div className="text-2xl font-bold text-slate-900">{value}</div>
-      <div className="text-xs text-slate-500">{note}</div>
-    </div>
   );
 }
