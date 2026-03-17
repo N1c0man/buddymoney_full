@@ -562,6 +562,48 @@ const faqBySlug = {
     },
     
   ],
+  "zero-based-budgeting": [
+  {
+    question: "What does zero-based budgeting mean?",
+    answer:
+      "Zero-based budgeting means assigning every dollar of your income to a specific category so that nothing is left unplanned. Your income minus expenses equals zero, including money set aside for savings and debt payments.",
+  },
+  {
+    question: "Do you spend all your money with zero-based budgeting?",
+    answer:
+      "No. Zero-based budgeting does not mean spending everything. It means giving every dollar a job, which can include savings, investing, debt payoff, and other financial goals.",
+  },
+  {
+    question: "Is zero-based budgeting good for beginners?",
+    answer:
+      "Yes. Zero-based budgeting is one of the best methods for beginners because it creates structure, builds awareness, and helps prevent money from slipping away without a plan.",
+  },
+  {
+    question: "How often should I update my zero-based budget?",
+    answer:
+      "Most people should update their budget once per month and make small adjustments whenever income or expenses change. A budget works best when it reflects your real life, not a fixed guess.",
+  },
+  {
+    question: "What is the biggest benefit of zero-based budgeting?",
+    answer:
+      "The biggest benefit is control. Zero-based budgeting helps you decide where your money goes before the month begins, which can reduce overspending and make saving easier.",
+  },
+  {
+    question: "What is the difference between zero-based budgeting and a regular budget?",
+    answer:
+      "A regular budget may estimate spending by category without assigning every dollar. Zero-based budgeting is more intentional because every dollar is planned in advance until the remaining balance reaches zero.",
+  },
+  {
+    question: "Can zero-based budgeting help me save money faster?",
+    answer:
+      "Yes. Because savings is treated like a planned category instead of an afterthought, zero-based budgeting often helps people save more consistently and reach goals faster.",
+  },
+  {
+    question: "What if my income changes every month?",
+    answer:
+      "You can still use zero-based budgeting with irregular income. Base your plan on a conservative income estimate, cover essentials first, and adjust spending categories as your actual income becomes clear.",
+  },
+],
 };
 
 // ⭐ NEW: Merge JSON + inferred .md file + FAQ + URL

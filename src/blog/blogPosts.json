@@ -98,6 +98,20 @@
     "heroImageAlt": "Illustration of a person calmly organizing finances with a clear path ahead"
   },
   {
+    "slug": "zero-based-budgeting",
+    "title": "Zero-Based Budgeting: A Step-by-Step Guide (With Example)",
+    "tag": "Budgeting",
+    "level": "Beginner",
+    "readTime": "9 min read",
+    "excerpt": "Learn how zero-based budgeting works, how to assign every dollar a job, and follow a simple step-by-step example to take control of your money.",
+    "file": "/posts/hero-zero-based-budgeting.md",
+    "author": "BuddyMoney Editorial",
+    "authorAvatar": "/icons/editorial.png",
+    "date": "2026-03-17",
+    "heroImage": "/icons/hero-zero-budget.png",
+    "heroImageAlt": "A budgeting worksheet showing income and expenses balanced to zero"
+  },
+  {
     "slug": "how-freelancers-can-increase-income",
     "title": "How Freelancers Can Increase Income (Without Burning Out)",
     "tag": "Side Hustles",

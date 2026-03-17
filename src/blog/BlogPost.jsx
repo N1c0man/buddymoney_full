@@ -422,7 +422,7 @@ export default function BlogPost() {
   }, [post]);
 
   /* ------------------------------------------
-     ✅ NEW: Stable schema objects (keeps your old meta logic intact)
+     ✅ NEW: Stable schema objects
   ------------------------------------------ */
 
   const seoDescription = useMemo(() => {
@@ -449,39 +449,16 @@ export default function BlogPost() {
         name: "BuddyMoney",
         logo: {
           "@type": "ImageObject",
-          url: "https://www.buddymoney.com/images/buddymoney-logo.png",
+          url: "https://www.buddymoney.com/icons/BMlogo.png",
         },
       },
       ...(post.heroImage ? { image: toAbsoluteUrl(post.heroImage) } : {}),
-      ...(post.datePublished ? { datePublished: post.datePublished } : {}),
+      ...(post.date ? { datePublished: post.date } : {}),
       ...(post.dateModified || post.lastUpdated
         ? { dateModified: post.dateModified || post.lastUpdated }
         : {}),
     };
   }, [post, canonicalUrl, seoDescription]);
-
-  /* ------------------------------------------
-     SEO (title + meta description) — unchanged behavior
-     ✅ Removed manual JSON-LD script injection to prevent duplicates
-  ------------------------------------------ */
-  useEffect(() => {
-    if (!post) return;
-
-    const title = `${post.seoTitle || post.title} | BuddyMoney`;
-    document.title = title;
-
-    const description = seoDescription;
-
-    // Meta description
-    let meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", description);
-    else {
-      meta = document.createElement("meta");
-      meta.name = "description";
-      meta.content = description;
-      document.head.appendChild(meta);
-    }
-  }, [post, seoDescription]);
 
   /* ------------------------------------------
      Load Markdown (strip frontmatter)
@@ -524,7 +501,6 @@ export default function BlogPost() {
      Sharing
   ------------------------------------------ */
   useEffect(() => {
-    // ✅ Share stable canonical URL
     setShareUrl(canonicalUrl);
   }, [canonicalUrl]);
 
@@ -581,19 +557,43 @@ export default function BlogPost() {
   ------------------------------------------ */
   return (
     <>
-      {/* ✅ Canonical + OG + ✅ BlogPosting schema + ✅ FAQPage schema */}
       <Helmet>
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:url" content={canonicalUrl} />
+        <title>{`${post.seoTitle || post.title} | BuddyMoney`}</title>
 
-        {/* BlogPosting JSON-LD */}
+        <link rel="canonical" href={canonicalUrl} />
+
+        <meta name="description" content={seoDescription} />
+
+        <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="BuddyMoney" />
+        <meta property="og:title" content={post.seoTitle || post.title} />
+        <meta property="og:description" content={seoDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        {post.heroImage && (
+          <meta property="og:image" content={toAbsoluteUrl(post.heroImage)} />
+        )}
+        {post.heroImageAlt && (
+          <meta property="og:image:alt" content={post.heroImageAlt} />
+        )}
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.seoTitle || post.title} />
+        <meta name="twitter:description" content={seoDescription} />
+        {post.heroImage && (
+          <meta name="twitter:image" content={toAbsoluteUrl(post.heroImage)} />
+        )}
+
+        {post.date && (
+          <meta property="article:published_time" content={post.date} />
+        )}
+        {post.tag && <meta property="article:section" content={post.tag} />}
+
         {blogPostingJsonLd && (
           <script type="application/ld+json">
             {JSON.stringify(blogPostingJsonLd)}
           </script>
         )}
 
-        {/* FAQPage JSON-LD (separate object — Google compliant) */}
         {Array.isArray(post.faq) && post.faq.length > 0 && (
           <script type="application/ld+json">
             {JSON.stringify(buildFaqJsonLd(post.faq))}
@@ -763,7 +763,6 @@ export default function BlogPost() {
                         {(() => {
                           const { intro, rest } = splitIntroParagraph(markdown);
 
-                          // ✅ Marker approach (renders Amazon callout exactly where marker is placed)
                           const AMAZON_MARKER = "[[AFFILIATE:AMAZON_PLANNER]]";
                           const hasAmazonMarker =
                             post.slug === "how-to-start-a-budget-in-10-minutes" &&
@@ -780,24 +779,20 @@ export default function BlogPost() {
 
                           return (
                             <>
-                              {/* Intro */}
                               <ReactMarkdown components={markdownComponents}>
                                 {intro}
                               </ReactMarkdown>
 
-                              {/* Rest (part 1) */}
                               <ReactMarkdown components={markdownComponents}>
                                 {beforeAmazon}
                               </ReactMarkdown>
 
-                              {/* ✅ Amazon callout renders at marker position */}
                               {hasAmazonMarker && (
                                 <div className="my-8">
                                   <AffiliateCalloutAmazonPlanner />
                                 </div>
                               )}
 
-                              {/* Rest (part 2) */}
                               <ReactMarkdown components={markdownComponents}>
                                 {afterAmazon}
                               </ReactMarkdown>
