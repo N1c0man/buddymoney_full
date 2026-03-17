@@ -1,13 +1,4 @@
-import React from "react";
-import { Doughnut } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-ChartJS.register(ArcElement, Tooltip, Legend);
+import React, { useEffect, useState } from "react";
 
 /* ------------------------------
    Generic small badge
@@ -96,6 +87,61 @@ export function Card({ title, value, note }) {
 }
 
 /* ------------------------------
+   Client-only Doughnut loader
+--------------------------------*/
+function ClientOnlyDoughnut({ data }) {
+  const [DoughnutComponent, setDoughnutComponent] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+
+    const isReactSnap =
+      typeof navigator !== "undefined" &&
+      navigator.userAgent === "ReactSnap";
+
+    if (isReactSnap) {
+      return () => {
+        mounted = false;
+      };
+    }
+
+    async function loadChart() {
+      try {
+        const chartJs = await import("chart.js");
+        const reactChartJs2 = await import("react-chartjs-2");
+
+        const {
+          Chart: ChartJS,
+          ArcElement,
+          Tooltip,
+          Legend,
+        } = chartJs;
+
+        ChartJS.register(ArcElement, Tooltip, Legend);
+
+        if (mounted) {
+          setDoughnutComponent(() => reactChartJs2.Doughnut);
+        }
+      } catch (error) {
+        console.error("Chart load failed:", error);
+      }
+    }
+
+    loadChart();
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  if (!DoughnutComponent) {
+    return <div className="text-sm text-slate-500">Loading chart…</div>;
+  }
+
+  return <DoughnutComponent data={data} />;
+}
+
+/* ------------------------------
    Simple Doughnut Chart
    Needs / Wants / Savings / Investments
 --------------------------------*/
@@ -111,10 +157,10 @@ export function DoughnutChartSimple({ numbers }) {
           numbers.inv,
         ],
         backgroundColor: [
-          "#059669", // green
-          "#3B82F6", // blue
-          "#F59E0B", // amber
-          "#10B981", // emerald
+          "#059669",
+          "#3B82F6",
+          "#F59E0B",
+          "#10B981",
         ],
         borderWidth: 1,
         borderColor: "#fff",
@@ -124,15 +170,13 @@ export function DoughnutChartSimple({ numbers }) {
 
   return (
     <div className="max-w-xs mx-auto">
-      <Doughnut data={data} />
+      <ClientOnlyDoughnut data={data} />
     </div>
   );
 }
 
 /* ------------------------------
    Advanced Doughnut Chart
-   Detailed breakdown:
-   Housing, Transport, Food, Utilities, Debt, Insurance, Wants, Investments, Savings-leftover
 --------------------------------*/
 export function DoughnutChartAdvanced({ numbers }) {
   const savingsLeftover = numbers.leftover > 0 ? numbers.leftover : 0;
@@ -163,15 +207,15 @@ export function DoughnutChartAdvanced({ numbers }) {
           savingsLeftover,
         ],
         backgroundColor: [
-          "#F87171", // red
-          "#60A5FA", // blue
-          "#34D399", // green
-          "#A78BFA", // purple
-          "#FCD34D", // yellow
-          "#6EE7B7", // mint
-          "#F472B6", // pink
-          "#10B981", // emerald
-          "#F59E0B", // amber
+          "#F87171",
+          "#60A5FA",
+          "#34D399",
+          "#A78BFA",
+          "#FCD34D",
+          "#6EE7B7",
+          "#F472B6",
+          "#10B981",
+          "#F59E0B",
         ],
         borderColor: "#fff",
         borderWidth: 1,
@@ -181,7 +225,7 @@ export function DoughnutChartAdvanced({ numbers }) {
 
   return (
     <div className="max-w-xs mx-auto">
-      <Doughnut data={data} />
+      <ClientOnlyDoughnut data={data} />
     </div>
   );
 }

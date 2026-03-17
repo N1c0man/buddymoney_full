@@ -40,10 +40,16 @@ export default function BudgetCoach() {
 
   // Chart mode: "simple" or "advanced"
   const [chartMode, setChartMode] = useState("simple");
+  const [isMounted, setIsMounted] = useState(false);
 
   // Canonical for SEO
   useEffect(() => {
     setCanonical("/coach");
+  }, []);
+
+  // Mount flag for prerender-safe charts
+  useEffect(() => {
+    setIsMounted(true);
   }, []);
 
   // Load from localStorage
@@ -202,124 +208,123 @@ export default function BudgetCoach() {
 
       <main className="pt-2 lg:pt-4 pb-16 bg-brand-50/40">
         <div className="max-w-5xl mx-auto px-4 space-y-6">
-
-          {/* HERO (UNCHANGED) */}
           <motion.section
-  className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[220px] md:h-[260px] lg:h-[300px]"
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true, amount: 0.4 }}
-  transition={{ duration: 0.7, ease: "easeOut" }}
->
-  <img
-    src="/icons/hero-budget-coach.png"
-    alt="AI Budget Coach hero image"
-    className="absolute inset-0 h-full w-full object-cover object-right"
-    loading="eager"
-  />
+            className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[220px] md:h-[260px] lg:h-[300px]"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
+            <img
+              src="/icons/hero-budget-coach.png"
+              alt="AI Budget Coach hero image"
+              className="absolute inset-0 h-full w-full object-cover object-right"
+              loading="eager"
+            />
 
-  <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
+            <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
 
-  <motion.div
-    className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl"
-    initial={{ opacity: 0, scale: 0.9, y: -10 }}
-    animate={{ opacity: 1, scale: 1, y: 0 }}
-    transition={{ duration: 1, ease: "easeOut" }}
-  />
-  <motion.div
-    className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl"
-    initial={{ opacity: 0, scale: 0.9, y: 10 }}
-    animate={{ opacity: 1, scale: 1, y: 0 }}
-    transition={{
-      duration: 1.1,
-      ease: "easeOut",
-      delay: 0.15,
-    }}
-  />
+            <motion.div
+              className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl"
+              initial={{ opacity: 0, scale: 0.9, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            />
+            <motion.div
+              className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl"
+              initial={{ opacity: 0, scale: 0.9, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{
+                duration: 1.1,
+                ease: "easeOut",
+                delay: 0.15,
+              }}
+            />
 
-  <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
-    <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-center w-full">
-      <div className="space-y-4">
-        <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-600">
-          Budget & Money Coach
-        </p>
+            <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
+              <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-center w-full">
+                <div className="space-y-4">
+                  <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-600">
+                    Budget & Money Coach
+                  </p>
 
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-          AI Budget Coach: Get a calm, realistic plan for your monthly money.
-        </h1>
+                  <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
+                    AI Budget Coach: Get a calm, realistic plan for your monthly money.
+                  </h1>
 
-        <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
-          Enter your real numbers and see how your budget stacks up against a simple rule
-          of thumb. Then get clear suggestions on what to tweak next.
-        </p>
+                  <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
+                    Enter your real numbers and see how your budget stacks up against a simple rule
+                    of thumb. Then get clear suggestions on what to tweak next.
+                  </p>
 
-        <div className="flex flex-wrap gap-3 text-xs">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
-            ✍️ Uses your real monthly numbers
-          </span>
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
-            🎯 Simple, friendly tips—not guilt
-          </span>
-        </div>
-      </div>
+                  <div className="flex flex-wrap gap-3 text-xs">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+                      ✍️ Uses your real monthly numbers
+                    </span>
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+                      🎯 Simple, friendly tips—not guilt
+                    </span>
+                  </div>
+                </div>
 
-      <motion.div
-        className="relative hidden md:flex justify-center"
-        initial={{ opacity: 0, scale: 0.95, y: 10 }}
-        whileInView={{ opacity: 1, scale: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
-      >
-        <motion.div
-          className="rounded-2xl bg-white/90 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 w-full max-w-xs"
-          animate={{ y: [0, -5, 0] }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut",
-            delay: 1.2,
-          }}
-        >
-          <p className="text-xs font-semibold text-slate-800 mb-3">
-            What you’ll get
-          </p>
+                <motion.div
+                  className="relative hidden md:flex justify-center"
+                  initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+                >
+                  <motion.div
+                    className="rounded-2xl bg-white/90 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 w-full max-w-xs"
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      ease: "easeInOut",
+                      delay: 1.2,
+                    }}
+                  >
+                    <p className="text-xs font-semibold text-slate-800 mb-3">
+                      What you’ll get
+                    </p>
 
-          <div className="grid grid-cols-2 gap-3 text-[11px] text-slate-700">
-            <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                🧠
-              </span>
-              <span>Budget score</span>
+                    <div className="grid grid-cols-2 gap-3 text-[11px] text-slate-700">
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                          🧠
+                        </span>
+                        <span>Budget score</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                          🎯
+                        </span>
+                        <span>Targets</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                          🧾
+                        </span>
+                        <span>Breakdown</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                          ✅
+                        </span>
+                        <span>Next steps</span>
+                      </div>
+                    </div>
+
+                    <p className="mt-3 text-[11px] text-emerald-600 font-semibold">
+                      Fill in your numbers below ↓
+                    </p>
+                  </motion.div>
+                </motion.div>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                🎯
-              </span>
-              <span>Targets</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                🧾
-              </span>
-              <span>Breakdown</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                ✅
-              </span>
-              <span>Next steps</span>
-            </div>
-          </div>
+          </motion.section>
 
-          <p className="mt-3 text-[11px] text-emerald-600 font-semibold">
-            Fill in your numbers below ↓
-          </p>
-        </motion.div>
-      </motion.div>
-    </div>
-  </div>
-</motion.section>
           <ShareBar
             variant="top"
             label="Share this friendly budgeting coach with someone who needs it"
@@ -355,7 +360,6 @@ export default function BudgetCoach() {
                 </div>
               </div>
 
-              {/* Inputs */}
               <div className="grid md:grid-cols-3 gap-4 mt-6">
                 <div className="md:col-span-1">
                   <label className="block text-sm font-medium text-slate-700 mb-1">
@@ -380,14 +384,11 @@ export default function BudgetCoach() {
                   <InputField label="Utilities / Bills" value={utilities} onChange={setUtilities} placeholder="e.g., 220" />
                   <InputField label="Debt payments" value={debt} onChange={setDebt} placeholder="e.g., 250" />
                   <InputField label="Wants (shopping, dining, fun)" value={wants} onChange={setWants} placeholder="e.g., 400" />
-
-                  {/* NEW FIELDS */}
                   <InputField label="Insurance" value={insurance} onChange={setInsurance} placeholder="e.g., 180" />
                   <InputField label="Investments / Retirement" value={investments} onChange={setInvestments} placeholder="e.g., 300" />
                 </div>
               </div>
 
-              {/* Score & overview */}
               <div className="mt-8 grid md:grid-cols-5 gap-6">
                 <div className="md:col-span-2 bg-emerald-50 rounded-xl p-4 border border-emerald-100">
                   <div className="flex items-center justify-between">
@@ -416,7 +417,6 @@ export default function BudgetCoach() {
                 </div>
               </div>
 
-              {/* Chart toggle */}
               <div className="mt-8 flex gap-3">
                 <button
                   onClick={() => setChartMode("simple")}
@@ -440,23 +440,24 @@ export default function BudgetCoach() {
                 </button>
               </div>
 
-              {/* Chart */}
               <div className="mt-6 bg-white rounded-xl p-4 border border-slate-200">
-                {chartMode === "simple" ? (
-                  <DoughnutChartSimple numbers={numbers} />
+                {isMounted ? (
+                  chartMode === "simple" ? (
+                    <DoughnutChartSimple numbers={numbers} />
+                  ) : (
+                    <DoughnutChartAdvanced numbers={numbers} />
+                  )
                 ) : (
-                  <DoughnutChartAdvanced numbers={numbers} />
+                  <div className="text-sm text-slate-500">Loading chart…</div>
                 )}
               </div>
 
-              {/* Targets */}
               <div className="mt-8 grid md:grid-cols-3 gap-4">
                 <Card title="Suggested Monthly Needs" value={`$${targetNeeds.toFixed(0)}`} note={`${Math.round(targets.needs * 100)}% target`} />
                 <Card title="Suggested Monthly Wants" value={`$${targetWants.toFixed(0)}`} note={`${Math.round(targets.wants * 100)}% target`} />
                 <Card title="Suggested Monthly Savings" value={`$${targetSavings.toFixed(0)}`} note={`${Math.round(targets.savings * 100)}% target`} />
               </div>
 
-              {/* Tips */}
               <div className="mt-8">
                 <h4 className="font-semibold text-slate-800 mb-2">Coach tips</h4>
                 <ul className="list-disc ml-5 text-slate-700 space-y-1 text-sm">

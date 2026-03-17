@@ -8,7 +8,7 @@ excerpt: Learn how zero-based budgeting works, how to assign every dollar a job,
 author: BuddyMoney Editorial
 authorAvatar: /icons/editorial.png
 date: 2026-03-17
-heroImage: /icons/hero-zero-budget.png
+heroImage: /icons/hero-zero-based-budgeting.png
 heroImageAlt: A budgeting worksheet showing income and expenses balanced to zero
 ---
 
