@@ -1,15 +1,15 @@
 ---
-slug: side-hustle-ideas
-title: Best Side Hustle Ideas (2026): 7 Ways to Earn Extra Income
-tag: Side Hustles
-level: Beginner
-readTime: 9 min read
-excerpt: Practical, fast-start side hustles you can realistically launch this week — even with no experience.
-author: BuddyMoney Editorial
-authorAvatar: /icons/editorial.png
-date: 2025-11-21
-heroImage: /icons/side-hustle-hero2.png
-heroImageAlt: Person juggling multiple side hustles
+slug: "side-hustle-ideas"
+title: "Best Side Hustle Ideas (2026): 7 Ways to Earn Extra Income"
+tag: "Side Hustles"
+level: "Beginner"
+readTime: "9 min read"
+excerpt: "Practical, fast-start side hustles you can realistically launch this week — even with no experience."
+author: "BuddyMoney Editorial"
+authorAvatar: "/icons/editorial.png"
+date: "2025-11-21"
+heroImage: "/icons/side-hustle-hero2.png"
+heroImageAlt: "Person juggling multiple side hustles"
 ---
 
 # Best Side Hustle Ideas to Earn Extra Income (2026)

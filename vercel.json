@@ -7,10 +7,10 @@
       "permanent": true
     },
     {
-  "source": "/sitemap.xml",
-  "destination": "/api/sitemap",
-  "permanent": true
-},
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap",
+      "permanent": true
+    },
     {
       "source": "/(.*)",
       "has": [
@@ -21,8 +21,9 @@
       "permanent": true
     }
   ],
-  "rewrites": [
-    { "source": "/api/:match*", "destination": "/api/:match*" },
-    { "source": "/:match*", "destination": "/" }
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/" }
   ]
 }

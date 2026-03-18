@@ -1,15 +1,15 @@
 ---
 slug: zero-based-budgeting
-title: Zero-Based Budgeting: A Step-by-Step Guide (With Example)
-tag: Budgeting
-level: Beginner
-readTime: 9 min read
-excerpt: Learn how zero-based budgeting works, how to assign every dollar a job, and follow a simple step-by-step example to take control of your money.
-author: BuddyMoney Editorial
-authorAvatar: /icons/editorial.png
-date: 2026-03-17
-heroImage: /icons/hero-zero-based-budgeting.png
-heroImageAlt: A budgeting worksheet showing income and expenses balanced to zero
+title: "Zero-Based Budgeting: A Step-by-Step Guide (With Example)"
+tag: "Budgeting"
+level: "Beginner"
+readTime: "9 min read"
+excerpt: "Learn how zero-based budgeting works, how to assign every dollar a job, and follow a simple step-by-step example to take control of your money."
+author: "BuddyMoney Editorial"
+authorAvatar: "/icons/editorial.png"
+date: "2026-03-17"
+heroImage: "/icons/hero-zero-based-budgeting.png"
+heroImageAlt: "A budgeting worksheet showing income and expenses balanced to zero"
 ---
 
 # Zero-Based Budgeting: A Step-by-Step Guide (With Example)

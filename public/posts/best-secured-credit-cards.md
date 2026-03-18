@@ -1,15 +1,15 @@
 ---
 slug: best-secured-credit-cards
-title: Best Secured Credit Cards (2026): Compare Top Options for Bad or No Credit
+title: "Best Secured Credit Cards (2026): Compare Top Options for Bad or No Credit"
 tag: Credit Cards
 level: Beginner
 readTime: 8 min read
-excerpt: Rebuilding credit or starting from scratch? Secured credit cards are one of the safest ways to build credit. Compare the best options, deposits, fees, and upgrade paths.
+excerpt: "Rebuilding credit or starting from scratch? Secured credit cards are one of the safest ways to build credit. Compare the best options, deposits, fees, and upgrade paths."
 author: BuddyMoney Editorial
 authorAvatar: /icons/editorial.png
-date: 2026-01-12
+date: "2026-01-12"
 heroImage: /icons/hero-secured-cards.png
-heroImageAlt: A secured credit card with a lock symbol representing safe credit building
+heroImageAlt: "A secured credit card with a lock symbol representing safe credit building"
 ---
 
 # Best Secured Credit Cards (2026): Compare Top Options for Bad or No Credit
