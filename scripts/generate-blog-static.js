@@ -23,6 +23,10 @@ function stripHtml(html = "") {
   return String(html).replace(/<[^>]*>/g, "").trim();
 }
 
+function removeFirstH1(html = "") {
+  return String(html).replace(/^\s*<h1[^>]*>.*?<\/h1>\s*/i, "");
+}
+
 function getReadingTime(text = "") {
   const words = String(text).split(/\s+/).filter(Boolean).length;
   const mins = Math.max(1, Math.ceil(words / 200));
@@ -414,7 +418,7 @@ function run() {
     const heroImageAlt = data.heroImageAlt || data.imageAlt || title;
     const tag = data.tag || "";
 
-    const contentHtml = marked.parse(content);
+    const contentHtml = removeFirstH1(marked.parse(content));
     const html = buildHtml({
       title,
       description,
