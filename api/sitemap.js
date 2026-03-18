@@ -115,7 +115,7 @@ module.exports = (req, res) => {
 
   const blogUrls = BLOG_POSTS.map((post) =>
     buildUrlTag({
-      loc: urlFor(`/blog/${post.slug}`),
+      loc: urlFor(`/blog/${post.slug}/`),
       lastmod: getPostLastmod(post, today),
       changefreq: "monthly",
       priority: post.priority ?? 0.8,
