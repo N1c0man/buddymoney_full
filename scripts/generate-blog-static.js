@@ -29,7 +29,16 @@ function getReadingTime(text = "") {
   return `${mins} min read`;
 }
 
-function buildHtml({ title, description, slug, date, image, contentHtml }) {
+function buildHtml({
+  title,
+  description,
+  slug,
+  date,
+  image,
+  heroImageAlt,
+  tag,
+  contentHtml,
+}) {
   const canonical = `${SITE_URL}/blog/${slug}/`;
   const ogImage = image
     ? String(image).startsWith("http")
@@ -63,6 +72,22 @@ function buildHtml({ title, description, slug, date, image, contentHtml }) {
     },
   };
 
+  const heroImageHtml = image
+    ? `
+      <figure class="hero">
+        <img
+          src="${escapeHtml(image)}"
+          alt="${escapeHtml(heroImageAlt || title)}"
+          class="hero-image"
+        />
+      </figure>
+    `
+    : "";
+
+  const tagHtml = tag
+    ? `<div class="eyebrow">${escapeHtml(tag)}</div>`
+    : "";
+
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -86,62 +111,277 @@ function buildHtml({ title, description, slug, date, image, contentHtml }) {
   <script type="application/ld+json">${JSON.stringify(articleSchema)}</script>
 
   <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-soft: #f0fdf4;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #dbeafe;
+      --green: #10b981;
+      --green-dark: #047857;
+      --blue-soft: #eff6ff;
+      --shadow: 0 12px 40px rgba(15, 23, 42, 0.08);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       line-height: 1.7;
-      color: #111827;
-      background: #ffffff;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top, #ecfdf5 0%, #f8fafc 35%, #f8fafc 100%);
     }
-    .wrap {
-      max-width: 760px;
+
+    .sitebar {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      border-bottom: 1px solid #e5e7eb;
+      backdrop-filter: blur(8px);
+    }
+
+    .sitebar-inner {
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 32px 20px 64px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .toplink {
-      display: inline-block;
-      margin-bottom: 24px;
-      color: #047857;
+
+    .brand {
+      color: var(--green-dark);
+      font-weight: 800;
       text-decoration: none;
-      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.01em;
     }
-    h1 {
-      font-size: 2.2rem;
-      line-height: 1.2;
-      margin-bottom: 12px;
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px 20px 72px;
     }
+
+    .backlink {
+      display: inline-block;
+      margin-bottom: 18px;
+      color: var(--green-dark);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .article-head {
+      padding: 28px 28px 18px;
+      border-bottom: 1px solid #eef2ff;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--green-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .article-title {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: #0b132b;
+    }
+
+    .article-desc {
+      margin: 0 0 14px;
+      font-size: 1.05rem;
+      color: #334155;
+    }
+
     .meta {
-      color: #6b7280;
+      color: var(--muted);
       font-size: 0.95rem;
-      margin-bottom: 32px;
     }
-    img {
+
+    .hero {
+      margin: 0;
+      padding: 20px 20px 0;
+    }
+
+    .hero-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+      border: 1px solid #dbeafe;
+      background: #f8fafc;
+    }
+
+    .content {
+      padding: 28px;
+      font-size: 1.04rem;
+      color: #1e293b;
+    }
+
+    .content > :first-child {
+      margin-top: 0;
+    }
+
+    .content h1 {
+      font-size: 2rem;
+      line-height: 1.15;
+      margin: 0 0 18px;
+      color: #0b132b;
+    }
+
+    .content h2 {
+      font-size: 1.7rem;
+      line-height: 1.2;
+      margin-top: 2.1em;
+      margin-bottom: 0.7em;
+      color: #0f172a;
+      padding-top: 0.3em;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .content h3 {
+      font-size: 1.2rem;
+      line-height: 1.35;
+      margin-top: 1.8em;
+      margin-bottom: 0.55em;
+      color: #0f172a;
+    }
+
+    .content p {
+      margin: 0 0 1.1em;
+    }
+
+    .content ul,
+    .content ol {
+      margin: 0 0 1.2em 1.35em;
+      padding: 0;
+    }
+
+    .content li {
+      margin-bottom: 0.45em;
+    }
+
+    .content a {
+      color: var(--green-dark);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .content strong {
+      color: #0f172a;
+    }
+
+    .content hr {
+      border: 0;
+      border-top: 1px solid #d1fae5;
+      margin: 2em 0;
+    }
+
+    .content blockquote {
+      margin: 1.6em 0;
+      padding: 16px 18px;
+      background: var(--blue-soft);
+      border-left: 4px solid var(--green);
+      border-radius: 14px;
+      color: #1e3a8a;
+    }
+
+    .content blockquote p:last-child {
+      margin-bottom: 0;
+    }
+
+    .content img {
       max-width: 100%;
       height: auto;
+      border-radius: 14px;
     }
-    a {
-      color: #047857;
-    }
-    pre {
+
+    .content pre {
       overflow-x: auto;
-      background: #f3f4f6;
+      background: #0f172a;
+      color: #e2e8f0;
       padding: 16px;
-      border-radius: 10px;
+      border-radius: 14px;
+      font-size: 0.95rem;
     }
-    code {
-      background: #f3f4f6;
+
+    .content code {
+      background: #f1f5f9;
       padding: 2px 6px;
       border-radius: 6px;
+      font-size: 0.95em;
+    }
+
+    .content pre code {
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      color: inherit;
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding: 18px 14px 48px;
+      }
+
+      .article-head,
+      .content {
+        padding: 20px;
+      }
+
+      .hero {
+        padding: 14px 14px 0;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <a class="toplink" href="/blog">← Back to Blog</a>
-    <article>
-      <h1>${escapeHtml(title)}</h1>
-      <div class="meta">${escapeHtml(date || "")} • ${readingTime}</div>
-      ${contentHtml}
+  <header class="sitebar">
+    <div class="sitebar-inner">
+      <a class="brand" href="/">BuddyMoney</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <a class="backlink" href="/blog">← Back to Blog</a>
+
+    <article class="card">
+      <div class="article-head">
+        ${tagHtml}
+        <h1 class="article-title">${escapeHtml(title)}</h1>
+        <p class="article-desc">${escapeHtml(description)}</p>
+        <div class="meta">${escapeHtml(date || "")} • ${readingTime}</div>
+      </div>
+
+      ${heroImageHtml}
+
+      <div class="content">
+        ${contentHtml}
+      </div>
     </article>
   </main>
 </body>
@@ -167,9 +407,12 @@ function run() {
 
     const slug = data.slug || file.replace(/\.md$/, "");
     const title = data.title || slug.replace(/-/g, " ");
-    const description = data.description || data.excerpt || `Read ${title} on BuddyMoney.`;
+    const description =
+      data.description || data.excerpt || `Read ${title} on BuddyMoney.`;
     const date = data.date || "";
     const image = data.image || data.heroImage || "/og-image.jpg";
+    const heroImageAlt = data.heroImageAlt || data.imageAlt || title;
+    const tag = data.tag || "";
 
     const contentHtml = marked.parse(content);
     const html = buildHtml({
@@ -178,6 +421,8 @@ function run() {
       slug,
       date,
       image,
+      heroImageAlt,
+      tag,
       contentHtml,
     });
 
