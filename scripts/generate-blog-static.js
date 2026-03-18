@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const matter = require("gray-matter");
 const { marked } = require("marked");
+const faqBySlug = require("../src/blog/faqBySlug.json");
 
 const SITE_URL = "https://www.buddymoney.com";
 const POSTS_DIR = path.join(__dirname, "..", "public", "posts");
@@ -33,6 +34,29 @@ function getReadingTime(text = "") {
   return `${mins} min read`;
 }
 
+function buildFaqSchema(slug) {
+  const faqs = faqBySlug[slug];
+
+  if (!faqs || !Array.isArray(faqs) || faqs.length === 0) {
+    return "";
+  }
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((item) => ({
+      "@type": "Question",
+      name: String(item.question || ""),
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: String(item.answer || ""),
+      },
+    })),
+  };
+
+  return `<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>`;
+}
+
 function buildHtml({
   title,
   description,
@@ -50,8 +74,15 @@ function buildHtml({
       : `${SITE_URL}${image}`
     : `${SITE_URL}/og-image.jpg`;
 
+  const absoluteImage = image
+    ? String(image).startsWith("http")
+      ? String(image)
+      : `${SITE_URL}${image}`
+    : "";
+
   const plainText = stripHtml(contentHtml);
   const readingTime = getReadingTime(plainText);
+  const faqSchemaScript = buildFaqSchema(slug);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -76,11 +107,11 @@ function buildHtml({
     },
   };
 
-  const heroImageHtml = image
+  const heroImageHtml = absoluteImage
     ? `
       <figure class="hero">
         <img
-          src="${escapeHtml(image)}"
+          src="${escapeHtml(absoluteImage)}"
           alt="${escapeHtml(heroImageAlt || title)}"
           class="hero-image"
         />
@@ -113,6 +144,7 @@ function buildHtml({
   <meta name="twitter:image" content="${ogImage}" />
 
   <script type="application/ld+json">${JSON.stringify(articleSchema)}</script>
+  ${faqSchemaScript}
 
   <style>
     :root {
