@@ -3,4 +3,4 @@ Allow: /
 Disallow: /search
 Disallow: /cpanel
 
-Sitemap: https://www.buddymoney.com/api/sitemap
+Sitemap: https://www.buddymoney.com/sitemap.xml
