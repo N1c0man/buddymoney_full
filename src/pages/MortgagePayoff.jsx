@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
-import { setCanonical } from "../utils/seo";
+import { setCanonical, buildUrl } from "../utils/seo";
 
 const DEFAULT_PRINCIPAL = 300000;
 const DEFAULT_RATE = 6.5;
@@ -142,10 +142,7 @@ export default function MortgagePayoff() {
   const description =
     "Use BuddyMoney’s free Mortgage Payoff Calculator to see how extra monthly payments and bi-weekly strategies can reduce your payoff time and total interest.";
 
-  const pageUrl =
-    typeof window !== "undefined"
-      ? window.location.href
-      : "https://buddymoney.com/mortgage";
+  const canonicalUrl = buildUrl("/mortgage");
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -153,7 +150,7 @@ export default function MortgagePayoff() {
     name: "Mortgage Payoff Calculator – Extra Payment & Bi-Weekly Tool",
     applicationCategory: "FinanceApplication",
     operatingSystem: "Web",
-    url: "https://buddymoney.com/mortgage",
+    url: canonicalUrl,
     description,
     isAccessibleForFree: true,
     keywords: [
@@ -171,7 +168,7 @@ export default function MortgagePayoff() {
     publisher: {
       "@type": "Organization",
       name: "BuddyMoney",
-      url: "https://buddymoney.com",
+      url: "https://www.buddymoney.com",
     },
   };
 
@@ -483,7 +480,7 @@ export default function MortgagePayoff() {
   }
 
   // Copy link for social share buttons (keeping your existing vars)
-  const encodedUrl = encodeURIComponent(pageUrl);
+  const encodedUrl = encodeURIComponent(canonicalUrl);
   const encodedTitle = encodeURIComponent(
     "I’m using BuddyMoney’s Mortgage Payoff Calculator to see how extra payments can knock years off my mortgage."
   );
@@ -495,7 +492,7 @@ export default function MortgagePayoff() {
         navigator.clipboard &&
         navigator.clipboard.writeText
       ) {
-        await navigator.clipboard.writeText(pageUrl);
+        await navigator.clipboard.writeText(canonicalUrl);
         setLinkCopied(true);
         setTimeout(() => setLinkCopied(false), 2000);
       }
@@ -540,6 +537,7 @@ export default function MortgagePayoff() {
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="robots" content="index,follow" />
+        <link rel="canonical" href={canonicalUrl} />
 
         {/* Open Graph / Twitter */}
         <meta property="og:title" content={title} />
