@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/tools/budget-coach",
+      "destination": "/coach",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "buddymoney.com" }],
       "destination": "https://www.buddymoney.com/$1",
