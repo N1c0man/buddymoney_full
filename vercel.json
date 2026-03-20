@@ -12,11 +12,6 @@
       "permanent": true
     },
     {
-      "source": "/sitemap.xml",
-      "destination": "/api/sitemap",
-      "permanent": true
-    },
-    {
       "source": "/(.*)",
       "has": [
         { "type": "host", "value": "www.buddymoney.com" },
@@ -24,6 +19,12 @@
       ],
       "destination": "https://www.buddymoney.com/$1",
       "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
     }
   ],
   "routes": [
