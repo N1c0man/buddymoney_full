@@ -6,6 +6,11 @@
       "permanent": true
     },
     {
+      "source": "/mortgage-payoff",
+      "destination": "/mortgage",
+      "permanent": true
+    },
+    {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "buddymoney.com" }],
       "destination": "https://www.buddymoney.com/$1",
