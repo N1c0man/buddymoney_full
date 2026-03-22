@@ -40,6 +40,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -49,28 +53,135 @@
         radial-gradient(circle at top, #ecfdf5 0%, #f8fafc 35%, #f8fafc 100%);
     }
 
-    .sitebar {
-      width: 100%;
-      background: rgba(255, 255, 255, 0.9);
-      border-bottom: 1px solid #e5e7eb;
-      backdrop-filter: blur(8px);
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 99999;
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid rgba(16, 185, 129, 0.12);
+      box-shadow: 0 6px 24px rgba(15, 23, 42, 0.06);
     }
 
-    .sitebar-inner {
-      max-width: 1120px;
+    .site-header-inner {
+      max-width: 1152px;
       margin: 0 auto;
-      padding: 14px 20px;
+      padding: 10px 16px;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
     }
 
-    .brand {
-      color: var(--green-dark);
-      font-weight: 800;
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
       text-decoration: none;
-      font-size: 1.1rem;
-      letter-spacing: 0.01em;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
+      height: 48px;
+      width: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .brand-link:hover .brand-logo {
+      transform: scale(1.05);
+    }
+
+    .desktop-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-divider {
+      width: 1px;
+      height: 24px;
+      background: #d1fae5;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #334155;
+      transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      background: #ecfdf5;
+      color: #0f172a;
+    }
+
+    .nav-link.active {
+      background: #059669;
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(5, 150, 105, 0.22);
+    }
+
+    .mobile-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: #0f172a;
+      font-size: 1.5rem;
+      line-height: 1;
+      padding: 8px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .mobile-toggle:hover {
+      background: #ecfdf5;
+    }
+
+    .mobile-menu {
+      display: none;
+      border-top: 1px solid rgba(16, 185, 129, 0.12);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(10px);
+    }
+
+    .mobile-menu.open {
+      display: block;
+    }
+
+    .mobile-menu-inner {
+      max-width: 1152px;
+      margin: 0 auto;
+      padding: 10px 16px 16px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .mobile-nav-link {
+      display: block;
+      text-decoration: none;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #334155;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .mobile-nav-link:hover {
+      background: #ecfdf5;
+      color: #0f172a;
+    }
+
+    .mobile-nav-link.active {
+      background: #059669;
+      color: #ffffff;
     }
 
     .page {
@@ -254,7 +365,116 @@
       color: inherit;
     }
 
+    .footer {
+      background: #f0fdf4;
+      border-top: 1px solid #dcfce7;
+      margin-top: 64px;
+    }
+
+    .footer-inner {
+      max-width: 1152px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .footer-brand a {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #15803d;
+      text-decoration: none;
+    }
+
+    .footer-brand .money {
+      color: #1d4ed8;
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      color: #4b5563;
+    }
+
+    .footer-nav a {
+      color: #4b5563;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav a:hover {
+      color: #059669;
+    }
+
+    .footer-sep {
+      color: #cbd5e1;
+    }
+
+    .footer-email {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #475569;
+    }
+
+    .footer-email a {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 6px;
+      color: #059669;
+      text-decoration: none;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .footer-email a:hover {
+      background: #ecfdf5;
+      color: #065f46;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .footer-disclosure {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: #6b7280;
+    }
+
+    .footer-copy {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    @media (max-width: 960px) {
+      .desktop-nav {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    @media (min-width: 961px) {
+      .mobile-menu {
+        display: none !important;
+      }
+    }
+
     @media (max-width: 640px) {
+      .brand-logo {
+        height: 42px;
+      }
+
       .page {
         padding: 18px 14px 48px;
       }
@@ -267,13 +487,67 @@
       .hero {
         padding: 14px 14px 0;
       }
+
+      .site-header-inner {
+        padding: 10px 14px;
+      }
+
+      .footer-inner {
+        padding: 28px 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <header class="sitebar">
-    <div class="sitebar-inner">
-      <a class="brand" href="/">BuddyMoney</a>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand-link" href="/" aria-label="BuddyMoney home">
+        <img
+          src="/icons/BMlogo.png"
+          alt="BuddyMoney Logo"
+          class="brand-logo"
+        />
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary">
+        <a class="nav-link" href="/">🏠 Home</a>
+        <span class="nav-divider"></span>
+
+        <a class="nav-link" href="/credit-cards">💳 Credit Cards</a>
+        <span class="nav-divider"></span>
+
+        <a class="nav-link" href="/coach">🎯 Budget Coach</a>
+        <span class="nav-divider"></span>
+
+        <a class="nav-link" href="/mortgage">📊 Mortgage</a>
+        <span class="nav-divider"></span>
+
+        <a class="nav-link" href="/tools">🧰 Tools</a>
+        <span class="nav-divider"></span>
+
+        <a class="nav-link active" href="/blog">📰 Blog &amp; Guides</a>
+      </nav>
+
+      <button
+        class="mobile-toggle"
+        type="button"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        ☰
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="mobile-menu">
+      <div class="mobile-menu-inner">
+        <a class="mobile-nav-link" href="/">🏠 Home</a>
+        <a class="mobile-nav-link" href="/credit-cards">💳 Credit Cards</a>
+        <a class="mobile-nav-link" href="/coach">🎯 Budget Coach</a>
+        <a class="mobile-nav-link" href="/mortgage">📊 Mortgage Payoff Calculator</a>
+        <a class="mobile-nav-link" href="/tools">🧰 Tools</a>
+        <a class="mobile-nav-link active" href="/blog">📰 Blog &amp; Guides</a>
+      </div>
     </div>
   </header>
 
@@ -424,5 +698,85 @@
       </div>
     </article>
   </main>
+
+  <footer
+    class="footer"
+    itemscope
+    itemtype="https://schema.org/WPFooter"
+  >
+    <div class="footer-inner">
+      <div
+        class="footer-brand"
+        itemscope
+        itemtype="https://schema.org/Organization"
+      >
+        <a href="/" itemprop="url">
+          <span itemprop="name">Buddy<span class="money">Money</span></span>
+        </a>
+      </div>
+
+      <nav
+        class="footer-nav"
+        itemscope
+        itemtype="https://schema.org/SiteNavigationElement"
+        aria-label="Footer"
+      >
+        <a href="/about" itemprop="url">About</a>
+        <span class="footer-sep">|</span>
+
+        <a href="/blog" itemprop="url">Blog</a>
+        <span class="footer-sep">|</span>
+
+        <a href="/tools" itemprop="url">Tools</a>
+        <span class="footer-sep">|</span>
+
+        <a href="/privacy" itemprop="url">⚖️ Privacy Policy</a>
+        <span class="footer-sep">|</span>
+
+        <a href="/terms" itemprop="url">⚖️ Terms of Service</a>
+        <span class="footer-sep">|</span>
+
+        <a href="/affiliate-disclosure" itemprop="url">⚖️ Affiliate Disclosure</a>
+      </nav>
+
+      <div class="footer-email">
+        📩 Email:
+        <a href="mailto:contact&#64;buddymoney&#46;com">
+          contact&#64;buddymoney&#46;com
+        </a>
+      </div>
+
+      <p class="footer-disclosure">
+        <strong>Affiliate Disclosure:</strong> BuddyMoney may receive compensation
+        from partner links on this site. This does not influence our recommendations.
+        We only promote products we genuinely believe provide value.
+      </p>
+
+      <p class="footer-disclosure">
+        <strong>Disclaimer:</strong> BuddyMoney provides educational content only and
+        does not offer financial, legal, tax, or investment advice. Always do your own
+        research and consider consulting a qualified professional before making financial decisions.
+      </p>
+
+      <div class="footer-copy">
+        © 2026 <span itemprop="name">BuddyMoney</span>. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var toggle = document.querySelector(".mobile-toggle");
+      var menu = document.getElementById("mobile-menu");
+
+      if (!toggle || !menu) return;
+
+      toggle.addEventListener("click", function () {
+        var isOpen = menu.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        toggle.textContent = isOpen ? "✕" : "☰";
+      });
+    })();
+  </script>
 </body>
 </html>
