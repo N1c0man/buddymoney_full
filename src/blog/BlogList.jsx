@@ -50,12 +50,12 @@ export default function BlogList() {
       "@context": "https://schema.org",
       "@type": "Blog",
       name: "BuddyMoney Guides",
-      url: "https://buddymoney.com/blog",
+      url: "https://www.buddymoney.com/blog",
       description,
       publisher: {
         "@type": "Organization",
         name: "BuddyMoney",
-        url: "https://buddymoney.com",
+        url: "https://www.buddymoney.com",
       },
       inLanguage: "en",
       blogPost: posts.map((post) => ({
@@ -63,13 +63,13 @@ export default function BlogList() {
         headline: post.title,
         name: post.title,
         description: post.excerpt,
-        url: `https://buddymoney.com/blog/${post.slug}`,
+        url: `https://www.buddymoney.com/blog/${post.slug}/`,
         articleSection: post.tag,
         timeRequired: post.readTime,
         isPartOf: {
           "@type": "Blog",
           name: "BuddyMoney Guides",
-          url: "https://buddymoney.com/blog",
+          url: "https://www.buddymoney.com/blog",
         },
       })),
     };
@@ -284,7 +284,7 @@ export default function BlogList() {
                 return (
                   <Link
                     key={post.slug}
-                    to={`/blog/${post.slug}`}
+                    to={`/blog/${post.slug}/`}
                     className={`
                       group block rounded-2xl border border-slate-200 bg-white p-4
                       shadow-sm transition-all duration-150
