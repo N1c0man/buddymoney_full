@@ -543,7 +543,7 @@ export default function MortgagePayoff() {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={pageUrl} />
+        <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content="BuddyMoney" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={title} />
