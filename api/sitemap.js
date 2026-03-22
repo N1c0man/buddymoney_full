@@ -8,10 +8,17 @@ const BLOG_POSTS = require("../src/blog/blogPosts.json");
 // ✅ Canonical domain (NO trailing slash)
 const SITE_URL = "https://www.buddymoney.com";
 
-// ✅ Safe URL joiner (always returns absolute URL, homepage gets trailing slash)
+// ✅ Safe URL joiner (always returns absolute URL, homepage gets trailing slash,
+// and all other paths get a trailing slash for consistency)
 function urlFor(p) {
   if (!p || p === "/") return `${SITE_URL}/`;
-  const cleanPath = String(p).startsWith("/") ? p : `/${p}`;
+
+  let cleanPath = String(p).startsWith("/") ? p : `/${p}`;
+
+  if (!cleanPath.endsWith("/")) {
+    cleanPath += "/";
+  }
+
   return `${SITE_URL}${cleanPath}`;
 }
 
