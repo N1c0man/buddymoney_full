@@ -105,17 +105,61 @@ export default function Home() {
 
             <div className="mt-4 flex flex-col sm:flex-row gap-3">
               <Link
-                to="/blog/best-secured-credit-cards"
+                to="/blog/best-secured-credit-cards/"
                 className="inline-flex items-center justify-center rounded-xl bg-brand-700 px-5 py-2.5 text-sm font-medium text-white shadow-soft hover:bg-brand-800 transition"
               >
                 Best Secured Credit Cards
               </Link>
 
               <Link
-                to="/blog/secured-vs-unsecured-credit-cards"
+                to="/blog/secured-vs-unsecured-credit-cards/"
                 className="inline-flex items-center justify-center rounded-xl border border-emerald-200 bg-white px-5 py-2.5 text-sm font-medium text-emerald-800 hover:bg-emerald-50 transition"
               >
                 Secured vs Unsecured Cards
+              </Link>
+            </div>
+          </motion.div>
+        </motion.section>
+
+        {/* 💳 CREDIT CARD CLUSTER */}
+        <motion.section
+          className="max-w-5xl mx-auto px-4"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerStagger}
+        >
+          <motion.div
+            className="rounded-2xl border border-emerald-100 bg-white/90 p-5 md:p-6 shadow-sm"
+            variants={item}
+          >
+            <p className="text-xs font-semibold tracking-wide text-emerald-700 uppercase">
+              Credit Cards
+            </p>
+
+            <h2 className="mt-2 text-xl md:text-2xl font-semibold text-slate-900">
+              Compare credit cards the simple way
+            </h2>
+
+            <p className="mt-2 text-sm text-slate-600 max-w-2xl">
+              Explore BuddyMoney’s beginner-friendly credit card hub and preview
+              finder to compare options for bad credit, travel rewards, 0% APR,
+              and first-time applicants before you apply anywhere.
+            </p>
+
+            <div className="mt-4 flex flex-col sm:flex-row gap-3">
+              <Link
+                to="/credit-cards"
+                className="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white shadow-soft hover:bg-emerald-700 transition"
+              >
+                Explore Credit Card Hub
+              </Link>
+
+              <Link
+                to="/tools/credit-cards"
+                className="inline-flex items-center justify-center rounded-xl border border-emerald-200 bg-white px-5 py-2.5 text-sm font-medium text-emerald-800 hover:bg-emerald-50 transition"
+              >
+                Try Credit Card Finder
               </Link>
             </div>
           </motion.div>
@@ -129,7 +173,7 @@ export default function Home() {
             title="BuddyMoney – Free Money Tools for Budgeting, Saving & Debt Payoff"
           />
         </section>
-        
+
         {/* TOOLS grid title + staggered cards */}
         <motion.section
           className="pt-0 max-w-5xl mx-auto px-4"
@@ -159,7 +203,6 @@ export default function Home() {
             className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
             variants={containerStagger}
           >
-            {/* Mortgage Payoff */}
             <motion.div variants={item}>
               <div className="relative">
                 <span className="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs px-2 py-0.5 rounded-full shadow-sm animate-pulse">
@@ -174,7 +217,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Budget Coach */}
             <motion.div variants={item}>
               <div className="relative">
                 <span className="absolute -top-2 -right-2 bg-emerald-600 text-white text-xs px-2 py-0.5 rounded-full shadow-sm animate-pulse">
@@ -274,7 +316,6 @@ export default function Home() {
             className="max-w-5xl mx-auto grid gap-5 md:grid-cols-3 px-4"
             variants={containerStagger}
           >
-            {/* Card 1 */}
             <motion.div
               variants={item}
               className="rounded-2xl border border-emerald-100 bg-white/90 p-5 shadow-sm"
@@ -295,7 +336,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Card 2 */}
             <motion.div
               variants={item}
               className="rounded-2xl border border-emerald-100 bg-white/90 p-5 shadow-sm"
@@ -316,7 +356,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Card 3 */}
             <motion.div
               variants={item}
               className="rounded-2xl border border-emerald-100 bg-white/90 p-5 shadow-sm"

@@ -16,6 +16,8 @@ heroImageAlt: "A secured credit card with a lock symbol representing safe credit
 
 If you’re rebuilding credit or starting from scratch, secured credit cards are one of the safest ways to build credit. This guide compares the best secured credit cards for bad or no credit, including deposits, fees, approval odds, and upgrade paths.
 
+You can also explore options using our **[credit card finder tool](/tools/credit-cards)** if you want to compare card types, annual fees, and credit score ranges before applying.
+
 The key is choosing a card that:
 - Reports to all three credit bureaus  
 - Doesn’t bury you in fees  

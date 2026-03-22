@@ -3,7 +3,7 @@ import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
-import { setCanonical } from "../utils/seo"; //
+import { setCanonical } from "../utils/seo";
 
 const HUB_ITEMS = [
   {
@@ -64,13 +64,8 @@ const HUB_ITEMS = [
 ];
 
 export default function CreditCardsHub() {
-  // Canonical for /credit-cards
   useEffect(() => {
     setCanonical("/credit-cards");
-  }, []);
-
-  // existing scroll-to-top effect
-  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
@@ -84,7 +79,7 @@ export default function CreditCardsHub() {
       "@context": "https://schema.org",
       "@type": ["CollectionPage", "WebPage"],
       name: "Credit Card Guides (2026): Compare Cards for Bad Credit, Travel & 0% APR",
-      url: "https://buddymoney.com/credit-cards",
+      url: "https://www.buddymoney.com/credit-cards",
       description: pageDescription,
       isAccessibleForFree: true,
       mainEntity: {
@@ -95,7 +90,7 @@ export default function CreditCardsHub() {
           item: {
             "@type": "WebPage",
             name: item.title,
-            url: `https://buddymoney.com${item.path}`,
+            url: `https://www.buddymoney.com${item.path}`,
             description: item.description,
           },
         })),
@@ -108,27 +103,25 @@ export default function CreditCardsHub() {
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
+        <meta name="robots" content="index,follow" />
 
-        {/* Open Graph */}
         <meta property="og:type" content="website" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
-        <meta property="og:url" content="https://buddymoney.com/credit-cards" />
+        <meta property="og:url" content="https://www.buddymoney.com/credit-cards" />
         <meta
           property="og:image"
-          content="https://buddymoney.com/icons/buddymoney-og-default.png"
+          content="https://www.buddymoney.com/icons/buddymoney-og-default.png"
         />
 
-        {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
         <meta
           name="twitter:image"
-          content="https://buddymoney.com/icons/buddymoney-og-default.png"
+          content="https://www.buddymoney.com/icons/buddymoney-og-default.png"
         />
 
-        {/* JSON-LD */}
         <script type="application/ld+json">
           {JSON.stringify(schemaOrg)}
         </script>
@@ -136,7 +129,6 @@ export default function CreditCardsHub() {
 
       <main className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50/40 pb-16 pt-4">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 space-y-6">
-          {/* HERO */}
           <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[220px] md:h-[260px] lg:h-[300px]">
             <img
               src="/icons/hero-credit-cards-hub.png"
@@ -146,7 +138,6 @@ export default function CreditCardsHub() {
             />
 
             <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
-
             <div className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl" />
 
@@ -156,10 +147,11 @@ export default function CreditCardsHub() {
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
                     BuddyMoney Credit Card Hub
                   </p>
+
                   <p className="mt-2 text-[12px] text-slate-700">
                     New to credit? Start here:{" "}
                     <Link
-                      to="/blog/best-secured-credit-cards"
+                      to="/blog/best-secured-credit-cards/"
                       className="font-semibold text-emerald-700 underline underline-offset-2"
                     >
                       Best secured credit cards (2026)
@@ -167,15 +159,15 @@ export default function CreditCardsHub() {
                   </p>
 
                   <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-                    Compare credit cards (secured, bad credit, travel & 0% APR) — all in one place.
+                    Compare credit cards for bad credit, travel rewards, 0% APR, and first-time applicants.
                   </h1>
 
                   <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
-                    Start with a guide that matches your goal—rebuilding credit with secured cards,
-                    earning rewards for travel, or using 0% intro APR to pay down balances. Plain
-                    English, no jargon.
+                    Use BuddyMoney’s credit card hub to learn the basics before you apply.
+                    Explore beginner-friendly guides, compare common card categories, and
+                    use our preview finder to understand how credit score, annual fee, and
+                    rewards can affect your options.
                   </p>
-
 
                   <ul className="mt-2 text-[12px] text-brand-800 space-y-1">
                     <li>✔ First-time card applicants</li>
@@ -188,7 +180,7 @@ export default function CreditCardsHub() {
                       🧭 Guides + a preview finder tool
                     </span>
                     <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
-                      ✅ Fees, APR, rewards—explained simply
+                      ✅ Fees, APR, rewards explained simply
                     </span>
                   </div>
                 </div>
@@ -200,9 +192,7 @@ export default function CreditCardsHub() {
                     </p>
                     <ol className="ml-4 list-decimal space-y-1 text-[12px]">
                       <li>Pick the guide that matches your current goal.</li>
-                      <li>
-                        Learn what to watch out for (fees, APRs, fine print).
-                      </li>
+                      <li>Learn what to watch out for: fees, APRs, and fine print.</li>
                       <li>Use the finder to explore sample card lineups.</li>
                     </ol>
                     <p className="text-[11px] text-slate-500">
@@ -215,7 +205,6 @@ export default function CreditCardsHub() {
             </div>
           </section>
 
-          {/* Affiliate disclosure */}
           <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 px-4 py-3 text-[11px] text-emerald-900">
             <strong>Disclosure:</strong> BuddyMoney may earn compensation from
             partners when you click certain links or apply for products. This
@@ -223,14 +212,12 @@ export default function CreditCardsHub() {
             not commissions.
           </div>
 
-          {/* Top share bar */}
           <ShareBar
             variant="top"
             label="Share this credit card hub with someone comparing cards"
             title="I’m using BuddyMoney’s credit card hub to understand my options before I apply."
           />
 
-          {/* GRID */}
           <section className="rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8 space-y-5">
             <header>
               <h2 className="text-sm font-semibold text-slate-900">
@@ -247,12 +234,11 @@ export default function CreditCardsHub() {
                 <Link
                   key={item.id}
                   to={item.path}
-                  className={`group relative flex flex-col justify-between rounded-2xl border px-4 py-4 shadow-sm transition
-                    ${
-                      item.id === "finder"
-                        ? "border-emerald-400 bg-emerald-50/60 hover:bg-white"
-                        : "border-slate-200 bg-slate-50/80 hover:border-emerald-400 hover:bg-white"
-                    }`}
+                  className={`group relative flex flex-col justify-between rounded-2xl border px-4 py-4 shadow-sm transition ${
+                    item.id === "finder"
+                      ? "border-emerald-400 bg-emerald-50/60 hover:bg-white"
+                      : "border-slate-200 bg-slate-50/80 hover:border-emerald-400 hover:bg-white"
+                  }`}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
@@ -283,7 +269,7 @@ export default function CreditCardsHub() {
                   </span>
 
                   <span className="mt-3 inline-flex items-center text-[11px] font-semibold text-emerald-700">
-                    Open{" "}
+                    Open
                     <span className="ml-1 transition-transform group-hover:translate-x-0.5">
                       →
                     </span>
@@ -291,15 +277,73 @@ export default function CreditCardsHub() {
                 </Link>
               ))}
             </div>
+          </section>
 
-            <p className="mt-4 text-[11px] text-slate-500">
-              All content in this hub is for education only and is not financial
-              advice. When live offers are available, always review the official
-              issuer terms before applying.
+          <section className="rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8 space-y-4">
+            <h2 className="text-lg font-bold text-slate-900">
+              How to choose a credit card without getting overwhelmed
+            </h2>
+
+            <div className="grid gap-4 md:grid-cols-3">
+              <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-4">
+                <h3 className="text-sm font-semibold text-slate-900 mb-2">
+                  Start with your goal
+                </h3>
+                <p className="text-xs text-slate-700">
+                  Some people need a first card to build credit. Others want to
+                  earn travel rewards or transfer a balance to a 0% intro APR card.
+                  The right card depends on what you are trying to do first.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-sky-100 bg-sky-50/50 p-4">
+                <h3 className="text-sm font-semibold text-slate-900 mb-2">
+                  Watch the fee and APR details
+                </h3>
+                <p className="text-xs text-slate-700">
+                  Rewards can look attractive, but annual fees, balance transfer
+                  fees, penalty APRs, and interest charges matter just as much.
+                  Always review the issuer terms before applying.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-amber-100 bg-amber-50/50 p-4">
+                <h3 className="text-sm font-semibold text-slate-900 mb-2">
+                  Compare before you apply
+                </h3>
+                <p className="text-xs text-slate-700">
+                  Applying for multiple cards too quickly can make things messy.
+                  It is usually better to compare a few realistic options, read
+                  the fine print, and apply only when the card truly fits your situation.
+                </p>
+              </div>
+            </div>
+
+            <p className="text-sm text-slate-600">
+              Looking for a practical starting point? Try the{" "}
+              <Link
+                to="/tools/credit-cards"
+                className="font-semibold text-emerald-700 underline underline-offset-2"
+              >
+                Credit Card Finder
+              </Link>{" "}
+              or read our{" "}
+              <Link
+                to="/blog/best-secured-credit-cards/"
+                className="font-semibold text-emerald-700 underline underline-offset-2"
+              >
+                secured credit cards guide
+              </Link>{" "}
+              for first-time and rebuilding-credit options.
             </p>
           </section>
 
-          {/* Bottom share bar */}
+          <p className="text-center text-[11px] text-slate-500">
+            All content in this hub is for education only and is not financial
+            advice. When live offers are available, always review the official
+            issuer terms before applying.
+          </p>
+
           <ShareBar
             variant="bottom"
             label="Share this credit card hub with someone comparing cards"
