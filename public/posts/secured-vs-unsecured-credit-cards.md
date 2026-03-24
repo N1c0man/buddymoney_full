@@ -64,6 +64,9 @@ Key traits:
 
 Unsecured cards are better suited for people with **established or improving credit**.
 
+👉 Not sure which cards you might qualify for? Explore options with the  
+**[Credit Card Finder Tool](/tools/credit-cards)**.
+
 ---
 
 ## Secured vs Unsecured Credit Cards (Side-by-Side)
@@ -93,7 +96,7 @@ Secured cards give you approval odds and structure that unsecured cards won’t.
 You *might* qualify for an unsecured starter card, but fees and limits can be worse than secured options.
 
 👉 Compare options using our  
-**[credit card comparison tool](/tools/credit-cards)**.
+**[Credit Card Finder Tool](/tools/credit-cards)**.
 
 ---
 
@@ -124,6 +127,9 @@ This is why secured cards are often the **first step**, not the final one.
 
 Credit rebuilding rewards consistency, not speed.
 
+👉 If you're also working on debt while rebuilding credit, use the  
+**[Debt Payoff Calculator](/tools/debt-payoff)** to stay on track and avoid setbacks.
+
 ---
 
 ## Frequently Asked Questions
@@ -149,4 +155,7 @@ If rebuilding credit is your priority, secured credit cards offer the **most pre
 Once your credit improves, unsecured cards become easier to qualify for — but secured cards are often where the journey should begin.
 
 👉 Start with our guide to the  
-**[best secured credit cards for bad or no credit](/blog/best-secured-credit-cards)**.
+**[best secured credit cards for bad or no credit](/blog/best-secured-credit-cards)**  
+
+👉 Then explore real options using the  
+**[Credit Card Finder Tool](/tools/credit-cards)** to match cards to your situation.

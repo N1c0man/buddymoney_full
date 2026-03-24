@@ -31,7 +31,10 @@ It’s not a full 3–6 month cushion yet — that comes later. But this first $
 
 - Keeps small emergencies off your credit cards  
 - Stops the “one bad week and I’m screwed” feeling  
-- Gives you a **win** that makes bigger money goals feel possible
+- Gives you a **win** that makes bigger money goals feel possible  
+
+👉 Once you hit $1,000, your next step is building a full safety net:  
+**[How to Build a 3–6 Month Emergency Fund](/blog/emergency-fund-3-to-6-months)**
 
 TIP: Start treating this as **“do not touch” money** unless it’s a true need: car repair, medical bill, essential travel, or keeping the lights on.
 
@@ -45,14 +48,14 @@ Let’s say you want to hit $1,000 in:
 
 - **3 months** → about **$84/week**  
 - **6 months** → about **$42/week**  
-- **12 months** → about **$21/week**
+- **12 months** → about **$21/week**  
 
 Pick the one that feels **hard but still realistic** for your life.
 
-TIP: Use the BuddyMoney **Savings Goal Calculator** to plug in:
+👉 Use the **[Savings Goal Calculator](/tools#savings-goal)** to plug in:
 - Goal amount: `1000`
 - Target date
-- How often you want to contribute (weekly or monthly)
+- Contribution frequency
 
 Then the number isn’t random anymore. It’s **“I move $42 every Friday”**, not just “I should save more.”
 
@@ -74,146 +77,155 @@ Group your spending into:
 2. **Important but flexible** (groceries, gas, phone, insurance)  
 3. **Everything else** (eating out, subscriptions, random Amazon stuff, etc.)
 
-TIP: Open the BuddyMoney **Budget Tracker** and quickly plug in your income + main expenses. You’re not building a perfect budget yet — just getting a snapshot.
+👉 Use the **[Budget Tracker](/tools/budget-tracker)** to quickly plug in your income and expenses. You don’t need perfection — just visibility.
 
 You’re mainly looking for:
 
 - Subscriptions you forgot about  
 - “Little” daily buys that actually add up  
-- Any category where you say “wow, I didn’t realize it was that high”
+- Any category where you say “wow, I didn’t realize it was that high”  
 
 ---
 
 ## Step 3: Choose 3 Cuts for the Next 30 Days
 
-You do **not** have to live like a monk forever. But for the next 30 days, you *are* going to run a little experiment.
+You do **not** have to live like a monk forever. But for the next 30 days, you *are* going to run a small experiment.
 
 Pick any **three**:
 
 - Eat out **one less time per week**  
 - Pause 1–3 streaming services  
-- Limit delivery apps (UberEats, DoorDash, etc.) to **once per week or less**  
-- Cut impulse Amazon buys (anything that’s not a true need waits 48 hours)  
-- Bring coffee/snacks from home on work days  
+- Limit delivery apps to **once per week or less**  
+- Cut impulse Amazon buys (48-hour rule)  
+- Bring coffee/snacks from home  
 
-NOTE: This is **temporary**, not your new permanent life. You’re trading a few comforts now for a huge comfort later: not panicking when life happens.
+NOTE: This is **temporary**, not your new permanent life.
 
-Every dollar you free up from these cuts gets **moved to your “First $1,000” savings**.
+Every dollar you free up from these cuts gets **moved to your savings**.
 
-If you can free $80–$100/month from cuts alone, that’s a massive start.
+If you can free $80–$100/month, that’s a massive start.
 
 ---
 
 ## Step 4: Add “Boost” Money from a Side Hustle
 
-Cutting expenses is good, but there’s a limit. Income, on the other hand, is open-ended.
+Cutting expenses helps — but income is where things accelerate.
 
-Think of a side hustle purely as a **temporary engine** to get you to $1,000 faster.
+Think of this as a **temporary engine** to reach $1,000 faster.
 
-Here are some quick-win ideas:
+Quick-win ideas:
 
-- Rideshare or delivery a few evenings per week  
-- Sell unused stuff (clothes, electronics, furniture) on Facebook Marketplace / OfferUp  
-- Pet sitting, dog walking, or house sitting  
-- Babysitting for friends, neighbors, or coworkers  
-- Simple freelancing (basic design, tutoring, editing, yard work, cleaning)
+- Rideshare or delivery  
+- Sell unused items  
+- Pet sitting or babysitting  
+- Freelance small tasks  
+- Local gigs (yard work, cleaning, tutoring)
 
-TIP: Every extra dollar from your side hustle goes **directly** to your First $1,000. Don’t mix it with your regular spending account.
+👉 Want more ideas? Read:  
+- **[Side Hustle Ideas You Can Start This Week](/blog/side-hustle-ideas)**  
+- **[How Freelancers Can Increase Income](/blog/how-freelancers-can-increase-income)**  
 
-Want more ideas? Check out:
-
-- [Side Hustle Income Tips](/blog/side-hustle-income-tips)  
-- [7 Best Side Hustles You Can Start This Week](/blog/side-hustle-ideas)
+TIP: Send all side hustle money **directly to savings**.
 
 ---
 
 ## Step 5: Put Your Savings on Autopilot
 
-Willpower is great — automation is better.
+Willpower fades — automation doesn’t.
 
-Once you know what you can put aside each week or month:
-
-1. **Open a separate savings account** at your bank (or an online high-yield savings account).  
-2. Set up an **automatic transfer**:  
+1. Open a separate savings account  
+2. Set up automatic transfers:
    - Weekly (ex: $25 every Friday)  
-   - Or monthly (ex: $100 on payday)  
+   - Monthly (ex: $100 on payday)  
 
-3. Name the account something motivating like:  
+3. Name the account something motivating:
    - “First 1K Safety Net”  
    - “Emergency Level 1”  
-   - “Future Me Fund”
+   - “Future Me Fund”  
 
-TIP: Use the BuddyMoney **Savings Goal Tracker** to watch your balance grow.
+👉 Track your progress using the **[Savings Goal Planner](/tools#savings-goal)**.
 
-WARNING: Don’t park this money in the stock market or crypto. This first $1,000 is about **safety and access**, not high returns.
+WARNING: Don’t invest this money. This is about **stability, not growth**.
 
 ---
 
 ## Step 6: Protect the Money from Yourself
 
-Saving is one skill. **Not un-saving** is another.
+Saving is one skill. **Keeping it saved** is another.
 
-Here are ways to make it harder to “accidentally” spend your First $1,000:
+Make it harder to spend:
 
-- Keep the account at a **different bank** from checking  
-- Turn off the ATM card for that account  
-- Don’t link it to Apple Pay / Google Pay  
-- Hide the account from the main dashboard if possible
+- Use a separate bank  
+- Disable easy access  
+- Don’t link to payment apps  
+- Hide it from your main dashboard  
 
-Only use this money for **true emergencies**:
-- Essential car repairs  
-- Medical or dental bills  
-- Must-pay bills during income loss  
-- Essential travel  
+Only use it for **real emergencies**.
+
+👉 This is your first step toward a full safety net:  
+**[What Is an Emergency Fund?](/blog/emergency-fund-basics)**
 
 ---
 
 ## Step 7: Use Windfalls Wisely
 
-Sometimes you get surprise money:
+Unexpected money:
 
-- Tax refund  
-- Work bonus  
-- Extra tips  
-- Gift money  
-- Selling something big  
+- Tax refunds  
+- Bonuses  
+- Gifts  
+- Selling items  
 
-Make this deal with yourself:
+Make this rule:
 
-TIP: Until you hit $1,000, put **50–80%** of any windfall directly into savings.
+👉 Until you hit $1,000, send **50–80%** of any windfall to savings.
 
-This alone can shave months off your timeline.
+This can cut your timeline dramatically.
 
 ---
 
 ## What To Do After You Hit $1,000
 
-First: **celebrate**. Most people never get here on purpose.
+First: **celebrate**. Seriously.
 
 Then:
 
-1. Read [Emergency Fund Basics](/blog/emergency-fund-basics)  
-2. Decide your next priority:  
-   - Build toward 3–6 months of expenses  
-   - Or start paying down high-interest debt  
+1. Build toward a full emergency fund  
+2. Or start attacking high-interest debt  
 
-3. Use BuddyMoney tools to stay on track:  
-   - Budget Tracker  
-   - Savings Goal Calculator  
-   - Debt Payoff Planner  
+👉 Tools to help:
+
+- **[Emergency Fund Calculator](/tools/emergency-fund)**  
+- **[Debt Payoff Calculator](/tools/debt-payoff)**  
+- **[Budget Tracker](/tools/budget-tracker)**  
 
 ---
 
-## A Simple Summary Plan You Can Start Today
+## A Simple Plan You Can Start Today
 
-1. Pick a deadline for saving $1,000.  
-2. Use a calculator to find your weekly/monthly contribution.  
-3. Do a 10-minute money scan + cut 3 expenses.  
-4. Add a side hustle or sell items.  
-5. Automate transfers.  
-6. Make it slightly inconvenient to spend the money.  
-7. Send all windfalls into your goal.
+1. Pick your timeline  
+2. Calculate your weekly/monthly savings  
+3. Cut 3 expenses  
+4. Add extra income  
+5. Automate savings  
+6. Protect the account  
+7. Use windfalls wisely  
 
 You don’t need perfection — just **consistency**.
 
-This first $1,000 is your foundation for everything that comes next. 💚
+---
+
+## Final Thoughts
+
+This first $1,000 is more than money.
+
+It’s:
+- Less stress  
+- More control  
+- Proof that you can change your financial situation  
+
+👉 If you want a guided starting point, try **[Budget Coach](/coach)** to map your money in minutes.
+
+Start small. Stay consistent.
+
+This is where everything changes. 💚

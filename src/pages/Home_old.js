@@ -13,7 +13,6 @@ const fadeUp = {
   initial: { opacity: 0, y: 50 },
   animate: { opacity: 1, y: 0 },
 };
-
 const containerStagger = {
   initial: { opacity: 0, y: 10 },
   animate: {
@@ -22,7 +21,6 @@ const containerStagger = {
     transition: { staggerChildren: 0.12, delayChildren: 0.05 },
   },
 };
-
 const item = {
   initial: { opacity: 0, y: 16 },
   animate: { opacity: 1, y: 0 },
@@ -63,7 +61,6 @@ export default function Home() {
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={description} />
-        <meta name="robots" content="index,follow" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="BuddyMoney" />
         <meta property="og:title" content={title} />
@@ -80,7 +77,7 @@ export default function Home() {
       <div className="min-h-screen bg-brand-50/40 space-y-8 md:space-y-10">
         <Hero />
 
-        {/* ⭐ START HERE */}
+        {/* ⭐ FEATURED GUIDES */}
         <motion.section
           className="max-w-5xl mx-auto px-4"
           initial="initial"
@@ -93,82 +90,76 @@ export default function Home() {
             variants={item}
           >
             <p className="text-xs font-semibold tracking-wide text-emerald-700 uppercase">
-              Start Here
+              Featured Guides
             </p>
 
             <h2 className="mt-2 text-xl md:text-2xl font-semibold text-slate-900">
-              Pick the tool that fits what you need most right now
+              Start here if you’re building or rebuilding credit
             </h2>
 
             <p className="mt-2 text-sm text-slate-600 max-w-2xl">
-              Whether you want to improve your budget, pay off your mortgage
-              faster, or compare credit card options, BuddyMoney helps you take
-              the next step without overwhelm.
+              These beginner-friendly guides walk you through choosing the
+              right credit card and avoiding common mistakes — calmly and
+              without jargon.
             </p>
 
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="mt-4 flex flex-col sm:flex-row gap-3">
               <Link
-                to="/coach"
-                className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-4 hover:bg-emerald-50 transition"
+                to="/blog/best-secured-credit-cards/"
+                className="inline-flex items-center justify-center rounded-xl bg-brand-700 px-5 py-2.5 text-sm font-medium text-white shadow-soft hover:bg-brand-800 transition"
               >
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">🧭</span>
-                  <span className="text-sm font-semibold text-slate-900">
-                    Budget Coach
-                  </span>
-                </div>
-                <p className="mt-2 text-sm text-slate-600">
-                  Get personalized budget targets, a score, and practical next
-                  steps.
-                </p>
+                Best Secured Credit Cards
               </Link>
 
               <Link
-                to="/mortgage"
-                className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-4 hover:bg-emerald-50 transition"
+                to="/blog/secured-vs-unsecured-credit-cards/"
+                className="inline-flex items-center justify-center rounded-xl border border-emerald-200 bg-white px-5 py-2.5 text-sm font-medium text-emerald-800 hover:bg-emerald-50 transition"
               >
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">🏠</span>
-                  <span className="text-sm font-semibold text-slate-900">
-                    Mortgage Payoff
-                  </span>
-                </div>
-                <p className="mt-2 text-sm text-slate-600">
-                  See how extra payments could shorten your loan term and reduce
-                  total interest.
-                </p>
+                Secured vs Unsecured Cards
               </Link>
+            </div>
+          </motion.div>
+        </motion.section>
 
+        {/* 💳 CREDIT CARD CLUSTER */}
+        <motion.section
+          className="max-w-5xl mx-auto px-4"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={containerStagger}
+        >
+          <motion.div
+            className="rounded-2xl border border-emerald-100 bg-white/90 p-5 md:p-6 shadow-sm"
+            variants={item}
+          >
+            <p className="text-xs font-semibold tracking-wide text-emerald-700 uppercase">
+              Credit Cards
+            </p>
+
+            <h2 className="mt-2 text-xl md:text-2xl font-semibold text-slate-900">
+              Compare credit cards the simple way
+            </h2>
+
+            <p className="mt-2 text-sm text-slate-600 max-w-2xl">
+              Explore BuddyMoney’s beginner-friendly credit card hub and preview
+              finder to compare options for bad credit, travel rewards, 0% APR,
+              and first-time applicants before you apply anywhere.
+            </p>
+
+            <div className="mt-4 flex flex-col sm:flex-row gap-3">
               <Link
                 to="/credit-cards"
-                className="rounded-xl border border-emerald-200 bg-white p-4 hover:bg-emerald-50 transition"
+                className="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white shadow-soft hover:bg-emerald-700 transition"
               >
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">💳</span>
-                  <span className="text-sm font-semibold text-slate-900">
-                    Credit Cards Hub
-                  </span>
-                </div>
-                <p className="mt-2 text-sm text-slate-600">
-                  Explore beginner-friendly credit card categories for bad
-                  credit, travel, cash back, 0% APR, and students.
-                </p>
+                Explore Credit Card Hub
               </Link>
 
               <Link
                 to="/tools/credit-cards"
-                className="rounded-xl border border-emerald-200 bg-white p-4 hover:bg-emerald-50 transition"
+                className="inline-flex items-center justify-center rounded-xl border border-emerald-200 bg-white px-5 py-2.5 text-sm font-medium text-emerald-800 hover:bg-emerald-50 transition"
               >
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">🔎</span>
-                  <span className="text-sm font-semibold text-slate-900">
-                    Credit Card Finder
-                  </span>
-                </div>
-                <p className="mt-2 text-sm text-slate-600">
-                  Preview card types that may fit your goals before clicking out
-                  to apply anywhere.
-                </p>
+                Try Credit Card Finder
               </Link>
             </div>
           </motion.div>
@@ -242,15 +233,6 @@ export default function Home() {
 
             <motion.div variants={item}>
               <ToolCard
-                to="/tools/credit-cards"
-                title="Credit Card Finder"
-                emoji="🔎"
-                desc="Preview card types that may fit your situation."
-              />
-            </motion.div>
-
-            <motion.div variants={item}>
-              <ToolCard
                 to="/tools#budget"
                 title="Budget Tracker"
                 emoji="💸"
@@ -302,83 +284,6 @@ export default function Home() {
                 desc="Sum assets minus liabilities."
               />
             </motion.div>
-          </motion.div>
-        </motion.section>
-
-        {/* 💳 CREDIT CARD CLUSTER */}
-        <motion.section
-          className="max-w-5xl mx-auto px-4"
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={containerStagger}
-        >
-          <motion.div
-            className="rounded-2xl border border-emerald-100 bg-white/90 p-5 md:p-6 shadow-sm"
-            variants={item}
-          >
-            <p className="text-xs font-semibold tracking-wide text-emerald-700 uppercase">
-              Credit Cards
-            </p>
-
-            <h2 className="mt-2 text-xl md:text-2xl font-semibold text-slate-900">
-              Compare credit cards the simple way
-            </h2>
-
-            <p className="mt-2 text-sm text-slate-600 max-w-2xl">
-              Explore BuddyMoney’s beginner-friendly credit card hub and preview
-              finder to compare options for bad credit, travel rewards, 0% APR,
-              cash back, and first-time applicants.
-            </p>
-
-            <div className="mt-4 flex flex-col sm:flex-row gap-3">
-              <Link
-                to="/credit-cards"
-                className="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white shadow-soft hover:bg-emerald-700 transition"
-              >
-                Explore Credit Card Hub
-              </Link>
-
-              <Link
-                to="/tools/credit-cards"
-                className="inline-flex items-center justify-center rounded-xl border border-emerald-200 bg-white px-5 py-2.5 text-sm font-medium text-emerald-800 hover:bg-emerald-50 transition"
-              >
-                Try Credit Card Finder
-              </Link>
-            </div>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              <Link
-                to="/credit-cards/cash-back"
-                className="rounded-full border border-emerald-200 bg-white px-3 py-1.5 text-xs font-medium text-emerald-800 hover:bg-emerald-50 transition"
-              >
-                Cash Back
-              </Link>
-              <Link
-                to="/credit-cards/bad-credit"
-                className="rounded-full border border-emerald-200 bg-white px-3 py-1.5 text-xs font-medium text-emerald-800 hover:bg-emerald-50 transition"
-              >
-                Bad Credit
-              </Link>
-              <Link
-                to="/credit-cards/travel"
-                className="rounded-full border border-emerald-200 bg-white px-3 py-1.5 text-xs font-medium text-emerald-800 hover:bg-emerald-50 transition"
-              >
-                Travel
-              </Link>
-              <Link
-                to="/credit-cards/0-apr"
-                className="rounded-full border border-emerald-200 bg-white px-3 py-1.5 text-xs font-medium text-emerald-800 hover:bg-emerald-50 transition"
-              >
-                0% APR
-              </Link>
-              <Link
-                to="/credit-cards/student"
-                className="rounded-full border border-emerald-200 bg-white px-3 py-1.5 text-xs font-medium text-emerald-800 hover:bg-emerald-50 transition"
-              >
-                Student
-              </Link>
-            </div>
           </motion.div>
         </motion.section>
 

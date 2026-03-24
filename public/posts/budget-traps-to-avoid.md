@@ -31,7 +31,8 @@ If you don’t know where your money is going, it’s impossible to control it.
 Many people *feel* broke without realizing where the leaks are.
 
 **Fix:**  
-Track spending for just a few minutes a day using a simple tool like the **BuddyMoney Budget Tracker**. Awareness alone often leads to immediate improvement.
+Track spending for just a few minutes a day using a simple tool like the **[BuddyMoney Budget Tracker](/tools/budget-tracker)**
+Awareness alone often leads to immediate improvement.
 
 ---
 
@@ -66,6 +67,8 @@ Interest turns a $500 problem into a $700 one.
 **Fix:**  
 Build a starter emergency fund of **$500–$1,000** as quickly as possible before focusing on bigger goals.
 
+👉 Not sure how much you should save? Use the **[Emergency Fund Calculator](/tools/emergency-fund)** to estimate your target and start building a buffer.
+
 ---
 
 ## 🟩 Trap #5: Not Reviewing Subscriptions
@@ -87,6 +90,8 @@ People stick with budgets when they know **why** they’re doing it.
 
 **Fix:**  
 Set clear goals like paying off debt, saving for travel, or building financial security. Goals give your budget meaning.
+
+👉 If your goal is getting out of debt, map out your plan with the **[Debt Payoff Calculator](/tools/debt-payoff)** to stay consistent and motivated.
 
 ---
 

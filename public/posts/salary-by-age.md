@@ -91,7 +91,7 @@ If two or more apply, it’s likely fixable.
 > A strong credit profile can improve job applications, rentals, and financial flexibility during career moves.  
 > **SmartCredit** shows your score, accounts, alerts, and action steps in one dashboard.  
 > *(Affiliate link — supports BuddyMoney at no extra cost)*  
-> 👉 **[Start your SmartCredit Trial — Click Here](https://www.kqzyfj.com/click-101601912-16983231)**
+> 👉 **[Start your SmartCredit trial](/go/smartcredit)**
 
 ---
 
@@ -125,6 +125,9 @@ High-demand skills in 2026 include:
 
 Even one new skill can change your earning ceiling.
 
+👉 If you're exploring flexible income options, read:  
+**[How Freelancers Can Increase Income](/blog/how-freelancers-can-increase-income)**
+
 ---
 
 ### 4. Start a Side Hustle  
@@ -143,7 +146,7 @@ Side income creates breathing room — and confidence.
 > **INFO: Growing income is powerful, but protecting it matters too.**  
 > Monitoring your credit helps you qualify for better housing, loans, and job opportunities as your salary grows.  
 > **SmartCredit** makes tracking simple and proactive.  
-> 👉 **[Start your SmartCredit Trial — Click Here](https://www.kqzyfj.com/click-101601912-16983231)**
+> 👉 **[Start your SmartCredit trial](/go/smartcredit)**
 
 ---
 
@@ -151,10 +154,10 @@ Side income creates breathing room — and confidence.
 
 BuddyMoney tools help you turn income into progress:
 
-- **Budget Tracker** → Organize income and expenses  
-- **Emergency Fund Calculator** → Build financial stability  
-- **Net Worth Tracker** → See your big-picture progress  
-- **Debt Payoff Tool** → Reduce interest faster  
+- 👉 **[Budget Tracker](/tools/budget-tracker)** → Organize income and expenses  
+- 👉 **[Emergency Fund Calculator](/tools/emergency-fund)** → Build financial stability  
+- 👉 **[Net Worth Tracker](/tools/net-worth)** → See your big-picture progress  
+- 👉 **[Debt Payoff Calculator](/tools/debt-payoff)** → Reduce interest faster  
 
 Your salary is just the starting point — what you do with it matters most.
 
@@ -166,6 +169,8 @@ Average salary by age is a **reference point**, not a verdict.
 
 If you’re below the median, you have options.  
 If you’re above it, you still have room to grow.
+
+👉 The fastest way to improve your financial position isn’t just earning more — it’s managing your money well. Start with a simple plan using **[Budget Coach](/coach)**.
 
 Income growth is a skill — and skills can be learned.
 

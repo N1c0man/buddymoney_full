@@ -35,18 +35,18 @@ Your net worth is simply:
 That’s it.
 
 ### Examples of assets:
-- Cash and savings
-- Checking accounts
-- Retirement accounts
-- Investments
-- Property (home, car, etc.)
+- Cash and savings  
+- Checking accounts  
+- Retirement accounts  
+- Investments  
+- Property (home, car, etc.)  
 
 ### Examples of debts:
-- Credit cards
-- Student loans
-- Auto loans
-- Personal loans
-- Mortgages
+- Credit cards  
+- Student loans  
+- Auto loans  
+- Personal loans  
+- Mortgages  
 
 ---
 
@@ -57,12 +57,15 @@ Income tells you how much money comes in.
 **Net worth tells you whether you’re actually moving forward.**
 
 Two people can earn the same salary and be in completely different financial situations depending on:
-- debt
-- savings
-- habits
-- progress over time
+- debt  
+- savings  
+- habits  
+- progress over time  
 
 Net worth captures the **whole picture**.
+
+👉 If you're working on increasing income, read:  
+**[How to Increase Your Income Without Burning Out](/blog/how-freelancers-can-increase-income)**
 
 ---
 
@@ -73,10 +76,10 @@ Here’s something most people don’t realize:
 > A low net worth doesn’t mean you’re failing — it means you now have a baseline.
 
 Once you know your number, you can:
-- measure progress
-- spot problem areas
-- celebrate small wins
-- stay motivated
+- measure progress  
+- spot problem areas  
+- celebrate small wins  
+- stay motivated  
 
 Going from **–$5,000 to –$2,000** is real progress.  
 So is going from **$500 to $2,500**.
@@ -93,6 +96,12 @@ Tracking your net worth helps you:
 - Avoid lifestyle creep  
 - Stay motivated during slow progress  
 
+👉 If you're working on reducing debt, use:  
+**[Debt Payoff Calculator](/tools/debt-payoff)** to see how your net worth improves over time.
+
+👉 If you're building stability, start here:  
+**[Emergency Fund Calculator](/tools/emergency-fund)**
+
 It turns vague goals like *“I want to be better with money”* into something measurable.
 
 ---
@@ -102,18 +111,30 @@ It turns vague goals like *“I want to be better with money”* into something 
 You don’t need to obsess over it.
 
 For most people:
-- **Once a month** is perfect
-- Quarterly also works if your finances are stable
+- **Once a month** is perfect  
+- Quarterly also works if your finances are stable  
 
 What matters is consistency — not frequency.
 
 ---
 
-> **TIP: Want an easy way to see your full financial picture in one place?**  
-> Manually tracking net worth can get messy as accounts grow.  
-> **WalletHub Premium** helps you monitor your net worth, credit, and overall financial progress in one simple dashboard.  
+## Track Your Net Worth the Simple Way
+
+You don’t need spreadsheets or complicated systems to get started.
+
+👉 Use the **[Net Worth Tracker](/tools/net-worth)** to:
+- List your assets and debts  
+- See your total net worth instantly  
+- Track your progress over time  
+
+Even checking your number once per month can completely change how you think about money.
+
+---
+
+> **TIP: Want an even deeper financial snapshot?**  
+> Tools like **WalletHub Premium** can help you monitor your credit, balances, and overall financial health in one place.  
 > 👉 **[View your WalletHub overview](/go/wallethub)**  
-> *(affiliate link — helps support BuddyMoney at no extra cost to you)*
+> *(affiliate link — supports BuddyMoney at no extra cost)*
 
 ---
 
@@ -128,6 +149,21 @@ Whether you’re just starting out, rebuilding, or refining your finances, knowi
 **clarity.**
 
 And clarity leads to confidence.
+
+---
+
+## A Simple Next Step
+
+If you want to start improving your net worth today:
+
+1. Calculate your current assets and debts  
+2. Track your number once per month  
+3. Focus on one lever:
+   - Increase income  
+   - Reduce debt  
+   - Build savings  
+
+👉 If you’re not sure where to start, use **[Budget Coach](/coach)** to map out your next best move.
 
 ---
 

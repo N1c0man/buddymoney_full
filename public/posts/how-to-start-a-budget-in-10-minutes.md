@@ -51,6 +51,9 @@ Beginners usually do well with one of these:
 
 Choose the simplest option. You can always adjust later.
 
+👉 If you want a deeper walkthrough, see:  
+**[Zero-Based Budgeting Guide](/blog/zero-based-budgeting)**
+
 ---
 
 ## 3. Create Three Buckets (3 minutes)
@@ -63,8 +66,10 @@ Open a spreadsheet, a free budgeting app, or even a notepad and create three sec
 
 Drop your numbers in quickly. Rounding is encouraged — speed matters more than precision right now.
 
----
+👉 Want this done automatically? Use the  
+**[Budget Tracker](/tools/budget-tracker)** to organize everything in minutes.
 
+---
 
 ## 4. Spot the Gaps (2 minutes)
 
@@ -78,6 +83,9 @@ Look at the big picture and ask a few simple questions:
 
 * Is savings too small?  
   → Automate even a small transfer — $20 per week builds momentum.
+
+👉 If you’re building your first safety net, estimate your goal with the  
+**[Emergency Fund Calculator](/tools/emergency-fund)**
 
 > **Budgeting note:**  
 > If credit cards are part of your plan — whether for emergencies or rebuilding credit — understanding the **[difference between secured and unsecured cards](/blog/secured-vs-unsecured-credit-cards)** helps you avoid expensive mistakes early on.
@@ -96,6 +104,9 @@ Set up:
 * **One 10-minute monthly check-in** to review and adjust
 
 Automation removes willpower from the equation and prevents “I forgot” moments.
+
+👉 If you want a guided setup instead of doing it manually, try  
+**[Budget Coach](/coach)** to walk through your next steps.
 
 ---
 
@@ -125,8 +136,9 @@ Consistency beats perfection every time.
 Once you’ve completed your first month:
 
 * Review where estimates were off and adjust  
-* Explore BuddyMoney’s **Budget Tracker Tool** to automate calculations  
-* Set your next goal — building an emergency fund or accelerating debt payoff  
+* Use the **[Budget Tracker](/tools/budget-tracker)** to refine your numbers  
+* Build your safety net with the **[Emergency Fund Calculator](/tools/emergency-fund)**  
+* If you have debt, create a plan with the **[Debt Payoff Calculator](/tools/debt-payoff)**  
 
 ---
 

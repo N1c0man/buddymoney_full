@@ -131,7 +131,10 @@ Instead:
 - Sinking funds  
 
 If you haven’t started yet, read:  
-**[How to build an emergency fund](/blog/emergency-fund-basics)**
+**[What is an emergency fund?](/blog/emergency-fund-basics)**
+
+👉 Then calculate your target using the  
+**[Emergency Fund Calculator](/tools/emergency-fund)**
 
 ---
 
@@ -153,7 +156,7 @@ A plan only works if you follow it.
 > **Pro tip:**  
 > Tracking your spending weekly prevents surprises at the end of the month.
 
-👉 Use the **BuddyMoney Budget Coach** to stay aligned with your plan.
+👉 Use the **[Budget Tracker](/tools/budget-tracker)** to stay aligned with your plan.
 
 ---
 
@@ -209,6 +212,9 @@ You can:
 
 If you’re working on debt, read:  
 **[How to crush credit card debt](/blog/crush-credit-card-debt)**
+
+👉 Or build your payoff plan with the  
+**[Debt Payoff Calculator](/tools/debt-payoff)**
 
 ---
 

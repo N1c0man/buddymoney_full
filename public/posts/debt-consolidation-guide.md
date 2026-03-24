@@ -16,6 +16,8 @@ heroImageAlt: Illustration showing multiple debts combining into one simple paym
 
 If you’re juggling multiple debts and feeling overwhelmed, you’re not alone. Credit cards, medical bills, and personal loans can quickly turn into a confusing maze of due dates, interest rates, and minimum payments.
 
+Many people look for ways to **consolidate debt and lower interest rates**, but the wrong approach can make things worse instead of better.
+
 Debt consolidation is one way to simplify things — **but only when it’s used correctly**. This guide explains how debt consolidation works, when it makes sense, and how to avoid common mistakes.
 
 ---
@@ -73,6 +75,8 @@ Balance transfer cards allow you to move existing credit card balances onto a ne
 **Best for:**
 - Good or excellent credit  
 - Short-term payoff plans  
+
+👉 Before choosing this route, map out your payoff timeline using the **[Debt Payoff Calculator](/tools/debt-payoff)** to make sure you can clear the balance before interest kicks in.
 
 **Things to watch out for:**
 - Balance transfer fees  
@@ -143,6 +147,8 @@ Avoid these common pitfalls:
 - Running balances back up after consolidation  
 - Ignoring budgeting and spending habits  
 
+👉 If spending habits are part of the problem, use the **[Budget Tracker](/tools/budget-tracker)** to understand where your money is going each month.
+
 Debt consolidation works best when it’s part of a broader financial reset.
 
 ---
@@ -162,6 +168,8 @@ The biggest benefits come from **consistency**, not speed.
 ## Final Thoughts
 
 Debt consolidation isn’t a shortcut — it’s a tool. Used wisely, it can help you regain control, reduce stress, and create a clear plan to become debt-free.
+
+👉 Build your plan first with the **[Debt Payoff Calculator](/tools/debt-payoff)** so you know exactly how long your journey will take.
 
 The most important step is choosing an option that fits your situation and committing to the habits that keep debt from coming back.
 

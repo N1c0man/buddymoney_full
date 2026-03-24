@@ -13,7 +13,12 @@ import BudgetCoachPage from "./pages/BudgetCoach"; // Coach page
 import MortgagePayoff from "./pages/MortgagePayoff";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
-import AffiliateDisclosure from "./pages/AffiliateDisclosure"; // <-- added
+import AffiliateDisclosure from "./pages/AffiliateDisclosure";
+
+// ⭐ NEW: Standalone tool pages
+import ToolEmergencyFundPage from "./pages/ToolEmergencyFundPage";
+import ToolDebtPayoffPage from "./pages/ToolDebtPayoffPage";
+import ToolBudgetTrackerPage from "./pages/ToolBudgetTrackerPage";
 
 // Blog system
 import BlogList from "./blog/BlogList";
@@ -22,18 +27,18 @@ import BlogPost from "./blog/BlogPost";
 // Layout
 import MainLayout from "./layouts/MainLayout";
 
-// ⭐ New: Credit Card Finder Tool
+// ⭐ Credit Card Finder Tool
 import CreditCardFinder from "./tools/CreditCardFinder";
 import CreditCardsHub from "./pages/CreditCardsHub";
 
-// ⭐ New: Credit Card Supporting Guides
+// ⭐ Credit Card Supporting Guides
 import BestCashBackCards from "./pages/BestCashBackCards";
 import BestBadCreditCards from "./pages/BestBadCreditCards";
 import BestTravelCards from "./pages/BestTravelCards";
 import BestIntroAprCards from "./pages/BestIntroAprCards";
 import BestStudentCards from "./pages/BestStudentCards";
 
-// ⭐ New: Affiliate Callout masked redirect page (generic)
+// ⭐ Affiliate Callout masked redirect page
 import GoOffer from "./pages/GoOffer";
 
 export default function App() {
@@ -53,6 +58,20 @@ export default function App() {
         <Route path={ROUTES.mortgage} element={<MortgagePayoff />} />
         <Route path={ROUTES.creditCardTool} element={<CreditCardFinder />} />
 
+        {/* ⭐ NEW: Standalone Tool Pages */}
+        <Route
+          path="/tools/emergency-fund"
+          element={<ToolEmergencyFundPage />}
+        />
+        <Route
+          path="/tools/debt-payoff"
+          element={<ToolDebtPayoffPage />}
+        />
+        <Route
+          path="/tools/budget-tracker"
+          element={<ToolBudgetTrackerPage />}
+        />
+
         {/* Credit card supporting guides */}
         <Route path={ROUTES.creditCardsHub} element={<CreditCardsHub />} />
         <Route path={ROUTES.creditCardsCashBack} element={<BestCashBackCards />} />
@@ -63,10 +82,9 @@ export default function App() {
 
         {/* Blog */}
         <Route path={ROUTES.blogList} element={<BlogList />} />
-        {/* Slug route can stay literal for now */}
         <Route path="/blog/:slug" element={<BlogPost />} />
 
-        {/* Affiliate redirect routes (masked links) */}
+        {/* Affiliate redirect routes */}
         <Route path="/go/:key" element={<GoOffer />} />
 
         {/* Legal */}

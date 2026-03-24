@@ -9,7 +9,7 @@ import BillSplitter from "../tools/BillSplitter";
 import EmergencyFund from "../tools/EmergencyFund";
 import NetWorth from "../tools/NetWorth";
 import ShareBar from "../components/ShareBar";
-import WelcomeBackBanner from "../components/WelcomeBackBanner";   // 🌿 NEW IMPORT
+import WelcomeBackBanner from "../components/WelcomeBackBanner";
 import { setCanonical } from "../utils/seo";
 
 const TOOL_CARDS = [
@@ -66,12 +66,10 @@ const TOOL_CARDS = [
 ];
 
 export default function Tools() {
-  // ✅ Canonical for /tools
   useEffect(() => {
     setCanonical("/tools");
   }, []);
 
-  // 🌿 NEW: persistent tool memory
   const [lastTool, setLastTool] = React.useState(() => {
     return localStorage.getItem("lastTool");
   });
@@ -81,14 +79,12 @@ export default function Tools() {
     setLastTool(toolId);
   };
 
-  // Basic SEO data
   const title =
-    "Free Money Tools & Calculators | Budget, Savings, Debt & More | BuddyMoney";
+    "Free Financial Tools & Calculators | Budget, Debt, Emergency Fund & More | BuddyMoney";
   const description =
-    "Use BuddyMoney’s free money tools and calculators to plan your budget, savings goals, debt payoff, emergency fund, and net worth. No logins, no fees—just simple tools to support calmer money decisions.";
+    "Use BuddyMoney’s free financial tools and calculators to plan your budget, emergency fund, debt payoff, savings goals, and net worth. Simple, free, and built for real life.";
   const pageUrl = "https://buddymoney.com/tools";
 
-  // JSON-LD structured data
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -134,7 +130,7 @@ export default function Tools() {
         <meta name="robots" content="index,follow" />
         <meta
           name="keywords"
-          content="money tools, budget calculator, savings goal calculator, debt payoff calculator, emergency fund calculator, net worth tracker, bill splitter, BuddyMoney"
+          content="financial tools, money tools, budget calculator, emergency fund calculator, debt payoff calculator, savings goal calculator, net worth tracker, free budgeting tools, BuddyMoney"
         />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
@@ -273,24 +269,20 @@ export default function Tools() {
             </div>
           </motion.section>
 
-          {/* 🔼 TOP SHARE BAR */}
           <ShareBar
             variant="top"
             label="Share BuddyMoney's simple money tools with a friend"
             title="I’m using BuddyMoney’s free money tools to plan my next money moves."
           />
 
-          {/* 🌱 NEW: WELCOME BACK BANNER */}
           <WelcomeBackBanner lastTool={lastTool} />
 
-          {/* MAIN TOOL SECTION */}
           <motion.div
             className="space-y-10 rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8 lg:px-8"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.5 }}
           >
-            {/* TOOL CARD GRID */}
             <section aria-label="Tool navigation" className="mb-4">
               <div className="mb-3 flex items-center justify-between gap-3">
                 <h2 className="text-sm font-semibold text-slate-900">
@@ -306,7 +298,7 @@ export default function Tools() {
                   <motion.a
                     key={tool.id}
                     href={`#${tool.id}`}
-                    onClick={() => handleToolClick(tool.id)}  // 🌿 NEW CLICK HANDLER
+                    onClick={() => handleToolClick(tool.id)}
                     whileHover={{ y: -4, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{
@@ -347,9 +339,38 @@ export default function Tools() {
               </div>
             </section>
 
-            {/* ACTUAL TOOLS */}
+            <section className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-5 sm:px-5">
+              <h2 className="text-lg font-semibold text-slate-900 mb-2">
+                Free financial calculators for budgeting, saving, and debt planning
+              </h2>
+              <p className="text-sm text-slate-600 max-w-3xl">
+                BuddyMoney’s tools are designed to help you make practical money decisions.
+                You can estimate your emergency fund, build a budget, compare debt payoff
+                strategies, and set savings targets without creating an account.
+              </p>
+              <div className="mt-3 flex flex-wrap gap-3 text-sm">
+                <Link
+                  to="/blog/emergency-fund-basics"
+                  className="text-emerald-700 font-medium hover:text-emerald-800"
+                >
+                  Emergency Fund Basics →
+                </Link>
+                <Link
+                  to="/blog/emergency-fund-3-to-6-months"
+                  className="text-emerald-700 font-medium hover:text-emerald-800"
+                >
+                  Build a 3–6 Month Emergency Fund →
+                </Link>
+                <Link
+                  to="/coach"
+                  className="text-emerald-700 font-medium hover:text-emerald-800"
+                >
+                  Start with Budget Coach →
+                </Link>
+              </div>
+            </section>
+
             <section className="space-y-12">
-              {/* CREDIT CARDS */}
               <section id="credit-cards" className="scroll-mt-24">
                 <div className="rounded-2xl border border-emerald-100 bg-emerald-50/60 px-4 py-4 sm:px-5 sm:py-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div className="space-y-1">
@@ -377,56 +398,106 @@ export default function Tools() {
                 </div>
               </section>
 
-              {/* BUDGET */}
               <section id="budget" className="scroll-mt-24">
+                <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <h2 className="text-lg font-semibold text-slate-900">
+                      Budget Tracker
+                    </h2>
+                    <p className="text-sm text-slate-600 mt-1 max-w-3xl">
+                      Organize your monthly income and expenses to see where your
+                      money is going and make better budgeting decisions.
+                    </p>
+                  </div>
+
+                  <Link
+                    to="/tools/budget-tracker"
+                    className="inline-flex items-center text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+                  >
+                    Open full budget tracker page →
+                  </Link>
+                </div>
+
                 <div id="budget-tracker">
                   <BudgetTracker />
                 </div>
               </section>
 
-              {/* SAVINGS */}
               <section id="savings" className="scroll-mt-24">
                 <div id="savings-goal">
                   <SavingsGoal />
                 </div>
               </section>
 
-              {/* DEBT */}
               <section id="debt" className="scroll-mt-24">
+                <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <h2 className="text-lg font-semibold text-slate-900">
+                      Debt Payoff Planner
+                    </h2>
+                    <p className="text-sm text-slate-600 mt-1 max-w-3xl">
+                      Compare payoff strategies and build a plan to reduce debt
+                      faster with a method that fits your goals.
+                    </p>
+                  </div>
+
+                  <Link
+                    to="/tools/debt-payoff"
+                    className="inline-flex items-center text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+                  >
+                    Open full debt payoff page →
+                  </Link>
+                </div>
+
                 <div id="debt-payoff">
                   <DebtPayoff />
                 </div>
               </section>
 
-              {/* BILL SPLITTER */}
               <section id="split" className="scroll-mt-24">
                 <div id="bill-splitter">
                   <BillSplitter />
                 </div>
               </section>
 
-              {/* EMERGENCY FUND */}
               <section id="emergency" className="scroll-mt-24">
+                <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <h2 className="text-lg font-semibold text-slate-900">
+                      Emergency Fund Calculator
+                    </h2>
+                    <p className="text-sm text-slate-600 mt-1 max-w-3xl">
+                      Estimate how much you may want to save for unexpected expenses based on
+                      your essential monthly costs and your target number of months.
+                    </p>
+                  </div>
+
+                  <Link
+                    to="/tools/emergency-fund"
+                    className="inline-flex items-center text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+                  >
+                    Open full emergency fund page →
+                  </Link>
+                </div>
+
                 <div id="emergency-fund">
                   <EmergencyFund />
                 </div>
               </section>
 
-              {/* NET WORTH */}
               <section id="networth" className="scroll-mt-24">
                 <div id="net-worth">
                   <NetWorth />
                 </div>
               </section>
             </section>
-            {/* 🔽 BOTTOM SHARE BAR */}
+
             <ShareBar
               variant="bottom"
               label="Share BuddyMoney's simple money tools with a friend"
               title="I’m using BuddyMoney’s free money tools to plan my next money moves."
             />
 
-            {/* CTA Banner */}
             <section className="mt-4">
               <div className="rounded-2xl bg-emerald-600 text-white px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-sm">
                 <div>
@@ -447,7 +518,6 @@ export default function Tools() {
               </div>
             </section>
 
-            {/* FOOTER NOTE */}
             <footer className="mt-4 border-t border-slate-200 pt-4 text-xs text-slate-500">
               <p>
                 More tools are on the way. Have an idea? We&apos;re building this

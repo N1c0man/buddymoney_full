@@ -17,6 +17,8 @@ heroImageAlt: Cut-up credit cards and a payoff plan written on a notepad
 Credit card debt feels heavy.  
 The interest is high, the balances barely move, and minimum payments seem endless.
 
+Many people search for ways to **pay off credit card debt fast**, reduce interest, and finally get ahead of their balances. The right strategy can help you do exactly that — without feeling overwhelmed.
+
 But here’s the truth:
 
 **Debt becomes manageable the moment you give it a system.**
@@ -64,6 +66,8 @@ There are two proven debt payoff methods. Both work — the best one is the one 
 
 Choose the method that keeps you consistent, not the one that sounds best on paper.
 
+👉 Want to see exactly how long your payoff will take? Use the **[Debt Payoff Calculator](/tools/debt-payoff)** to compare strategies and visualize your timeline.
+
 ---
 
 ### ⚠️ Avoid This Common Mistake While Paying Off Debt
@@ -88,9 +92,11 @@ Examples:
 
 Every extra dollar goes directly toward **principal**, which is why balances finally start dropping.
 
-Use BuddyMoney tools to experiment:
-- **Debt Payoff Planner**  
-- **Budget Coach**
+Use BuddyMoney tools to build your plan:
+- 👉 **[Debt Payoff Calculator](/tools/debt-payoff)**  
+- 👉 **[Budget Tracker](/tools/budget-tracker)** to find extra money each month
+
+👉 If you don’t already have a safety buffer, consider building a small emergency fund alongside your plan using the **[Emergency Fund Calculator](/tools/emergency-fund)**. Even $500–$1,000 can prevent new debt.
 
 ---
 
@@ -141,5 +147,7 @@ Rebuilding smart credit afterward is what keeps it from coming back.
 You *can* break free from high-interest credit card debt.
 
 You don’t need perfection — just a simple system and steady effort.
+
+👉 Start your plan today with the **[Debt Payoff Calculator](/tools/debt-payoff)** and take the first step toward becoming debt-free.
 
 BuddyMoney is here to help you every step of the way.

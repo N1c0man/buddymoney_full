@@ -21,7 +21,9 @@ You can also explore options using our **[credit card finder tool](/tools/credit
 The key is choosing a card that:
 - Reports to all three credit bureaus  
 - Doesn’t bury you in fees  
-- Gives you a realistic upgrade path  
+- Gives you a realistic upgrade path
+
+👉 Use the **[Emergency Fund Calculator](/tools/emergency-fund)** to estimate how much cash you should have set aside before relying on credit cards.
 
 Let’s break down how secured cards work — and which ones are actually worth your time.
 

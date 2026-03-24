@@ -31,9 +31,9 @@ You’re motivated. Hopeful. Ready to “get organized.” You may:
 - Think about budgets or debt plans  
 - Feel relieved just by deciding to act  
 
-This phase isn’t about action yet — it’s about **mental permission**. You’re giving yourself space to care about your money without guilt.
+This phase isn’t about action yet — it’s about **mental permission**.
 
-That matters more than it sounds.
+👉 If you want a simple starting point, try the **[Budget Tracker](/tools/budget-tracker)** to see where your money is going without pressure.
 
 ---
 
@@ -46,7 +46,7 @@ You start seeing:
 - Subscriptions you forgot about  
 - Balances that feel heavier than expected  
 
-This is where many people stop — not because they can’t do it, but because the truth feels discouraging.
+This is where many people stop.
 
 **This discomfort is normal.**  
 It means you’re seeing clearly for the first time.
@@ -63,9 +63,9 @@ You might:
 - Delay a non-essential purchase  
 - Write numbers down instead of avoiding them  
 
-These aren’t dramatic changes — and that’s the point.
+The goal isn’t perfection. It’s **consistency**.
 
-The goal here isn’t perfection. It’s **consistency**.
+👉 If you want guidance, the **[Budget Coach](/coach)** can help you organize everything step-by-step.
 
 ---
 
@@ -82,7 +82,9 @@ You may think:
 
 You’re not.
 
-This phase is where **systems matter more than willpower**. Simple tools, realistic targets, and forgiveness keep you moving when motivation fades.
+This is where **systems matter more than willpower**.
+
+👉 If debt is part of your stress, try the **[Debt Payoff Calculator](/tools/debt-payoff)** to build a clear plan.
 
 ---
 
@@ -98,11 +100,9 @@ You might not have:
 But you *have*:
 - Awareness  
 - Fewer surprises  
-- A clearer picture of what’s possible  
+- A clearer picture  
 
-Most importantly, you’ve proven to yourself that you can engage with your money **without panic or avoidance**.
-
-That’s real progress.
+👉 Even building a small safety cushion using the **[Emergency Fund Calculator](/tools/emergency-fund)** can reduce stress quickly.
 
 ---
 
@@ -111,12 +111,10 @@ That’s real progress.
 The first month isn’t about fixing everything.
 
 It’s about:
-- Building awareness  
+- Awareness  
 - Reducing overwhelm  
-- Creating trust with yourself  
+- Building trust with yourself  
 - Replacing avoidance with calm action  
-
-If you do that, the next 30 days get easier.
 
 ---
 
@@ -124,11 +122,9 @@ If you do that, the next 30 days get easier.
 
 Try not to:
 - Overhaul everything at once  
-- Aim for a “perfect” budget  
+- Aim for perfection  
 - Compare yourself to others  
 - Quit after one bad week  
-
-Progress isn’t linear — and it doesn’t need to be.
 
 ---
 
@@ -137,11 +133,7 @@ Progress isn’t linear — and it doesn’t need to be.
 Money control isn’t about restriction.  
 It’s about **clarity and choice**.
 
-If you focus on small, repeatable steps — tracking, adjusting, and forgiving — momentum builds naturally.
-
-The hardest part is starting.
-
-You’ve already done that.
+Small steps → repeated consistently → real change.
 
 ---
 
