@@ -9,10 +9,6 @@ import Hero from "../components/Hero";
 import { setCanonical } from "../utils/seo";
 
 // Shared variants
-const fadeUp = {
-  initial: { opacity: 0, y: 50 },
-  animate: { opacity: 1, y: 0 },
-};
 
 const containerStagger = {
   initial: { opacity: 0, y: 10 },
@@ -251,7 +247,7 @@ export default function Home() {
 
             <motion.div variants={item}>
               <ToolCard
-                to="/tools#budget"
+                to="/tools/budget-tracker"
                 title="Budget Tracker"
                 emoji="💸"
                 desc="Track your income and expenses quickly."
@@ -269,7 +265,7 @@ export default function Home() {
 
             <motion.div variants={item}>
               <ToolCard
-                to="/tools#debt"
+                to="/tools/debt-payoff"
                 title="Debt Payoff"
                 emoji="📉"
                 desc="Estimate months to pay off your debt."
@@ -287,7 +283,7 @@ export default function Home() {
 
             <motion.div variants={item}>
               <ToolCard
-                to="/tools#emergency"
+                to="/tools/emergency-fund"
                 title="Emergency Fund"
                 emoji="🛟"
                 desc="Know your ideal safety net size."

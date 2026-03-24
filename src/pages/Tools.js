@@ -65,6 +65,13 @@ const TOOL_CARDS = [
   },
 ];
 
+const STANDALONE_TOOL_ROUTES = {
+  "credit-cards": "/tools/credit-cards",
+  "budget-tracker": "/tools/budget-tracker",
+  "debt-payoff": "/tools/debt-payoff",
+  "emergency-fund": "/tools/emergency-fund",
+};
+
 export default function Tools() {
   useEffect(() => {
     setCanonical("/tools");
@@ -105,7 +112,9 @@ export default function Tools() {
       applicationCategory: "FinanceApplication",
       name: tool.name,
       operatingSystem: "Web",
-      url: `https://buddymoney.com/tools#${tool.id}`,
+      url: STANDALONE_TOOL_ROUTES[tool.id]
+        ? `https://buddymoney.com${STANDALONE_TOOL_ROUTES[tool.id]}`
+        : `https://buddymoney.com/tools#${tool.id}`,
       description: tool.tagline,
       image: "https://buddymoney.com/images/icon-placeholder.png",
       isAccessibleForFree: true,
@@ -153,7 +162,6 @@ export default function Tools() {
 
       <main className="min-h-screen pt-2 lg:pt-4 pb-16 bg-gradient-to-b from-green-50 via-white to-emerald-50/40">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          {/* HERO SECTION */}
           <motion.section
             className="relative rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft"
             initial={{ opacity: 0, y: 20 }}
@@ -289,64 +297,118 @@ export default function Tools() {
                   Jump straight to a tool
                 </h2>
                 <p className="text-[11px] text-slate-500">
-                  Click a card to scroll down to the full calculator.
+                  Standalone tools open on their own full pages.
                 </p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {TOOL_CARDS.map((tool) => (
-                  <motion.a
-                    key={tool.id}
-                    href={`#${tool.id}`}
-                    onClick={() => handleToolClick(tool.id)}
-                    whileHover={{ y: -4, scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 260,
-                      damping: 18,
-                    }}
-                    className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm transition-shadow hover:shadow-md"
-                  >
-                    <div className="mb-3 flex items-start justify-between gap-3">
-                      <div className="flex items-center gap-3">
-                        <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-lg transition-transform group-hover:scale-110">
-                          {tool.icon}
-                        </span>
-                        <div>
-                          <h3 className="text-sm font-semibold text-slate-900 group-hover:text-emerald-700">
-                            {tool.name}
-                          </h3>
+                {TOOL_CARDS.map((tool) => {
+                  const standaloneRoute = STANDALONE_TOOL_ROUTES[tool.id];
+
+                  if (standaloneRoute) {
+                    return (
+                      <motion.div
+                        key={tool.id}
+                        whileHover={{ y: -4, scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 260,
+                          damping: 18,
+                        }}
+                      >
+                        <Link
+                          to={standaloneRoute}
+                          onClick={() => handleToolClick(tool.id)}
+                          className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm transition-shadow hover:shadow-md"
+                        >
+                          <div className="mb-3 flex items-start justify-between gap-3">
+                            <div className="flex items-center gap-3">
+                              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-lg transition-transform group-hover:scale-110">
+                                {tool.icon}
+                              </span>
+                              <div>
+                                <h3 className="text-sm font-semibold text-slate-900 group-hover:text-emerald-700">
+                                  {tool.name}
+                                </h3>
+                              </div>
+                            </div>
+                            <span className="rounded-full bg-slate-900 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-50">
+                              {tool.badge}
+                            </span>
+                          </div>
+
+                          <p className="mb-3 text-xs text-slate-600">
+                            {tool.tagline}
+                          </p>
+
+                          <div className="flex items-center text-[11px] font-semibold text-emerald-600">
+                            Open full tool page
+                            <span className="ml-1 transition-transform group-hover:translate-x-0.5">
+                              →
+                            </span>
+                          </div>
+                        </Link>
+                      </motion.div>
+                    );
+                  }
+
+                  return (
+                    <motion.a
+                      key={tool.id}
+                      href={`#${tool.id}`}
+                      onClick={() => handleToolClick(tool.id)}
+                      whileHover={{ y: -4, scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 260,
+                        damping: 18,
+                      }}
+                      className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm transition-shadow hover:shadow-md"
+                    >
+                      <div className="mb-3 flex items-start justify-between gap-3">
+                        <div className="flex items-center gap-3">
+                          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-lg transition-transform group-hover:scale-110">
+                            {tool.icon}
+                          </span>
+                          <div>
+                            <h3 className="text-sm font-semibold text-slate-900 group-hover:text-emerald-700">
+                              {tool.name}
+                            </h3>
+                          </div>
                         </div>
+                        <span className="rounded-full bg-slate-900 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-50">
+                          {tool.badge}
+                        </span>
                       </div>
-                      <span className="rounded-full bg-slate-900 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-50">
-                        {tool.badge}
-                      </span>
-                    </div>
 
-                    <p className="mb-3 text-xs text-slate-600">
-                      {tool.tagline}
-                    </p>
+                      <p className="mb-3 text-xs text-slate-600">
+                        {tool.tagline}
+                      </p>
 
-                    <div className="flex items-center text-[11px] font-semibold text-emerald-600">
-                      Open tool
-                      <span className="ml-1 transition-transform group-hover:translate-x-0.5">
-                        →
-                      </span>
-                    </div>
-                  </motion.a>
-                ))}
+                      <div className="flex items-center text-[11px] font-semibold text-emerald-600">
+                        Open tool
+                        <span className="ml-1 transition-transform group-hover:translate-x-0.5">
+                          →
+                        </span>
+                      </div>
+                    </motion.a>
+                  );
+                })}
               </div>
             </section>
 
             <section className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-5 sm:px-5">
               <h2 className="text-lg font-semibold text-slate-900 mb-2">
-                Free financial calculators for budgeting, saving, and debt planning
+                Free financial calculators for budgeting, saving, and debt
+                planning
               </h2>
               <p className="text-sm text-slate-600 max-w-3xl">
-                BuddyMoney’s tools are designed to help you make practical money decisions.
-                You can estimate your emergency fund, build a budget, compare debt payoff
-                strategies, and set savings targets without creating an account.
+                BuddyMoney’s tools are designed to help you make practical money
+                decisions. You can estimate your emergency fund, build a budget,
+                compare debt payoff strategies, and set savings targets without
+                creating an account.
               </p>
               <div className="mt-3 flex flex-wrap gap-3 text-sm">
                 <Link
@@ -381,8 +443,8 @@ export default function Tools() {
                       Credit Card Finder (preview mode)
                     </h2>
                     <p className="text-xs sm:text-sm text-slate-700 max-w-xl">
-                      We&apos;re building a smarter way to browse credit cards
-                      by credit score, rewards type, and annual fee. Right now
+                      We&apos;re building a smarter way to browse credit cards by
+                      credit score, rewards type, and annual fee. Right now
                       it&apos;s in preview mode with sample data—perfect for
                       exploring the layout before live partner offers go in.
                     </p>
@@ -467,8 +529,9 @@ export default function Tools() {
                       Emergency Fund Calculator
                     </h2>
                     <p className="text-sm text-slate-600 mt-1 max-w-3xl">
-                      Estimate how much you may want to save for unexpected expenses based on
-                      your essential monthly costs and your target number of months.
+                      Estimate how much you may want to save for unexpected
+                      expenses based on your essential monthly costs and your
+                      target number of months.
                     </p>
                   </div>
 
@@ -520,8 +583,8 @@ export default function Tools() {
 
             <footer className="mt-4 border-t border-slate-200 pt-4 text-xs text-slate-500">
               <p>
-                More tools are on the way. Have an idea? We&apos;re building this
-                toolbox with you.
+                More tools are on the way. Have an idea? We&apos;re building
+                this toolbox with you.
               </p>
               <p className="mt-1 text-[10px] text-slate-400">
                 Updated November 2025
