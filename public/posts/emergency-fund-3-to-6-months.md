@@ -1,15 +1,15 @@
 ---
-slug: emergency-fund-3-to-6-months
-title: Emergency Fund Guide: How to Build a 3–6 Month Safety Net (From $0)
-tag: Emergency Fund
-level: Intermediate
-readTime: 9 min read
-excerpt: Learn how to build a 3–6 month emergency fund step by step—even if you're starting from zero. Calculate your target, automate savings, and stay debt-free.
-author: BuddyMoney Editorial
-authorAvatar: /icons/editorial.png
-date: 2025-12-05
-heroImage: /icons/emergency-fund-3to6-hero.png
-heroImageAlt: Savings jar labeled 3–6 month emergency fund
+slug: "emergency-fund-3-to-6-months"
+title: "Emergency Fund Guide: How to Build a 3–6 Month Safety Net (From $0)"
+tag: "Emergency Fund"
+level: "Intermediate"
+readTime: "9 min read"
+excerpt: "Learn how to build a 3–6 month emergency fund step by step—even if you're starting from zero. Calculate your target, automate savings, and stay debt-free."
+author: "BuddyMoney Editorial"
+authorAvatar: "/icons/editorial.png"
+date: "2025-12-05"
+heroImage: "/icons/emergency-fund-3to6-hero.png"
+heroImageAlt: "Savings jar labeled 3–6 month emergency fund"
 ---
 
 # Emergency Fund Guide: How to Build a 3–6 Month Safety Net (From $0)
