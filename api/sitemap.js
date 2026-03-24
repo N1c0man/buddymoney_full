@@ -33,6 +33,11 @@ const STATIC_ROUTES = [
   { path: ROUTES.mortgage, priority: 0.9, changefreq: "weekly" },
   { path: ROUTES.creditCardTool, priority: 0.9, changefreq: "weekly" },
 
+  // ✅ Standalone tool pages
+  { path: "/tools/budget-tracker", priority: 0.9, changefreq: "weekly" },
+  { path: "/tools/debt-payoff", priority: 0.9, changefreq: "weekly" },
+  { path: "/tools/emergency-fund", priority: 0.9, changefreq: "weekly" },
+
   { path: ROUTES.creditCardsHub, priority: 0.8, changefreq: "monthly" },
   { path: ROUTES.creditCardsCashBack, priority: 0.8, changefreq: "monthly" },
   { path: ROUTES.creditCardsBadCredit, priority: 0.8, changefreq: "monthly" },
