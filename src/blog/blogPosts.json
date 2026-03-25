@@ -104,7 +104,7 @@
     "level": "Beginner",
     "readTime": "9 min read",
     "excerpt": "Learn how zero-based budgeting works, how to assign every dollar a job, and follow a simple step-by-step example to take control of your money.",
-    "file": "/posts/hero-zero-based-budgeting.md",
+    "file": "/posts/zero-based-budgeting.md",
     "author": "BuddyMoney Editorial",
     "authorAvatar": "/icons/editorial.png",
     "date": "2026-03-17",
@@ -222,5 +222,19 @@
     "date": "2025-12-01",
     "heroImage": "/icons/hero-net-worth.png",
     "heroImageAlt": "A handsome owl showing off his stacks of gold coins."
-  }
+  },
+  {
+  "slug": "protect-your-money-uncertain-times",
+  "title": "How to Protect Your Money During Uncertain Times (2026 Guide)",
+  "tag": "Financial Stability",
+  "level": "Beginner",
+  "readTime": "8 min read",
+  "excerpt": "A simple, practical guide to protecting your money during uncertain times using budgeting, emergency funds, and debt reduction strategies.",
+  "file": "/posts/protect-your-money-uncertain-times.md",
+  "author": "Savi The Wonder",
+  "authorAvatar": "/icons/savi-editorial.png",
+  "date": "2026-03-24",
+  "heroImage": "/icons/emergency-fund-3to6-hero.png",
+  "heroImageAlt": "Person reviewing finances during uncertain times"
+}
 ]
