@@ -480,5 +480,27 @@
       "question": "What if my income changes every month?",
       "answer": "You can still use zero-based budgeting with irregular income. Base your plan on a conservative income estimate, cover essentials first, and adjust spending categories as your actual income becomes clear."
     }
-  ]
+  ],
+  "protect-your-money-uncertain-times": [
+  {
+    "question": "How can I protect my money during uncertain times?",
+    "answer": "Start by focusing on the basics: build an emergency fund, reduce unnecessary expenses, and avoid taking on new high-interest debt. Keeping a clear budget and maintaining cash reserves can provide stability during uncertain periods."
+  },
+  {
+    "question": "How much should I save for emergencies during uncertain times?",
+    "answer": "Most people should aim for 3 to 6 months of essential expenses. If you're just starting, focus on building your first $500 to $1,000 as quickly as possible to create an initial safety buffer."
+  },
+  {
+    "question": "Should I invest or save cash when the economy feels unstable?",
+    "answer": "During uncertain times, having accessible cash is important. Focus on building a strong emergency fund first before increasing investment risk, especially if your income or expenses are unpredictable."
+  },
+  {
+    "question": "What expenses should I prioritize first?",
+    "answer": "Focus on essential expenses like housing, food, utilities, insurance, transportation, and minimum debt payments. These form the foundation of financial stability."
+  },
+  {
+    "question": "How can I stay financially stable if my income changes?",
+    "answer": "Use a flexible budget, cut non-essential spending quickly, and build a cash cushion. Tools like a budget tracker or emergency fund calculator can help you adjust and stay in control."
+  }
+]
 }

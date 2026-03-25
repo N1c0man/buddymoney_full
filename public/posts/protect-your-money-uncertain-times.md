@@ -8,7 +8,7 @@ excerpt: A simple, practical guide to protecting your money during uncertain tim
 author: BuddyMoney Editorial
 authorAvatar: /icons/editorial.png
 date: 2026-03-24
-heroImage: /icons/emergency-fund-3to6-hero.png
+heroImage: icons/hero-protect-your-money-uncertain-times.png
 heroImageAlt: Person reviewing finances during uncertain times
 ---
 
