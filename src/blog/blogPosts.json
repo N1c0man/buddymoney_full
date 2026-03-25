@@ -236,5 +236,33 @@
   "date": "2026-03-24",
   "heroImage": "/icons/hero-protect-your-money-uncertain-times.png",
   "heroImageAlt": "Person reviewing finances during uncertain times"
+},
+{
+  "slug": "how-much-emergency-fund",
+  "title": "How Much Should You Save in an Emergency Fund? (2026 Guide)",
+  "tag": "Emergency Fund",
+  "level": "Beginner",
+  "readTime": "7 min read",
+  "excerpt": "Not sure how much to save? Learn exactly how to calculate your emergency fund step-by-step and build it faster—even if you're starting from zero.",
+  "file": "/posts/how-much-emergency-fund.md",
+  "author": "BuddyMoney Editorial",
+  "authorAvatar": "/icons/editorial.png",
+  "date": "2026-03-25",
+  "heroImage": "/icons/hero-how-much-emergency-fund.png",
+  "heroImageAlt": "Person calculating emergency fund savings with BuddyMoney owl guiding them"
+},
+{
+  "slug": "50-30-20-budget-rule",
+  "title": "50/30/20 Budget Rule Explained (With Example)",
+  "tag": "Budgeting",
+  "level": "Beginner",
+  "readTime": "7 min read",
+  "excerpt": "Learn how the 50/30/20 budget rule works, see a real example, and start managing your money with a simple plan that actually works.",
+  "file": "/posts/50-30-20-budget-rule.md",
+  "author": "BuddyMoney Editorial",
+  "authorAvatar": "/icons/editorial.png",
+  "date": "2026-03-25",
+  "heroImage": "/icons/hero-50-30-20-budget.png",
+  "heroImageAlt": "Person organizing income into needs wants and savings with BuddyMoney owl guiding them"
 }
 ]

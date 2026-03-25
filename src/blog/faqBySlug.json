@@ -502,5 +502,49 @@
     "question": "How can I stay financially stable if my income changes?",
     "answer": "Use a flexible budget, cut non-essential spending quickly, and build a cash cushion. Tools like a budget tracker or emergency fund calculator can help you adjust and stay in control."
   }
+],
+"how-much-emergency-fund": [
+  {
+    "question": "How much should I have in an emergency fund?",
+    "answer": "Most experts recommend saving 3 to 6 months of essential expenses. Start with $1,000 and build from there based on your income stability and lifestyle."
+  },
+  {
+    "question": "Is $1,000 enough for an emergency fund?",
+    "answer": "$1,000 is a great starting point, but it is not enough for full protection. It should be your first milestone before building toward 3 to 6 months of expenses."
+  },
+  {
+    "question": "How do I calculate my emergency fund amount?",
+    "answer": "Add up your essential monthly expenses like rent, groceries, and utilities, then multiply that number by 3 to 6 months."
+  },
+  {
+    "question": "Where should I keep my emergency fund?",
+    "answer": "Keep your emergency fund in a high-yield savings account that is safe, easily accessible, and separate from your daily spending account."
+  },
+  {
+    "question": "Should I invest my emergency fund?",
+    "answer": "No. Emergency funds should not be invested because they need to be safe and accessible when you need them."
+  }
+],
+"50-30-20-budget-rule": [
+  {
+    "question": "What is the 50/30/20 budget rule?",
+    "answer": "The 50/30/20 budget rule is a simple way to manage your money by dividing your income into three categories: 50% for needs, 30% for wants, and 20% for savings or debt repayment."
+  },
+  {
+    "question": "Is the 50/30/20 rule good for beginners?",
+    "answer": "Yes, the 50/30/20 rule is one of the best budgeting methods for beginners because it is simple, flexible, and easy to follow without tracking every expense."
+  },
+  {
+    "question": "What counts as needs in the 50/30/20 rule?",
+    "answer": "Needs include essential expenses such as rent or mortgage, groceries, utilities, insurance, transportation, and minimum debt payments—anything required for basic living."
+  },
+  {
+    "question": "What if my expenses don’t fit the 50/30/20 rule?",
+    "answer": "If your expenses don’t fit the 50/30/20 rule, you can adjust the percentages to match your situation. The rule is a guideline, not a strict requirement, and should be adapted to your financial reality."
+  },
+  {
+    "question": "How do I start using the 50/30/20 budget rule?",
+    "answer": "Start by calculating your monthly income, then divide it into 50% needs, 30% wants, and 20% savings or debt. Using a budgeting tool can make tracking and adjusting your spending much easier."
+  }
 ]
 }

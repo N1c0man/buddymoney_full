@@ -1,5 +1,14 @@
 [
   {
+    "slug": "50-30-20-budget-rule",
+    "title": "50/30/20 Budget Rule Explained (With Example)",
+    "description": "Learn how the 50/30/20 budget rule works, see a real example, and start managing your money with a simple plan that actually works.",
+    "date": "Tue Mar 24 2026 17:00:00 GMT-0700 (Pacific Daylight Time)",
+    "image": "/icons/hero-50-30-20-budget.png",
+    "file": "/posts/50-30-20-budget-rule.md",
+    "url": "/blog/50-30-20-budget-rule/"
+  },
+  {
     "slug": "best-secured-credit-cards",
     "title": "Best Secured Credit Cards (2026): Compare Top Options for Bad or No Credit",
     "description": "Rebuilding credit or starting from scratch? Secured credit cards are one of the safest ways to build credit. Compare the best options, deposits, fees, and upgrade paths.",
@@ -72,6 +81,15 @@
     "url": "/blog/how-freelancers-can-increase-income/"
   },
   {
+    "slug": "how-much-emergency-fund",
+    "title": "How Much Should You Save in an Emergency Fund? (2026 Guide)",
+    "description": "Not sure how much to save? Learn exactly how to calculate your emergency fund step-by-step and build it faster—even if you're starting from zero.",
+    "date": "Tue Mar 24 2026 17:00:00 GMT-0700 (Pacific Daylight Time)",
+    "image": "/icons/hero-how-much-emergency-fund.png",
+    "file": "/posts/how-much-emergency-fund.md",
+    "url": "/blog/how-much-emergency-fund/"
+  },
+  {
     "slug": "how-to-start-a-budget-in-10-minutes",
     "title": "How to Start a Budget in 10 Minutes",
     "description": "A quick-start budgeting method that helps you give every dollar a job — without stress or spreadsheets.",
@@ -85,7 +103,7 @@
     "title": "How to Protect Your Money During Uncertain Times (2026 Guide)",
     "description": "A simple, practical guide to protecting your money during uncertain times using budgeting, emergency funds, and debt reduction strategies.",
     "date": "Mon Mar 23 2026 17:00:00 GMT-0700 (Pacific Daylight Time)",
-    "image": "icons/hero-protect-your-money-uncertain-times.png",
+    "image": "/icons/hero-protect-your-money-uncertain-times.png",
     "file": "/posts/protect-your-money-uncertain-times.md",
     "url": "/blog/protect-your-money-uncertain-times/"
   },
