@@ -264,5 +264,19 @@
   "date": "2026-03-25",
   "heroImage": "/icons/hero-50-30-20-budget.png",
   "heroImageAlt": "Person organizing income into needs wants and savings with BuddyMoney owl guiding them"
+},
+{
+  "slug": "should-you-pay-off-your-mortgage-early",
+  "title": "Should You Pay Off Your Mortgage Early? Pros, Cons, and How to Decide",
+  "tag": "Mortgage Payoff",
+  "level": "Intermediate",
+  "readTime": "9 min read",
+  "excerpt": "Paying off your mortgage early can save you thousands in interest, but it is not always the smartest first move. Learn when it makes sense and how to decide.",
+  "file": "/posts/should-you-pay-off-your-mortgage-early.md",
+  "author": "Savi The Wonder",
+  "authorAvatar": "/icons/savi-editorial.png",
+  "date": "2026-03-25",
+  "heroImage": "/icons/should-you-pay-off-your-mortgage-early-hero.png",
+  "heroImageAlt": "Homeowner reviewing mortgage payoff options and extra payment strategies"
 }
 ]

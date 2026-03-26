@@ -546,5 +546,27 @@
     "question": "How do I start using the 50/30/20 budget rule?",
     "answer": "Start by calculating your monthly income, then divide it into 50% needs, 30% wants, and 20% savings or debt. Using a budgeting tool can make tracking and adjusting your spending much easier."
   }
-]
+],
+  "should-you-pay-off-your-mortgage-early": [
+    {
+      "question": "Is it a good idea to pay off your mortgage early?",
+      "answer": "Paying off your mortgage early can be a smart move if you already have emergency savings, little or no high-interest debt, and steady retirement contributions. It can save you money on interest and eliminate a major monthly bill sooner, but it is not always the best first priority for every household."
+    },
+    {
+      "question": "Does paying extra toward a mortgage really save money?",
+      "answer": "Yes. Extra payments applied to principal reduce your loan balance faster, which lowers the amount of interest charged over time. Even small additional payments each month can cut years off a loan and save thousands of dollars in total interest."
+    },
+    {
+      "question": "Should I pay off my mortgage early or focus on other debt first?",
+      "answer": "In many cases, high-interest debt like credit cards should be paid off before making aggressive extra mortgage payments. If your mortgage rate is much lower than your other debts, focusing on those higher-cost balances first is often the more efficient financial move."
+    },
+    {
+      "question": "What are simple ways to pay off a mortgage early?",
+      "answer": "Common strategies include adding a fixed extra amount each month, making one extra payment per year, rounding up your monthly payment, applying bonuses or tax refunds to principal, or switching to biweekly payments. The key is making sure the extra money is applied directly to principal."
+    },
+    {
+      "question": "Should I pay off my mortgage early if I do not have an emergency fund?",
+      "answer": "Usually no. If you do not have emergency savings, it is often better to build a financial cushion first. Without cash reserves, unexpected expenses could push you into high-interest debt, which can undo the benefits of early mortgage payoff."
+    }
+  ]
 }
