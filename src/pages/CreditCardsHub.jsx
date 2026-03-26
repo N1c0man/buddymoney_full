@@ -9,23 +9,34 @@ const HUB_ITEMS = [
   {
     id: "finder",
     label: "Tool",
-    title: "Credit Card Finder (Preview)",
+    title: "Credit Card Finder",
     path: "/tools/credit-cards",
     badge: "Start here",
     description:
-      "Filter sample cards by credit score, type, and annual fee. Compare a few side by side and get a feel for what’s out there.",
-    highlight: "Preview cards • No credit score impact",
+      "Explore credit cards by type, annual fee, and credit profile. Compare a few side by side and get a feel for what features matter most.",
+    highlight: "Compare card types with beginner-friendly filters",
     tone: "tool",
   },
   {
     id: "bad-credit",
     label: "Guide",
-    title: "Best Secured & Starter Cards for Bad or Fair Credit",
+    title: "Best Credit Cards for Bad or Rebuilding Credit",
     path: "/credit-cards/bad-credit",
     badge: "Rebuilding credit",
     description:
       "See options designed for rebuilding or establishing credit, plus tips to avoid common traps with high-fee cards.",
-    highlight: "Secured & starter cards explained",
+    highlight: "Secured and rebuilding options explained simply",
+    tone: "warm",
+  },
+  {
+    id: "cash-back",
+    label: "Guide",
+    title: "Best Cash Back Credit Cards",
+    path: "/credit-cards/cash-back",
+    badge: "Everyday rewards",
+    description:
+      "Compare flat-rate and category rewards cards and learn how to choose a cash back card that fits your real spending habits.",
+    highlight: "Flat-rate vs. category rewards made clear",
     tone: "warm",
   },
   {
@@ -36,18 +47,18 @@ const HUB_ITEMS = [
     badge: "Travel & miles",
     description:
       "Compare cards that earn miles or points on travel and dining, with guidance on when annual fees make sense.",
-    highlight: "Miles, points & no foreign transaction fees",
+    highlight: "Miles, points, perks, and foreign fees explained",
     tone: "cool",
   },
   {
     id: "intro-apr",
     label: "Guide",
-    title: "Best 0% Intro APR & Balance Transfer Cards",
+    title: "Best 0% Intro APR Credit Cards",
     path: "/credit-cards/0-apr",
     badge: "Debt strategy",
     description:
       "Learn how intro APR and balance transfer offers work, and when using them can help you pay down balances faster.",
-    highlight: "Long 0% intro periods & key fine print",
+    highlight: "0% intro periods, transfer fees, and payoff strategy",
     tone: "neutral",
   },
   {
@@ -58,7 +69,7 @@ const HUB_ITEMS = [
     badge: "Students & first cards",
     description:
       "Find cards built for students and first-time cardholders, with rewards on everyday spending and credit-building tips.",
-    highlight: "First card guidance for students",
+    highlight: "First-card guidance for students and thin credit files",
     tone: "warm",
   },
 ];
@@ -70,15 +81,15 @@ export default function CreditCardsHub() {
   }, []);
 
   const pageTitle =
-    "Credit Card Guides (2026): Compare Cards for Bad Credit, Travel & 0% APR | BuddyMoney";
+    "Credit Card Guides (2026): Compare Cards for Bad Credit, Cash Back, Travel & 0% APR | BuddyMoney";
   const pageDescription =
-    "Compare credit cards with beginner-friendly guides and a simple preview finder. Explore secured credit cards for bad or fair credit, travel rewards cards, and 0% intro APR / balance transfer options.";
+    "Compare credit cards with beginner-friendly guides and a simple credit card finder. Explore cards for bad or rebuilding credit, cash back rewards, travel rewards, student cards, and 0% intro APR offers.";
 
   const schemaOrg = useMemo(() => {
     return {
       "@context": "https://schema.org",
       "@type": ["CollectionPage", "WebPage"],
-      name: "Credit Card Guides (2026): Compare Cards for Bad Credit, Travel & 0% APR",
+      name: "Credit Card Guides (2026): Compare Cards for Bad Credit, Cash Back, Travel & 0% APR",
       url: "https://www.buddymoney.com/credit-cards",
       description: pageDescription,
       isAccessibleForFree: true,
@@ -104,15 +115,20 @@ export default function CreditCardsHub() {
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
         <meta name="robots" content="index,follow" />
+        <link rel="canonical" href="https://www.buddymoney.com/credit-cards" />
 
         <meta property="og:type" content="website" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
-        <meta property="og:url" content="https://www.buddymoney.com/credit-cards" />
+        <meta
+          property="og:url"
+          content="https://www.buddymoney.com/credit-cards"
+        />
         <meta
           property="og:image"
           content="https://www.buddymoney.com/icons/buddymoney-og-default.png"
         />
+        <meta property="og:site_name" content="BuddyMoney" />
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
@@ -128,22 +144,21 @@ export default function CreditCardsHub() {
       </Helmet>
 
       <main className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50/40 pb-16 pt-4">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 space-y-6">
-          <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[220px] md:h-[260px] lg:h-[300px]">
-            <img
-              src="/icons/hero-credit-cards-hub.png"
-              alt="BuddyMoney credit card hub hero image"
-              className="absolute inset-0 h-full w-full object-cover object-right"
-              loading="eager"
-            />
+        <div className="mx-auto max-w-6xl space-y-6 px-4 sm:px-6 lg:px-8">
+          <section className="overflow-hidden rounded-3xl border border-emerald-100 bg-white shadow-soft">
+            <div className="relative min-h-[360px] md:min-h-[420px]">
+              <img
+                src="/icons/hero-credit-cards-hub.png"
+                alt="BuddyMoney credit card hub hero image"
+                className="absolute inset-0 h-full w-full object-cover object-center"
+                loading="eager"
+              />
 
-            <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
-            <div className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl" />
+              <div className="absolute inset-0 bg-white/45 md:bg-white/35" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-full bg-gradient-to-r from-white/88 via-white/70 to-white/10 md:w-[72%]" />
 
-            <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
-              <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-center w-full">
-                <div className="space-y-4">
+              <div className="relative z-10 flex min-h-[360px] items-center px-5 py-8 md:min-h-[420px] md:px-8 lg:px-10">
+                <div className="max-w-2xl rounded-3xl bg-white/78 p-5 shadow-sm backdrop-blur-[2px] md:p-7">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
                     BuddyMoney Credit Card Hub
                   </p>
@@ -158,59 +173,108 @@ export default function CreditCardsHub() {
                     </Link>
                   </p>
 
-                  <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-                    Compare credit cards for bad credit, travel rewards, 0% APR, and first-time applicants.
+                  <h1 className="mt-3 text-3xl font-extrabold leading-tight text-brand-900 md:text-4xl">
+                    Compare credit cards for rebuilding credit, cash back,
+                    travel, 0% APR, and first-time applicants.
                   </h1>
 
-                  <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
-                    Use BuddyMoney’s credit card hub to learn the basics before you apply.
-                    Explore beginner-friendly guides, compare common card categories, and
-                    use our preview finder to understand how credit score, annual fee, and
-                    rewards can affect your options.
+                  <p className="mt-4 max-w-xl text-sm text-brand-900/90 md:text-base">
+                    Use BuddyMoney’s credit card hub to learn the basics before
+                    you apply. Explore beginner-friendly guides, compare common
+                    card categories, and use our credit card finder to
+                    understand how credit profile, annual fee, rewards, and
+                    intro APR offers can affect your options.
                   </p>
 
-                  <ul className="mt-2 text-[12px] text-brand-800 space-y-1">
+                  <ul className="mt-4 space-y-1 text-[12px] text-brand-800">
                     <li>✔ First-time card applicants</li>
                     <li>✔ Rebuilding or improving credit</li>
-                    <li>✔ Comparing cards before applying</li>
+                    <li>✔ Comparing realistic options before applying</li>
                   </ul>
 
-                  <div className="flex flex-wrap gap-2 text-[11px] mt-2">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
-                      🧭 Guides + a preview finder tool
+                  <div className="mt-4 flex flex-wrap gap-2 text-[11px]">
+                    <span className="inline-flex items-center gap-2 rounded-full border border-emerald-100 bg-white/90 px-3 py-1 text-emerald-700 shadow-sm">
+                      🧭 Guides + credit card finder tool
                     </span>
-                    <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
-                      ✅ Fees, APR, rewards explained simply
+                    <span className="inline-flex items-center gap-2 rounded-full border border-slate-100 bg-white/90 px-3 py-1 text-slate-700 shadow-sm">
+                      ✅ Fees, APR, and rewards explained simply
                     </span>
-                  </div>
-                </div>
-
-                <div className="hidden md:block">
-                  <div className="rounded-2xl bg-white/95 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 text-sm text-slate-800 space-y-3">
-                    <p className="text-xs font-semibold text-slate-700">
-                      How to use this hub
-                    </p>
-                    <ol className="ml-4 list-decimal space-y-1 text-[12px]">
-                      <li>Pick the guide that matches your current goal.</li>
-                      <li>Learn what to watch out for: fees, APRs, and fine print.</li>
-                      <li>Use the finder to explore sample card lineups.</li>
-                    </ol>
-                    <p className="text-[11px] text-slate-500">
-                      As partner offers go live, this hub becomes where education
-                      and real card options meet.
-                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </section>
 
-          <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 px-4 py-3 text-[11px] text-emerald-900">
-            <strong>Disclosure:</strong> BuddyMoney may earn compensation from
-            partners when you click certain links or apply for products. This
-            does not affect how we explain cards or tools. We focus on clarity,
-            not commissions.
-          </div>
+          <section className="grid gap-4 lg:grid-cols-[1.35fr_0.65fr]">
+            <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 px-4 py-3 text-[11px] text-emerald-900">
+              <strong>Disclosure:</strong> BuddyMoney may earn compensation from
+              partners when you click certain links or apply for products. This
+              does not affect how we explain cards or tools. We focus on clarity,
+              not commissions. <div className="mt-4 rounded-2xl border border-emerald-200 bg-white px-4 py-4 shadow-sm">
+  <div className="flex items-start justify-between gap-3">
+    <div>
+      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+        Featured Card
+      </p>
+      <h3 className="mt-1 text-sm font-semibold text-slate-900">
+        Featured beginner-friendly card placement
+      </h3>
+    </div>
+
+    <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-semibold text-emerald-700">
+      Reserved space
+    </span>
+  </div>
+  <p className="mt-3 text-[13px] text-slate-700">
+    This area is reserved for a featured credit card offer, beginner pick, or
+    partner spotlight. It sits near the top of the hub so visitors can quickly
+    see a recommended option before browsing the full guide list.
+  </p>
+
+  <ul className="mt-3 ml-4 list-disc space-y-1 text-[12px] text-slate-700">
+    <li>Good placement for a future featured offer</li>
+    <li>Works well for a beginner or rebuilding-credit pick</li>
+    <li>Easy to swap later without changing the page layout</li>
+  </ul>
+
+  <div className="mt-4 flex flex-wrap gap-2">
+    <Link
+      to="/tools/credit-cards"
+      className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow hover:bg-emerald-700"
+    >
+      Compare Cards
+    </Link>
+
+    <Link
+      to="/credit-cards/bad-credit"
+      className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+    >
+      See Beginner Options
+    </Link>
+  </div>
+
+  <p className="mt-3 text-[11px] text-slate-500">
+    Placeholder block for now. Replace with a live featured card or partner
+    offer later.
+  </p>
+</div>
+            </div>
+            
+            <div className="rounded-2xl border border-emerald-100 bg-white px-5 py-4 text-sm text-slate-800 shadow-sm">
+              <p className="text-xs font-semibold text-slate-700">
+                How to use this hub
+              </p>
+              <ol className="ml-4 mt-2 list-decimal space-y-1 text-[12px]">
+                <li>Pick the guide that matches your current goal.</li>
+                <li>Learn what to watch for: fees, APRs, and fine print.</li>
+                <li>Use the finder to compare categories and card features.</li>
+              </ol>
+              <p className="mt-3 text-[11px] text-slate-500">
+                This hub is built to connect education, comparison tools, and
+                smarter next steps before you apply.
+              </p>
+            </div>
+          </section>
 
           <ShareBar
             variant="top"
@@ -218,14 +282,14 @@ export default function CreditCardsHub() {
             title="I’m using BuddyMoney’s credit card hub to understand my options before I apply."
           />
 
-          <section className="rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8 space-y-5">
+          <section className="space-y-5 rounded-3xl border border-slate-200 bg-white px-4 py-6 shadow-sm md:px-6 md:py-8">
             <header>
               <h2 className="text-sm font-semibold text-slate-900">
                 Credit card guides & tools
               </h2>
               <p className="text-[11px] text-slate-500">
-                Start with a guide, then use the finder when you&apos;re ready to
-                explore specific cards.
+                Start with a guide, then use the finder when you are ready to
+                compare categories and features more closely.
               </p>
             </header>
 
@@ -249,7 +313,7 @@ export default function CreditCardsHub() {
                         {item.title}
                       </h3>
                     </div>
-                    <span className="rounded-full bg-emerald-600 text-[10px] font-semibold text-white px-2.5 py-0.5 shadow-sm">
+                    <span className="rounded-full bg-emerald-600 px-2.5 py-0.5 text-[10px] font-semibold text-white shadow-sm">
                       {item.badge}
                     </span>
                   </div>
@@ -265,7 +329,7 @@ export default function CreditCardsHub() {
                   )}
 
                   <span className="mt-2 inline-flex items-center text-[10px] text-slate-500">
-                    Offers shown when available • Always review issuer terms
+                    Educational content • Always review issuer terms
                   </span>
 
                   <span className="mt-3 inline-flex items-center text-[11px] font-semibold text-emerald-700">
@@ -279,42 +343,45 @@ export default function CreditCardsHub() {
             </div>
           </section>
 
-          <section className="rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8 space-y-4">
+          <section className="space-y-4 rounded-3xl border border-slate-200 bg-white px-4 py-6 shadow-sm md:px-6 md:py-8">
             <h2 className="text-lg font-bold text-slate-900">
               How to choose a credit card without getting overwhelmed
             </h2>
 
             <div className="grid gap-4 md:grid-cols-3">
               <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-4">
-                <h3 className="text-sm font-semibold text-slate-900 mb-2">
+                <h3 className="mb-2 text-sm font-semibold text-slate-900">
                   Start with your goal
                 </h3>
                 <p className="text-xs text-slate-700">
                   Some people need a first card to build credit. Others want to
-                  earn travel rewards or transfer a balance to a 0% intro APR card.
-                  The right card depends on what you are trying to do first.
+                  earn travel rewards, collect cash back, or transfer a balance
+                  to a 0% intro APR card. The right card depends on what you are
+                  trying to do first.
                 </p>
               </div>
 
               <div className="rounded-2xl border border-sky-100 bg-sky-50/50 p-4">
-                <h3 className="text-sm font-semibold text-slate-900 mb-2">
+                <h3 className="mb-2 text-sm font-semibold text-slate-900">
                   Watch the fee and APR details
                 </h3>
                 <p className="text-xs text-slate-700">
                   Rewards can look attractive, but annual fees, balance transfer
-                  fees, penalty APRs, and interest charges matter just as much.
-                  Always review the issuer terms before applying.
+                  fees, penalty APRs, foreign transaction fees, and interest
+                  charges matter just as much. Always review the issuer terms
+                  before applying.
                 </p>
               </div>
 
               <div className="rounded-2xl border border-amber-100 bg-amber-50/50 p-4">
-                <h3 className="text-sm font-semibold text-slate-900 mb-2">
+                <h3 className="mb-2 text-sm font-semibold text-slate-900">
                   Compare before you apply
                 </h3>
                 <p className="text-xs text-slate-700">
                   Applying for multiple cards too quickly can make things messy.
                   It is usually better to compare a few realistic options, read
-                  the fine print, and apply only when the card truly fits your situation.
+                  the fine print, and apply only when the card truly fits your
+                  situation.
                 </p>
               </div>
             </div>
@@ -336,6 +403,66 @@ export default function CreditCardsHub() {
               </Link>{" "}
               for first-time and rebuilding-credit options.
             </p>
+          </section>
+
+          <section className="space-y-4 rounded-3xl border border-slate-200 bg-white px-4 py-6 shadow-sm md:px-6 md:py-8">
+            <h2 className="text-lg font-bold text-slate-900">
+              Tools that support smarter credit card choices
+            </h2>
+
+            <div className="grid gap-3 md:grid-cols-2">
+              <Link
+                to="/tools/credit-cards"
+                className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-emerald-200 hover:bg-emerald-50"
+              >
+                <span className="block font-semibold text-slate-900">
+                  Credit Card Finder
+                </span>
+                <span className="mt-1 block text-[13px] text-slate-600">
+                  Compare card types, annual fees, and beginner-friendly
+                  features in one place.
+                </span>
+              </Link>
+
+              <Link
+                to="/tools/budget-tracker"
+                className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-emerald-200 hover:bg-emerald-50"
+              >
+                <span className="block font-semibold text-slate-900">
+                  Budget Tracker
+                </span>
+                <span className="mt-1 block text-[13px] text-slate-600">
+                  Match your spending habits to the kind of card that actually
+                  fits your budget.
+                </span>
+              </Link>
+
+              <Link
+                to="/tools/debt-payoff"
+                className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-emerald-200 hover:bg-emerald-50"
+              >
+                <span className="block font-semibold text-slate-900">
+                  Debt Payoff Calculator
+                </span>
+                <span className="mt-1 block text-[13px] text-slate-600">
+                  Helpful if you are comparing 0% APR offers against an existing
+                  payoff strategy.
+                </span>
+              </Link>
+
+              <Link
+                to="/tools/emergency-fund"
+                className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-emerald-200 hover:bg-emerald-50"
+              >
+                <span className="block font-semibold text-slate-900">
+                  Emergency Fund Tool
+                </span>
+                <span className="mt-1 block text-[13px] text-slate-600">
+                  Build a cash buffer so your credit card stays a tool instead
+                  of a fallback.
+                </span>
+              </Link>
+            </div>
           </section>
 
           <p className="text-center text-[11px] text-slate-500">

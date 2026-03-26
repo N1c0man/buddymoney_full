@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
 import { setCanonical } from "../utils/seo";
 
-// Sample student cards (preview mode – no affiliate links yet)
+// Sample student cards (educational examples)
 const STUDENT_CARDS = [
   {
     id: "campus-cash-student",
@@ -66,20 +66,17 @@ const STUDENT_CARDS = [
 ];
 
 export default function BestStudentCards() {
-  const title = "Best Student Credit Cards (Preview) | BuddyMoney";
+  const title = "Best Student Credit Cards (2026 Guide) | BuddyMoney";
   const description =
-    "Learn how student credit cards work using BuddyMoney’s preview guide—cash back on student life, simple flat-rate cards, and secured starter options—before live offers go into the Credit Card Finder.";
-  const pageUrl =
-    typeof window !== "undefined"
-      ? window.location.href
-      : "https://buddymoney.com/credit-cards/student";
+    "Learn how student credit cards work, compare rewards and starter options, and see what to watch for before choosing a student card to build credit responsibly.";
+  const canonicalUrl = "https://www.buddymoney.com/credit-cards/student";
+  const ogImage =
+    "https://www.buddymoney.com/icons/buddymoney-og-default.png";
 
-  // ✅ Canonical for /credit-cards/student
   useEffect(() => {
     setCanonical("/credit-cards/student");
   }, []);
 
-  // JSON-LD structured data (ItemList of sample student cards)
   const jsonLd = useMemo(() => {
     const items = STUDENT_CARDS.map((card, index) => ({
       "@type": "ListItem",
@@ -87,7 +84,7 @@ export default function BestStudentCards() {
       item: {
         "@type": "FinancialProduct",
         name: card.name,
-        description: card.rewards,
+        description: `${card.rewards} Best for: ${card.bestFor}`,
         provider: {
           "@type": "BankOrCreditUnion",
           name: card.issuer,
@@ -102,11 +99,53 @@ export default function BestStudentCards() {
     return {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      name: "Best student credit cards (preview)",
+      name: "Best student credit cards",
       description,
       itemListElement: items,
     };
   }, [description]);
+
+  const faqSchema = useMemo(
+    () => ({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What is a student credit card?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "A student credit card is designed for people with limited or no credit history. These cards often have lower starting limits, simple rewards, and tools that help you build credit while learning good habits.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Do student credit cards help build credit?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, they can help build credit when the issuer reports to the major credit bureaus and you make on-time payments while keeping balances low.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Should a student choose rewards or simplicity?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "It depends on spending habits. Some students benefit from basic flat-rate cards, while others prefer simple cash back on common categories like dining or coffee. The most important feature is still responsible use.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Is a secured student card a good option?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "A secured student card can be a strong option for someone with no credit history who can afford a refundable deposit. It may be easier to qualify for and can still help build payment history.",
+          },
+        },
+      ],
+    }),
+    []
+  );
 
   return (
     <>
@@ -114,62 +153,60 @@ export default function BestStudentCards() {
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="robots" content="index,follow" />
+        <link rel="canonical" href={canonicalUrl} />
 
         {/* Open Graph */}
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={pageUrl} />
-        <meta
-          property="og:image"
-          content="https://buddymoney.com/icons/buddymoney-og-default.png"
-        />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:image" content={ogImage} />
         <meta property="og:site_name" content="BuddyMoney" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta
-          name="twitter:image"
-          content="https://buddymoney.com/icons/buddymoney-og-default.png"
-        />
+        <meta name="twitter:image" content={ogImage} />
 
         {/* JSON-LD */}
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
       <main className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50/40 pb-16 pt-4">
         <div className="mx-auto flex max-w-4xl flex-col gap-6 px-4 sm:px-6 lg:px-8">
-          {/* Top share snippet */}
           <ShareBar
             variant="top"
             title="I’m reading BuddyMoney’s guide to the best student credit cards."
           />
 
-          {/* Header */}
-          <header className="space-y-3 rounded-3xl border border-emerald-100 bg-white/90 px-5 py-6 shadow-sm">
+          <header className="space-y-4 rounded-3xl border border-emerald-100 bg-white/90 px-5 py-6 shadow-sm">
             <p className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
               Credit Cards
               <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">
-                Preview guide
+                Beginner guide
               </span>
             </p>
+
             <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl">
-              Best student credit cards (preview)
+              Best student credit cards
             </h1>
+
             <p className="text-sm text-slate-700 sm:text-base">
-              Student cards are designed to help you{" "}
+              Student credit cards are designed to help you{" "}
               <span className="font-semibold text-slate-900">
                 build credit from scratch
               </span>{" "}
-              while you&apos;re still in school. This guide uses{" "}
-              <span className="font-semibold text-slate-900">
-                sample student cards
-              </span>{" "}
-              to show the tradeoffs between cash back, simplicity, and secured
-              options. Once partner offers are live, we&apos;ll plug real cards
-              into the{" "}
+              while you are still in school. The best option depends on whether
+              you want simple rewards, help tracking spending, or a starter card
+              that is easier to qualify for.
+            </p>
+
+            <p className="text-sm text-slate-700 sm:text-base">
+              This BuddyMoney guide walks through the tradeoffs between student
+              cash back cards, simple flat-rate cards, and secured starter
+              options. You can also explore more card types in the{" "}
               <Link
                 to="/tools/credit-cards"
                 className="font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-800"
@@ -178,58 +215,109 @@ export default function BestStudentCards() {
               </Link>
               .
             </p>
+
             <p className="text-[11px] text-slate-500">
-              Educational only • Not financial advice • Always check the
-              official issuer&apos;s terms, eligibility rules, and fees before
-              you apply.
+              Educational guide only • Card offers, fees, and eligibility rules
+              can change • BuddyMoney updates this page regularly, and new cards
+              may be added over time • Always verify current issuer details
+              before applying.
             </p>
           </header>
 
-          {/* Intro: student card basics */}
           <section className="space-y-4 rounded-3xl border border-slate-200 bg-white px-5 py-6 text-sm text-slate-800 shadow-sm">
             <h2 className="text-base font-semibold text-slate-900">
-              What makes a card a “student” card?
+              What makes a card a student card?
             </h2>
             <p>
               Student cards are built for people with{" "}
               <span className="font-semibold">limited or no credit history</span>.
-              That means:
+              That usually means:
             </p>
             <ul className="ml-5 list-disc space-y-1">
-              <li>Lower credit limits at the start.</li>
+              <li>Lower starting credit limits.</li>
               <li>
                 More focus on{" "}
-                <span className="font-semibold">credit education tools</span>{" "}
-                and progress tracking.
+                <span className="font-semibold">credit education tools</span>,
+                payment reminders, and progress tracking.
               </li>
               <li>
-                Rewards that often match{" "}
-                <span className="font-semibold">
-                  typical student spending
-                </span>{" "}
-                (food, coffee, small purchases).
+                Rewards that may match{" "}
+                <span className="font-semibold">typical student spending</span>,
+                like dining, coffee, or everyday purchases.
               </li>
             </ul>
             <p>
-              The goal is to help you build a{" "}
-              <span className="font-semibold">clean, on-time payment history</span>{" "}
-              so your future self has better options on apartments, car loans,
-              and more.
+              The real goal is not just rewards. It is building a{" "}
+              <span className="font-semibold">clean on-time payment history</span>{" "}
+              so you have better options later for apartments, auto loans, and
+              better credit cards.
             </p>
           </section>
 
-          {/* Sample student card line-up */}
-          <section className="space-y-4 rounded-3xl border border-slate-200 bg-white px-5 py-6 shadow-sm">
+          <section className="space-y-4 rounded-3xl border border-slate-200 bg-white px-5 py-6 text-sm text-slate-800 shadow-sm">
             <h2 className="text-base font-semibold text-slate-900">
-              Sample student card line-up
+              What to compare before you apply
             </h2>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+                <h3 className="text-sm font-semibold text-slate-900">
+                  Rewards style
+                </h3>
+                <p className="mt-1 text-[13px] text-slate-700">
+                  Some student cards focus on simple flat-rate rewards, while
+                  others pay more in categories like dining or campus spending.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+                <h3 className="text-sm font-semibold text-slate-900">
+                  Credit-building tools
+                </h3>
+                <p className="mt-1 text-[13px] text-slate-700">
+                  Look for cards that report to the major credit bureaus and
+                  offer progress tracking or educational tools.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+                <h3 className="text-sm font-semibold text-slate-900">
+                  Fees and APR
+                </h3>
+                <p className="mt-1 text-[13px] text-slate-700">
+                  Student cards can still have high APRs. Rewards matter much
+                  less if you carry a balance and pay interest.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+                <h3 className="text-sm font-semibold text-slate-900">
+                  Secured vs. unsecured
+                </h3>
+                <p className="mt-1 text-[13px] text-slate-700">
+                  Some students may qualify for unsecured cards right away, while
+                  others may do better starting with a secured card and a small
+                  refundable deposit.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="space-y-4 rounded-3xl border border-slate-200 bg-white px-5 py-6 shadow-sm">
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="text-base font-semibold text-slate-900">
+                Sample student card line-up
+              </h2>
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-slate-600">
+                Educational examples
+              </span>
+            </div>
+
             <p className="text-sm text-slate-700">
-              These are{" "}
-              <span className="font-semibold">example cards</span> to show the
-              types of student offers you might see: campus-focused rewards,
-              simple flat-rate cards, and secured options. They aren&apos;t real
-              products, but they reflect common setups in the student card
-              space.
+              These examples show common student card patterns, including
+              campus-focused rewards, simple flat-rate cards, and secured
+              starter options. BuddyMoney may expand this page with additional
+              cards and comparisons over time.
             </p>
 
             <div className="mt-3 space-y-4">
@@ -305,29 +393,109 @@ export default function BestStudentCards() {
             </div>
           </section>
 
-          {/* Quick habits box */}
           <section className="space-y-3 rounded-3xl border border-sky-100 bg-sky-50/80 px-5 py-5 text-[13px] text-slate-800 shadow-sm">
             <h2 className="text-sm font-semibold text-slate-900">
               3 simple student card habits that pay off later
             </h2>
             <ul className="ml-5 list-disc space-y-1">
               <li>Turn on autopay for at least the statement balance.</li>
-              <li>Keep usage under ~30% of your credit limit when possible.</li>
-              <li>Use the card regularly for small purchases, not big splurges.</li>
+              <li>Keep usage under about 30% of your credit limit when possible.</li>
+              <li>Use the card for small planned purchases, not big splurges.</li>
             </ul>
           </section>
 
-          {/* CTA: move into the Credit Card Finder */}
+          <section className="space-y-3 rounded-3xl border border-amber-100 bg-amber-50/80 px-5 py-5 text-[13px] text-amber-900 shadow-sm">
+            <h2 className="text-sm font-semibold text-amber-900">
+              Credit cards work best alongside a plan
+            </h2>
+            <p>
+              A student card can help you build credit, but it works best when
+              you already know what you can afford to spend and pay back.
+            </p>
+            <p>
+              Use the{" "}
+              <Link
+                to="/tools/budget-tracker"
+                className="font-semibold underline underline-offset-2 hover:text-amber-950"
+              >
+                Budget Tracker
+              </Link>{" "}
+              to manage monthly spending, or the{" "}
+              <Link
+                to="/tools/emergency-fund"
+                className="font-semibold underline underline-offset-2 hover:text-amber-950"
+              >
+                Emergency Fund Tool
+              </Link>{" "}
+              so your credit card does not become your backup plan.
+            </p>
+          </section>
+
+          <section className="space-y-4 rounded-3xl border border-slate-200 bg-white px-5 py-6 text-sm text-slate-800 shadow-sm">
+            <h2 className="text-base font-semibold text-slate-900">
+              Related tools and guides
+            </h2>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <Link
+                to="/tools/credit-cards"
+                className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-emerald-200 hover:bg-emerald-50"
+              >
+                <span className="block font-semibold text-slate-900">
+                  Credit Card Finder
+                </span>
+                <span className="mt-1 block text-[13px] text-slate-600">
+                  Explore cards by annual fee, rewards style, and card type.
+                </span>
+              </Link>
+
+              <Link
+                to="/credit-cards/bad-credit"
+                className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-emerald-200 hover:bg-emerald-50"
+              >
+                <span className="block font-semibold text-slate-900">
+                  Credit Cards for Bad or Rebuilding Credit
+                </span>
+                <span className="mt-1 block text-[13px] text-slate-600">
+                  Helpful if you are building from a very thin or damaged credit file.
+                </span>
+              </Link>
+
+              <Link
+                to="/credit-cards/cash-back"
+                className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-emerald-200 hover:bg-emerald-50"
+              >
+                <span className="block font-semibold text-slate-900">
+                  Best Cash Back Credit Cards
+                </span>
+                <span className="mt-1 block text-[13px] text-slate-600">
+                  Compare student card rewards against broader cash back options.
+                </span>
+              </Link>
+
+              <Link
+                to="/tools/debt-payoff"
+                className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 transition hover:border-emerald-200 hover:bg-emerald-50"
+              >
+                <span className="block font-semibold text-slate-900">
+                  Debt Payoff Calculator
+                </span>
+                <span className="mt-1 block text-[13px] text-slate-600">
+                  Useful if you already carry balances and want a payoff plan.
+                </span>
+              </Link>
+            </div>
+          </section>
+
           <section className="rounded-3xl border border-emerald-100 bg-emerald-600 px-5 py-5 text-white shadow-sm">
             <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
               <div className="space-y-1">
                 <h2 className="text-lg font-semibold">
-                  Want to see how student cards compare?
+                  Want to compare student-friendly cards side by side?
                 </h2>
                 <p className="text-sm text-emerald-50">
-                  Use BuddyMoney&apos;s Credit Card Finder (in preview mode) to
-                  browse cards by credit score, annual fee, and rewards style —
-                  including student-friendly options.
+                  Use BuddyMoney&apos;s Credit Card Finder to browse cards by
+                  credit profile, annual fee, and rewards style — including
+                  student-friendly options.
                 </p>
               </div>
               <Link
@@ -339,7 +507,6 @@ export default function BestStudentCards() {
             </div>
           </section>
 
-          {/* Bottom share snippet */}
           <ShareBar
             variant="bottom"
             label="Share this guide"
