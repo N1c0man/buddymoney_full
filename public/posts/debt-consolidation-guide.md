@@ -159,11 +159,20 @@ Non-profit credit counseling agencies can help organize debts into a structured 
 
 ## Compare Debt Consolidation Options
 
-| Option | Best For | Main Benefit | Main Risk |
-|---|---|---|---|
-| Balance transfer card | Good credit + fast payoff plan | Temporary 0% APR | High APR later if not paid off in time |
-| Personal loan | Fixed payoff plan | One payment and clear timeline | Fees or higher total cost if term is too long |
-| Debt management plan | Need guidance and structure | Organized repayment help | Slower process and less flexibility |
+**Balance transfer card**
+- Best for: Good credit and a fast payoff plan
+- Main benefit: Temporary 0% APR
+- Main risk: High APR later if the balance is not paid off in time
+
+**Personal loan**
+- Best for: Fixed payoff plan
+- Main benefit: One payment and a clear timeline
+- Main risk: Fees or higher total cost if the term is too long
+
+**Debt management plan**
+- Best for: People who need guidance and structure
+- Main benefit: Organized repayment help
+- Main risk: Slower process and less flexibility
 
 This is why comparing **total cost**, not just monthly payment, matters so much.
 
