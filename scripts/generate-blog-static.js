@@ -4,6 +4,11 @@ const matter = require("gray-matter");
 const { marked } = require("marked");
 const faqBySlug = require("../src/blog/faqBySlug.json");
 
+marked.setOptions({
+  gfm: true,
+  breaks: false,
+});
+
 const SITE_URL = "https://www.buddymoney.com";
 const POSTS_DIR = path.join(__dirname, "..", "public", "posts");
 const BLOG_OUTPUT_DIR = path.join(__dirname, "..", "public", "blog");
@@ -431,6 +436,39 @@ function buildHtml({
       margin-bottom: 0.45em;
     }
 
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.4em 0;
+      overflow: hidden;
+      border: 1px solid #dbeafe;
+      border-radius: 14px;
+      background: #ffffff;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .content th,
+    .content td {
+      padding: 12px 14px;
+      border: 1px solid #e5e7eb;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .content th {
+      background: #ecfdf5;
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    .content tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    .content table code {
+      white-space: nowrap;
+    }
+
     .content a {
       color: var(--green-dark);
       font-weight: 600;
@@ -619,6 +657,11 @@ function buildHtml({
 
       .footer-inner {
         padding: 28px 16px;
+      }
+
+      .content table {
+        display: block;
+        overflow-x: auto;
       }
     }
   </style>
