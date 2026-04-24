@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
+import NewsletterSignup from "../components/NewsletterSignup";
 import ShareBar from "../components/ShareBar";
 import { setCanonical, buildUrl } from "../utils/seo";
 
@@ -702,7 +703,6 @@ export default function MortgagePayoff() {
                 </p>
               )}
             </div>
-
             <div className="rounded-2xl border border-slate-200 bg-white p-4 text-xs text-slate-600 shadow-sm">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
                 <div className="font-semibold text-slate-800">
@@ -1040,11 +1040,25 @@ export default function MortgagePayoff() {
             </section>
           </section>
         </motion.div>
+        {/* NEWSLETTER */}
+                <motion.section
+                  id="newsletter"
+                  className="mt-0 md:mt-2"
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  viewport={{ once: true }}
+                >
+                  <div className="max-w-3xl mx-auto px-4">
+                    <div className="rounded-2xl border border-emerald-100 bg-emerald-50/80 p-6 sm:p-8 shadow-sm">
+                      <NewsletterSignup />
+                    </div>
+                  </div>
+                </motion.section>
       </main>
     </>
   );
 }
-
 function InputBox({ label, value, onChange }) {
   return (
     <div>

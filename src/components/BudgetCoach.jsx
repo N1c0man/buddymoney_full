@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
+import NewsletterSignup from "../components/NewsletterSignup";
 import AffiliateCalloutAmazonPlanner from "../components/AffiliateCalloutAmazonPlanner";
 import { setCanonical } from "../utils/seo";
 
@@ -463,36 +464,6 @@ export default function BudgetCoach() {
                   <li key={i}>{t}</li>
                 ))}
               </ul>
-              {/* 🚀 CTA: Email Capture */}
-<div className="rounded-2xl bg-slate-900 text-white p-5 mt-6 space-y-3">
-  <p className="text-sm text-slate-300">
-    Want a simple weekly plan like this?
-  </p>
-
-  <h3 className="text-lg font-bold">
-    Get the free BuddyMoney email
-  </h3>
-
-  <p className="text-sm text-slate-400 max-w-md">
-    We’ll send you a calm, step-by-step money plan each week — no spam, no pressure.
-  </p>
-
-  <div className="flex flex-col sm:flex-row gap-2 pt-2">
-    <input
-      type="email"
-      placeholder="Enter your email"
-      className="flex-1 rounded-xl px-4 py-3 text-sm text-black focus:outline-none"
-    />
-
-    <button className="rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-black hover:bg-emerald-400 transition">
-      Get my plan →
-    </button>
-  </div>
-
-  <p className="text-xs text-slate-500">
-    Free forever. Unsubscribe anytime.
-  </p>
-</div>
             </div>
           </motion.section>
 
@@ -520,6 +491,21 @@ export default function BudgetCoach() {
             label="Share this friendly budgeting coach with someone who needs it"
             title="I’m using BuddyMoney’s AI Budget Coach to get a calm, realistic monthly plan."
           />
+          {/* NEWSLETTER */}
+                      <motion.section
+                        id="newsletter"
+                        className="mt-0 md:mt-2"
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ once: true }}
+                      >
+                        <div className="max-w-3xl mx-auto px-4">
+                          <div className="rounded-2xl border border-emerald-100 bg-emerald-50/80 p-6 sm:p-8 shadow-sm">
+                            <NewsletterSignup />
+                          </div>
+                        </div>
+                      </motion.section>
         </div>
       </main>
     </>

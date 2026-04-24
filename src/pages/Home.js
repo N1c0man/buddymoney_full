@@ -183,7 +183,21 @@ export default function Home() {
             </div>
           </motion.div>
         </motion.section>
-
+{/* NEWSLETTER */}
+        <motion.section
+          id="newsletter"
+          className="mt-0 md:mt-2"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          <div className="max-w-3xl mx-auto px-4">
+            <div className="rounded-2xl border border-emerald-100 bg-emerald-50/80 p-6 sm:p-8 shadow-sm">
+              <NewsletterSignup />
+            </div>
+          </div>
+        </motion.section>
         {/* (rest of your file stays unchanged...) */}
 
       </div>

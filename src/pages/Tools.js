@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import NewsletterSignup from "../components/NewsletterSignup";
 import BudgetTracker from "../tools/BudgetTracker";
 import SavingsGoal from "../tools/SavingsGoal";
 import DebtPayoff from "../tools/DebtPayoff";
@@ -594,7 +595,21 @@ export default function Tools() {
                 </Link>
               </div>
             </section>
-
+{/* NEWSLETTER */}
+                      <motion.section
+                        id="newsletter"
+                        className="mt-0 md:mt-2"
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        viewport={{ once: true }}
+                      >
+                        <div className="max-w-3xl mx-auto px-4">
+                          <div className="rounded-2xl border border-emerald-100 bg-emerald-50/80 p-6 sm:p-8 shadow-sm">
+                            <NewsletterSignup />
+                          </div>
+                        </div>
+                      </motion.section>
             <footer className="border-t border-slate-200 pt-4 text-xs text-slate-500">
               <p>
                 More tools are on the way. Have an idea? We&apos;re building
