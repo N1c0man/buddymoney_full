@@ -26,26 +26,26 @@ export default function ToolBudgetTrackerPage() {
         name: "What is a budget tracker?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "A budget tracker helps you organize your income and expenses so you can see where your money goes each month and make better spending decisions."
-        }
+          text: "A budget tracker helps you organize your income and expenses so you can see where your money goes each month and make better spending decisions.",
+        },
       },
       {
         "@type": "Question",
         name: "How do I start a monthly budget?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Start by listing your monthly income, fixed bills, variable expenses, savings goals, and debt payments. Then compare total income to total spending."
-        }
+          text: "Start by listing your monthly income, fixed bills, variable expenses, savings goals, and debt payments. Then compare total income to total spending.",
+        },
       },
       {
         "@type": "Question",
         name: "Should I budget and save for an emergency fund at the same time?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes, many people use a budget to create room for emergency savings while also covering bills and debt payments."
-        }
-      }
-    ]
+          text: "Yes, many people use a budget to create room for emergency savings while also covering bills and debt payments.",
+        },
+      },
+    ],
   };
 
   const softwareJsonLd = {
@@ -60,13 +60,13 @@ export default function ToolBudgetTrackerPage() {
     offers: {
       "@type": "Offer",
       price: "0",
-      priceCurrency: "USD"
+      priceCurrency: "USD",
     },
     publisher: {
       "@type": "Organization",
       name: "BuddyMoney",
-      url: "https://www.buddymoney.com"
-    }
+      url: "https://www.buddymoney.com",
+    },
   };
 
   return (
@@ -89,9 +89,7 @@ export default function ToolBudgetTrackerPage() {
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={ogImage} />
 
-        <script type="application/ld+json">
-          {JSON.stringify(faqJsonLd)}
-        </script>
+        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
         <script type="application/ld+json">
           {JSON.stringify(softwareJsonLd)}
         </script>
@@ -99,28 +97,50 @@ export default function ToolBudgetTrackerPage() {
 
       <main className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50/40 pt-4 pb-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          <section className="rounded-3xl border border-emerald-100 bg-white shadow-sm px-5 py-6 md:px-8 md:py-8">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-600 mb-2">
-              BuddyMoney Tool
-            </p>
+          <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft px-5 py-7 md:px-8 md:py-8">
+            <div className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl" />
 
-            <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900">
-              Budget Calculator & Budget Tracker
-            </h1>
+            <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.6fr)_minmax(0,0.9fr)] md:items-center">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                  BuddyMoney Tool
+                </p>
 
-            <p className="mt-3 text-sm md:text-base text-slate-600 max-w-3xl">
-              Track your monthly income and expenses, organize spending categories,
-              and see where your money is going. This free budget tool is built
-              to help you make clearer day-to-day money decisions.
-            </p>
+                <h1 className="mt-3 text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
+                  Budget Calculator & Budget Tracker
+                </h1>
 
-            <div className="mt-4 flex flex-wrap gap-3 text-xs">
-              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-emerald-700 border border-emerald-100">
-                💰 Monthly budgeting
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-emerald-700 border border-emerald-100">
-                Free • No login required
-              </span>
+                <p className="mt-3 text-sm md:text-base text-slate-600 max-w-3xl">
+                  Track your monthly income and expenses, organize spending
+                  categories, and see where your money is going. This free
+                  budget tool is built to help you make clearer day-to-day money
+                  decisions.
+                </p>
+
+                <div className="mt-4 flex flex-wrap gap-3 text-xs">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+                    💰 Monthly budgeting
+                  </span>
+                  <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
+                    Free • No login required
+                  </span>
+                  <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
+                    📊 Income vs. expenses
+                  </span>
+                </div>
+              </div>
+
+              <div className="rounded-2xl bg-white/90 border border-emerald-100 shadow-sm p-5">
+                <p className="text-xs font-semibold text-slate-900">
+                  Best used for:
+                </p>
+                <ul className="mt-3 space-y-2 text-sm text-slate-600">
+                  <li>• Setting up a monthly money plan</li>
+                  <li>• Finding where spending is going</li>
+                  <li>• Creating room for savings or debt payoff</li>
+                </ul>
+              </div>
             </div>
           </section>
 
@@ -134,10 +154,10 @@ export default function ToolBudgetTrackerPage() {
 
           <section className="rounded-3xl border border-slate-200 bg-white shadow-sm px-5 py-6 md:px-8 md:py-8 space-y-6">
             <div>
-              <h2 className="text-2xl font-bold text-slate-900">
+              <h2 className="text-xl md:text-2xl font-bold text-slate-900">
                 How to use this budget tracker
               </h2>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-slate-600 max-w-3xl">
                 Start by entering your monthly income and core expenses. Then
                 add flexible spending categories, savings, and debt payments so
                 you can see whether your budget is balanced.
@@ -145,57 +165,57 @@ export default function ToolBudgetTrackerPage() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="p-4 border rounded-2xl bg-slate-50">
-                <h3 className="font-semibold text-slate-900 mb-2">
-                  Include categories like:
-                </h3>
-                <ul className="text-sm text-slate-600 space-y-1">
-                  <li>• Housing and utilities</li>
-                  <li>• Groceries and transportation</li>
-                  <li>• Insurance and subscriptions</li>
-                  <li>• Savings contributions</li>
-                  <li>• Debt payments</li>
-                </ul>
-              </div>
+              <InfoCard
+                title="Include categories like:"
+                items={[
+                  "Housing and utilities",
+                  "Groceries and transportation",
+                  "Insurance and subscriptions",
+                  "Savings contributions",
+                  "Debt payments",
+                ]}
+              />
 
-              <div className="p-4 border rounded-2xl bg-slate-50">
-                <h3 className="font-semibold text-slate-900 mb-2">
-                  A good budget can help you:
-                </h3>
-                <ul className="text-sm text-slate-600 space-y-1">
-                  <li>• Spot overspending quickly</li>
-                  <li>• Build an emergency fund</li>
-                  <li>• Plan debt payoff</li>
-                  <li>• Stay organized each month</li>
-                  <li>• Reduce money stress</li>
-                </ul>
-              </div>
+              <InfoCard
+                title="A good budget can help you:"
+                items={[
+                  "Spot overspending quickly",
+                  "Build an emergency fund",
+                  "Plan debt payoff",
+                  "Stay organized each month",
+                  "Reduce money stress",
+                ]}
+              />
             </div>
+          </section>
 
+          <section className="rounded-3xl border border-slate-200 bg-white shadow-sm px-5 py-6 md:px-8 md:py-8 space-y-4">
             <div>
-              <h2 className="text-2xl font-bold text-slate-900">
+              <h2 className="text-xl md:text-2xl font-bold text-slate-900">
                 Related BuddyMoney tools
               </h2>
-              <div className="mt-3 flex flex-col gap-2 text-sm">
-                <Link
-                  to="/tools/emergency-fund"
-                  className="text-emerald-700 font-medium hover:text-emerald-800"
-                >
-                  Emergency Fund Calculator →
-                </Link>
-                <Link
-                  to="/tools/debt-payoff"
-                  className="text-emerald-700 font-medium hover:text-emerald-800"
-                >
-                  Debt Payoff Calculator →
-                </Link>
-                <Link
-                  to="/coach"
-                  className="text-emerald-700 font-medium hover:text-emerald-800"
-                >
-                  Want more guidance? Try Budget Coach →
-                </Link>
-              </div>
+              <p className="mt-1 text-sm text-slate-600">
+                Build a stronger plan by combining your budget with savings,
+                debt payoff, and guided coaching.
+              </p>
+            </div>
+
+            <div className="grid gap-3 md:grid-cols-3">
+              <RelatedToolCard
+                to="/tools/emergency-fund"
+                title="Emergency Fund Calculator"
+                description="Estimate how much cash to keep set aside for surprise expenses."
+              />
+              <RelatedToolCard
+                to="/tools/debt-payoff"
+                title="Debt Payoff Calculator"
+                description="Use your budget to create room for a faster debt payoff plan."
+              />
+              <RelatedToolCard
+                to="/coach"
+                title="Budget Coach"
+                description="Get a friendlier guided budget score and next-step suggestions."
+              />
             </div>
           </section>
 
@@ -207,5 +227,33 @@ export default function ToolBudgetTrackerPage() {
         </div>
       </main>
     </>
+  );
+}
+
+function InfoCard({ title, items }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4">
+      <h3 className="font-semibold text-slate-900 mb-2">{title}</h3>
+      <ul className="text-sm text-slate-600 space-y-1">
+        {items.map((item) => (
+          <li key={item}>• {item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function RelatedToolCard({ to, title, description }) {
+  return (
+    <Link
+      to={to}
+      className="rounded-2xl border border-slate-200 bg-white px-4 py-4 shadow-sm transition hover:-translate-y-0.5 hover:border-emerald-200 hover:bg-emerald-50 hover:shadow-md"
+    >
+      <span className="block font-semibold text-slate-900">{title}</span>
+      <span className="mt-1 block text-sm text-slate-600">{description}</span>
+      <span className="mt-3 inline-flex text-xs font-semibold text-emerald-700">
+        Open tool →
+      </span>
+    </Link>
   );
 }

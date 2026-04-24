@@ -7,93 +7,159 @@ export default function AppDashboard() {
   const canonicalUrl = buildUrl("/app");
 
   return (
-    <div className="min-h-screen bg-slate-50 px-4 py-6">
+    <div className="min-h-screen bg-gradient-to-b from-sky-50 via-white to-indigo-50 px-4 py-6">
       <Helmet>
-        <title>BuddyMoney App</title>
-        <meta name="description" content="Quick access to your favorite BuddyMoney tools." />
+        <title>BuddyMoney App | Quick Money Tools</title>
+        <meta
+          name="description"
+          content="Open quick BuddyMoney tools like the tip calculator, bill splitter, budget coach, debt payoff estimator, and mortgage payoff calculator."
+        />
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
 
-      {/* Logo / Header */}
-      <div className="text-center mb-6">
-        <img
-          src="/icons/BMlogo.png"
-          alt="BuddyMoney"
-          className="h-14 mx-auto mb-2"
-        />
-        <h1 className="text-xl font-bold text-slate-900">
-          Smart Money Tools
-        </h1>
-        <p className="text-sm text-slate-600">
-          Fast, simple tools to manage your money
+      <main className="mx-auto max-w-md">
+        {/* App Header */}
+        <section className="rounded-3xl bg-white/90 border border-slate-200 shadow-sm px-5 py-6 text-center mb-5">
+          <img
+            src="/icons/BMlogo.png"
+            alt="BuddyMoney"
+            className="h-16 mx-auto mb-3"
+          />
+
+          <p className="text-xs font-semibold uppercase tracking-wide text-sky-600">
+            BuddyMoney App
+          </p>
+
+          <h1 className="text-2xl font-bold text-slate-900 mt-1">
+            Quick Money Tools
+          </h1>
+
+          <p className="text-sm text-slate-600 mt-2">
+            Simple calculators to help with everyday money decisions.
+          </p>
+        </section>
+
+        {/* Quick Tools */}
+        <section className="mb-6">
+          <h2 className="text-base font-bold text-slate-900 mb-3">
+            Quick Tools
+          </h2>
+
+          <div className="grid grid-cols-1 gap-3">
+            <Link
+              to="/tools/tip-calculator"
+              className="group rounded-3xl bg-white border border-slate-200 p-5 shadow-sm hover:shadow-md transition active:scale-[0.99]"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-100 text-2xl">
+                  💸
+                </div>
+
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-slate-900">
+                    Tip Calculator
+                  </h3>
+                  <p className="text-sm text-slate-600">
+                    Calculate tips fast.
+                  </p>
+                </div>
+
+                <span className="text-slate-400 group-hover:text-sky-600">
+                  →
+                </span>
+              </div>
+            </Link>
+
+            <Link
+              to="/tools/bill-splitter"
+              className="group rounded-3xl bg-white border border-slate-200 p-5 shadow-sm hover:shadow-md transition active:scale-[0.99]"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-100 text-2xl">
+                  🧾
+                </div>
+
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-slate-900">
+                    Split a Bill
+                  </h3>
+                  <p className="text-sm text-slate-600">
+                    Share costs with friends.
+                  </p>
+                </div>
+
+                <span className="text-slate-400 group-hover:text-sky-600">
+                  →
+                </span>
+              </div>
+            </Link>
+          </div>
+        </section>
+
+        {/* More Tools */}
+        <section className="mb-6">
+          <h2 className="text-base font-bold text-slate-900 mb-3">
+            More Tools
+          </h2>
+
+          <div className="space-y-3">
+            <ToolLink
+              to="/coach"
+              icon="🧠"
+              title="Budget Coach"
+              text="Get a simple money plan."
+            />
+
+            <ToolLink
+              to="/tools/debt-payoff"
+              icon="🎯"
+              title="Debt Payoff Estimator"
+              text="See your payoff path."
+            />
+
+            <ToolLink
+              to="/mortgage"
+              icon="🏠"
+              title="Mortgage Payoff"
+              text="Estimate savings from extra payments."
+            />
+
+            <ToolLink
+              to="/credit-cards"
+              icon="💳"
+              title="Credit Card Tools"
+              text="Explore card guides and options."
+            />
+          </div>
+        </section>
+
+        {/* Footer */}
+        <p className="text-center text-xs text-slate-500 pb-6">
+          BuddyMoney helps you make smarter money moves, one tool at a time.
         </p>
-      </div>
-
-      {/* Quick Tools */}
-      <div className="mb-8">
-        <h2 className="text-lg font-semibold text-slate-800 mb-3">
-          Quick Tools
-        </h2>
-
-        <div className="grid grid-cols-2 gap-4">
-          <Link
-            to="/tools/tip-calculator"
-            className="rounded-2xl bg-white p-5 shadow hover:shadow-md transition"
-          >
-            <div className="text-lg font-semibold">Tip Calculator</div>
-            <p className="text-sm text-slate-500 mt-1">
-              Calculate tips instantly
-            </p>
-          </Link>
-
-          <Link
-            to="/tools/bill-splitter"
-            className="rounded-2xl bg-white p-5 shadow hover:shadow-md transition"
-          >
-            <div className="text-lg font-semibold">Split a Bill</div>
-            <p className="text-sm text-slate-500 mt-1">
-              Share costs with friends
-            </p>
-          </Link>
-        </div>
-      </div>
-
-      {/* More Tools */}
-      <div>
-        <h2 className="text-lg font-semibold text-slate-800 mb-3">
-          More Tools
-        </h2>
-
-        <div className="space-y-3">
-          <Link
-            to="/coach"
-            className="block rounded-xl bg-white p-4 shadow hover:shadow-md transition"
-          >
-            Budget Coach
-          </Link>
-
-          <Link
-            to="/tools/debt-payoff"
-            className="block rounded-xl bg-white p-4 shadow hover:shadow-md transition"
-          >
-            Debt Payoff Estimator
-          </Link>
-
-          <Link
-            to="/mortgage"
-            className="block rounded-xl bg-white p-4 shadow hover:shadow-md transition"
-          >
-            Mortgage Payoff Calculator
-          </Link>
-
-          <Link
-            to="/credit-cards"
-            className="block rounded-xl bg-white p-4 shadow hover:shadow-md transition"
-          >
-            Credit Card Tools
-          </Link>
-        </div>
-      </div>
+      </main>
     </div>
+  );
+}
+
+function ToolLink({ to, icon, title, text }) {
+  return (
+    <Link
+      to={to}
+      className="group block rounded-2xl bg-white border border-slate-200 px-4 py-4 shadow-sm hover:shadow-md transition active:scale-[0.99]"
+    >
+      <div className="flex items-center gap-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-xl">
+          {icon}
+        </div>
+
+        <div className="flex-1">
+          <h3 className="font-semibold text-slate-900">{title}</h3>
+          <p className="text-sm text-slate-600">{text}</p>
+        </div>
+
+        <span className="text-slate-400 group-hover:text-sky-600">→</span>
+      </div>
+    </Link>
   );
 }

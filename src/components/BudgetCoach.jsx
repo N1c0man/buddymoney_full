@@ -5,7 +5,6 @@ import ShareBar from "../components/ShareBar";
 import AffiliateCalloutAmazonPlanner from "../components/AffiliateCalloutAmazonPlanner";
 import { setCanonical } from "../utils/seo";
 
-// NEW imports (logic + UI)
 import {
   sanitizeDecimalInput,
   loadBudgetFromStorage,
@@ -17,17 +16,43 @@ import {
 } from "../utils/budgetLogic";
 
 import {
-  InputField,
-  Badge,
   Bar,
   Row,
-  Card,
   DoughnutChartSimple,
   DoughnutChartAdvanced,
 } from "../components/BudgetUI";
 
+function CoachInput({ label, value, onChange, placeholder }) {
+  return (
+    <div>
+      <label className="block text-sm font-medium text-slate-600 mb-1">
+        {label}
+      </label>
+      <input
+        type="text"
+        inputMode="decimal"
+        className="w-full border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
+        value={value}
+        onChange={(e) => onChange(sanitizeDecimalInput(e.target.value))}
+        placeholder={placeholder}
+      />
+    </div>
+  );
+}
+
+function TargetCard({ title, value, note }) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+        {title}
+      </p>
+      <p className="mt-1 text-xl font-bold text-slate-900">{value}</p>
+      <p className="mt-1 text-xs text-slate-500">{note}</p>
+    </div>
+  );
+}
+
 export default function BudgetCoach() {
-  // Form state — now includes insurance + investments
   const [income, setIncome] = useState("");
   const [housing, setHousing] = useState("");
   const [transport, setTransport] = useState("");
@@ -38,21 +63,17 @@ export default function BudgetCoach() {
   const [insurance, setInsurance] = useState("");
   const [investments, setInvestments] = useState("");
 
-  // Chart mode: "simple" or "advanced"
   const [chartMode, setChartMode] = useState("simple");
   const [isMounted, setIsMounted] = useState(false);
 
-  // Canonical for SEO
   useEffect(() => {
     setCanonical("/coach");
   }, []);
 
-  // Mount flag for prerender-safe charts
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // Load from localStorage
   useEffect(() => {
     const saved = loadBudgetFromStorage();
     if (!saved) return;
@@ -68,7 +89,6 @@ export default function BudgetCoach() {
     setInvestments(saved.investments ?? "");
   }, []);
 
-  // Save to localStorage on changes
   useEffect(() => {
     saveBudgetToStorage({
       income,
@@ -93,7 +113,6 @@ export default function BudgetCoach() {
     investments,
   ]);
 
-  // Compute numbers
   const numbers = useMemo(
     () =>
       computeBudgetNumbers({
@@ -120,22 +139,15 @@ export default function BudgetCoach() {
     ]
   );
 
-  // Compute targets
   const targets = useMemo(() => computeTargets(numbers.i), [numbers.i]);
 
-  // Compute score
   const { score, scoreLabel, scoreColor, scoreBar } = useMemo(
     () => computeScore(numbers, targets),
     [numbers, targets]
   );
 
-  // Tips
-  const tips = useMemo(
-    () => generateTips(numbers, targets),
-    [numbers, targets]
-  );
+  const tips = useMemo(() => generateTips(numbers, targets), [numbers, targets]);
 
-  // Target dollars
   const targetNeeds = targets.needs * numbers.i || 0;
   const targetWants = targets.wants * numbers.i || 0;
   const targetSavings = targets.savings * numbers.i || 0;
@@ -150,12 +162,12 @@ export default function BudgetCoach() {
     setWants("");
     setInsurance("");
     setInvestments("");
+
     try {
       localStorage.removeItem("bm_budget_coach");
     } catch {}
   };
 
-  // Social share static fields
   const canonicalUrl = "https://www.buddymoney.com/coach";
   const shareTitle = "AI Budget Coach – BuddyMoney";
 
@@ -206,7 +218,7 @@ export default function BudgetCoach() {
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
 
-      <main className="pt-2 lg:pt-4 pb-16 bg-brand-50/40">
+      <main className="pt-2 lg:pt-4 pb-16 bg-gradient-to-b from-green-50 via-white to-emerald-50/40">
         <div className="max-w-5xl mx-auto px-4 space-y-6">
           <motion.section
             className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[220px] md:h-[260px] lg:h-[300px]"
@@ -224,25 +236,8 @@ export default function BudgetCoach() {
 
             <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
 
-            <motion.div
-              className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl"
-              initial={{ opacity: 0, scale: 0.9, y: -10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            />
-            <motion.div
-              className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl"
-              initial={{ opacity: 0, scale: 0.9, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{
-                duration: 1.1,
-                ease: "easeOut",
-                delay: 0.15,
-              }}
-            />
-
             <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
-              <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-center w-full">
+              <div className="grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-center w-full">
                 <div className="space-y-4">
                   <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-600">
                     Budget & Money Coach
@@ -252,9 +247,9 @@ export default function BudgetCoach() {
                     AI Budget Coach: Get a calm, realistic plan for your monthly money.
                   </h1>
 
-                  <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
-                    Enter your real numbers and see how your budget stacks up against a simple rule
-                    of thumb. Then get clear suggestions on what to tweak next.
+                  <p className="text-sm md:text-base text-brand-900/90 max-w-xl">
+                    Enter your real numbers and get a budget score, target
+                    breakdown, and friendly next steps.
                   </p>
 
                   <div className="flex flex-wrap gap-3 text-xs">
@@ -262,7 +257,7 @@ export default function BudgetCoach() {
                       ✍️ Uses your real monthly numbers
                     </span>
                     <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
-                      🎯 Simple, friendly tips—not guilt
+                      🎯 Simple tips, no guilt
                     </span>
                   </div>
                 </div>
@@ -274,17 +269,7 @@ export default function BudgetCoach() {
                   viewport={{ once: true, amount: 0.5 }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
                 >
-                  <motion.div
-                    className="rounded-2xl bg-white/90 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 w-full max-w-xs"
-                    animate={{ y: [0, -5, 0] }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      repeatType: "reverse",
-                      ease: "easeInOut",
-                      delay: 1.2,
-                    }}
-                  >
+                  <div className="rounded-2xl bg-white/90 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 w-full max-w-xs">
                     <p className="text-xs font-semibold text-slate-800 mb-3">
                       What you’ll get
                     </p>
@@ -315,11 +300,7 @@ export default function BudgetCoach() {
                         <span>Next steps</span>
                       </div>
                     </div>
-
-                    <p className="mt-3 text-[11px] text-emerald-600 font-semibold">
-                      Fill in your numbers below ↓
-                    </p>
-                  </motion.div>
+                  </div>
                 </motion.div>
               </div>
             </div>
@@ -331,116 +312,118 @@ export default function BudgetCoach() {
             title="I’m using BuddyMoney’s AI Budget Coach to get a calm, realistic monthly plan."
           />
 
-          <section className="space-y-8">
-            <motion.div
-              className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="flex items-start justify-between gap-4 flex-wrap">
-                <div>
-                  <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900">
-                    AI-Powered Budget Coach
-                  </h2>
-                  <p className="text-sm md:text-base text-slate-600 mt-1">
-                    Enter your monthly numbers to get a budget health score, targets, and friendly,
-                    actionable tips.
-                  </p>
+          <motion.section
+            className="bg-white rounded-3xl shadow-md border border-slate-200 p-6 md:p-8 space-y-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex items-start justify-between gap-4 flex-wrap">
+              <div>
+                <h2 className="text-xl md:text-2xl font-extrabold text-slate-900">
+                  Your budget snapshot
+                </h2>
+                <p className="text-sm md:text-base text-slate-600 mt-1">
+                  Add your income and monthly expenses. We’ll turn it into a
+                  simple score and suggested targets.
+                </p>
+              </div>
+
+              <button
+                onClick={handleReset}
+                className="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 hover:border-emerald-200 hover:text-emerald-700"
+              >
+                Reset
+              </button>
+            </div>
+
+            <div className="grid gap-4">
+              <CoachInput
+                label="Monthly take-home income"
+                value={income}
+                onChange={setIncome}
+                placeholder="5200"
+              />
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <CoachInput label="Housing / Rent" value={housing} onChange={setHousing} placeholder="1600" />
+                <CoachInput label="Transport" value={transport} onChange={setTransport} placeholder="300" />
+                <CoachInput label="Food / Groceries" value={food} onChange={setFood} placeholder="450" />
+                <CoachInput label="Utilities / Bills" value={utilities} onChange={setUtilities} placeholder="220" />
+                <CoachInput label="Debt payments" value={debt} onChange={setDebt} placeholder="250" />
+                <CoachInput label="Wants / Fun" value={wants} onChange={setWants} placeholder="400" />
+                <CoachInput label="Insurance" value={insurance} onChange={setInsurance} placeholder="180" />
+                <CoachInput label="Investments / Retirement" value={investments} onChange={setInvestments} placeholder="300" />
+              </div>
+            </div>
+
+            <div className="bg-black text-white rounded-2xl p-5 space-y-3">
+              <div className="flex justify-between text-sm">
+                <span className="text-slate-300">Budget score</span>
+                <span className={`font-bold ${scoreColor}`}>{score}/100</span>
+              </div>
+
+              <div className="flex justify-between text-sm">
+                <span className="text-slate-300">Status</span>
+                <span className="font-semibold">{scoreLabel}</span>
+              </div>
+
+              <div className="border-t border-white/10 pt-3">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm text-slate-300">
+                    Target rule
+                  </span>
+                  <span className="text-lg font-bold text-emerald-400">
+                    {Math.round(targets.needs * 100)}/
+                    {Math.round(targets.wants * 100)}/
+                    {Math.round(targets.savings * 100)}
+                  </span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Badge>New</Badge>
+                <Bar value={score} color={scoreBar} />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-5 gap-6">
+              <div className="md:col-span-3 rounded-2xl border border-slate-200 bg-white p-5">
+                <h3 className="font-semibold text-slate-900 mb-4">
+                  Your mix
+                </h3>
+                <div className="space-y-3">
+                  <Row label="Needs" value={numbers.needsPct} target={targets.needs * 100} />
+                  <Row label="Wants" value={numbers.wantsPct} target={targets.wants * 100} />
+                  <Row label="Savings" value={numbers.savingsPct} target={targets.savings * 100} />
+                </div>
+              </div>
+
+              <div className="md:col-span-2 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                <h3 className="font-semibold text-slate-900 mb-3">
+                  Chart view
+                </h3>
+
+                <div className="flex gap-2 mb-4">
                   <button
-                    onClick={handleReset}
-                    className="text-sm text-indigo-600 hover:underline"
+                    onClick={() => setChartMode("simple")}
+                    className={`px-4 py-2 rounded-xl border text-sm font-semibold ${
+                      chartMode === "simple"
+                        ? "bg-emerald-600 text-white border-emerald-600"
+                        : "bg-white text-slate-700 border-slate-300"
+                    }`}
                   >
-                    Reset to defaults
+                    Simple
+                  </button>
+                  <button
+                    onClick={() => setChartMode("advanced")}
+                    className={`px-4 py-2 rounded-xl border text-sm font-semibold ${
+                      chartMode === "advanced"
+                        ? "bg-emerald-600 text-white border-emerald-600"
+                        : "bg-white text-slate-700 border-slate-300"
+                    }`}
+                  >
+                    Advanced
                   </button>
                 </div>
-              </div>
 
-              <div className="grid md:grid-cols-3 gap-4 mt-6">
-                <div className="md:col-span-1">
-                  <label className="block text-sm font-medium text-slate-700 mb-1">
-                    Monthly take-home income
-                  </label>
-                  <input
-                    type="text"
-                    inputMode="decimal"
-                    className="w-full border border-slate-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
-                    value={income}
-                    onChange={(e) =>
-                      setIncome(sanitizeDecimalInput(e.target.value))
-                    }
-                    placeholder="e.g., 5200"
-                  />
-                </div>
-
-                <div className="md:col-span-2 grid grid-cols-2 gap-4">
-                  <InputField label="Housing / Rent" value={housing} onChange={setHousing} placeholder="e.g., 1600" />
-                  <InputField label="Transport" value={transport} onChange={setTransport} placeholder="e.g., 300" />
-                  <InputField label="Food / Groceries" value={food} onChange={setFood} placeholder="e.g., 450" />
-                  <InputField label="Utilities / Bills" value={utilities} onChange={setUtilities} placeholder="e.g., 220" />
-                  <InputField label="Debt payments" value={debt} onChange={setDebt} placeholder="e.g., 250" />
-                  <InputField label="Wants (shopping, dining, fun)" value={wants} onChange={setWants} placeholder="e.g., 400" />
-                  <InputField label="Insurance" value={insurance} onChange={setInsurance} placeholder="e.g., 180" />
-                  <InputField label="Investments / Retirement" value={investments} onChange={setInvestments} placeholder="e.g., 300" />
-                </div>
-              </div>
-
-              <div className="mt-8 grid md:grid-cols-5 gap-6">
-                <div className="md:col-span-2 bg-emerald-50 rounded-xl p-4 border border-emerald-100">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className={`text-3xl font-extrabold ${scoreColor}`}>{score}</div>
-                      <div className="text-sm text-slate-600 -mt-1">{scoreLabel}</div>
-                    </div>
-                    <div className="w-28">
-                      <Bar value={score} color={scoreBar} />
-                    </div>
-                  </div>
-                  <p className="text-sm text-slate-700 mt-3">
-                    Based on your inputs and the {Math.round(targets.needs * 100)}/
-                    {Math.round(targets.wants * 100)}/
-                    {Math.round(targets.savings * 100)} rule of thumb.
-                  </p>
-                </div>
-
-                <div className="md:col-span-3 bg-white rounded-xl p-4 border border-slate-200">
-                  <h4 className="font-semibold text-slate-800 mb-3">Your mix</h4>
-                  <div className="space-y-3">
-                    <Row label="Needs" value={numbers.needsPct} target={targets.needs * 100} />
-                    <Row label="Wants" value={numbers.wantsPct} target={targets.wants * 100} />
-                    <Row label="Savings (including investments + leftover)" value={numbers.savingsPct} target={targets.savings * 100} />
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8 flex gap-3">
-                <button
-                  onClick={() => setChartMode("simple")}
-                  className={`px-4 py-2 rounded-lg border text-sm ${
-                    chartMode === "simple"
-                      ? "bg-emerald-600 text-white border-emerald-700"
-                      : "bg-white text-slate-700 border-slate-300"
-                  }`}
-                >
-                  Simple Chart
-                </button>
-                <button
-                  onClick={() => setChartMode("advanced")}
-                  className={`px-4 py-2 rounded-lg border text-sm ${
-                    chartMode === "advanced"
-                      ? "bg-emerald-600 text-white border-emerald-700"
-                      : "bg-white text-slate-700 border-slate-300"
-                  }`}
-                >
-                  Advanced Chart
-                </button>
-              </div>
-
-              <div className="mt-6 bg-white rounded-xl p-4 border border-slate-200">
                 {isMounted ? (
                   chartMode === "simple" ? (
                     <DoughnutChartSimple numbers={numbers} />
@@ -451,39 +434,84 @@ export default function BudgetCoach() {
                   <div className="text-sm text-slate-500">Loading chart…</div>
                 )}
               </div>
+            </div>
 
-              <div className="mt-8 grid md:grid-cols-3 gap-4">
-                <Card title="Suggested Monthly Needs" value={`$${targetNeeds.toFixed(0)}`} note={`${Math.round(targets.needs * 100)}% target`} />
-                <Card title="Suggested Monthly Wants" value={`$${targetWants.toFixed(0)}`} note={`${Math.round(targets.wants * 100)}% target`} />
-                <Card title="Suggested Monthly Savings" value={`$${targetSavings.toFixed(0)}`} note={`${Math.round(targets.savings * 100)}% target`} />
-              </div>
+            <div className="grid md:grid-cols-3 gap-4">
+              <TargetCard
+                title="Suggested needs"
+                value={`$${targetNeeds.toFixed(0)}`}
+                note={`${Math.round(targets.needs * 100)}% target`}
+              />
+              <TargetCard
+                title="Suggested wants"
+                value={`$${targetWants.toFixed(0)}`}
+                note={`${Math.round(targets.wants * 100)}% target`}
+              />
+              <TargetCard
+                title="Suggested savings"
+                value={`$${targetSavings.toFixed(0)}`}
+                note={`${Math.round(targets.savings * 100)}% target`}
+              />
+            </div>
 
-              <div className="mt-8">
-                <h4 className="font-semibold text-slate-800 mb-2">Coach tips</h4>
-                <ul className="list-disc ml-5 text-slate-700 space-y-1 text-sm">
-                  {tips.map((t, i) => (
-                    <li key={i}>{t}</li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          </section>
+            <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-5">
+              <h3 className="font-semibold text-slate-900 mb-3">
+                Coach tips
+              </h3>
+              <ul className="list-disc ml-5 text-slate-700 space-y-1 text-sm">
+                {tips.map((t, i) => (
+                  <li key={i}>{t}</li>
+                ))}
+              </ul>
+              {/* 🚀 CTA: Email Capture */}
+<div className="rounded-2xl bg-slate-900 text-white p-5 mt-6 space-y-3">
+  <p className="text-sm text-slate-300">
+    Want a simple weekly plan like this?
+  </p>
+
+  <h3 className="text-lg font-bold">
+    Get the free BuddyMoney email
+  </h3>
+
+  <p className="text-sm text-slate-400 max-w-md">
+    We’ll send you a calm, step-by-step money plan each week — no spam, no pressure.
+  </p>
+
+  <div className="flex flex-col sm:flex-row gap-2 pt-2">
+    <input
+      type="email"
+      placeholder="Enter your email"
+      className="flex-1 rounded-xl px-4 py-3 text-sm text-black focus:outline-none"
+    />
+
+    <button className="rounded-xl bg-emerald-500 px-4 py-3 text-sm font-semibold text-black hover:bg-emerald-400 transition">
+      Get my plan →
+    </button>
+  </div>
+
+  <p className="text-xs text-slate-500">
+    Free forever. Unsubscribe anytime.
+  </p>
+</div>
+            </div>
+          </motion.section>
 
           <AffiliateCalloutAmazonPlanner className="mt-8" />
 
-          <section className="mt-10 space-y-4 text-sm text-slate-700">
+          <section className="rounded-3xl border border-slate-200 bg-white p-6 text-sm text-slate-700 space-y-4 shadow-sm">
             <h2 className="text-base md:text-lg font-semibold text-slate-900">
               How to use this Budget Coach
             </h2>
             <p>
-              Start by entering your real monthly take-home income and your typical spending in
-              each category. The Budget Coach compares your mix to a flexible version of the
-              50/30/20 rule and gives you a score out of 100.
+              Start by entering your real monthly take-home income and your
+              typical spending in each category. The Budget Coach compares your
+              mix to a flexible version of the 50/30/20 rule and gives you a
+              score out of 100.
             </p>
             <p>
-              You’ll see how much you’re spending on needs, wants, and savings, plus suggested
-              dollar amounts to aim for each month. Update your numbers any time your income or
-              expenses change.
+              You’ll see how much you’re spending on needs, wants, and savings,
+              plus suggested dollar amounts to aim for each month. Update your
+              numbers any time your income or expenses change.
             </p>
           </section>
 

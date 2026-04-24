@@ -14,6 +14,20 @@ import { setCanonical } from "../utils/seo";
 
 const TOOL_CARDS = [
   {
+    id: "tip-calculator",
+    name: "Tip Calculator",
+    tagline: "Quickly calculate tips, totals, and per-person costs.",
+    badge: "Everyday",
+    icon: "💸",
+  },
+  {
+    id: "bill-splitter",
+    name: "Bill Splitter",
+    tagline: "Split shared expenses with roommates, friends, or partners.",
+    badge: "Everyday",
+    icon: "🍕",
+  },
+  {
     id: "credit-cards",
     name: "Credit Card Finder (Beta)",
     tagline:
@@ -43,13 +57,6 @@ const TOOL_CARDS = [
     icon: "📉",
   },
   {
-    id: "bill-splitter",
-    name: "Bill Splitter",
-    tagline: "Split shared expenses with roommates, friends, or partners.",
-    badge: "Everyday",
-    icon: "🍕",
-  },
-  {
     id: "emergency-fund",
     name: "Emergency Fund Estimator",
     tagline: "Know exactly how much you should have set aside for surprises.",
@@ -66,11 +73,37 @@ const TOOL_CARDS = [
 ];
 
 const STANDALONE_TOOL_ROUTES = {
+  "tip-calculator": "/tools/tip-calculator",
+  "bill-splitter": "/tools/bill-splitter",
   "credit-cards": "/tools/credit-cards",
   "budget-tracker": "/tools/budget-tracker",
   "debt-payoff": "/tools/debt-payoff",
   "emergency-fund": "/tools/emergency-fund",
 };
+
+function ToolSection({ id, title, description, route, children }) {
+  return (
+    <section id={id} className="scroll-mt-28 space-y-4">
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
+          <p className="text-sm text-slate-600 max-w-2xl">{description}</p>
+        </div>
+
+        {route && (
+          <Link
+            to={route}
+            className="text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+          >
+            Open full tool →
+          </Link>
+        )}
+      </div>
+
+      {children}
+    </section>
+  );
+}
 
 export default function Tools() {
   useEffect(() => {
@@ -89,7 +122,7 @@ export default function Tools() {
   const title =
     "Free Financial Tools & Calculators | Budget, Debt, Emergency Fund & More | BuddyMoney";
   const description =
-    "Use BuddyMoney’s free financial tools and calculators to plan your budget, emergency fund, debt payoff, savings goals, and net worth. Simple, free, and built for real life.";
+    "Use BuddyMoney’s free financial tools and calculators to plan your budget, emergency fund, debt payoff, savings goals, tips, bill splitting, and net worth. Simple, free, and built for real life.";
   const pageUrl = "https://buddymoney.com/tools";
 
   const jsonLd = {
@@ -100,6 +133,8 @@ export default function Tools() {
     description,
     isAccessibleForFree: true,
     about: [
+      "tip calculator",
+      "bill splitter",
       "budget calculator",
       "savings goal calculator",
       "debt payoff calculator",
@@ -139,7 +174,7 @@ export default function Tools() {
         <meta name="robots" content="index,follow" />
         <meta
           name="keywords"
-          content="financial tools, money tools, budget calculator, emergency fund calculator, debt payoff calculator, savings goal calculator, net worth tracker, free budgeting tools, BuddyMoney"
+          content="financial tools, money tools, tip calculator, bill splitter, budget calculator, emergency fund calculator, debt payoff calculator, savings goal calculator, net worth tracker, free budgeting tools, BuddyMoney"
         />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
@@ -205,9 +240,10 @@ export default function Tools() {
                     Your free toolbox for calmer money decisions.
                   </h1>
                   <p className="text-sm md:text-base text-brand-900/90 max-w-xl backdrop-blur-[1px]">
-                    Plan your budget, goals, debt payoff, and safety net with
-                    simple calculators. No logins, no fees — just tools to help
-                    you and your buddies stay on the same money page.
+                    Plan your budget, goals, debt payoff, bill splitting, tips,
+                    and safety net with simple calculators. No logins, no fees —
+                    just tools to help you and your buddies stay on the same
+                    money page.
                   </p>
                   <div className="flex flex-wrap gap-3 text-xs">
                     <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
@@ -248,27 +284,27 @@ export default function Tools() {
                     <div className="grid grid-cols-2 gap-3 text-[11px] text-slate-700">
                       <div className="flex items-center gap-2">
                         <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                          💸
+                        </span>
+                        <span>Tip Calculator</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
+                          🍕
+                        </span>
+                        <span>Bill Splitter</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
                           💰
                         </span>
                         <span>Budget Tracker</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                          🛟
-                        </span>
-                        <span>Emergency Fund</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
                           📉
                         </span>
                         <span>Debt Payoff</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-50 text-lg">
-                          📊
-                        </span>
-                        <span>Net Worth</span>
                       </div>
                     </div>
                   </motion.div>
@@ -286,24 +322,59 @@ export default function Tools() {
           <WelcomeBackBanner lastTool={lastTool} />
 
           <motion.div
-            className="space-y-10 rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8 lg:px-8"
+            className="space-y-14 px-4 py-6 md:px-6 md:py-8 lg:px-8"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.5 }}
           >
-            <section aria-label="Tool navigation" className="mb-4">
-              <div className="mb-3 flex items-center justify-between gap-3">
-                <h2 className="text-sm font-semibold text-slate-900">
-                  Jump straight to a tool
-                </h2>
-                <p className="text-[11px] text-slate-500">
-                  Standalone tools open on their own full pages.
+            <section aria-label="Tool navigation" className="space-y-4">
+              <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <h2 className="text-lg font-semibold text-slate-900">
+                    Jump straight to a tool
+                  </h2>
+                  <p className="text-sm text-slate-600">
+                    Pick the money question you want to answer first.
+                  </p>
+                </div>
+                <p className="text-xs text-slate-500">
+                  Some tools also have full standalone pages.
                 </p>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {TOOL_CARDS.map((tool) => {
                   const standaloneRoute = STANDALONE_TOOL_ROUTES[tool.id];
+
+                  const cardContent = (
+                    <>
+                      <div className="mb-3 flex items-start justify-between gap-3">
+                        <div className="flex items-center gap-3">
+                          <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-50 text-lg transition-transform group-hover:scale-110">
+                            {tool.icon}
+                          </span>
+                          <div>
+                            <h3 className="text-sm font-semibold text-slate-900 group-hover:text-emerald-700">
+                              {tool.name}
+                            </h3>
+                          </div>
+                        </div>
+                      </div>
+
+                      <p className="mb-4 text-xs text-slate-600 leading-relaxed">
+                        {tool.tagline}
+                      </p>
+
+                      <div className="mt-auto flex items-center justify-between gap-3">
+                        <span className="rounded-full bg-slate-900 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
+                          {tool.badge}
+                        </span>
+                        <span className="text-[11px] font-semibold text-emerald-600">
+                          Open →
+                        </span>
+                      </div>
+                    </>
+                  );
 
                   if (standaloneRoute) {
                     return (
@@ -320,34 +391,9 @@ export default function Tools() {
                         <Link
                           to={standaloneRoute}
                           onClick={() => handleToolClick(tool.id)}
-                          className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm transition-shadow hover:shadow-md"
+                          className="group flex h-full min-h-[170px] flex-col rounded-3xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-emerald-200 hover:shadow-md"
                         >
-                          <div className="mb-3 flex items-start justify-between gap-3">
-                            <div className="flex items-center gap-3">
-                              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-lg transition-transform group-hover:scale-110">
-                                {tool.icon}
-                              </span>
-                              <div>
-                                <h3 className="text-sm font-semibold text-slate-900 group-hover:text-emerald-700">
-                                  {tool.name}
-                                </h3>
-                              </div>
-                            </div>
-                            <span className="rounded-full bg-slate-900 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-50">
-                              {tool.badge}
-                            </span>
-                          </div>
-
-                          <p className="mb-3 text-xs text-slate-600">
-                            {tool.tagline}
-                          </p>
-
-                          <div className="flex items-center text-[11px] font-semibold text-emerald-600">
-                            Open full tool page
-                            <span className="ml-1 transition-transform group-hover:translate-x-0.5">
-                              →
-                            </span>
-                          </div>
+                          {cardContent}
                         </Link>
                       </motion.div>
                     );
@@ -365,63 +411,48 @@ export default function Tools() {
                         stiffness: 260,
                         damping: 18,
                       }}
-                      className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm transition-shadow hover:shadow-md"
+                      className="group flex h-full min-h-[170px] flex-col rounded-3xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-emerald-200 hover:shadow-md"
                     >
-                      <div className="mb-3 flex items-start justify-between gap-3">
-                        <div className="flex items-center gap-3">
-                          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-lg transition-transform group-hover:scale-110">
-                            {tool.icon}
-                          </span>
-                          <div>
-                            <h3 className="text-sm font-semibold text-slate-900 group-hover:text-emerald-700">
-                              {tool.name}
-                            </h3>
-                          </div>
-                        </div>
-                        <span className="rounded-full bg-slate-900 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-50">
-                          {tool.badge}
-                        </span>
-                      </div>
-
-                      <p className="mb-3 text-xs text-slate-600">
-                        {tool.tagline}
-                      </p>
-
-                      <div className="flex items-center text-[11px] font-semibold text-emerald-600">
-                        Open tool
-                        <span className="ml-1 transition-transform group-hover:translate-x-0.5">
-                          →
-                        </span>
-                      </div>
+                      {cardContent}
                     </motion.a>
                   );
                 })}
               </div>
             </section>
 
-            <section className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-5 sm:px-5">
+            <section className="text-center max-w-2xl mx-auto">
+              <h2 className="text-xl font-bold text-slate-900">
+                Start with one tool. Build momentum from there.
+              </h2>
+              <p className="text-sm text-slate-600 mt-2">
+                You don’t need to fix everything at once. Pick a starting point
+                below and take one practical step forward.
+              </p>
+            </section>
+
+            <section className="rounded-3xl border border-slate-200 bg-white p-5 sm:p-6 shadow-sm">
               <h2 className="text-lg font-semibold text-slate-900 mb-2">
                 Free financial calculators for budgeting, saving, and debt
                 planning
               </h2>
               <p className="text-sm text-slate-600 max-w-3xl">
                 BuddyMoney’s tools are designed to help you make practical money
-                decisions. You can estimate your emergency fund, build a budget,
-                compare debt payoff strategies, and set savings targets without
-                creating an account.
+                decisions. You can calculate tips, split bills, estimate your
+                emergency fund, build a budget, compare debt payoff strategies,
+                and set savings targets without creating an account.
               </p>
-              <div className="mt-3 flex flex-wrap gap-3 text-sm">
+              <div className="mt-4 flex flex-wrap gap-3 text-sm">
                 <Link
-                  to="/blog/emergency-fund-basics"
+                  to="/tools/tip-calculator"
                   className="text-emerald-700 font-medium hover:text-emerald-800"
                 >
-                  Emergency Fund Basics →
+                  Open Tip Calculator →
                 </Link>
                 <Link
-                  to="/blog/emergency-fund-3-to-6-months"
+                  to="/tools/bill-splitter"
                   className="text-emerald-700 font-medium hover:text-emerald-800"
                 >
-                  Build a 3–6 Month Emergency Fund →
+                  Open Bill Splitter →
                 </Link>
                 <Link
                   to="/coach"
@@ -432,127 +463,110 @@ export default function Tools() {
               </div>
             </section>
 
-            <section className="space-y-12">
-              <section id="credit-cards" className="scroll-mt-24">
-                <div className="rounded-2xl border border-emerald-100 bg-emerald-50/60 px-4 py-4 sm:px-5 sm:py-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <div className="space-y-1">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+            <section className="space-y-14">
+              <ToolSection
+                id="tip-calculator"
+                title="Tip Calculator"
+                description="Quickly calculate a tip, total bill, and per-person cost before you pay."
+                route="/tools/tip-calculator"
+              >
+                <div className="rounded-3xl border border-sky-100 bg-sky-50/80 p-5 sm:p-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between shadow-sm">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-700 mb-1">
+                      Everyday Tool
+                    </p>
+                    <p className="text-sm text-slate-700 max-w-2xl">
+                      Open the full calculator page for the polished app-style
+                      tip calculator.
+                    </p>
+                  </div>
+                  <Link
+                    to="/tools/tip-calculator"
+                    className="inline-flex items-center justify-center rounded-full bg-sky-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-700"
+                    onClick={() => handleToolClick("tip-calculator")}
+                  >
+                    Open Tip Calculator →
+                  </Link>
+                </div>
+              </ToolSection>
+
+              <ToolSection
+                id="bill-splitter"
+                title="Bill Splitter"
+                description="Split a bill with friends, family, or coworkers and include the tip in the final total."
+                route="/tools/bill-splitter"
+              >
+                <BillSplitter />
+              </ToolSection>
+
+              <ToolSection
+                id="credit-cards"
+                title="Credit Card Finder"
+                description="Preview a smarter way to browse credit cards by credit score, rewards type, and annual fee."
+                route="/tools/credit-cards"
+              >
+                <div className="rounded-3xl border border-emerald-100 bg-emerald-50/80 p-5 sm:p-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between shadow-sm">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700 mb-1">
                       New • Beta
                     </p>
-                    <h2 className="text-sm sm:text-base font-semibold text-slate-900">
-                      Credit Card Finder (preview mode)
-                    </h2>
-                    <p className="text-xs sm:text-sm text-slate-700 max-w-xl">
-                      We&apos;re building a smarter way to browse credit cards by
-                      credit score, rewards type, and annual fee. Right now
-                      it&apos;s in preview mode with sample data—perfect for
-                      exploring the layout before live partner offers go in.
+                    <p className="text-sm text-slate-700 max-w-2xl">
+                      We&apos;re building a smarter way to browse credit cards.
+                      Right now it&apos;s in preview mode with sample data.
                     </p>
                   </div>
-                  <div className="flex-shrink-0">
-                    <Link
-                      to="/tools/credit-cards"
-                      className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-xs sm:text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
-                    >
-                      Open Credit Card Finder →
-                    </Link>
-                  </div>
-                </div>
-              </section>
-
-              <section id="budget" className="scroll-mt-24">
-                <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-                  <div>
-                    <h2 className="text-lg font-semibold text-slate-900">
-                      Budget Tracker
-                    </h2>
-                    <p className="text-sm text-slate-600 mt-1 max-w-3xl">
-                      Organize your monthly income and expenses to see where your
-                      money is going and make better budgeting decisions.
-                    </p>
-                  </div>
-
                   <Link
-                    to="/tools/budget-tracker"
-                    className="inline-flex items-center text-sm font-semibold text-emerald-700 hover:text-emerald-800"
+                    to="/tools/credit-cards"
+                    className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
+                    onClick={() => handleToolClick("credit-cards")}
                   >
-                    Open full budget tracker page →
+                    Open Credit Card Finder →
                   </Link>
                 </div>
+              </ToolSection>
 
-                <div id="budget-tracker">
-                  <BudgetTracker />
-                </div>
-              </section>
+              <ToolSection
+                id="budget-tracker"
+                title="Budget Tracker"
+                description="Organize your income and expenses to understand exactly where your money is going."
+                route="/tools/budget-tracker"
+              >
+                <BudgetTracker />
+              </ToolSection>
 
-              <section id="savings" className="scroll-mt-24">
-                <div id="savings-goal">
-                  <SavingsGoal />
-                </div>
-              </section>
+              <ToolSection
+                id="savings-goal"
+                title="Savings Goal Planner"
+                description="Turn a big savings goal into a simple monthly target."
+              >
+                <SavingsGoal />
+              </ToolSection>
 
-              <section id="debt" className="scroll-mt-24">
-                <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-                  <div>
-                    <h2 className="text-lg font-semibold text-slate-900">
-                      Debt Payoff Planner
-                    </h2>
-                    <p className="text-sm text-slate-600 mt-1 max-w-3xl">
-                      Compare payoff strategies and build a plan to reduce debt
-                      faster with a method that fits your goals.
-                    </p>
-                  </div>
+              <ToolSection
+                id="debt-payoff"
+                title="Debt Payoff Planner"
+                description="Estimate your payoff timeline and see how much your debt may cost over time."
+                route="/tools/debt-payoff"
+              >
+                <DebtPayoff />
+              </ToolSection>
 
-                  <Link
-                    to="/tools/debt-payoff"
-                    className="inline-flex items-center text-sm font-semibold text-emerald-700 hover:text-emerald-800"
-                  >
-                    Open full debt payoff page →
-                  </Link>
-                </div>
+              <ToolSection
+                id="emergency-fund"
+                title="Emergency Fund Calculator"
+                description="Estimate how much to save for unexpected expenses based on your essential monthly costs."
+                route="/tools/emergency-fund"
+              >
+                <EmergencyFund />
+              </ToolSection>
 
-                <div id="debt-payoff">
-                  <DebtPayoff />
-                </div>
-              </section>
-
-              <section id="split" className="scroll-mt-24">
-                <div id="bill-splitter">
-                  <BillSplitter />
-                </div>
-              </section>
-
-              <section id="emergency" className="scroll-mt-24">
-                <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-                  <div>
-                    <h2 className="text-lg font-semibold text-slate-900">
-                      Emergency Fund Calculator
-                    </h2>
-                    <p className="text-sm text-slate-600 mt-1 max-w-3xl">
-                      Estimate how much you may want to save for unexpected
-                      expenses based on your essential monthly costs and your
-                      target number of months.
-                    </p>
-                  </div>
-
-                  <Link
-                    to="/tools/emergency-fund"
-                    className="inline-flex items-center text-sm font-semibold text-emerald-700 hover:text-emerald-800"
-                  >
-                    Open full emergency fund page →
-                  </Link>
-                </div>
-
-                <div id="emergency-fund">
-                  <EmergencyFund />
-                </div>
-              </section>
-
-              <section id="networth" className="scroll-mt-24">
-                <div id="net-worth">
-                  <NetWorth />
-                </div>
-              </section>
+              <ToolSection
+                id="net-worth"
+                title="Net Worth Tracker"
+                description="Track what you own, what you owe, and your overall financial picture."
+              >
+                <NetWorth />
+              </ToolSection>
             </section>
 
             <ShareBar
@@ -561,8 +575,8 @@ export default function Tools() {
               title="I’m using BuddyMoney’s free money tools to plan my next money moves."
             />
 
-            <section className="mt-4">
-              <div className="rounded-2xl bg-emerald-600 text-white px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-sm">
+            <section>
+              <div className="rounded-3xl bg-emerald-600 text-white px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-sm">
                 <div>
                   <h2 className="text-lg font-semibold">
                     Want help deciding what to do first?
@@ -581,7 +595,7 @@ export default function Tools() {
               </div>
             </section>
 
-            <footer className="mt-4 border-t border-slate-200 pt-4 text-xs text-slate-500">
+            <footer className="border-t border-slate-200 pt-4 text-xs text-slate-500">
               <p>
                 More tools are on the way. Have an idea? We&apos;re building
                 this toolbox with you.

@@ -30,79 +30,49 @@ export default function NetWorth() {
     setLv("");
   };
 
-  const handleRemoveAsset = (indexToRemove) => {
-    setAssets(assets.filter((_, idx) => idx !== indexToRemove));
-  };
+  const handleRemoveAsset = (i) =>
+    setAssets(assets.filter((_, idx) => idx !== i));
 
-  const handleRemoveLiab = (indexToRemove) => {
-    setLiabs(liabs.filter((_, idx) => idx !== indexToRemove));
-  };
-
-  const totalAbsolute = ta + tl;
-  const assetsShare = totalAbsolute > 0 ? (ta / totalAbsolute) * 100 : 50;
-  const liabsShare = totalAbsolute > 0 ? (tl / totalAbsolute) * 100 : 50;
-
-  const netWorthColor =
-    nw > 0 ? "text-emerald-700" : nw < 0 ? "text-rose-700" : "text-slate-700";
-  const netWorthBg =
-    nw > 0
-      ? "bg-emerald-50 border-emerald-100"
-      : nw < 0
-      ? "bg-rose-50 border-rose-100"
-      : "bg-slate-50 border-slate-100";
+  const handleRemoveLiab = (i) =>
+    setLiabs(liabs.filter((_, idx) => idx !== i));
 
   return (
     <section
       id="networth"
-      className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200"
+      className="bg-white rounded-3xl p-6 shadow-md border border-slate-200 space-y-6"
     >
-      {/* HEADER */}
-      <div className="flex items-start justify-between gap-4 mb-4">
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-wide text-emerald-600 mb-1">
-            Tool
-          </p>
-
-          <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-            <span className="text-lg">📊</span>
-            Net Worth Tracker
-          </h2>
-
-          <p className="text-xs text-slate-500 mt-1 max-w-md">
-            List your assets (what you own) and liabilities (what you owe). This
-            tool calculates your total net worth so you can see your full money
-            picture in one place.
-          </p>
-        </div>
+      {/* Header */}
+      <div>
+        <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+          📊 Net Worth Tracker
+        </h2>
+        <p className="text-sm text-slate-500 mt-1 max-w-md">
+          Track everything you own and owe to see your full financial picture.
+        </p>
       </div>
 
-      {/* MAIN GRID */}
-      <div className="grid sm:grid-cols-2 gap-6 mb-6">
+      {/* GRID */}
+      <div className="grid md:grid-cols-2 gap-6">
         {/* ASSETS */}
-        <div>
-          <h3 className="font-semibold text-slate-900 mb-2">Assets</h3>
-          <p className="text-[11px] text-slate-500 mb-2">
-            Examples: cash, checking, savings, investments, home value, car.
-          </p>
+        <div className="space-y-3">
+          <h3 className="font-semibold text-slate-900">Assets</h3>
 
-          {/* INPUT ROW FIXED */}
-          <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_8rem_auto] gap-2 mb-2">
+          <div className="flex gap-2">
             <input
-              className="border border-slate-300 rounded-lg px-3 py-2 w-full min-w-0 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-              placeholder="Asset name (e.g. Savings)"
+              className="flex-1 border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              placeholder="Savings, investments..."
               value={an}
               onChange={(e) => setAn(e.target.value)}
             />
             <input
               type="number"
-              className="border border-slate-300 rounded-lg px-3 py-2 w-full min-w-0 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              className="w-32 border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
               placeholder="Value"
               value={av}
               onChange={(e) => setAv(e.target.value)}
             />
             <button
-              type="button"
-              className="w-full sm:w-auto px-3 py-2 text-sm font-semibold bg-emerald-600 text-white rounded-lg shadow-sm hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="px-4 py-3 bg-emerald-600 text-white rounded-xl font-semibold hover:bg-emerald-500"
               onClick={handleAddAsset}
             >
               Add
@@ -110,21 +80,18 @@ export default function NetWorth() {
           </div>
 
           {assets.length === 0 ? (
-            <p className="text-[11px] text-slate-500 border border-dashed border-slate-200 rounded-lg px-3 py-2">
-              No assets listed yet. Add your first asset above.
-            </p>
+            <div className="border border-dashed border-slate-300 rounded-xl p-3 text-sm text-slate-500">
+              No assets yet.
+            </div>
           ) : (
-            <ul className="text-sm divide-y divide-slate-100 mt-1">
+            <ul className="divide-y text-sm">
               {assets.map((a, i) => (
-                <li key={i} className="flex items-center justify-between py-1.5">
-                  <span className="text-slate-800">{a.n}</span>
-                  <div className="flex items-center gap-3">
-                    <span className="tabular-nums text-slate-800">
-                      ${a.v.toFixed(2)}
-                    </span>
+                <li key={i} className="flex justify-between py-2">
+                  <span>{a.n}</span>
+                  <div className="flex gap-3">
+                    <span>${a.v.toFixed(2)}</span>
                     <button
-                      type="button"
-                      className="text-[11px] text-slate-400 hover:text-rose-500"
+                      className="text-xs text-slate-400 hover:text-rose-500"
                       onClick={() => handleRemoveAsset(i)}
                     >
                       Remove
@@ -135,36 +102,31 @@ export default function NetWorth() {
             </ul>
           )}
 
-          <div className="mt-2 text-sm font-medium text-slate-800">
-            Total assets: <span className="tabular-nums">${ta.toFixed(2)}</span>
+          <div className="text-sm font-medium text-slate-700">
+            Total: ${ta.toFixed(2)}
           </div>
         </div>
 
         {/* LIABILITIES */}
-        <div>
-          <h3 className="font-semibold text-slate-900 mb-2">Liabilities</h3>
-          <p className="text-[11px] text-slate-500 mb-2">
-            Examples: credit cards, student loans, car loans, mortgage, personal loans.
-          </p>
+        <div className="space-y-3">
+          <h3 className="font-semibold text-slate-900">Liabilities</h3>
 
-          {/* INPUT ROW FIXED */}
-          <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_8rem_auto] gap-2 mb-2">
+          <div className="flex gap-2">
             <input
-              className="border border-slate-300 rounded-lg px-3 py-2 w-full min-w-0 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-              placeholder="Liability name (e.g. Credit card)"
+              className="flex-1 border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              placeholder="Credit card, loan..."
               value={ln}
               onChange={(e) => setLn(e.target.value)}
             />
             <input
               type="number"
-              className="border border-slate-300 rounded-lg px-3 py-2 w-full min-w-0 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              className="w-32 border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
               placeholder="Amount"
               value={lv}
               onChange={(e) => setLv(e.target.value)}
             />
             <button
-              type="button"
-              className="w-full sm:w-auto px-3 py-2 text-sm font-semibold bg-emerald-600 text-white rounded-lg shadow-sm hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="px-4 py-3 bg-emerald-600 text-white rounded-xl font-semibold hover:bg-emerald-500"
               onClick={handleAddLiab}
             >
               Add
@@ -172,21 +134,18 @@ export default function NetWorth() {
           </div>
 
           {liabs.length === 0 ? (
-            <p className="text-[11px] text-slate-500 border border-dashed border-slate-200 rounded-lg px-3 py-2">
-              No liabilities listed yet. Add your first liability above.
-            </p>
+            <div className="border border-dashed border-slate-300 rounded-xl p-3 text-sm text-slate-500">
+              No liabilities yet.
+            </div>
           ) : (
-            <ul className="text-sm divide-y divide-slate-100 mt-1">
+            <ul className="divide-y text-sm">
               {liabs.map((l, i) => (
-                <li key={i} className="flex items-center justify-between py-1.5">
-                  <span className="text-slate-800">{l.n}</span>
-                  <div className="flex items-center gap-3">
-                    <span className="tabular-nums text-slate-800">
-                      ${l.v.toFixed(2)}
-                    </span>
+                <li key={i} className="flex justify-between py-2">
+                  <span>{l.n}</span>
+                  <div className="flex gap-3">
+                    <span>${l.v.toFixed(2)}</span>
                     <button
-                      type="button"
-                      className="text-[11px] text-slate-400 hover:text-rose-500"
+                      className="text-xs text-slate-400 hover:text-rose-500"
                       onClick={() => handleRemoveLiab(i)}
                     >
                       Remove
@@ -197,70 +156,48 @@ export default function NetWorth() {
             </ul>
           )}
 
-          <div className="mt-2 text-sm font-medium text-slate-800">
-            Total liabilities: <span className="tabular-nums">${tl.toFixed(2)}</span>
+          <div className="text-sm font-medium text-slate-700">
+            Total: ${tl.toFixed(2)}
           </div>
         </div>
       </div>
 
-      {/* SUMMARY */}
-      <div className="grid gap-4 md:grid-cols-3 items-stretch text-sm">
-        <div className="rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 flex flex-col gap-1">
-          <span className="text-xs uppercase font-semibold text-slate-500">
-            Total assets
-          </span>
-          <span className="text-lg font-bold text-slate-900 tabular-nums">
-            ${ta.toFixed(2)}
-          </span>
+      {/* SUMMARY PANEL */}
+      <div className="bg-black text-white rounded-2xl p-5 space-y-3">
+        <div className="flex justify-between text-sm">
+          <span className="text-slate-300">Assets</span>
+          <span>${ta.toFixed(2)}</span>
         </div>
 
-        <div className="rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 flex flex-col gap-1">
-          <span className="text-xs uppercase font-semibold text-slate-500">
-            Total liabilities
-          </span>
-          <span className="text-lg font-bold text-slate-900 tabular-nums">
-            ${tl.toFixed(2)}
-          </span>
+        <div className="flex justify-between text-sm">
+          <span className="text-slate-300">Liabilities</span>
+          <span>${tl.toFixed(2)}</span>
         </div>
 
-        <div className={`rounded-xl border px-4 py-3 flex flex-col gap-1 ${netWorthBg}`}>
-          <span className="text-xs uppercase font-semibold text-slate-600">
-            Net worth
-          </span>
-          <span className={`text-lg font-bold tabular-nums ${netWorthColor}`}>
+        <div className="border-t border-white/10 pt-3 flex justify-between items-center">
+          <span className="text-slate-300">Net worth</span>
+          <span
+            className={`text-lg font-bold ${
+              nw > 0
+                ? "text-emerald-400"
+                : nw < 0
+                ? "text-rose-400"
+                : "text-white"
+            }`}
+          >
             ${nw.toFixed(2)}
           </span>
-          <span className="text-[11px] text-slate-500">
-            {nw > 0
-              ? "You own more than you owe. Great job—keep going."
-              : nw < 0
-              ? "You owe more than you own right now. That’s okay—awareness is the first step."
-              : "Your assets and liabilities are currently equal."}
-          </span>
         </div>
       </div>
 
-      {/* BAR */}
-      {totalAbsolute > 0 && (
-        <div className="mt-4">
-          <div className="flex justify-between text-xs text-slate-600 mb-1">
-            <span>Assets vs. liabilities</span>
-            <span>
-              {Math.round(assetsShare)}% assets · {Math.round(liabsShare)}% liabilities
-            </span>
-          </div>
-          <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden flex">
-            <div
-              className="bg-emerald-500 h-full"
-              style={{ width: `${assetsShare}%` }}
-            ></div>
-            <div
-              className="bg-rose-400 h-full"
-              style={{ width: `${liabsShare}%` }}
-            ></div>
-          </div>
-        </div>
-      )}
+      {/* Helper */}
+      <div className="rounded-2xl border border-slate-200 p-4 text-sm text-slate-600">
+        {nw > 0
+          ? "You’re in positive territory—keep building."
+          : nw < 0
+          ? "You owe more than you own right now. That’s okay—this is how progress starts."
+          : "Your assets and liabilities are balanced."}
+      </div>
     </section>
   );
 }

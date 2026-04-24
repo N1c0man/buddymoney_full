@@ -1,132 +1,128 @@
 import React, { useState } from "react";
 
 export default function BillSplitter() {
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState("");
   const [people, setPeople] = useState(2);
-  const [tip, setTip] = useState(15); // percent
+  const [tip, setTip] = useState(20);
 
-  const bill = total || 0;
-  const tipAmount = bill * (tip / 100);
+  const bill = Number(total) || 0;
+  const splitBy = Math.max(Number(people) || 1, 1);
+  const tipAmount = bill * ((Number(tip) || 0) / 100);
   const totalWithTip = bill + tipAmount;
-  const each = people > 0 ? totalWithTip / people : 0;
+  const each = totalWithTip / splitBy;
 
   return (
     <section
       id="split"
-      className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200"
+      className="rounded-3xl bg-white border border-slate-200 shadow-sm p-5"
     >
       {/* Header */}
-      <div className="flex items-start justify-between gap-4 mb-4">
-        <div>
-          <p className="text-[11px] font-semibold uppercase tracking-wide text-emerald-600 mb-1">
-            Tool
-          </p>
-          <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-            <span className="text-lg">🧮</span>
-            Bill Splitter
-          </h2>
-          <p className="text-xs text-slate-500 mt-1 max-w-md">
-            Quickly split a bill with friends or family. Add the total, choose a
-            tip, and see how much each person should pay.
-          </p>
-        </div>
+      <div className="mb-5">
+        <p className="text-xs font-semibold uppercase tracking-wide text-sky-600">
+          BuddyMoney Tool
+        </p>
+        <h2 className="text-2xl font-bold text-slate-900 mt-1 flex items-center gap-2">
+          <span>🧾</span>
+          Bill Splitter
+        </h2>
+        <p className="text-sm text-slate-600 mt-2">
+          Add the bill, choose a tip, and see what each person pays.
+        </p>
       </div>
 
-      {/* Inputs */}
-      <div className="grid gap-3 md:grid-cols-3 mb-6">
-        {/* Total bill */}
-        <div>
-          <label className="block text-xs font-medium text-slate-600 mb-1">
-            Total bill
-          </label>
+      {/* Total bill */}
+      <label className="block mb-4">
+        <span className="block text-sm font-semibold text-slate-700 mb-2">
+          Total bill
+        </span>
+        <div className="relative">
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
+            $
+          </span>
           <input
             type="number"
-            className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-            placeholder="e.g. 120.50"
+            inputMode="decimal"
+            min="0"
             value={total}
-            onChange={(e) => setTotal(parseFloat(e.target.value || 0))}
+            onChange={(e) => setTotal(e.target.value)}
+            placeholder="120.50"
+            className="w-full rounded-2xl border border-slate-300 bg-white py-3 pl-8 pr-4 text-lg font-semibold text-slate-900 outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100"
           />
+        </div>
+      </label>
+
+      {/* Tip percentage */}
+      <div className="mb-4">
+        <span className="block text-sm font-semibold text-slate-700 mb-2">
+          Tip percentage
+        </span>
+
+        <div className="grid grid-cols-4 gap-2">
+          {[15, 18, 20, 25].map((percent) => (
+            <button
+              key={percent}
+              type="button"
+              onClick={() => setTip(percent)}
+              className={`rounded-2xl px-3 py-3 text-sm font-bold transition ${
+                Number(tip) === percent
+                  ? "bg-sky-600 text-white shadow-sm"
+                  : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+              }`}
+            >
+              {percent}%
+            </button>
+          ))}
         </div>
 
-        {/* People */}
-        <div>
-          <label className="block text-xs font-medium text-slate-600 mb-1">
-            Number of people
-          </label>
-          <input
-            type="number"
-            min={1}
-            className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-            placeholder="e.g. 3"
-            value={people}
-            onChange={(e) => setPeople(parseFloat(e.target.value || 0))}
-          />
-        </div>
-
-        {/* Tip */}
-        <div>
-          <label className="block text-xs font-medium text-slate-600 mb-1">
-            Tip (%)
-          </label>
-          <input
-            type="number"
-            min={0}
-            className="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
-            placeholder="e.g. 15"
-            value={tip}
-            onChange={(e) => setTip(parseFloat(e.target.value || 0))}
-          />
-        </div>
+        <input
+          type="number"
+          inputMode="decimal"
+          min="0"
+          value={tip}
+          onChange={(e) => setTip(e.target.value)}
+          className="mt-3 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100"
+        />
       </div>
+
+      {/* People */}
+      <label className="block mb-5">
+        <span className="block text-sm font-semibold text-slate-700 mb-2">
+          Split between
+        </span>
+        <input
+          type="number"
+          inputMode="numeric"
+          min="1"
+          value={people}
+          onChange={(e) => setPeople(e.target.value)}
+          className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-100"
+        />
+      </label>
 
       {/* Summary */}
-      <div className="grid gap-4 md:grid-cols-3 items-stretch text-sm">
-        {/* Bill + tip breakdown */}
-        <div className="rounded-xl border border-slate-100 bg-slate-50 px-4 py-3 flex flex-col gap-1">
-          <div className="flex justify-between">
-            <span className="text-slate-500">Bill:</span>
-            <span className="tabular-nums text-slate-800">
-              ${bill.toFixed(2)}
-            </span>
-          </div>
-          <div className="flex justify-between">
-            <span className="text-slate-500">Tip ({tip || 0}%):</span>
-            <span className="tabular-nums text-slate-800">
-              ${tipAmount.toFixed(2)}
-            </span>
-          </div>
-          <div className="mt-1 flex justify-between font-semibold">
-            <span className="text-slate-700">Total with tip:</span>
-            <span className="tabular-nums text-slate-900">
-              ${totalWithTip.toFixed(2)}
-            </span>
-          </div>
+      <div className="rounded-3xl bg-slate-900 text-white p-5">
+        <div className="flex justify-between gap-4 py-2 border-b border-white/10">
+          <span className="text-slate-300">Bill</span>
+          <strong>${bill.toFixed(2)}</strong>
         </div>
 
-        {/* People */}
-        <div className="rounded-xl border border-slate-100 bg-white px-4 py-3 flex flex-col justify-center">
-          <div className="text-xs uppercase font-semibold text-slate-500 mb-1">
-            People
-          </div>
-          <div className="text-lg font-semibold text-slate-900">
-            {people > 0 ? people : 0}
-          </div>
-          <p className="text-xs text-slate-500 mt-1">
-            Everyone splits the total evenly.
-          </p>
+        <div className="flex justify-between gap-4 py-2 border-b border-white/10">
+          <span className="text-slate-300">Tip ({Number(tip) || 0}%)</span>
+          <strong>${tipAmount.toFixed(2)}</strong>
         </div>
 
-        {/* Per person */}
-        <div className="rounded-xl border border-emerald-100 bg-emerald-50 px-4 py-3 flex flex-col justify-center">
-          <div className="text-xs uppercase font-semibold text-emerald-700 mb-1">
-            Per person
-          </div>
-          <div className="text-xl font-bold text-emerald-700 tabular-nums">
-            ${each.toFixed(2)}
-          </div>
-          <p className="text-xs text-emerald-700 mt-1">
-            This is what each person pays including tip.
-          </p>
+        <div className="flex justify-between gap-4 py-2 border-b border-white/10">
+          <span className="text-slate-300">Total</span>
+          <strong>${totalWithTip.toFixed(2)}</strong>
+        </div>
+
+        <div className="flex justify-between gap-4 py-3 text-lg font-bold">
+          <span className="text-slate-200">Per person</span>
+          <strong>${each.toFixed(2)}</strong>
+        </div>
+
+        <div className="text-xs text-slate-400 mt-2">
+          Split between {splitBy} {splitBy === 1 ? "person" : "people"}
         </div>
       </div>
     </section>

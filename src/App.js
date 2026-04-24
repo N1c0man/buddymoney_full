@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 // Components
 import ScrollToTop from "./components/ScrollToTop";
@@ -20,6 +20,8 @@ import AppDashboard from "./pages/AppDashboard";
 import ToolEmergencyFundPage from "./pages/ToolEmergencyFundPage";
 import ToolDebtPayoffPage from "./pages/ToolDebtPayoffPage";
 import ToolBudgetTrackerPage from "./pages/ToolBudgetTrackerPage";
+import ToolBillSplitterPage from "./pages/ToolBillSplitterPage";
+import ToolTipCalculatorPage from "./pages/ToolTipCalculatorPage";
 
 // Blog system
 import BlogList from "./blog/BlogList";
@@ -43,6 +45,20 @@ import BestStudentCards from "./pages/BestStudentCards";
 import GoOffer from "./pages/GoOffer";
 
 export default function App() {
+  const location = useLocation();
+  const isAppRoute = location.pathname === "/app";
+
+  if (isAppRoute) {
+    return (
+      <>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/app" element={<AppDashboard />} />
+        </Routes>
+      </>
+    );
+  }
+
   return (
     <MainLayout>
       {/* 🌟 Global scroll-to-top on route change */}
@@ -74,6 +90,14 @@ export default function App() {
         <Route
           path="/tools/budget-tracker"
           element={<ToolBudgetTrackerPage />}
+        />
+        <Route
+          path="/tools/bill-splitter"
+          element={<ToolBillSplitterPage />}
+        />
+        <Route
+        path="/tools/tip-calculator"
+        element={<ToolTipCalculatorPage />}
         />
 
         {/* Credit card supporting guides */}
