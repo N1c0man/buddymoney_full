@@ -14,6 +14,7 @@ import MortgagePayoff from "./pages/MortgagePayoff";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import AffiliateDisclosure from "./pages/AffiliateDisclosure";
+import AppDashboard from "./pages/AppDashboard";
 
 // ⭐ NEW: Standalone tool pages
 import ToolEmergencyFundPage from "./pages/ToolEmergencyFundPage";
@@ -52,6 +53,9 @@ export default function App() {
         <Route path={ROUTES.home} element={<Home />} />
         <Route path={ROUTES.tools} element={<Tools />} />
         <Route path={ROUTES.about} element={<About />} />
+
+        {/* Mobile app landing */}
+        <Route path="/app" element={<AppDashboard />} />
 
         {/* Tools */}
         <Route path={ROUTES.coach} element={<BudgetCoachPage />} />
