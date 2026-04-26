@@ -9,6 +9,7 @@ const DEFAULT_PRINCIPAL = 300000;
 const DEFAULT_RATE = 6.5;
 const DEFAULT_YEARS = 30;
 const DEFAULT_EXTRA = 100;
+const STORAGE_KEY = "buddymoney_mortgage_payoff_v1";
 
 function toNumber(raw) {
   if (raw === null || raw === undefined) return 0;
@@ -187,6 +188,71 @@ export default function MortgagePayoff() {
 
   const [copyStatus, setCopyStatus] = useState("");
   const [linkCopied, setLinkCopied] = useState(false);
+  const [hasLoadedLocalStorage, setHasLoadedLocalStorage] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      setHasLoadedLocalStorage(true);
+      return;
+    }
+
+    try {
+      const saved = window.localStorage.getItem(STORAGE_KEY);
+      if (!saved) return;
+
+      const data = JSON.parse(saved);
+
+      if (data.principal !== undefined) setPrincipal(String(data.principal));
+      if (data.rate !== undefined) setRate(String(data.rate));
+      if (data.years !== undefined) setYears(String(data.years));
+      if (data.extra !== undefined) setExtra(String(data.extra));
+      if (data.frequency === "monthly" || data.frequency === "biweekly") {
+        setFrequency(data.frequency);
+      }
+      if (data.goalYearsInput !== undefined) {
+        setGoalYearsInput(String(data.goalYearsInput));
+      }
+      if (data.scenarioA !== undefined) setScenarioA(data.scenarioA);
+      if (data.scenarioB !== undefined) setScenarioB(data.scenarioB);
+    } catch (err) {
+      console.error("Failed to load mortgage payoff data:", err);
+    } finally {
+      setHasLoadedLocalStorage(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!hasLoadedLocalStorage) return;
+    if (typeof window === "undefined") return;
+
+    try {
+      window.localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+          principal,
+          rate,
+          years,
+          extra,
+          frequency,
+          goalYearsInput,
+          scenarioA,
+          scenarioB,
+        })
+      );
+    } catch (err) {
+      console.error("Failed to save mortgage payoff data:", err);
+    }
+  }, [
+    principal,
+    rate,
+    years,
+    extra,
+    frequency,
+    goalYearsInput,
+    scenarioA,
+    scenarioB,
+    hasLoadedLocalStorage,
+  ]);
 
   const principalNum = toNumber(principal);
   const rateNum = toNumber(rate);
@@ -304,6 +370,14 @@ export default function MortgagePayoff() {
     setScenarioA(null);
     setScenarioB(null);
     setCopyStatus("");
+
+    if (typeof window !== "undefined") {
+      try {
+        window.localStorage.removeItem(STORAGE_KEY);
+      } catch (err) {
+        console.error("Failed to clear mortgage payoff data:", err);
+      }
+    }
   }
 
   function handleSaveScenarioA() {
@@ -997,17 +1071,17 @@ export default function MortgagePayoff() {
                 <RelatedToolCard
                   title="Budget Planner"
                   description="Track your income and spending so extra mortgage payments fit comfortably."
-                  href="/tools#budget-tracker"
+                  href="/tools/budget-tracker"
                 />
                 <RelatedToolCard
                   title="Debt Payoff Planner"
                   description="Prioritize credit cards, loans, and other debts alongside your mortgage."
-                  href="/tools#debt-payoff"
+                  href="/tools/debt-payoff"
                 />
                 <RelatedToolCard
                   title="Emergency Fund Calculator"
                   description="Estimate how much cash you should keep on hand for surprises."
-                  href="/tools#emergency-fund"
+                  href="/tools/emergency-fund"
                 />
               </div>
             </section>
