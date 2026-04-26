@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { buildUrl } from "../utils/seo";
+import AppBottomNav from "../components/AppBottomNav";
 
 export default function ToolTipCalculatorPage() {
   const canonicalUrl = buildUrl("/tools/tip-calculator");
@@ -150,6 +151,8 @@ export default function ToolTipCalculatorPage() {
           </Link>
         </div>
       </main>
+
+      <AppBottomNav />
     </div>
   );
 }

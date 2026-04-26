@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import DebtPayoff from "../tools/DebtPayoff";
 import ShareBar from "../components/ShareBar";
+import AppBottomNav from "../components/AppBottomNav";
 import { setCanonical } from "../utils/seo";
 
 export default function ToolDebtPayoffPage() {
@@ -94,7 +95,7 @@ export default function ToolDebtPayoffPage() {
         </script>
       </Helmet>
 
-      <main className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50/40 pt-4 pb-16">
+      <main className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50/40 pt-4 pb-4">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft px-5 py-7 md:px-8 md:py-8">
             <div className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl" />
@@ -204,7 +205,7 @@ export default function ToolDebtPayoffPage() {
                 description="Find room in your monthly budget for debt payments."
               />
               <RelatedToolCard
-                to="/coach"
+                to="/tools/budget-coach"
                 title="Budget Coach"
                 description="Get a friendly score and next-step suggestions for your money plan."
               />
@@ -216,6 +217,8 @@ export default function ToolDebtPayoffPage() {
             label="Share this debt payoff calculator with a friend"
             title="I’m using BuddyMoney’s debt payoff calculator to plan getting out of debt."
           />
+
+          <AppBottomNav />
         </div>
       </main>
     </>

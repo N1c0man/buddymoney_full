@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import BillSplitter from "../tools/BillSplitter";
 import { buildUrl } from "../utils/seo";
 import { Link } from "react-router-dom";
+import AppBottomNav from "../components/AppBottomNav";
 
 export default function ToolBillSplitterPage() {
   const canonicalUrl = buildUrl("/tools/bill-splitter");
@@ -42,6 +43,9 @@ export default function ToolBillSplitterPage() {
           </Link>
         </div>
       </main>
+
+      {/* App Bottom Nav */}
+      <AppBottomNav />
     </div>
   );
 }

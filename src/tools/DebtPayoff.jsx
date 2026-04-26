@@ -1,15 +1,62 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+
+const STORAGE_KEY = "bm_debt_payoff";
 
 export default function DebtPayoff() {
   const [amount, setAmount] = useState(0);
   const [rate, setRate] = useState(0);
   const [payment, setPayment] = useState(0);
 
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (!saved) return;
+
+      setAmount(saved.amount ?? 0);
+      setRate(saved.rate ?? 0);
+      setPayment(saved.payment ?? 0);
+    } catch {
+      // If saved data is broken, ignore it safely.
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+          amount,
+          rate,
+          payment,
+        })
+      );
+    } catch {
+      // If localStorage is unavailable, the tool still works.
+    }
+  }, [amount, rate, payment]);
+
+  const handleReset = () => {
+    setAmount(0);
+    setRate(0);
+    setPayment(0);
+
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {}
+  };
+
   const months = (() => {
     if (payment <= 0 || amount <= 0 || rate < 0) return 0;
+
     const r = rate / 100 / 12;
-    const n =
-      Math.log(payment / (payment - r * amount)) / Math.log(1 + r);
+
+    if (r === 0) {
+      return Math.ceil(amount / payment);
+    }
+
+    if (payment <= r * amount) return 0;
+
+    const n = Math.log(payment / (payment - r * amount)) / Math.log(1 + r);
     return Math.ceil(n > 0 ? n : 0);
   })();
 
@@ -28,14 +75,24 @@ export default function DebtPayoff() {
       className="bg-white rounded-3xl p-6 shadow-md border border-slate-200 space-y-6"
     >
       {/* Header */}
-      <div>
-        <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-          📉 Debt Payoff Estimator
-        </h2>
-        <p className="text-sm text-slate-500 mt-1 max-w-md">
-          Estimate how long it will take to pay off your debt based on your
-          balance, APR, and monthly payment.
-        </p>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+            📉 Debt Payoff Estimator
+          </h2>
+          <p className="text-sm text-slate-500 mt-1 max-w-md">
+            Estimate how long it will take to pay off your debt based on your
+            balance, APR, and monthly payment.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={handleReset}
+          className="shrink-0 rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 hover:border-emerald-200 hover:text-emerald-700"
+        >
+          Reset
+        </button>
       </div>
 
       {/* Inputs */}
@@ -117,18 +174,15 @@ export default function DebtPayoff() {
         <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-4 text-sm text-emerald-800">
           You’ll be debt-free in{" "}
           <span className="font-semibold">{months} months</span> (
-          {(months / 12).toFixed(1)} years). Staying consistent with your payment
-          will save you{" "}
-          <span className="font-semibold">
-            ${interestPaid.toFixed(2)}
-          </span>{" "}
-          in interest.
+          {(months / 12).toFixed(1)} years). Staying consistent with your
+          payment will save you{" "}
+          <span className="font-semibold">${interestPaid.toFixed(2)}</span> in
+          interest.
         </div>
       ) : (
         <div className="rounded-2xl border border-dashed border-slate-300 p-4 text-sm text-slate-500">
           Enter your debt details to estimate your payoff timeline.
         </div>
-        
       )}
     </section>
   );

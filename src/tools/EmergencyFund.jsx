@@ -1,9 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+const STORAGE_KEY = "bm_emergency_fund";
 
 export default function EmergencyFund() {
   const [monthly, setMonthly] = useState(0);
   const [months, setMonths] = useState(3);
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (!saved) return;
+
+      setMonthly(saved.monthly ?? 0);
+      setMonths(saved.months ?? 3);
+    } catch {
+      // Ignore broken saved data safely.
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({
+          monthly,
+          months,
+        })
+      );
+    } catch {
+      // Tool still works if localStorage is unavailable.
+    }
+  }, [monthly, months]);
+
+  const handleReset = () => {
+    setMonthly(0);
+    setMonths(3);
+
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {}
+  };
 
   const fund = monthly * months;
   const safeMonths = Math.max(0, Math.min(months || 0, 6));
@@ -11,6 +48,17 @@ export default function EmergencyFund() {
 
   return (
     <section className="space-y-6">
+      {/* Header Controls */}
+      <div className="flex justify-end">
+        <button
+          type="button"
+          onClick={handleReset}
+          className="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 hover:border-emerald-200 hover:text-emerald-700"
+        >
+          Reset
+        </button>
+      </div>
+
       {/* Inputs */}
       <div className="grid gap-4 md:grid-cols-2">
         <div>
@@ -82,10 +130,9 @@ export default function EmergencyFund() {
       {/* Helper */}
       {monthly > 0 && months > 0 ? (
         <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-4 text-sm text-emerald-800">
-          Saving{" "}
-          <span className="font-semibold">${fund.toFixed(2)}</span> gives you{" "}
-          <span className="font-semibold">{months} months</span> of financial
-          protection.
+          Saving <span className="font-semibold">${fund.toFixed(2)}</span>{" "}
+          gives you <span className="font-semibold">{months} months</span> of
+          financial protection.
         </div>
       ) : (
         <div className="rounded-2xl border border-dashed border-slate-300 p-4 text-sm text-slate-500">
@@ -128,16 +175,28 @@ export default function EmergencyFund() {
             Related guides
           </h3>
           <div className="flex flex-col gap-2 text-sm">
-            <Link to="/blog/emergency-fund-basics" className="text-emerald-700 font-medium">
+            <Link
+              to="/blog/emergency-fund-basics"
+              className="text-emerald-700 font-medium"
+            >
               Emergency Fund Basics →
             </Link>
-            <Link to="/blog/emergency-fund-3-to-6-months" className="text-emerald-700 font-medium">
+            <Link
+              to="/blog/emergency-fund-3-to-6-months"
+              className="text-emerald-700 font-medium"
+            >
               Build a 3–6 Month Fund →
             </Link>
-            <Link to="/coach" className="text-emerald-700 font-medium">
+            <Link
+              to="/tools/budget-coach"
+              className="text-emerald-700 font-medium"
+            >
               Budget Coach →
             </Link>
-            <Link to="/tools#debt" className="text-emerald-700 font-medium">
+            <Link
+              to="/tools/debt-payoff"
+              className="text-emerald-700 font-medium"
+            >
               Debt Payoff Planner →
             </Link>
           </div>

@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import ShareBar from "../components/ShareBar";
+import AppBottomNav from "../components/AppBottomNav";
 import { setCanonical } from "../utils/seo";
 
 const AFFILIATE_ENABLED = false;
@@ -104,7 +105,7 @@ const CARD_TYPE_LABELS = {
   student: "Student",
 };
 
-export default function CreditCardFinder() {
+export default function CreditCardFinder({ showAppBottomNav = false }) {
   const [creditScore, setCreditScore] = useState("any");
   const [cardType, setCardType] = useState("any");
   const [annualFeeFilter, setAnnualFeeFilter] = useState("any");
@@ -580,7 +581,7 @@ export default function CreditCardFinder() {
               </Link>
               , or use the{" "}
               <Link
-                to="/coach"
+                to="/tools/budget-coach"
                 className="font-semibold text-emerald-700 underline underline-offset-2"
               >
                 Budget Coach
@@ -603,6 +604,7 @@ export default function CreditCardFinder() {
           />
         </div>
       </main>
+      {showAppBottomNav && <AppBottomNav />}
     </>
   );
 }
