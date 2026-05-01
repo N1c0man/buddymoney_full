@@ -348,7 +348,7 @@ export default function BudgetCoach() {
               />
 
               <div className="grid gap-4 md:grid-cols-2">
-                <CoachInput label="Housing / Rent" value={housing} onChange={setHousing} placeholder="1600" />
+                <CoachInput label="Rent / Mortgage" value={housing} onChange={setHousing} placeholder="1600" />
                 <CoachInput label="Transport" value={transport} onChange={setTransport} placeholder="300" />
                 <CoachInput label="Food / Groceries" value={food} onChange={setFood} placeholder="450" />
                 <CoachInput label="Utilities / Bills" value={utilities} onChange={setUtilities} placeholder="220" />
