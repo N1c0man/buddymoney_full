@@ -68,6 +68,34 @@ const HUB_ITEMS = [
   },
 ];
 
+const FAQ_ITEMS = [
+  {
+    question: "What is a secured credit card?",
+    answer:
+      "A secured credit card requires a refundable security deposit and is often used by people who are building credit for the first time or rebuilding after credit problems.",
+  },
+  {
+    question: "Can a secured credit card help build credit?",
+    answer:
+      "Yes. If the card reports to the major credit bureaus, on-time payments and low balances can help build a stronger credit history over time.",
+  },
+  {
+    question: "What credit card should beginners consider first?",
+    answer:
+      "Many beginners start with a secured card, student card, or starter card with low fees. The right option depends on your credit profile, spending habits, and ability to pay the balance on time.",
+  },
+  {
+    question: "Are 0% intro APR credit cards good for debt payoff?",
+    answer:
+      "They can help if you have a clear payoff plan before the intro period ends. Always check balance transfer fees, the regular APR, and the final payoff date.",
+  },
+  {
+    question: "Should I choose rewards or low fees?",
+    answer:
+      "For many beginners, low fees and responsible credit-building matter more than rewards. Rewards are helpful only if you pay the balance in full and avoid interest.",
+  },
+];
+
 export default function CreditCardsHub() {
   useEffect(() => {
     setCanonical("/credit-cards");
@@ -103,6 +131,21 @@ export default function CreditCardsHub() {
     };
   }, [pageDescription]);
 
+  const faqSchema = useMemo(() => {
+    return {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: FAQ_ITEMS.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    };
+  }, []);
+
   return (
     <>
       <Helmet>
@@ -130,6 +173,7 @@ export default function CreditCardsHub() {
         />
 
         <script type="application/ld+json">{JSON.stringify(schemaOrg)}</script>
+        <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
       <main className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50/40 pb-16 pt-4">
@@ -269,6 +313,137 @@ export default function CreditCardsHub() {
             title="I’m using BuddyMoney’s credit card hub to understand my options before I apply."
           />
 
+          <section className="space-y-5 rounded-3xl border border-emerald-100 bg-white px-4 py-6 shadow-sm md:px-6 md:py-8">
+            <header>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                Credit card basics
+              </p>
+              <h2 className="mt-1 text-xl font-bold text-slate-900">
+                Compare credit cards before you apply
+              </h2>
+            </header>
+
+            <div className="grid gap-5 lg:grid-cols-[1.2fr_0.8fr]">
+              <div className="space-y-3 text-sm leading-relaxed text-slate-700">
+                <p>
+                  Credit cards can help you build credit, earn rewards, manage
+                  short-term purchases, or reduce interest with an intro APR
+                  offer. The best choice depends on your current credit profile,
+                  your spending habits, and whether you plan to carry a balance.
+                </p>
+
+                <p>
+                  If you are building or rebuilding credit, start with cards
+                  that are easier to qualify for and focus on low fees, on-time
+                  payments, and keeping balances low. If you already have good
+                  credit, cash back, travel rewards, and 0% intro APR cards may
+                  be worth comparing more closely.
+                </p>
+
+                <p>
+                  A smart credit card strategy also depends on your full money
+                  picture. Before applying, compare your budget, debt payoff
+                  plan, and emergency savings so the card supports your goals
+                  instead of becoming a financial fallback.
+                </p>
+              </div>
+
+              <div className="rounded-3xl border border-emerald-100 bg-emerald-50/60 p-5">
+                <h3 className="text-base font-semibold text-slate-900">
+                  Quick credit card checklist
+                </h3>
+                <ul className="mt-3 space-y-2 text-sm text-slate-700">
+                  <li>✅ Know your credit profile before applying.</li>
+                  <li>✅ Compare annual fees, APR, rewards, and deposits.</li>
+                  <li>✅ Avoid cards with confusing or excessive fees.</li>
+                  <li>✅ Pay on time and keep utilization low.</li>
+                  <li>✅ Use tools to match the card to your budget.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="grid gap-3 md:grid-cols-3">
+              <Link
+                to="/credit-cards/finder"
+                className="rounded-2xl border border-emerald-100 bg-emerald-50/70 p-4 transition hover:bg-emerald-100"
+              >
+                <span className="block text-sm font-semibold text-slate-900">
+                  Compare card types
+                </span>
+                <span className="mt-1 block text-xs text-slate-600">
+                  Use the finder to compare beginner-friendly categories.
+                </span>
+              </Link>
+
+              <Link
+                to="/tools/debt-payoff"
+                className="rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-emerald-200 hover:bg-emerald-50"
+              >
+                <span className="block text-sm font-semibold text-slate-900">
+                  Plan debt payoff
+                </span>
+                <span className="mt-1 block text-xs text-slate-600">
+                  Compare 0% APR offers with your payoff timeline.
+                </span>
+              </Link>
+
+              <Link
+                to="/tools/budget-tracker"
+                className="rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-emerald-200 hover:bg-emerald-50"
+              >
+                <span className="block text-sm font-semibold text-slate-900">
+                  Match your budget
+                </span>
+                <span className="mt-1 block text-xs text-slate-600">
+                  Choose cards that fit your real monthly spending.
+                </span>
+              </Link>
+            </div>
+          </section>
+
+          <section className="space-y-5 rounded-3xl border border-slate-200 bg-white px-4 py-6 shadow-sm md:px-6 md:py-8">
+            <header>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                Rebuilding credit
+              </p>
+              <h2 className="mt-1 text-xl font-bold text-slate-900">
+                Secured credit cards can be a strong starting point
+              </h2>
+            </header>
+
+            <div className="space-y-3 text-sm leading-relaxed text-slate-700">
+              <p>
+                Secured credit cards are often used by people who are new to
+                credit or rebuilding after missed payments, collections, or a
+                thin credit file. They usually require a refundable deposit, and
+                the credit limit is often tied to that deposit.
+              </p>
+
+              <p>
+                The most important features are simple fees, credit bureau
+                reporting, a clear graduation path, and a card issuer that makes
+                it easy to manage payments. Rewards are nice, but rebuilding
+                credit usually starts with consistency.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              <Link
+                to="/blog/best-secured-credit-cards/"
+                className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-emerald-700"
+              >
+                Read secured cards guide →
+              </Link>
+
+              <Link
+                to="/credit-cards/bad-credit"
+                className="inline-flex items-center justify-center rounded-full border border-emerald-200 bg-white px-5 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50"
+              >
+                Compare rebuilding cards →
+              </Link>
+            </div>
+          </section>
+
           <section className="space-y-5 rounded-3xl border border-slate-200 bg-white px-4 py-6 shadow-sm md:px-6 md:py-8">
             <header>
               <h2 className="text-lg font-bold text-slate-900">
@@ -396,6 +571,28 @@ export default function CreditCardsHub() {
                 title="Emergency Fund Tool"
                 text="Build a cash buffer so your credit card stays a tool instead of a fallback."
               />
+            </div>
+          </section>
+
+          <section className="space-y-4 rounded-3xl border border-slate-200 bg-white px-4 py-6 shadow-sm md:px-6 md:py-8">
+            <h2 className="text-lg font-bold text-slate-900">
+              Credit card FAQs
+            </h2>
+
+            <div className="space-y-3">
+              {FAQ_ITEMS.map((item) => (
+                <div
+                  key={item.question}
+                  className="rounded-2xl border border-slate-200 bg-slate-50/60 p-4"
+                >
+                  <h3 className="text-sm font-semibold text-slate-900">
+                    {item.question}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-slate-700">
+                    {item.answer}
+                  </p>
+                </div>
+              ))}
             </div>
           </section>
 
