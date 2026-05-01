@@ -568,5 +568,27 @@
       "question": "Should I pay off my mortgage early if I do not have an emergency fund?",
       "answer": "Usually no. If you do not have emergency savings, it is often better to build a financial cushion first. Without cash reserves, unexpected expenses could push you into high-interest debt, which can undo the benefits of early mortgage payoff."
     }
-  ]
+  ],
+  "credit-score-needed-for-secured-credit-cards": [
+  {
+    "question": "What credit score do you need for a secured credit card?",
+    "answer": "Most secured credit cards do not require a minimum credit score. They are designed for people with low or no credit history, making approval much easier than traditional unsecured cards."
+  },
+  {
+    "question": "Can I get a secured credit card with bad credit?",
+    "answer": "Yes. Secured credit cards are one of the easiest options to get approved for with bad credit because they require a refundable deposit that reduces risk for the lender."
+  },
+  {
+    "question": "Can I get a secured credit card with no credit history?",
+    "answer": "Yes. Many people use secured credit cards to build credit from scratch, even if they have never had a credit score before."
+  },
+  {
+    "question": "What is the minimum deposit for a secured credit card?",
+    "answer": "Most secured credit cards require a deposit of at least $200, though some may require more depending on the issuer and your application."
+  },
+  {
+    "question": "Do secured credit cards check your credit?",
+    "answer": "Some secured credit cards perform a credit check, but approval is typically much easier than with unsecured cards because your deposit reduces the lender’s risk."
+  }
+]
 }
