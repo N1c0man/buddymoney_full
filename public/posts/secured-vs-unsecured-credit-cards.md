@@ -1,11 +1,11 @@
 ---
 
 slug: "secured-vs-unsecured-credit-cards"
-title: "Secured vs Unsecured Credit Cards: Which Is Better for Rebuilding Credit?"
+title: "Secured vs Unsecured Credit Cards: Which Is Better for Bad Credit?"
 tag: "Credit Cards"
 level: "Beginner"
 readTime: "7 min read"
-excerpt: "Not sure whether to choose a secured or unsecured credit card? Learn the key differences, pros and cons, and which option is best for rebuilding your credit safely."
+excerpt: "Not sure which card to choose? Learn the key differences between secured and unsecured credit cards and which is best for bad credit."
 author: "BuddyMoney Editorial"
 authorAvatar: "/icons/editorial.png"
 date: "2026-01-12"

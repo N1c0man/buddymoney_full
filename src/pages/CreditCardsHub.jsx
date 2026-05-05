@@ -103,15 +103,15 @@ export default function CreditCardsHub() {
   }, []);
 
   const pageTitle =
-    "Credit Card Guides (2026): Compare Cards for Bad Credit, Cash Back, Travel & 0% APR | BuddyMoney";
+    "Compare Credit Cards for Bad Credit (2026) | Secured, 0% APR & Starter Cards";
   const pageDescription =
-    "Compare credit cards with beginner-friendly guides and a simple credit card finder. Explore cards for bad or rebuilding credit, cash back rewards, travel rewards, student cards, and 0% intro APR offers.";
+    "Compare credit cards for bad credit, beginners, and rebuilding. Find secured cards, 0% APR offers, and starter cards in one place.";
 
   const schemaOrg = useMemo(() => {
     return {
       "@context": "https://schema.org",
       "@type": ["CollectionPage", "WebPage"],
-      name: "Credit Card Guides (2026): Compare Cards for Bad Credit, Cash Back, Travel & 0% APR",
+      name: pageTitle,
       url: "https://www.buddymoney.com/credit-cards",
       description: pageDescription,
       isAccessibleForFree: true,
@@ -129,7 +129,7 @@ export default function CreditCardsHub() {
         })),
       },
     };
-  }, [pageDescription]);
+  }, [pageTitle, pageDescription]);
 
   const faqSchema = useMemo(() => {
     return {
@@ -197,8 +197,8 @@ export default function CreditCardsHub() {
                   </p>
 
                   <h1 className="mt-3 text-3xl font-extrabold leading-tight text-brand-900 md:text-4xl">
-                    Compare credit cards for rebuilding credit, cash back,
-                    travel, 0% APR, and first-time applicants.
+                    Compare credit cards for bad credit, rebuilding credit,
+                    0% APR, rewards, and first-time applicants.
                   </h1>
 
                   <p className="mt-4 max-w-xl text-sm text-brand-900/90 md:text-base">
