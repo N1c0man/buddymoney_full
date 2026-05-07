@@ -311,6 +311,18 @@ export default function MortgagePayoff() {
   );
   const yearsSaved = rawYearsSaved > 0.05 ? rawYearsSaved.toFixed(1) : null;
 
+  const paymentsAvoided = Math.max(payoffMonthsNormal - payoffMonthsExtra, 0);
+  const payoffTimeLabel = payoffMonthsExtra
+    ? payoffRemMonths > 0
+      ? `${payoffYears} yrs ${payoffRemMonths} mo`
+      : `${payoffYears} yrs`
+    : "—";
+  const heroFasterLabel = yearsSaved
+    ? `${yearsSaved} yrs faster`
+    : "Add extra to save";
+  const heroInterestLabel = interestSaved > 0 ? "Saved vs. base" : "Add extra to save";
+  const heroPaymentsLabel = paymentsAvoided > 0 ? "Fewer payments" : "Try extra";
+
   const chartPoints = useMemo(() => {
     let schedule = [];
 
@@ -617,38 +629,131 @@ export default function MortgagePayoff() {
           transition={{ duration: 0.3 }}
           className="max-w-6xl mx-auto px-4 space-y-6"
         >
-          <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[220px] md:h-[260px] lg:h-[300px]">
+          <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-white via-emerald-50 to-sky-50 shadow-soft h-[360px] md:h-[330px] lg:h-[350px]">
             <img
               src="/icons/hero-mortgage-payoff.png"
               alt="Mortgage Payoff Calculator hero image"
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover object-top opacity-80"
               loading="eager"
             />
-            <div className="absolute inset-0 bg-white/55 md:bg-white/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/55 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-emerald-50/45 via-transparent to-transparent" />
 
-            <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
-              <div className="space-y-3 max-w-2xl">
-                <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-700">
-                  Mortgage Payoff Lab
-                </p>
+            <div className="relative h-full px-5 py-5 md:px-8 md:py-7 flex flex-col justify-center">
+              <div className="grid h-full items-center gap-4 md:grid-cols-[1.05fr_0.95fr]">
+                <div className="space-y-3 max-w-2xl">
+                  <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-emerald-700 flex items-center gap-2">
+                    <span>🏠</span>
+                    <span>Mortgage Payoff Lab</span>
+                  </p>
 
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-                  See how extra payments can knock years off your mortgage.
-                </h1>
+                  <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight max-w-2xl">
+                    See how extra payments can save you thousands and pay off
+                    your mortgage faster.
+                  </h1>
 
-                <p className="text-sm md:text-base text-brand-900/90 max-w-xl">
-                  Plug in your balance, rate, and extra payments to see how much
-                  interest you could save — and how soon you could be free from
-                  the bank.
-                </p>
+                  <p className="text-sm md:text-base text-brand-900/85 max-w-xl">
+                    Plug in your loan details and extra payments to see how much
+                    interest you could save — and how soon you could be free
+                    from debt.
+                  </p>
 
-                <div className="flex flex-wrap gap-2 text-[11px] mt-2">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
-                    🧮 Normal vs. extra payments
-                  </span>
-                  <span className="inline-flex items-center gap-2 rounded-full bg-white/85 px-3 py-1 text-slate-700 border border-slate-100 shadow-sm">
-                    📉 Interest saved + years avoided
-                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] max-w-xl">
+                    <span className="inline-flex items-center gap-2 rounded-2xl bg-white/90 px-3 py-2 text-slate-700 border border-slate-100 shadow-sm">
+                      <span className="text-base">🧮</span>
+                      <span>
+                        <span className="block font-bold text-slate-900">
+                          Real numbers
+                        </span>
+                        <span className="block text-slate-500">from your loan</span>
+                      </span>
+                    </span>
+                    <span className="inline-flex items-center gap-2 rounded-2xl bg-white/90 px-3 py-2 text-slate-700 border border-slate-100 shadow-sm">
+                      <span className="text-base">⏱️</span>
+                      <span>
+                        <span className="block font-bold text-slate-900">
+                          See years saved
+                        </span>
+                        <span className="block text-slate-500">in seconds</span>
+                      </span>
+                    </span>
+                    <span className="inline-flex items-center gap-2 rounded-2xl bg-white/90 px-3 py-2 text-slate-700 border border-slate-100 shadow-sm">
+                      <span className="text-base">🛡️</span>
+                      <span>
+                        <span className="block font-bold text-slate-900">
+                          100% free
+                        </span>
+                        <span className="block text-slate-500">no sign up</span>
+                      </span>
+                    </span>
+                  </div>
+
+                  <div className="hidden md:flex items-start gap-3 pt-1 text-xs text-emerald-800">
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white shadow-sm">
+                      ✓
+                    </div>
+                    <div>
+                      <p className="font-bold">Private &amp; secure.</p>
+                      <p className="text-emerald-900/70">
+                        Your calculator data stays on your device.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="hidden md:flex justify-end md:pr-6">
+                  <div className="w-full max-w-[330px] rounded-3xl border border-white/90 bg-white/95 p-4 shadow-xl backdrop-blur-sm md:-translate-x-8">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-emerald-700">
+                      Based on your inputs
+                    </p>
+                    <p className="text-sm font-extrabold text-slate-900 mb-4">
+                      Your payoff impact
+                    </p>
+                    <div className="grid grid-cols-3 divide-x divide-slate-200 text-center">
+                      <div className="px-3">
+                        <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-lg">
+                          📅
+                        </div>
+                        <p className="text-[11px] font-semibold text-slate-500">
+                          Payoff time
+                        </p>
+                        <p className="mt-1 text-lg font-extrabold text-slate-900">
+                          {payoffTimeLabel}
+                        </p>
+                        <p className="mt-1 rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-semibold text-emerald-700">
+                          {heroFasterLabel}
+                        </p>
+                      </div>
+                      <div className="px-3">
+                        <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-lg">
+                          💵
+                        </div>
+                        <p className="text-[11px] font-semibold text-slate-500">
+                          Interest saved
+                        </p>
+                        <p className="mt-1 text-lg font-extrabold text-slate-900">
+                          {formatMoney(interestSaved)}
+                        </p>
+                        <p className="mt-1 rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-semibold text-emerald-700">
+                          {heroInterestLabel}
+                        </p>
+                      </div>
+                      <div className="px-3">
+                        <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100 text-lg">
+                          📈
+                        </div>
+                        <p className="text-[11px] font-semibold text-slate-500">
+                          Payments avoided
+                        </p>
+                        <p className="mt-1 text-lg font-extrabold text-slate-900">
+                          {paymentsAvoided || 0}
+                        </p>
+                        <p className="mt-1 rounded-full bg-emerald-50 px-2 py-1 text-[10px] font-semibold text-emerald-700">
+                          {heroPaymentsLabel}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
