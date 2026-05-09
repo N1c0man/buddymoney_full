@@ -96,7 +96,7 @@ export default function ToolBudgetTrackerPage() {
         </script>
       </Helmet>
 
-      <main className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50/40 pt-4 pb-4">
+      <main className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50/40 pt-4 pb-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft px-5 py-7 md:px-8 md:py-8">
             <div className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl" />
@@ -152,6 +152,34 @@ export default function ToolBudgetTrackerPage() {
           />
 
           <BudgetTracker />
+
+          <section className="rounded-3xl border border-indigo-100 bg-indigo-50 p-5 shadow-sm md:p-6">
+            <p className="text-sm font-semibold text-indigo-700">
+              Smart money move
+            </p>
+
+            <h2 className="mt-2 text-xl font-bold text-slate-900">
+              Match your card to your spending
+            </h2>
+
+            <p className="mt-2 text-sm text-slate-700">
+              If most of your monthly spending goes toward groceries, gas,
+              dining, travel, or everyday bills, the right rewards card may help
+              you get more value from money you already spend.
+            </p>
+
+            <Link
+              to="/tools/credit-cards"
+              className="mt-4 inline-flex rounded-2xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-800"
+            >
+              Find cards by spending style
+            </Link>
+
+            <p className="mt-3 text-xs text-slate-500">
+              Rewards are only helpful when balances are paid responsibly.
+              BuddyMoney may earn a commission from some card partners.
+            </p>
+          </section>
 
           <section className="rounded-3xl border border-slate-200 bg-white shadow-sm px-5 py-6 md:px-8 md:py-8 space-y-6">
             <div>
