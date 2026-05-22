@@ -3,16 +3,13 @@
   "short_name": "BuddyMoney",
   "description": "Beginner-friendly financial tools, tips, and resources to budget, save, and grow.",
   "lang": "en-US",
-
-  "id": "/",
+  "id": "/app",
   "start_url": "/app",
   "scope": "/",
-
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#1e3a8a",
   "theme_color": "#1e3a8a",
-
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
@@ -37,15 +34,13 @@
       "purpose": "any maskable"
     }
   ],
-
   "categories": ["finance", "productivity"],
-
   "shortcuts": [
     {
       "name": "Open Budget Coach",
       "short_name": "Budget Coach",
       "description": "Get a quick, personalized budget breakdown.",
-      "url": "/coach",
+      "url": "/tools/budget-coach",
       "icons": [
         {
           "src": "/icons/icon-192x192.png",
@@ -58,7 +53,7 @@
       "name": "Mortgage Payoff Planner",
       "short_name": "Mortgage Payoff",
       "description": "See how extra payments cut years off your loan.",
-      "url": "/mortgage",
+      "url": "/tools/mortgage-payoff",
       "icons": [
         {
           "src": "/icons/icon-192x192.png",
@@ -71,7 +66,7 @@
       "name": "Credit Card Tool",
       "short_name": "Credit Card Finder",
       "description": "Find the right credit card for your money needs.",
-      "url": "/credit-cards",
+      "url": "/tools/credit-cards",
       "icons": [
         {
           "src": "/icons/icon-192x192.png",

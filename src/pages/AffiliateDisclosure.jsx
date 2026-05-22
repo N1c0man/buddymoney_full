@@ -3,14 +3,16 @@ import { Link } from "react-router-dom";
 import { setCanonical } from "../utils/seo";
 
 export default function AffiliateDisclosure() {
-  // SEO: title + meta description + canonical
   useEffect(() => {
     document.title = "Affiliate Disclosure | BuddyMoney";
 
     const content =
-      "Learn how BuddyMoney uses affiliate links and advertising, how we earn compensation, and why transparency matters for our free money tools and guides.";
+      "Learn how BuddyMoney uses affiliate links, educational finance content, advertising, and partner relationships across our website and app experience.";
 
-    let metaDescription = document.querySelector('meta[name="description"]');
+    let metaDescription = document.querySelector(
+      'meta[name="description"]'
+    );
+
     if (metaDescription) {
       metaDescription.setAttribute("content", content);
     } else {
@@ -20,8 +22,32 @@ export default function AffiliateDisclosure() {
       document.head.appendChild(metaDescription);
     }
 
-    // ✅ Canonical URL for /affiliate-disclosure
     setCanonical("/affiliate-disclosure");
+
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "Affiliate Disclosure | BuddyMoney",
+      url: "https://www.buddymoney.com/affiliate-disclosure",
+      description: content,
+      publisher: {
+        "@type": "Organization",
+        name: "BuddyMoney",
+        url: "https://www.buddymoney.com",
+      },
+      inLanguage: "en",
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.innerHTML = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+
+    return () => {
+      if (script && script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
   }, []);
 
   return (
@@ -31,7 +57,7 @@ export default function AffiliateDisclosure() {
       itemType="https://schema.org/WebPage"
     >
       <div className="max-w-3xl mx-auto px-6 py-12">
-        {/* Breadcrumb / Back link */}
+        {/* Back link */}
         <div className="mb-6">
           <Link
             to="/"
@@ -41,20 +67,27 @@ export default function AffiliateDisclosure() {
           </Link>
         </div>
 
-        {/* Page heading */}
+        {/* Header */}
         <header className="mb-8">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-emerald-500 mb-3">
+            Affiliate Disclosure
+          </p>
+
           <h1
             className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight"
             itemProp="headline"
           >
             Affiliate Disclosure
           </h1>
+
           <p
             className="mt-3 text-base text-slate-600 leading-relaxed"
             itemProp="description"
           >
             Transparency matters to us. This page explains how BuddyMoney earns
-            revenue and how affiliate links and advertising work on this site.
+            revenue and how affiliate links, educational finance content,
+            advertising, and partner relationships work across our website and
+            app experience.
           </p>
         </header>
 
@@ -64,17 +97,27 @@ export default function AffiliateDisclosure() {
             <h2 className="text-xl font-semibold text-slate-900 mb-2">
               Why you&apos;re seeing this disclosure
             </h2>
+
             <p>
-              BuddyMoney is a free resource that provides tools, calculators,
-              and educational content to help you make more confident money
-              decisions. To keep the site free to use, we sometimes earn
-              compensation when you click on certain links or sign up for
-              products we mention.
+              BuddyMoney is a free personal finance resource that provides
+              budgeting tools, calculators, educational guides, and app-based
+              finance experiences designed to help people make more informed
+              money decisions.
             </p>
+
             <p className="mt-3">
-              The U.S. Federal Trade Commission (FTC) and many of our partners
-              require that we clearly disclose these relationships. This page is
-              our plain-language explanation of how that works.
+              BuddyMoney may be accessed through our website, mobile-friendly
+              app experience, or progressive web app (PWA). To keep these tools
+              free to use, we may earn compensation when users click certain
+              links, view advertising, or apply for financial products through
+              partner websites.
+            </p>
+
+            <p className="mt-3">
+              The U.S. Federal Trade Commission (FTC) and many advertising and
+              affiliate partners require us to clearly disclose these
+              relationships. This page is our plain-language explanation of how
+              that works.
             </p>
           </div>
 
@@ -83,22 +126,28 @@ export default function AffiliateDisclosure() {
             <h2 className="text-xl font-semibold text-slate-900 mb-2">
               How affiliate links work on BuddyMoney
             </h2>
+
             <p>
               Some links on BuddyMoney are <strong>affiliate links</strong>.
               That means:
             </p>
+
             <ul className="mt-3 list-disc list-inside space-y-1">
               <li>
-                If you click an affiliate link and sign up or apply for a
-                product, we may earn a commission or referral fee.
+                If you click an affiliate link and sign up, apply, or complete
+                a qualifying action, BuddyMoney may earn a commission or
+                referral fee.
               </li>
+
               <li>
                 This compensation is paid by the company,{" "}
-                <strong>not by you</strong>. You don&apos;t pay anything extra.
+                <strong>not by you</strong>. Using our links generally does not
+                increase your cost.
               </li>
+
               <li>
-                In many cases, you may even receive a special bonus or promo for
-                using our link.
+                In some situations, affiliate links may include promotional
+                bonuses, rewards, or introductory offers from the provider.
               </li>
             </ul>
           </div>
@@ -108,18 +157,23 @@ export default function AffiliateDisclosure() {
             <h2 className="text-xl font-semibold text-slate-900 mb-2">
               Types of partners we may work with
             </h2>
-            <p>Over time, BuddyMoney may partner with companies such as:</p>
+
+            <p>
+              BuddyMoney may work with companies and networks such as:
+            </p>
+
             <ul className="mt-3 list-disc list-inside space-y-1">
-              <li>Credit card issuers and comparison sites</li>
+              <li>Credit card issuers and comparison platforms</li>
               <li>Personal loan and debt consolidation providers</li>
               <li>Banking apps and budgeting tools</li>
-              <li>Brokerages, savings, and investing platforms</li>
-              <li>Other financial products and services</li>
+              <li>Savings, investing, and brokerage platforms</li>
+              <li>Insurance or finance-related service providers</li>
+              <li>Advertising and analytics networks</li>
             </ul>
+
             <p className="mt-3">
-              We only consider partnerships with companies that we believe are
-              relevant to our audience and may be helpful for certain
-              situations.
+              We only consider partnerships that we believe may be relevant or
+              potentially useful to BuddyMoney users.
             </p>
           </div>
 
@@ -128,23 +182,52 @@ export default function AffiliateDisclosure() {
             <h2 className="text-xl font-semibold text-slate-900 mb-2">
               Our approach to recommendations
             </h2>
+
             <p>
-              Compensation from partners may influence <em>where</em> a product
-              appears on the site (for example, in a featured section), but it
-              does not change our core goal:
+              Compensation from partners may influence{" "}
+              <em>where</em> certain products or offers appear on BuddyMoney
+              (for example, in featured sections or highlighted placements).
             </p>
+
             <p className="mt-3">
-              <strong>
-                We aim to highlight tools and products that we genuinely believe
-                can help our readers.
-              </strong>
+              However, our goal is to create tools and educational resources
+              that are genuinely useful, beginner-friendly, and transparent.
             </p>
+
             <p className="mt-3">
-              However, nothing on BuddyMoney should be considered personalized
-              financial advice. Everyone&apos;s situation is different. Before
-              applying for any financial product, you should carefully review
-              the terms and consider whether it&apos;s right for you, and
-              consider speaking with a qualified professional if needed.
+              We aim to explain financial concepts in plain language and help
+              users compare options thoughtfully before making decisions.
+            </p>
+          </div>
+
+          {/* Educational use only */}
+          <div>
+            <h2 className="text-xl font-semibold text-slate-900 mb-2">
+              Educational information only
+            </h2>
+
+            <p>
+              BuddyMoney provides educational tools, calculators, guides, and
+              comparison content only. We are not a bank, lender, broker,
+              financial advisor, investment advisor, tax advisor, or legal
+              advisor.
+            </p>
+
+            <p className="mt-3">
+              Credit card approvals, interest rates, annual fees, rewards,
+              promotional offers, and account terms are determined solely by the
+              financial institution or provider — not by BuddyMoney.
+            </p>
+
+            <p className="mt-3">
+              Offers and product details may change without notice. Users should
+              always review official provider terms carefully before applying
+              for any financial product.
+            </p>
+
+            <p className="mt-3">
+              Nothing on BuddyMoney should be interpreted as personalized
+              financial, legal, tax, or investment advice.
             </p>
           </div>
 
@@ -153,16 +236,22 @@ export default function AffiliateDisclosure() {
             <h2 className="text-xl font-semibold text-slate-900 mb-2">
               Advertising and display ads
             </h2>
+
             <p>
-              In addition to affiliate links, BuddyMoney may display ads from
-              networks such as Google AdSense or other advertising partners.
-              These ads may be targeted based on your browsing behavior or other
-              factors, depending on your settings and consent.
+              BuddyMoney may display advertising through networks such as Google
+              AdSense or other advertising partners.
             </p>
+
             <p className="mt-3">
-              Display ads help support the costs of running this site (hosting,
-              development, design, and content creation) while keeping the tools
-              and articles free for you to use.
+              These ads may be personalized or targeted based on browsing
+              behavior, app activity, general location, or device information,
+              depending on your settings and applicable privacy controls.
+            </p>
+
+            <p className="mt-3">
+              Advertising revenue helps support hosting, development, app
+              improvements, content creation, and the continued availability of
+              BuddyMoney’s free tools and resources.
             </p>
           </div>
 
@@ -171,12 +260,33 @@ export default function AffiliateDisclosure() {
             <h2 className="text-xl font-semibold text-slate-900 mb-2">
               No extra cost to you
             </h2>
+
             <p>
-              Using our affiliate links{" "}
-              <strong>never increases your price</strong>. In many cases,
-              you&apos;ll see the same pricing you would get by going directly
-              to the company&apos;s website — or occasionally a better
-              promotional offer.
+              Using BuddyMoney affiliate links generally does{" "}
+              <strong>not increase your price</strong>.
+            </p>
+
+            <p className="mt-3">
+              In some situations, users may even receive special promotional
+              offers, welcome bonuses, or discounts through affiliate partners.
+            </p>
+          </div>
+
+          {/* Third-party responsibility */}
+          <div>
+            <h2 className="text-xl font-semibold text-slate-900 mb-2">
+              Third-party websites and services
+            </h2>
+
+            <p>
+              When you leave BuddyMoney and visit a partner or advertiser
+              website, you are subject to that third party’s own terms, privacy
+              policies, disclosures, and product conditions.
+            </p>
+
+            <p className="mt-3">
+              BuddyMoney is not responsible for third-party approvals, denials,
+              rates, product changes, website behavior, or account decisions.
             </p>
           </div>
 
@@ -185,28 +295,39 @@ export default function AffiliateDisclosure() {
             <h2 className="text-xl font-semibold text-slate-900 mb-2">
               Questions about this disclosure?
             </h2>
+
             <p>
-              If you have any questions about how BuddyMoney earns money, or if
-              you see a link that you believe should be disclosed differently,
-              please reach out. We take transparency seriously and are always
-              open to feedback.
+              If you have questions about how BuddyMoney earns revenue or how
+              affiliate relationships are presented, please contact us.
             </p>
+
             <p className="mt-3">
-              You can contact us using the information provided on our{" "}
-              <Link
-                to="/about"
-                className="text-green-700 font-semibold hover:text-green-800"
+              We value transparency and are always open to feedback from our
+              users.
+            </p>
+
+            <p className="mt-3">
+              Contact:{" "}
+              <a
+                href="mailto:support@buddymoney.com"
+                className="font-semibold text-emerald-700 underline underline-offset-2"
               >
-                About
-              </Link>{" "}
-              page.
+                support@buddymoney.com
+              </a>
             </p>
           </div>
 
-          {/* Last note */}
-          <p className="text-xs text-slate-500 mt-4">
+          {/* Last updated */}
+          <p className="text-xs text-slate-500">
+            Last updated: May 19, 2026
+          </p>
+
+          {/* Final disclaimer */}
+          <p className="text-xs text-slate-500 border-t border-slate-200 pt-4">
             This Affiliate Disclosure is provided for transparency and general
-            information only and is not legal or financial advice.
+            educational purposes only. BuddyMoney does not provide financial,
+            legal, tax, or investment advice. Always review official provider
+            terms before applying for financial products.
           </p>
         </section>
       </div>

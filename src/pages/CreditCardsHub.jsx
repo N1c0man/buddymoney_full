@@ -1,6 +1,6 @@
 // src/pages/CreditCardsHub.jsx
 import React, { useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import ShareBar from "../components/ShareBar";
 import { setCanonical } from "../utils/seo";
@@ -96,7 +96,64 @@ const FAQ_ITEMS = [
   },
 ];
 
+const INTENT_CONTENT = {
+  dining: {
+    eyebrow: "Dining Rewards",
+    title: "Earn rewards on dining, takeout, coffee runs, and everyday spending.",
+    description:
+      "Coming from the tip calculator? Start with cards that may reward restaurant, takeout, and everyday purchases so your normal spending can work harder.",
+    primaryCta: "See dining rewards cards →",
+    secondaryCta: "Compare cash back cards →",
+    secondaryPath: "/credit-cards/cash-back",
+  },
+  "low-interest": {
+    eyebrow: "Lower Interest Strategy",
+    title: "Compare 0% intro APR and low-interest card options.",
+    description:
+      "Coming from the debt payoff calculator? Focus on cards that may help reduce interest costs, especially if you have a clear payoff plan before the intro period ends.",
+    primaryCta: "See low-interest options →",
+    secondaryCta: "Learn about 0% APR cards →",
+    secondaryPath: "/credit-cards/0-apr",
+  },
+  rewards: {
+    eyebrow: "Rewards Match",
+    title: "Maximize rewards on the spending you already do.",
+    description:
+      "Coming from the budget tracker? Look for cards that match your real monthly spending categories like groceries, gas, dining, travel, or everyday bills.",
+    primaryCta: "Compare rewards cards →",
+    secondaryCta: "See cash back cards →",
+    secondaryPath: "/credit-cards/cash-back",
+  },
+  backup: {
+    eyebrow: "Emergency Backup",
+    title: "Find a practical card option to support your safety net.",
+    description:
+      "Coming from the emergency fund calculator? A credit card should not replace savings, but the right card may provide flexibility while you build your cash cushion.",
+    primaryCta: "Compare flexible card options →",
+    secondaryCta: "Build your emergency fund →",
+    secondaryPath: "/tools/emergency-fund",
+  },
+  lifestyle: {
+    eyebrow: "Everyday Spending",
+    title: "Get more value from meals, group plans, and everyday purchases.",
+    description:
+      "Coming from the bill splitter? Compare cards that may reward common spending like dining, groceries, travel, and shared outings.",
+    primaryCta: "Explore card options →",
+    secondaryCta: "See cash back cards →",
+    secondaryPath: "/credit-cards/cash-back",
+  },
+};
+
 export default function CreditCardsHub() {
+  const location = useLocation();
+
+  const type = useMemo(() => {
+    const params = new URLSearchParams(location.search);
+    return params.get("type");
+  }, [location.search]);
+
+  const activeIntent = INTENT_CONTENT[type] || null;
+
   useEffect(() => {
     setCanonical("/credit-cards");
     window.scrollTo(0, 0);
@@ -106,6 +163,30 @@ export default function CreditCardsHub() {
     "Compare Credit Cards for Bad Credit (2026) | Secured, 0% APR & Starter Cards";
   const pageDescription =
     "Compare credit cards for bad credit, beginners, and rebuilding. Find secured cards, 0% APR offers, and starter cards in one place.";
+
+  const heroEyebrow = activeIntent
+    ? activeIntent.eyebrow
+    : "BuddyMoney Credit Card Hub";
+
+  const heroTitle = activeIntent
+    ? activeIntent.title
+    : "Compare credit cards for bad credit, rebuilding credit, 0% APR, rewards, and first-time applicants.";
+
+  const heroDescription = activeIntent
+    ? activeIntent.description
+    : "Learn the basics before you apply. Explore beginner-friendly guides, compare common card categories, and use our credit card finder to understand credit profile, annual fee, rewards, and intro APR tradeoffs.";
+
+  const primaryCta = activeIntent
+    ? activeIntent.primaryCta
+    : "Open Credit Card Finder →";
+
+  const secondaryCta = activeIntent
+    ? activeIntent.secondaryCta
+    : "Start with secured cards →";
+
+  const secondaryPath = activeIntent
+    ? activeIntent.secondaryPath
+    : "/blog/best-secured-credit-cards/";
 
   const schemaOrg = useMemo(() => {
     return {
@@ -157,7 +238,10 @@ export default function CreditCardsHub() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
-        <meta property="og:url" content="https://www.buddymoney.com/credit-cards" />
+        <meta
+          property="og:url"
+          content="https://www.buddymoney.com/credit-cards"
+        />
         <meta
           property="og:image"
           content="https://www.buddymoney.com/icons/buddymoney-og-default.png"
@@ -193,19 +277,15 @@ export default function CreditCardsHub() {
               <div className="relative z-10 flex min-h-[360px] items-center px-5 py-8 md:min-h-[420px] md:px-8 lg:px-10">
                 <div className="max-w-2xl rounded-3xl bg-white/82 p-5 shadow-sm backdrop-blur-[2px] md:p-7">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
-                    BuddyMoney Credit Card Hub
+                    {heroEyebrow}
                   </p>
 
                   <h1 className="mt-3 text-3xl font-extrabold leading-tight text-brand-900 md:text-4xl">
-                    Compare credit cards for bad credit, rebuilding credit,
-                    0% APR, rewards, and first-time applicants.
+                    {heroTitle}
                   </h1>
 
                   <p className="mt-4 max-w-xl text-sm text-brand-900/90 md:text-base">
-                    Learn the basics before you apply. Explore beginner-friendly
-                    guides, compare common card categories, and use our credit
-                    card finder to understand credit profile, annual fee,
-                    rewards, and intro APR tradeoffs.
+                    {heroDescription}
                   </p>
 
                   <div className="mt-4 flex flex-wrap gap-2 text-[11px]">
@@ -222,13 +302,13 @@ export default function CreditCardsHub() {
                       to="/credit-cards/finder"
                       className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-emerald-700"
                     >
-                      Open Credit Card Finder →
+                      {primaryCta}
                     </Link>
                     <Link
-                      to="/blog/best-secured-credit-cards/"
+                      to={secondaryPath}
                       className="inline-flex items-center justify-center rounded-full border border-emerald-200 bg-white px-5 py-2 text-sm font-semibold text-emerald-700 hover:bg-emerald-50"
                     >
-                      Start with secured cards →
+                      {secondaryCta}
                     </Link>
                   </div>
                 </div>

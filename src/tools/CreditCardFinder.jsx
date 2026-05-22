@@ -1,7 +1,7 @@
 // src/tools/CreditCardFinder.jsx
 import React, { useEffect, useMemo, useState } from "react";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ShareBar from "../components/ShareBar";
 import AppBottomNav from "../components/AppBottomNav";
 import { setCanonical } from "../utils/seo";
@@ -105,13 +105,75 @@ const CARD_TYPE_LABELS = {
   student: "Student",
 };
 
+const INTENT_CONTENT = {
+  dining: {
+    eyebrow: "Dining Rewards Match",
+    title: "Find cards that may reward dining, takeout, and coffee runs.",
+    description:
+      "Coming from the tip calculator? Start with cards that may reward restaurant, takeout, coffee, and everyday purchases.",
+    cardType: "cashback",
+    annualFeeFilter: "any",
+  },
+  "low-interest": {
+    eyebrow: "Interest Savings Match",
+    title: "Compare cards that may help with interest and payoff planning.",
+    description:
+      "Coming from the debt payoff calculator? Start with cards that include intro APR language or lower-cost features while you build a payoff plan.",
+    cardType: "any",
+    annualFeeFilter: "any",
+  },
+  rewards: {
+    eyebrow: "Rewards Match",
+    title: "Match credit card rewards to your real monthly spending.",
+    description:
+      "Coming from the budget tracker? Compare cards that may fit everyday spending like groceries, gas, dining, travel, and bills.",
+    cardType: "cashback",
+    annualFeeFilter: "any",
+  },
+  backup: {
+    eyebrow: "Emergency Backup Match",
+    title: "Look for simple, flexible cards while you build savings.",
+    description:
+      "Coming from the emergency fund calculator? A card should not replace savings, but a no-fee card may provide flexibility while you build your cash cushion.",
+    cardType: "any",
+    annualFeeFilter: "no-fee",
+  },
+  lifestyle: {
+    eyebrow: "Everyday Spending Match",
+    title: "Get more value from meals, group plans, and everyday purchases.",
+    description:
+      "Coming from the bill splitter? Compare cards that may reward common spending like dining, groceries, travel, and shared outings.",
+    cardType: "cashback",
+    annualFeeFilter: "any",
+  },
+};
+
 export default function CreditCardFinder({ showAppBottomNav = false }) {
+  const location = useLocation();
+
+  const intentType = useMemo(() => {
+    const params = new URLSearchParams(location.search);
+    return params.get("type");
+  }, [location.search]);
+
+  const intentConfig = INTENT_CONTENT[intentType] || null;
+
   const [creditScore, setCreditScore] = useState("any");
   const [cardType, setCardType] = useState("any");
   const [annualFeeFilter, setAnnualFeeFilter] = useState("any");
   const [sortBy, setSortBy] = useState("featured");
   const [searchQuery, setSearchQuery] = useState("");
   const [compareIds, setCompareIds] = useState([]);
+
+  useEffect(() => {
+    if (!intentConfig) return;
+
+    setCreditScore("any");
+    setCardType(intentConfig.cardType || "any");
+    setAnnualFeeFilter(intentConfig.annualFeeFilter || "any");
+    setSortBy("featured");
+    setSearchQuery("");
+  }, [intentConfig]);
 
   useEffect(() => {
     setCanonical("/tools/credit-cards");
@@ -193,19 +255,44 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
       });
     }
 
-    if (sortBy === "annualFeeLow") {
+    if (intentType === "low-interest") {
+      cards.sort((a, b) => {
+        const aHasIntro = a.introApr && a.introApr !== "N/A" ? 1 : 0;
+        const bHasIntro = b.introApr && b.introApr !== "N/A" ? 1 : 0;
+        return bHasIntro - aHasIntro;
+      });
+    } else if (sortBy === "annualFeeLow") {
       cards.sort((a, b) => a.annualFee - b.annualFee);
     } else if (sortBy === "annualFeeHigh") {
       cards.sort((a, b) => b.annualFee - a.annualFee);
     }
 
     return cards;
-  }, [creditScore, cardType, annualFeeFilter, sortBy, searchQuery]);
+  }, [
+    creditScore,
+    cardType,
+    annualFeeFilter,
+    sortBy,
+    searchQuery,
+    intentType,
+  ]);
 
   const pageTitle =
     "Credit Card Finder: Compare Cards by Credit Score, Type & Fee | BuddyMoney";
   const pageDescription =
     "Use BuddyMoney’s educational credit card finder to compare sample cards by credit score, card type, and annual fee. Helpful for beginners, rebuilding credit, travel rewards, and balance transfer research.";
+
+  const heroEyebrow = intentConfig
+    ? intentConfig.eyebrow
+    : "Credit Card Finder";
+
+  const heroTitle = intentConfig
+    ? intentConfig.title
+    : "Compare credit cards without the confusing noise.";
+
+  const heroDescription = intentConfig
+    ? intentConfig.description
+    : "Explore sample credit cards by credit score, card type, annual fee, APR, rewards, and perks. Built for beginners, credit rebuilders, and people who want to compare before applying.";
 
   const activeFiltersCount =
     (creditScore !== "any" ? 1 : 0) +
@@ -261,20 +348,18 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
             <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)] md:items-center">
               <div className="space-y-4">
                 <p className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
-                  Credit Card Finder
+                  {heroEyebrow}
                   <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">
                     Educational Tool
                   </span>
                 </p>
 
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-                  Compare credit cards without the confusing noise.
+                  {heroTitle}
                 </h1>
 
                 <p className="text-sm md:text-base text-brand-800/80 max-w-xl">
-                  Explore sample credit cards by credit score, card type, annual
-                  fee, APR, rewards, and perks. Built for beginners, credit
-                  rebuilders, and people who want to compare before applying.
+                  {heroDescription}
                 </p>
 
                 <div className="flex flex-wrap gap-2 text-xs">
@@ -288,6 +373,16 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
                     Partner offers coming later
                   </span>
                 </div>
+
+                {intentConfig && (
+                  <div className="rounded-2xl border border-emerald-100 bg-white/80 px-4 py-3 text-xs text-emerald-900">
+                    <p className="font-semibold">Personalized starting point</p>
+                    <p className="mt-1">
+                      BuddyMoney adjusted the filters based on the tool you
+                      came from. You can change or reset them anytime.
+                    </p>
+                  </div>
+                )}
 
                 <p className="text-[12px] text-slate-700">
                   Want broader context first? Visit the{" "}
@@ -373,7 +468,9 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
 
               <div className="flex justify-between text-sm">
                 <span className="text-slate-300">Selected to compare</span>
-                <span className="font-semibold">{selectedForCompare.length}/3</span>
+                <span className="font-semibold">
+                  {selectedForCompare.length}/3
+                </span>
               </div>
 
               <div className="border-t border-white/10 pt-3 flex justify-between items-center">
