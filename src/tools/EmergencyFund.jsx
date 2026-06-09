@@ -4,16 +4,19 @@ import { Link } from "react-router-dom";
 const STORAGE_KEY = "bm_emergency_fund";
 
 export default function EmergencyFund() {
-  const [monthly, setMonthly] = useState(0);
-  const [months, setMonths] = useState(3);
+  const [monthlyInput, setMonthlyInput] = useState("");
+  const [monthsInput, setMonthsInput] = useState("3");
+
+  const monthly = parseFloat(monthlyInput) || 0;
+  const months = parseFloat(monthsInput) || 0;
 
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
       if (!saved) return;
 
-      setMonthly(saved.monthly ?? 0);
-      setMonths(saved.months ?? 3);
+      setMonthlyInput(saved.monthly ? String(saved.monthly) : "");
+      setMonthsInput(saved.months ? String(saved.months) : "3");
     } catch {
       // Ignore broken saved data safely.
     }
@@ -24,18 +27,18 @@ export default function EmergencyFund() {
       localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify({
-          monthly,
-          months,
+          monthly: monthlyInput,
+          months: monthsInput,
         })
       );
     } catch {
       // Tool still works if localStorage is unavailable.
     }
-  }, [monthly, months]);
+  }, [monthlyInput, monthsInput]);
 
   const handleReset = () => {
-    setMonthly(0);
-    setMonths(3);
+    setMonthlyInput("");
+    setMonthsInput("3");
 
     try {
       localStorage.removeItem(STORAGE_KEY);
@@ -48,7 +51,6 @@ export default function EmergencyFund() {
 
   return (
     <section className="space-y-6">
-      {/* Header Controls */}
       <div className="flex justify-end">
         <button
           type="button"
@@ -59,7 +61,6 @@ export default function EmergencyFund() {
         </button>
       </div>
 
-      {/* Inputs */}
       <div className="grid gap-4 md:grid-cols-2">
         <div>
           <label className="block text-sm font-medium text-slate-600 mb-1">
@@ -69,8 +70,8 @@ export default function EmergencyFund() {
             type="number"
             className="w-full border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
             placeholder="2500"
-            value={monthly}
-            onChange={(e) => setMonthly(parseFloat(e.target.value || 0))}
+            value={monthlyInput}
+            onChange={(e) => setMonthlyInput(e.target.value)}
           />
         </div>
 
@@ -82,13 +83,12 @@ export default function EmergencyFund() {
             type="number"
             className="w-full border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
             placeholder="3"
-            value={months}
-            onChange={(e) => setMonths(parseFloat(e.target.value || 0))}
+            value={monthsInput}
+            onChange={(e) => setMonthsInput(e.target.value)}
           />
         </div>
       </div>
 
-      {/* Summary Panel */}
       <div className="bg-black text-white rounded-2xl p-5 space-y-3">
         <div className="flex justify-between text-sm">
           <span className="text-slate-300">Monthly expenses</span>
@@ -97,7 +97,9 @@ export default function EmergencyFund() {
 
         <div className="flex justify-between text-sm">
           <span className="text-slate-300">Coverage</span>
-          <span className="font-semibold">{months} months</span>
+          <span className="font-semibold">
+            {monthsInput ? `${months} months` : "—"}
+          </span>
         </div>
 
         <div className="border-t border-white/10 pt-3 flex justify-between items-center">
@@ -108,7 +110,6 @@ export default function EmergencyFund() {
         </div>
       </div>
 
-      {/* Progress */}
       {monthly > 0 && months > 0 && (
         <div>
           <div className="flex justify-between text-xs text-slate-600 mb-1">
@@ -127,7 +128,6 @@ export default function EmergencyFund() {
         </div>
       )}
 
-      {/* Helper */}
       {monthly > 0 && months > 0 ? (
         <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-4 text-sm text-emerald-800">
           Saving <span className="font-semibold">${fund.toFixed(2)}</span>{" "}
@@ -140,7 +140,6 @@ export default function EmergencyFund() {
         </div>
       )}
 
-      {/* --- SEO CONTENT (LIGHTER + CLEANER) --- */}
       <div className="pt-4 space-y-6 border-t border-slate-100">
         <div className="grid gap-4 md:grid-cols-2">
           <div className="rounded-xl border border-slate-200 bg-white p-4">
@@ -169,7 +168,6 @@ export default function EmergencyFund() {
           </div>
         </div>
 
-        {/* Internal links */}
         <div className="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4">
           <h3 className="text-sm font-semibold text-slate-900 mb-2">
             Related guides

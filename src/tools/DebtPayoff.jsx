@@ -3,18 +3,22 @@ import React, { useEffect, useState } from "react";
 const STORAGE_KEY = "bm_debt_payoff";
 
 export default function DebtPayoff() {
-  const [amount, setAmount] = useState(0);
-  const [rate, setRate] = useState(0);
-  const [payment, setPayment] = useState(0);
+  const [amountInput, setAmountInput] = useState("");
+  const [rateInput, setRateInput] = useState("");
+  const [paymentInput, setPaymentInput] = useState("");
+
+  const amount = parseFloat(amountInput) || 0;
+  const rate = parseFloat(rateInput) || 0;
+  const payment = parseFloat(paymentInput) || 0;
 
   useEffect(() => {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
       if (!saved) return;
 
-      setAmount(saved.amount ?? 0);
-      setRate(saved.rate ?? 0);
-      setPayment(saved.payment ?? 0);
+      setAmountInput(saved.amount ? String(saved.amount) : "");
+      setRateInput(saved.rate ? String(saved.rate) : "");
+      setPaymentInput(saved.payment ? String(saved.payment) : "");
     } catch {
       // If saved data is broken, ignore it safely.
     }
@@ -25,20 +29,20 @@ export default function DebtPayoff() {
       localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify({
-          amount,
-          rate,
-          payment,
+          amount: amountInput,
+          rate: rateInput,
+          payment: paymentInput,
         })
       );
     } catch {
       // If localStorage is unavailable, the tool still works.
     }
-  }, [amount, rate, payment]);
+  }, [amountInput, rateInput, paymentInput]);
 
   const handleReset = () => {
-    setAmount(0);
-    setRate(0);
-    setPayment(0);
+    setAmountInput("");
+    setRateInput("");
+    setPaymentInput("");
 
     try {
       localStorage.removeItem(STORAGE_KEY);
@@ -74,7 +78,6 @@ export default function DebtPayoff() {
       id="debt"
       className="bg-white rounded-3xl p-6 shadow-md border border-slate-200 space-y-6"
     >
-      {/* Header */}
       <div className="flex items-start justify-between gap-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
@@ -95,7 +98,6 @@ export default function DebtPayoff() {
         </button>
       </div>
 
-      {/* Inputs */}
       <div className="grid gap-4 md:grid-cols-3">
         <div>
           <label className="block text-sm font-medium text-slate-600 mb-1">
@@ -105,8 +107,8 @@ export default function DebtPayoff() {
             type="number"
             className="w-full border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
             placeholder="4500"
-            value={amount}
-            onChange={(e) => setAmount(parseFloat(e.target.value || 0))}
+            value={amountInput}
+            onChange={(e) => setAmountInput(e.target.value)}
           />
         </div>
 
@@ -118,8 +120,8 @@ export default function DebtPayoff() {
             type="number"
             className="w-full border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
             placeholder="18"
-            value={rate}
-            onChange={(e) => setRate(parseFloat(e.target.value || 0))}
+            value={rateInput}
+            onChange={(e) => setRateInput(e.target.value)}
           />
         </div>
 
@@ -131,13 +133,12 @@ export default function DebtPayoff() {
             type="number"
             className="w-full border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
             placeholder="150"
-            value={payment}
-            onChange={(e) => setPayment(parseFloat(e.target.value || 0))}
+            value={paymentInput}
+            onChange={(e) => setPaymentInput(e.target.value)}
           />
         </div>
       </div>
 
-      {/* Error */}
       {tooLowPayment && (
         <div className="rounded-2xl bg-rose-50 border border-rose-200 p-4 text-sm text-rose-700">
           Your payment is too low to cover the monthly interest. Increase your
@@ -145,7 +146,6 @@ export default function DebtPayoff() {
         </div>
       )}
 
-      {/* Summary Panel */}
       <div className="bg-black text-white rounded-2xl p-5 space-y-3">
         <div className="flex justify-between text-sm">
           <span className="text-slate-300">Time to pay off</span>
@@ -169,7 +169,6 @@ export default function DebtPayoff() {
         </div>
       </div>
 
-      {/* Helper */}
       {months > 0 && !tooLowPayment ? (
         <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-4 text-sm text-emerald-800">
           You’ll be debt-free in{" "}

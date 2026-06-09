@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 
 export default function SavingsGoal() {
-  const [goal, setGoal] = useState(0);
-  const [months, setMonths] = useState(0);
+  const [goalInput, setGoalInput] = useState("");
+  const [monthsInput, setMonthsInput] = useState("");
+
+  const goal = parseFloat(goalInput) || 0;
+  const months = parseFloat(monthsInput) || 0;
 
   const monthly = months > 0 ? goal / months : 0;
 
@@ -32,8 +35,8 @@ export default function SavingsGoal() {
             type="number"
             className="w-full border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
             placeholder="5000"
-            value={goal}
-            onChange={(e) => setGoal(parseFloat(e.target.value || 0))}
+            value={goalInput}
+            onChange={(e) => setGoalInput(e.target.value)}
           />
         </div>
 
@@ -45,8 +48,8 @@ export default function SavingsGoal() {
             type="number"
             className="w-full border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
             placeholder="12"
-            value={months}
-            onChange={(e) => setMonths(parseFloat(e.target.value || 0))}
+            value={monthsInput}
+            onChange={(e) => setMonthsInput(e.target.value)}
           />
         </div>
       </div>
@@ -61,7 +64,7 @@ export default function SavingsGoal() {
         <div className="flex justify-between text-sm">
           <span className="text-slate-300">Timeline</span>
           <span className="font-semibold">
-            {months > 0 ? `${months} months` : "0 months"}
+            {months > 0 ? `${months} months` : "—"}
           </span>
         </div>
 

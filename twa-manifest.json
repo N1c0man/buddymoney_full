@@ -1,0 +1,67 @@
+{
+  "packageId": "com.buddymoney.app",
+  "host": "www.buddymoney.com",
+  "name": "BuddyMoney",
+  "launcherName": "BuddyMoney",
+  "display": "standalone",
+  "themeColor": "#1E3A8A",
+  "themeColorDark": "#000000",
+  "navigationColor": "#000000",
+  "navigationColorDark": "#000000",
+  "navigationDividerColor": "#000000",
+  "navigationDividerColorDark": "#000000",
+  "backgroundColor": "#1E3A8A",
+  "enableNotifications": true,
+  "startUrl": "/app",
+  "iconUrl": "https://www.buddymoney.com/icons/icon-512x512.png",
+  "maskableIconUrl": "https://www.buddymoney.com/icons/icon-512x512.png",
+  "monochromeIconUrl": "https://www.buddymoney.com/icons/icon-512x512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "C:\\buddymoney_full\\buddymoney_full\\android.keystore",
+    "alias": "buddymoney"
+  },
+  "appVersionName": "1",
+  "appVersionCode": 1,
+  "shortcuts": [
+    {
+      "name": "Open Budget Coach",
+      "shortName": "Budget Coach",
+      "url": "https://www.buddymoney.com/tools/budget-coach",
+      "chosenIconUrl": "https://www.buddymoney.com/icons/icon-192x192.png"
+    },
+    {
+      "name": "Mortgage Payoff Planner",
+      "shortName": "Mortgage Payoff",
+      "url": "https://www.buddymoney.com/tools/mortgage-payoff",
+      "chosenIconUrl": "https://www.buddymoney.com/icons/icon-192x192.png"
+    },
+    {
+      "name": "Credit Card Tool",
+      "shortName": "Credit Card Finder",
+      "url": "https://www.buddymoney.com/tools/credit-cards",
+      "chosenIconUrl": "https://www.buddymoney.com/icons/icon-192x192.png"
+    }
+  ],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://www.buddymoney.com/site.webmanifest",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://www.buddymoney.com/",
+  "minSdkVersion": 21,
+  "orientation": "portrait-primary",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "protocolHandlers": [],
+  "fileHandlers": [],
+  "launchHandlerClientMode": "",
+  "displayOverride": [],
+  "appVersion": "1"
+}
