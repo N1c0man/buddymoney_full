@@ -292,5 +292,19 @@
   "date": "2026-03-25",
   "heroImage": "/icons/should-you-pay-off-your-mortgage-early-hero.png",
   "heroImageAlt": "Homeowner reviewing mortgage payoff options and extra payment strategies"
+},
+{
+  "slug": "minimum-payment-credit-card",
+  "title": "What Happens If You Only Make the Minimum Payment on a Credit Card?",
+  "tag": "Credit Cards",
+  "level": "Beginner",
+  "readTime": "7 min read",
+  "excerpt": "Learn what happens when you only make the minimum payment on a credit card, how long debt can take to repay, and how to pay it off faster.",
+  "file": "/posts/minimum-payment-credit-card.md",
+  "author": "BuddyMoney Editorial",
+  "authorAvatar": "/icons/editorial.png",
+  "date": "2026-06-12",
+  "heroImage": "/icons/hero-minimum-payment-credit-card.png",
+  "heroImageAlt": "Credit card statement showing a minimum payment and growing interest charges"
 }
 ]

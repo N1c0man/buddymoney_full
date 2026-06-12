@@ -590,5 +590,27 @@
     "question": "Do secured credit cards check your credit?",
     "answer": "Some secured credit cards perform a credit check, but approval is typically much easier than with unsecured cards because your deposit reduces the lender’s risk."
   }
+],
+"minimum-payment-credit-card": [
+  {
+    "question": "Is it bad to only make the minimum payment on a credit card?",
+    "answer": "It is not bad for avoiding late fees, but it can be very expensive over time because interest keeps building."
+  },
+  {
+    "question": "Will paying only the minimum hurt my credit score?",
+    "answer": "Paying the minimum on time protects your payment history, but a high balance can hurt your credit utilization."
+  },
+  {
+    "question": "Why do credit card companies allow minimum payments?",
+    "answer": "Minimum payments keep your account current while allowing the lender to collect interest over time."
+  },
+  {
+    "question": "What is the fastest way to pay off credit card debt?",
+    "answer": "Pay more than the minimum, stop adding new charges, and focus extra payments on your highest-interest debt."
+  },
+  {
+    "question": "Should I use a debt payoff calculator?",
+    "answer": "Yes. A calculator can show how long payoff may take and how much interest you could save by paying extra."
+  }
 ]
 }
