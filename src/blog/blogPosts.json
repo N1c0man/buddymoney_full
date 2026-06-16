@@ -306,5 +306,19 @@
   "date": "2026-06-12",
   "heroImage": "/icons/hero-minimum-payment-credit-card.png",
   "heroImageAlt": "Credit card statement showing a minimum payment and growing interest charges"
+},
+{
+  "slug": "how-to-rebuild-credit-with-a-secured-credit-card",
+  "title": "How to Rebuild Credit With a Secured Credit Card (Step-by-Step)",
+  "tag": "Credit Cards",
+  "level": "Beginner",
+  "readTime": "8 min read",
+  "excerpt": "Learn how to rebuild your credit with a secured credit card, improve your credit score, and avoid common mistakes that slow your progress.",
+  "file": "/posts/how-to-rebuild-credit-with-a-secured-credit-card.md",
+  "author": "BuddyMoney Editorial",
+  "authorAvatar": "/icons/editorial.png",
+  "date": "2026-06-15",
+  "heroImage": "/icons/hero-rebuild-credit-secured-card.png",
+  "heroImageAlt": "Person rebuilding credit score using a secured credit card while BuddyMoney owl guides the process"
 }
 ]
