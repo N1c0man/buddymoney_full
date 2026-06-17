@@ -145,6 +145,7 @@ export default function MortgagePayoff() {
     "Use BuddyMoney’s free Mortgage Payoff Calculator to see how extra monthly payments and bi-weekly strategies can reduce your payoff time and total interest.";
 
   const canonicalUrl = buildUrl("/mortgage");
+  const ogImage = buildUrl("/icons/og-mortgage-payoff.png");
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -615,9 +616,15 @@ export default function MortgagePayoff() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:site_name" content="BuddyMoney" />
-        <meta name="twitter:card" content="summary" />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:alt" content="BuddyMoney Mortgage Payoff Calculator showing how extra payments can save interest and pay off a mortgage faster" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
+        <meta name="twitter:image:alt" content="BuddyMoney Mortgage Payoff Calculator showing how extra payments can save interest and pay off a mortgage faster" />
 
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
