@@ -99,6 +99,15 @@
     "url": "/blog/how-much-emergency-fund/"
   },
   {
+    "slug": "how-to-rebuild-credit-with-a-secured-credit-card",
+    "title": "How to Rebuild Credit With a Secured Credit Card (Step-by-Step)",
+    "description": "Learn how to rebuild your credit with a secured credit card, how long it takes, and the mistakes that can slow down your progress.",
+    "date": "",
+    "image": "/og-image.jpg",
+    "file": "/posts/how-to-rebuild-credit-with-a-secured-credit-card.md",
+    "url": "/blog/how-to-rebuild-credit-with-a-secured-credit-card/"
+  },
+  {
     "slug": "how-to-start-a-budget-in-10-minutes",
     "title": "How to Start a Budget in 10 Minutes",
     "description": "A quick-start budgeting method that helps you give every dollar a job — without stress or spreadsheets.",
@@ -106,6 +115,15 @@
     "image": "/icons/quick-budget-hero.png",
     "file": "/posts/how-to-start-a-budget-in-10-minutes.md",
     "url": "/blog/how-to-start-a-budget-in-10-minutes/"
+  },
+  {
+    "slug": "minimum-payment-credit-card",
+    "title": "What Happens If You Only Make the Minimum Payment on a Credit Card?",
+    "description": "Learn what happens when you only make the minimum payment on a credit card, how long debt can take to repay, and how to pay it off faster.",
+    "date": "2026-06-12",
+    "image": "/icons/hero-minimum-payment-credit-card.png",
+    "file": "/posts/minimum-payment-credit-card.md",
+    "url": "/blog/minimum-payment-credit-card/"
   },
   {
     "slug": "protect-your-money-uncertain-times",
