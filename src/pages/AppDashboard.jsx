@@ -13,7 +13,7 @@ export default function AppDashboard() {
         <title>BuddyMoney App | Quick Money Tools</title>
         <meta
           name="description"
-          content="Open quick BuddyMoney tools like the bill splitter and tip calculator, budget coach, debt payoff estimator, and mortgage payoff calculator."
+          content="Open quick BuddyMoney tools like the monthly payment calculator, bill splitter and tip calculator, budget coach, budget tracker, debt payoff estimator, emergency fund calculator, and mortgage payoff calculator."
         />
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
@@ -46,6 +46,14 @@ export default function AppDashboard() {
 
           <div className="grid grid-cols-1 gap-3">
             <ToolLink
+              to="/tools/monthly-payment-calculator"
+              icon="🧮"
+              title="Monthly Payment Calculator"
+              text="Estimate payments before you borrow."
+              large
+            />
+
+            <ToolLink
               to="/tools/bill-splitter"
               icon="🧾"
               title="Bill Splitter & Tip Calculator"
@@ -69,10 +77,24 @@ export default function AppDashboard() {
             />
 
             <ToolLink
+              to="/tools/budget-tracker"
+              icon="💰"
+              title="Budget Tracker"
+              text="Track income and spending."
+            />
+
+            <ToolLink
               to="/tools/debt-payoff"
               icon="🎯"
               title="Debt Payoff Estimator"
               text="See your payoff path."
+            />
+
+            <ToolLink
+              to="/tools/emergency-fund"
+              icon="🛟"
+              title="Emergency Fund Calculator"
+              text="Plan your cash cushion."
             />
 
             <ToolLink
@@ -111,7 +133,11 @@ function ToolLink({ to, icon, title, text, large = false }) {
           : "group block rounded-2xl bg-white border border-slate-200 px-4 py-4 shadow-sm hover:shadow-md transition active:scale-[0.99]"
       }
     >
-      <div className={large ? "flex items-center gap-4" : "flex items-center gap-3"}>
+      <div
+        className={
+          large ? "flex items-center gap-4" : "flex items-center gap-3"
+        }
+      >
         <div
           className={
             large
@@ -123,7 +149,13 @@ function ToolLink({ to, icon, title, text, large = false }) {
         </div>
 
         <div className="flex-1">
-          <h3 className={large ? "text-lg font-bold text-slate-900" : "font-semibold text-slate-900"}>
+          <h3
+            className={
+              large
+                ? "text-lg font-bold text-slate-900"
+                : "font-semibold text-slate-900"
+            }
+          >
             {title}
           </h3>
           <p className="text-sm text-slate-600">{text}</p>
