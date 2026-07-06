@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 // Components
@@ -47,6 +47,48 @@ import GoOffer from "./pages/GoOffer";
 
 export default function App() {
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 600);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          fontFamily: "Arial, sans-serif",
+          textAlign: "center",
+          color: "#1e3a8a",
+          background: "#ffffff",
+          padding: "24px",
+        }}
+      >
+        <img
+          src="/icons/icon-192x192.png"
+          alt="BuddyMoney Owl"
+          width="96"
+          height="96"
+          style={{ marginBottom: "20px" }}
+        />
+
+        <h1 style={{ margin: 0 }}>BuddyMoney</h1>
+
+        <p style={{ marginTop: "12px", maxWidth: "320px" }}>
+          Simple tools to help you budget, save, and pay off debt.
+        </p>
+      </div>
+    );
+  }
 
   const isAppOnlyRoute =
     location.pathname === "/app" ||
