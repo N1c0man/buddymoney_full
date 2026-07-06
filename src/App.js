@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 
 // Components
 import ScrollToTop from "./components/ScrollToTop";
@@ -22,7 +22,7 @@ import ToolEmergencyFundPage from "./pages/ToolEmergencyFundPage";
 import ToolDebtPayoffPage from "./pages/ToolDebtPayoffPage";
 import ToolBudgetTrackerPage from "./pages/ToolBudgetTrackerPage";
 import ToolBillSplitterPage from "./pages/ToolBillSplitterPage";
-import ToolTipCalculatorPage from "./pages/ToolTipCalculatorPage";
+import ToolMonthlyPaymentPage from "./pages/ToolMonthlyPaymentPage";
 
 // Blog system
 import BlogList from "./blog/BlogList";
@@ -91,8 +91,7 @@ export default function App() {
   }
 
   const isAppOnlyRoute =
-    location.pathname === "/app" ||
-    location.pathname.startsWith("/tools/");
+    location.pathname === "/app" || location.pathname.startsWith("/tools/");
 
   // =========================
   // APP-ONLY (NO NAVBAR)
@@ -107,46 +106,57 @@ export default function App() {
 
           {/* App-only aliases */}
           <Route
-  path="/tools/budget-coach"
-  element={
-    <>
-      <BudgetCoachPage />
-      <AppBottomNav />
-    </>
-  }
-/>
+            path="/tools/budget-coach"
+            element={
+              <>
+                <BudgetCoachPage />
+                <AppBottomNav />
+              </>
+            }
+          />
 
-<Route
-  path="/tools/mortgage-payoff"
-  element={
-    <>
-      <MortgagePayoff />
-      <AppBottomNav />
-    </>
-  }
-/>
+          <Route
+            path="/tools/mortgage-payoff"
+            element={
+              <>
+                <MortgagePayoff />
+                <AppBottomNav />
+              </>
+            }
+          />
 
           {/* App tools */}
           <Route
             path="/tools/credit-cards"
             element={<CreditCardFinder showAppBottomNav />}
           />
+
+          <Route
+            path="/tools/monthly-payment-calculator"
+            element={<ToolMonthlyPaymentPage />}
+          />
+
           <Route
             path="/tools/emergency-fund"
             element={<ToolEmergencyFundPage />}
           />
+
           <Route path="/tools/debt-payoff" element={<ToolDebtPayoffPage />} />
+
           <Route
             path="/tools/budget-tracker"
             element={<ToolBudgetTrackerPage />}
           />
+
           <Route
             path="/tools/bill-splitter"
             element={<ToolBillSplitterPage />}
           />
+
+          {/* Keep old tip calculator URL working safely */}
           <Route
             path="/tools/tip-calculator"
-            element={<ToolTipCalculatorPage />}
+            element={<Navigate to="/tools/bill-splitter" replace />}
           />
         </Routes>
       </>
