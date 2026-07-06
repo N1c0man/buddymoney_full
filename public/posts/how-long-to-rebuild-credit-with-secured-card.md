@@ -133,6 +133,17 @@ The key is using it as a credit-building tool — not as extra money to spend.
 
 ---
 
+## More Secured Credit Card Resources
+
+Building credit is a process, and choosing the right starting point matters.
+
+You may also find these BuddyMoney guides helpful:
+
+- [Can you get a secured credit card with no deposit?](/blog/secured-credit-card-no-deposit)
+- [What credit score do you need for a secured credit card?](/blog/credit-score-needed-for-secured-credit-cards)
+
+Learning how secured cards work can help you avoid surprises and build stronger financial habits.
+
 ## Final Thoughts
 
 Rebuilding credit takes patience, but small consistent actions matter.

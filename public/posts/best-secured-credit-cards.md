@@ -189,6 +189,16 @@ Typically $200–$500.
 
 ---
 
+## More Secured Credit Card Resources
+
+If you are researching secured cards, these BuddyMoney guides can help answer common questions:
+
+- [Can you get a secured credit card with no deposit?](/blog/secured-credit-card-no-deposit)
+- [What credit score do you need for a secured credit card?](/blog/credit-score-needed-for-secured-credit-cards)
+- [How long does it take to rebuild credit with a secured credit card?](/blog/how-long-to-rebuild-credit-with-secured-card)
+
+Learning about deposits, approval requirements, and timelines can help you choose a credit-building option that works for you.
+
 ## Final Thoughts
 
 A secured credit card is one of the safest ways to rebuild credit.

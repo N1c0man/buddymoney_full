@@ -59,6 +59,15 @@ The goal is not just getting approved.
 
 The goal is building positive credit history.
 
+## Learn More About Rebuilding Credit
+
+If you are new to secured cards, you may also want to learn:
+
+- [What credit score do you need for a secured credit card?](/blog/credit-score-needed-for-secured-credit-cards)
+- [How long does it take to rebuild credit with a secured credit card?](/blog/how-long-to-rebuild-credit-with-secured-card)
+
+These guides explain approval requirements, timelines, and smart habits that can help you build credit step by step.
+
 ## How Do Secured Cards Help Rebuild Credit?
 
 A secured credit card can help because many issuers report your activity to the major credit bureaus.
