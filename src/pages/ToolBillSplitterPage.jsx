@@ -11,10 +11,10 @@ export default function ToolBillSplitterPage() {
   return (
     <div className="min-h-screen bg-slate-50 px-4 py-8 pb-24">
       <Helmet>
-        <title>Bill Splitter | BuddyMoney</title>
+        <title>Bill Splitter & Tip Calculator | BuddyMoney</title>
         <meta
           name="description"
-          content="Split a bill quickly with BuddyMoney's free bill splitter tool."
+          content="Split a bill, add a tip, and see what each person owes with BuddyMoney's free bill splitter and tip calculator."
         />
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
@@ -25,10 +25,10 @@ export default function ToolBillSplitterPage() {
             BuddyMoney Tool
           </p>
           <h1 className="text-3xl font-bold text-slate-900 mt-2">
-            Bill Splitter
+            Bill Splitter & Tip Calculator
           </h1>
           <p className="text-slate-600 mt-2">
-            Split a bill with friends, family, or coworkers in seconds.
+            Split a bill, add a tip, and see what everyone owes in seconds.
           </p>
         </section>
 
@@ -61,18 +61,8 @@ export default function ToolBillSplitterPage() {
             BuddyMoney may earn a commission from some card partners.
           </p>
         </section>
-
-        <div className="mt-5 text-center">
-          <Link
-            to="/tools/tip-calculator"
-            className="text-sm font-semibold text-sky-700 hover:text-sky-900"
-          >
-            Just need a quick tip? Open Tip Calculator →
-          </Link>
-        </div>
       </main>
 
-      {/* App Bottom Nav */}
       <AppBottomNav />
     </div>
   );

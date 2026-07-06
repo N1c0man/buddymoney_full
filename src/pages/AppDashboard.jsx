@@ -13,7 +13,7 @@ export default function AppDashboard() {
         <title>BuddyMoney App | Quick Money Tools</title>
         <meta
           name="description"
-          content="Open quick BuddyMoney tools like the tip calculator, bill splitter, budget coach, debt payoff estimator, and mortgage payoff calculator."
+          content="Open quick BuddyMoney tools like the bill splitter and tip calculator, budget coach, debt payoff estimator, and mortgage payoff calculator."
         />
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
@@ -46,18 +46,10 @@ export default function AppDashboard() {
 
           <div className="grid grid-cols-1 gap-3">
             <ToolLink
-              to="/tools/tip-calculator"
-              icon="💸"
-              title="Tip Calculator"
-              text="Calculate tips fast."
-              large
-            />
-
-            <ToolLink
               to="/tools/bill-splitter"
               icon="🧾"
-              title="Split a Bill"
-              text="Share costs with friends."
+              title="Bill Splitter & Tip Calculator"
+              text="Split bills and calculate tips fast."
               large
             />
           </div>

@@ -21,12 +21,15 @@ export default function BillSplitter() {
         <p className="text-xs font-semibold uppercase tracking-wide text-sky-600">
           BuddyMoney Tool
         </p>
+
         <h2 className="text-2xl font-bold text-slate-900 mt-1 flex items-center gap-2">
           <span>🧾</span>
-          Bill Splitter
+          Bill Splitter & Tip Calculator
         </h2>
+
         <p className="text-sm text-slate-600 mt-2">
-          Add the bill, choose a tip, and see what each person pays.
+          Enter your bill, choose a tip, split the total, and see exactly what
+          everyone owes.
         </p>
       </div>
 
@@ -35,10 +38,12 @@ export default function BillSplitter() {
         <span className="block text-sm font-semibold text-slate-700 mb-2">
           Total bill
         </span>
+
         <div className="relative">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">
             $
           </span>
+
           <input
             type="number"
             inputMode="decimal"
@@ -89,6 +94,7 @@ export default function BillSplitter() {
         <span className="block text-sm font-semibold text-slate-700 mb-2">
           Split between
         </span>
+
         <input
           type="number"
           inputMode="numeric"
@@ -107,23 +113,25 @@ export default function BillSplitter() {
         </div>
 
         <div className="flex justify-between gap-4 py-2 border-b border-white/10">
-          <span className="text-slate-300">Tip ({Number(tip) || 0}%)</span>
+          <span className="text-slate-300">
+            Tip ({Number(tip) || 0}%)
+          </span>
           <strong>${tipAmount.toFixed(2)}</strong>
         </div>
 
         <div className="flex justify-between gap-4 py-2 border-b border-white/10">
-          <span className="text-slate-300">Total</span>
+          <span className="text-slate-300">Total with tip</span>
           <strong>${totalWithTip.toFixed(2)}</strong>
         </div>
 
         <div className="flex justify-between gap-4 py-3 text-lg font-bold">
-          <span className="text-slate-200">Per person</span>
+          <span className="text-slate-200">Each person pays</span>
           <strong>${each.toFixed(2)}</strong>
         </div>
 
-        <div className="text-xs text-slate-400 mt-2">
+        <p className="text-xs text-slate-400 mt-2">
           Split between {splitBy} {splitBy === 1 ? "person" : "people"}
-        </div>
+        </p>
       </div>
     </section>
   );
