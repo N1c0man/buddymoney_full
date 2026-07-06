@@ -1,0 +1,72 @@
+# BuddyMoney
+
+BuddyMoney is a beginner-friendly personal finance website that helps people budget, save money, understand debt, compare credit card topics, and make smarter financial decisions.
+
+Website:
+https://www.buddymoney.com
+
+## Main Sections
+
+Home:
+https://www.buddymoney.com
+
+Money Tools:
+https://www.buddymoney.com/tools
+
+Budget Coach:
+https://www.buddymoney.com/coach
+
+Mortgage Payoff Calculator:
+https://www.buddymoney.com/mortgage
+
+Credit Cards Hub:
+https://www.buddymoney.com/credit-cards
+
+Blog and Guides:
+https://www.buddymoney.com/blog
+
+## Key Tools
+
+Monthly Payment Calculator:
+https://www.buddymoney.com/tools/monthly-payment-calculator
+
+Emergency Fund Estimator:
+https://www.buddymoney.com/tools/emergency-fund
+
+Debt Payoff Planner:
+https://www.buddymoney.com/tools/debt-payoff
+
+Budget Tracker:
+https://www.buddymoney.com/tools/budget-tracker
+
+Bill Splitter:
+https://www.buddymoney.com/tools/bill-splitter
+
+Credit Card Finder:
+https://www.buddymoney.com/tools/credit-cards
+
+## Main Topics
+
+BuddyMoney covers:
+- Budgeting
+- Saving money
+- Emergency funds
+- Debt payoff
+- Credit cards
+- Secured credit cards
+- Credit rebuilding
+- Mortgage payoff strategies
+- Beginner personal finance education
+
+## Audience
+
+BuddyMoney is designed for beginners who want simple explanations, free tools, and practical steps to improve their money situation.
+
+## Editorial Notes
+
+BuddyMoney content is educational and informational. It is not personalized financial, legal, or tax advice.
+
+Important pages for trust and transparency:
+https://www.buddymoney.com/privacy
+https://www.buddymoney.com/terms
+https://www.buddymoney.com/affiliate-disclosure
