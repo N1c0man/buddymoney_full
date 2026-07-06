@@ -16,6 +16,7 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import AffiliateDisclosure from "./pages/AffiliateDisclosure";
 import AppDashboard from "./pages/AppDashboard";
+import NotFound from "./pages/NotFound";
 
 // Standalone tool pages
 import ToolEmergencyFundPage from "./pages/ToolEmergencyFundPage";
@@ -104,7 +105,6 @@ export default function App() {
         <Routes>
           <Route path="/app" element={<AppDashboard />} />
 
-          {/* App-only aliases */}
           <Route
             path="/tools/budget-coach"
             element={
@@ -125,7 +125,6 @@ export default function App() {
             }
           />
 
-          {/* App tools */}
           <Route
             path="/tools/credit-cards"
             element={<CreditCardFinder showAppBottomNav />}
@@ -153,11 +152,13 @@ export default function App() {
             element={<ToolBillSplitterPage />}
           />
 
-          {/* Keep old tip calculator URL working safely */}
           <Route
             path="/tools/tip-calculator"
             element={<Navigate to="/tools/bill-splitter" replace />}
           />
+
+          {/* 404 fallback for app/tools routes */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </>
     );
@@ -171,16 +172,13 @@ export default function App() {
       <ScrollToTop />
 
       <Routes>
-        {/* Main pages */}
         <Route path={ROUTES.home} element={<Home />} />
         <Route path={ROUTES.tools} element={<Tools />} />
         <Route path={ROUTES.about} element={<About />} />
 
-        {/* Website versions */}
         <Route path={ROUTES.coach} element={<BudgetCoachPage />} />
         <Route path={ROUTES.mortgage} element={<MortgagePayoff />} />
 
-        {/* Credit cards */}
         <Route path={ROUTES.creditCardsHub} element={<CreditCardsHub />} />
         <Route path="/credit-cards/finder" element={<CreditCardFinder />} />
 
@@ -205,20 +203,20 @@ export default function App() {
           element={<BestStudentCards />}
         />
 
-        {/* Blog */}
         <Route path={ROUTES.blogList} element={<BlogList />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
 
-        {/* Affiliate */}
         <Route path="/go/:key" element={<GoOffer />} />
 
-        {/* Legal */}
         <Route path={ROUTES.privacy} element={<Privacy />} />
         <Route path={ROUTES.terms} element={<Terms />} />
         <Route
           path={ROUTES.affiliateDisclosure}
           element={<AffiliateDisclosure />}
         />
+
+        {/* 404 fallback for website routes */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </MainLayout>
   );
