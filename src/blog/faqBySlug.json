@@ -656,5 +656,23 @@
     "question": "Do you have to carry a balance on a secured card to build credit?",
     "answer": "No. Carrying a balance is not required to build credit. You can use the card for small purchases and pay the balance in full each month while still building payment history."
   }
+],
+"secured-credit-card-no-deposit": [
+  {
+    "question": "Can you get a secured credit card with no deposit?",
+    "answer": "Most traditional secured credit cards require a refundable security deposit. However, some credit-building products advertise no upfront deposit or alternative approval methods."
+  },
+  {
+    "question": "Why do secured credit cards require a deposit?",
+    "answer": "The deposit helps protect the card issuer and often determines your credit limit. Many secured card deposits are refundable when the account is closed in good standing or upgraded."
+  },
+  {
+    "question": "What can I use instead of a secured card if I cannot afford a deposit?",
+    "answer": "Alternatives may include lower-deposit secured cards, credit-builder products, or becoming an authorized user when appropriate."
+  },
+  {
+    "question": "Do secured credit cards help rebuild credit?",
+    "answer": "Secured credit cards can help rebuild credit when the issuer reports to credit bureaus and the cardholder makes payments on time while keeping balances low."
+  }
 ]
 }
