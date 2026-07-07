@@ -3,6 +3,7 @@ const path = require("path");
 const matter = require("gray-matter");
 const { marked } = require("marked");
 const faqBySlug = require("../src/blog/faqBySlug.json");
+const blogPosts = require("../src/blog/blogPosts.json");
 
 marked.setOptions({
   gfm: true,
@@ -839,13 +840,30 @@ function run() {
     const { data, content } = matter(raw);
 
     const slug = data.slug || file.replace(/\.md$/, "");
-    const title = data.title || slug.replace(/-/g, " ");
+    const postMeta = blogPosts.find((post) => post.slug === slug) || {};
+
+    const title = postMeta.title || data.title || slug.replace(/-/g, " ");
     const description =
-      data.description || data.excerpt || `Read ${title} on BuddyMoney.`;
-    const date = data.date || "";
-    const image = data.image || data.heroImage || "/og-image.jpg";
-    const heroImageAlt = data.heroImageAlt || data.imageAlt || title;
-    const tag = data.tag || "";
+      postMeta.excerpt ||
+      data.description ||
+      data.excerpt ||
+      `Read ${title} on BuddyMoney.`;
+
+    const date = postMeta.date || data.date || "";
+
+    const image =
+      postMeta.heroImage ||
+      data.image ||
+      data.heroImage ||
+      "/og-image.jpg";
+
+    const heroImageAlt =
+      postMeta.heroImageAlt ||
+      data.heroImageAlt ||
+      data.imageAlt ||
+      title;
+
+    const tag = postMeta.tag || data.tag || "";
 
     const contentHtml = removeFirstH1(marked.parse(content));
     const html = buildHtml({
