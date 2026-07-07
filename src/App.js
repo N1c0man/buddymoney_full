@@ -24,6 +24,8 @@ import ToolDebtPayoffPage from "./pages/ToolDebtPayoffPage";
 import ToolBudgetTrackerPage from "./pages/ToolBudgetTrackerPage";
 import ToolBillSplitterPage from "./pages/ToolBillSplitterPage";
 import ToolMonthlyPaymentPage from "./pages/ToolMonthlyPaymentPage";
+import SavingsGoalPlanner from "./pages/SavingsGoalPlanner";
+import NetWorthTracker from "./pages/NetWorthTracker";
 
 // Blog system
 import BlogList from "./blog/BlogList";
@@ -156,6 +158,9 @@ export default function App() {
             path="/tools/tip-calculator"
             element={<Navigate to="/tools/bill-splitter" replace />}
           />
+
+          <Route path="/tools/savings-goal" element={<SavingsGoalPlanner />} />
+          <Route path="/tools/net-worth" element={<NetWorthTracker />} />
 
           {/* 404 fallback for app/tools routes */}
           <Route path="*" element={<NotFound />} />

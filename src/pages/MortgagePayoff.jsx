@@ -750,7 +750,7 @@ export default function MortgagePayoff() {
             title="Mortgage Payoff Calculator – BuddyMoney"
           />
 
-          <section className="rounded-3xl border border-slate-200 bg-white shadow-md px-4 py-6 md:px-8 md:py-8 space-y-8">
+          <section className="rounded-3xl border border-emerald-100 bg-white/95 shadow-sm px-4 py-6 md:px-8 md:py-8 space-y-8">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div>
                 <h2 className="text-xl md:text-2xl font-extrabold text-slate-900">
@@ -821,7 +821,7 @@ export default function MortgagePayoff() {
               </p>
             </div>
 
-            <div className="bg-black text-white rounded-2xl p-5 space-y-3">
+            <div className="rounded-3xl bg-gradient-to-br from-emerald-600 to-sky-600 p-5 text-white shadow-md space-y-3">
               <div className="flex justify-between text-sm">
                 <span className="text-slate-300">Monthly payment</span>
                 <span className="font-semibold">{formatMoney(basePayment)}</span>
@@ -1232,7 +1232,7 @@ function InputBox({ label, value, onChange }) {
       <input
         type="text"
         inputMode="decimal"
-        className="w-full rounded-xl border border-slate-300 px-4 py-3 text-base bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
+        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base shadow-sm outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
         value={String(value ?? "")}
         onChange={(e) => {
           let raw = e.target.value.replace(/[^0-9.]/g, "");
@@ -1278,8 +1278,8 @@ function ScenarioCard({ title, description, metrics, onClick }) {
 
       <button
         type="button"
-        onClick={onClick}
-        className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+        className="rounded-2xl border border-emerald-200 bg-white px-4 py-2 text-xs font-bold text-emerald-700 shadow-sm hover:bg-emerald-50"
+        
       >
         Set from current values
       </button>

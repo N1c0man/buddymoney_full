@@ -260,9 +260,9 @@ export default function CreditCardsHub() {
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
       </Helmet>
 
-      <main className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50/40 pb-16 pt-4">
+      <main className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-sky-50 pb-16 pt-4">
         <div className="mx-auto max-w-6xl space-y-6 px-4 sm:px-6 lg:px-8">
-          <section className="overflow-hidden rounded-3xl border border-emerald-100 bg-white shadow-soft">
+          <section className="overflow-hidden rounded-3xl border border-emerald-100 bg-white shadow-sm">
             <div className="relative min-h-[360px] md:min-h-[420px]">
               <img
                 src="/icons/hero-credit-cards-hub.png"
@@ -325,7 +325,7 @@ export default function CreditCardsHub() {
                 We focus on clarity, not commissions.
               </div>
 
-              <div className="rounded-3xl border border-emerald-100 bg-white px-5 py-5 shadow-sm">
+              <div className="rounded-3xl border border-emerald-100 bg-gradient-to-br from-white to-emerald-50/60 px-5 py-5 shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
@@ -542,7 +542,7 @@ export default function CreditCardsHub() {
                   to={item.path}
                   className={`group flex flex-col justify-between rounded-3xl border p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${
                     item.id === "finder"
-                      ? "border-emerald-300 bg-emerald-50/70 hover:bg-white"
+                      ? "border-emerald-200 bg-gradient-to-br from-emerald-50 to-sky-50 hover:bg-white"
                       : "border-slate-200 bg-white hover:border-emerald-200"
                   }`}
                 >
@@ -555,7 +555,7 @@ export default function CreditCardsHub() {
                         {item.title}
                       </h3>
                     </div>
-                    <span className="rounded-full bg-slate-900 px-2.5 py-1 text-[10px] font-semibold text-white shadow-sm">
+                    <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-semibold text-emerald-700">
                       {item.badge}
                     </span>
                   </div>

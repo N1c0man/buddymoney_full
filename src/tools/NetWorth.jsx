@@ -39,165 +39,165 @@ export default function NetWorth() {
   return (
     <section
       id="networth"
-      className="bg-white rounded-3xl p-6 shadow-md border border-slate-200 space-y-6"
+      className="rounded-3xl border border-emerald-100 bg-white/95 p-5 shadow-sm md:p-6 space-y-6"
     >
-      {/* Header */}
-      <div>
-        <h2 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-          📊 Net Worth Tracker
+      <div className="rounded-2xl border border-emerald-100 bg-gradient-to-br from-emerald-50 via-white to-sky-50 p-5">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+          BuddyMoney Tool
+        </p>
+
+        <h2 className="mt-2 text-2xl font-extrabold text-slate-900">
+          Net Worth Tracker
         </h2>
-        <p className="text-sm text-slate-500 mt-1 max-w-md">
-          Track everything you own and owe to see your full financial picture.
+
+        <p className="mt-2 text-sm text-slate-600 max-w-2xl">
+          Add what you own and what you owe to see your full money picture in
+          one simple snapshot.
         </p>
       </div>
 
-      {/* GRID */}
-      <div className="grid md:grid-cols-2 gap-6">
-        {/* ASSETS */}
-        <div className="space-y-3">
-          <h3 className="font-semibold text-slate-900">Assets</h3>
+      <div className="grid gap-5 md:grid-cols-2">
+        <MoneyList
+          title="Assets"
+          namePlaceholder="Savings, investments..."
+          valuePlaceholder="Value"
+          nameValue={an}
+          amountValue={av}
+          onNameChange={(e) => setAn(e.target.value)}
+          onAmountChange={(e) => setAv(e.target.value)}
+          onAdd={handleAddAsset}
+          items={assets}
+          emptyText="No assets yet."
+          total={ta}
+          onRemove={handleRemoveAsset}
+        />
 
-          <div className="flex gap-2">
-            <input
-              className="flex-1 border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
-              placeholder="Savings, investments..."
-              value={an}
-              onChange={(e) => setAn(e.target.value)}
-            />
-            <input
-              type="number"
-              className="w-32 border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
-              placeholder="Value"
-              value={av}
-              onChange={(e) => setAv(e.target.value)}
-            />
-            <button
-              className="px-4 py-3 bg-emerald-600 text-white rounded-xl font-semibold hover:bg-emerald-500"
-              onClick={handleAddAsset}
-            >
-              Add
-            </button>
-          </div>
-
-          {assets.length === 0 ? (
-            <div className="border border-dashed border-slate-300 rounded-xl p-3 text-sm text-slate-500">
-              No assets yet.
-            </div>
-          ) : (
-            <ul className="divide-y text-sm">
-              {assets.map((a, i) => (
-                <li key={i} className="flex justify-between py-2">
-                  <span>{a.n}</span>
-                  <div className="flex gap-3">
-                    <span>${a.v.toFixed(2)}</span>
-                    <button
-                      className="text-xs text-slate-400 hover:text-rose-500"
-                      onClick={() => handleRemoveAsset(i)}
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          <div className="text-sm font-medium text-slate-700">
-            Total: ${ta.toFixed(2)}
-          </div>
-        </div>
-
-        {/* LIABILITIES */}
-        <div className="space-y-3">
-          <h3 className="font-semibold text-slate-900">Liabilities</h3>
-
-          <div className="flex gap-2">
-            <input
-              className="flex-1 border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
-              placeholder="Credit card, loan..."
-              value={ln}
-              onChange={(e) => setLn(e.target.value)}
-            />
-            <input
-              type="number"
-              className="w-32 border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
-              placeholder="Amount"
-              value={lv}
-              onChange={(e) => setLv(e.target.value)}
-            />
-            <button
-              className="px-4 py-3 bg-emerald-600 text-white rounded-xl font-semibold hover:bg-emerald-500"
-              onClick={handleAddLiab}
-            >
-              Add
-            </button>
-          </div>
-
-          {liabs.length === 0 ? (
-            <div className="border border-dashed border-slate-300 rounded-xl p-3 text-sm text-slate-500">
-              No liabilities yet.
-            </div>
-          ) : (
-            <ul className="divide-y text-sm">
-              {liabs.map((l, i) => (
-                <li key={i} className="flex justify-between py-2">
-                  <span>{l.n}</span>
-                  <div className="flex gap-3">
-                    <span>${l.v.toFixed(2)}</span>
-                    <button
-                      className="text-xs text-slate-400 hover:text-rose-500"
-                      onClick={() => handleRemoveLiab(i)}
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-
-          <div className="text-sm font-medium text-slate-700">
-            Total: ${tl.toFixed(2)}
-          </div>
-        </div>
+        <MoneyList
+          title="Liabilities"
+          namePlaceholder="Credit card, loan..."
+          valuePlaceholder="Amount"
+          nameValue={ln}
+          amountValue={lv}
+          onNameChange={(e) => setLn(e.target.value)}
+          onAmountChange={(e) => setLv(e.target.value)}
+          onAdd={handleAddLiab}
+          items={liabs}
+          emptyText="No liabilities yet."
+          total={tl}
+          onRemove={handleRemoveLiab}
+        />
       </div>
 
-      {/* SUMMARY PANEL */}
-      <div className="bg-black text-white rounded-2xl p-5 space-y-3">
-        <div className="flex justify-between text-sm">
-          <span className="text-slate-300">Assets</span>
-          <span>${ta.toFixed(2)}</span>
+      <div className="rounded-3xl bg-gradient-to-br from-emerald-600 to-sky-600 p-5 text-white shadow-md">
+        <p className="text-sm font-semibold text-white/80">
+          Your net worth snapshot
+        </p>
+
+        <div className="mt-4 grid gap-3 sm:grid-cols-3">
+          <SummaryItem label="Assets" value={`$${ta.toFixed(2)}`} />
+          <SummaryItem label="Liabilities" value={`$${tl.toFixed(2)}`} />
+          <SummaryItem label="Net worth" value={`$${nw.toFixed(2)}`} />
         </div>
 
-        <div className="flex justify-between text-sm">
-          <span className="text-slate-300">Liabilities</span>
-          <span>${tl.toFixed(2)}</span>
+        <div className="mt-5 rounded-2xl bg-white/15 p-4">
+          <p className="text-sm text-white/85">
+            {nw > 0
+              ? "You’re in positive territory — keep building."
+              : nw < 0
+              ? "You owe more than you own right now. That’s okay — this is how progress starts."
+              : "Your assets and liabilities are balanced."}
+          </p>
         </div>
-
-        <div className="border-t border-white/10 pt-3 flex justify-between items-center">
-          <span className="text-slate-300">Net worth</span>
-          <span
-            className={`text-lg font-bold ${
-              nw > 0
-                ? "text-emerald-400"
-                : nw < 0
-                ? "text-rose-400"
-                : "text-white"
-            }`}
-          >
-            ${nw.toFixed(2)}
-          </span>
-        </div>
-      </div>
-
-      {/* Helper */}
-      <div className="rounded-2xl border border-slate-200 p-4 text-sm text-slate-600">
-        {nw > 0
-          ? "You’re in positive territory—keep building."
-          : nw < 0
-          ? "You owe more than you own right now. That’s okay—this is how progress starts."
-          : "Your assets and liabilities are balanced."}
       </div>
     </section>
+  );
+}
+
+function MoneyList({
+  title,
+  namePlaceholder,
+  valuePlaceholder,
+  nameValue,
+  amountValue,
+  onNameChange,
+  onAmountChange,
+  onAdd,
+  items,
+  emptyText,
+  total,
+  onRemove,
+}) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 space-y-4">
+      <h3 className="font-bold text-slate-900">{title}</h3>
+
+      <div className="grid gap-2 sm:grid-cols-[minmax(0,1fr)_120px_auto]">
+        <input
+          className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base shadow-sm outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
+          placeholder={namePlaceholder}
+          value={nameValue}
+          onChange={onNameChange}
+        />
+
+        <input
+          type="number"
+          className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base shadow-sm outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
+          placeholder={valuePlaceholder}
+          value={amountValue}
+          onChange={onAmountChange}
+        />
+
+        <button
+          type="button"
+          className="rounded-2xl bg-emerald-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-500 active:scale-[0.98]"
+          onClick={onAdd}
+        >
+          Add
+        </button>
+      </div>
+
+      {items.length === 0 ? (
+        <div className="rounded-2xl border border-dashed border-slate-300 bg-white p-4 text-sm text-slate-500">
+          {emptyText}
+        </div>
+      ) : (
+        <ul className="divide-y divide-slate-200 text-sm">
+          {items.map((item, i) => (
+            <li key={i} className="flex justify-between gap-3 py-3">
+              <span className="font-semibold text-slate-800">{item.n}</span>
+
+              <div className="flex items-center gap-3">
+                <span className="tabular-nums font-semibold text-slate-800">
+                  ${item.v.toFixed(2)}
+                </span>
+
+                <button
+                  type="button"
+                  className="text-xs font-semibold text-slate-400 transition hover:text-rose-500"
+                  onClick={() => onRemove(i)}
+                >
+                  Remove
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <div className="rounded-2xl bg-white px-4 py-3 text-sm font-bold text-slate-800 shadow-sm">
+        Total: ${total.toFixed(2)}
+      </div>
+    </div>
+  );
+}
+
+function SummaryItem({ label, value }) {
+  return (
+    <div className="rounded-2xl bg-white/15 p-4">
+      <p className="text-xs font-semibold uppercase tracking-wide text-white/70">
+        {label}
+      </p>
+      <p className="mt-1 text-lg font-extrabold tabular-nums">{value}</p>
+    </div>
   );
 }

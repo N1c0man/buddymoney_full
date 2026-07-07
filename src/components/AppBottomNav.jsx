@@ -7,7 +7,7 @@ export default function AppBottomNav() {
     { to: "/tools", label: "Tools", icon: "🧰" },
     { to: "/tools/budget-coach", label: "Coach", icon: "🦉" },
     { to: "/blog", label: "Learn", icon: "📚" },
- ];
+  ];
 
   return (
     <>

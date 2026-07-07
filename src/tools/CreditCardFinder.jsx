@@ -338,16 +338,15 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
         <script type="application/ld+json">{JSON.stringify(schemaOrg)}</script>
       </Helmet>
 
-      <main className="min-h-screen bg-gradient-to-b from-green-50 via-white to-emerald-50/40 pb-16 pt-4">
+      <main className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-sky-50 pb-16 pt-4">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 sm:px-6 lg:px-8">
-          {/* Hero */}
-          <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 px-5 py-6 shadow-soft md:px-8 md:py-8">
+          <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-sky-50 px-5 py-6 shadow-sm md:px-8 md:py-8">
             <div className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl" />
 
             <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)] md:items-center">
               <div className="space-y-4">
-                <p className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700">
+                <p className="inline-flex items-center gap-2 rounded-2xl bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 shadow-sm">
                   {heroEyebrow}
                   <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">
                     Educational Tool
@@ -375,7 +374,7 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
                 </div>
 
                 {intentConfig && (
-                  <div className="rounded-2xl border border-emerald-100 bg-white/80 px-4 py-3 text-xs text-emerald-900">
+                  <div className="rounded-2xl border border-emerald-100 bg-white/80 px-4 py-3 text-xs text-emerald-900 shadow-sm">
                     <p className="font-semibold">Personalized starting point</p>
                     <p className="mt-1">
                       BuddyMoney adjusted the filters based on the tool you
@@ -403,7 +402,7 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
                 </p>
               </div>
 
-              <div className="rounded-2xl bg-white/90 backdrop-blur-sm border border-emerald-100 shadow-soft px-5 py-4 text-sm text-slate-800 space-y-3">
+              <div className="rounded-2xl bg-white/90 backdrop-blur-sm border border-emerald-100 shadow-sm px-5 py-4 text-sm text-slate-800 space-y-3">
                 <p className="text-xs font-semibold text-slate-700">
                   How to use it
                 </p>
@@ -427,8 +426,7 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
             title="I’m using BuddyMoney’s credit card finder to explore card options."
           />
 
-          {/* Who it's for */}
-          <section className="rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8 space-y-4">
+          <section className="rounded-3xl border border-emerald-100 bg-white/95 shadow-sm px-4 py-6 md:px-6 md:py-8 space-y-4">
             <div>
               <h2 className="text-lg font-bold text-slate-900">
                 Who this tool is for
@@ -457,31 +455,28 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
             </div>
           </section>
 
-          {/* Finder */}
-          <section className="space-y-6 rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8">
-            {/* Status panel */}
-            <div className="bg-black text-white rounded-2xl p-5 space-y-3">
+          <section className="space-y-6 rounded-3xl border border-emerald-100 bg-white/95 shadow-sm px-4 py-6 md:px-6 md:py-8">
+            <div className="rounded-3xl bg-gradient-to-br from-emerald-600 to-sky-600 p-5 text-white shadow-md space-y-3">
               <div className="flex justify-between text-sm">
-                <span className="text-slate-300">Cards showing</span>
+                <span className="text-white/75">Cards showing</span>
                 <span className="font-semibold">{filteredCards.length}</span>
               </div>
 
               <div className="flex justify-between text-sm">
-                <span className="text-slate-300">Selected to compare</span>
+                <span className="text-white/75">Selected to compare</span>
                 <span className="font-semibold">
                   {selectedForCompare.length}/3
                 </span>
               </div>
 
-              <div className="border-t border-white/10 pt-3 flex justify-between items-center">
-                <span className="text-sm text-slate-300">Mode</span>
-                <span className="text-lg font-bold text-emerald-400">
+              <div className="border-t border-white/15 pt-3 flex justify-between items-center">
+                <span className="text-sm text-white/75">Mode</span>
+                <span className="text-lg font-bold text-white">
                   Educational preview
                 </span>
               </div>
             </div>
 
-            {/* Filters */}
             <div className="rounded-2xl border border-slate-100 bg-slate-50/70 p-4 sm:p-5 space-y-4">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
@@ -504,7 +499,7 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
                   <button
                     type="button"
                     onClick={resetFilters}
-                    className="text-xs font-semibold text-emerald-700 hover:text-emerald-800"
+                    className="rounded-2xl border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-slate-600 shadow-sm transition hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
                   >
                     Reset
                   </button>
@@ -527,13 +522,13 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
                 />
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-600 mb-1">
+                  <label className="block text-sm font-semibold text-slate-700 mb-1">
                     Annual fee
                   </label>
                   <select
                     value={annualFeeFilter}
                     onChange={(e) => setAnnualFeeFilter(e.target.value)}
-                    className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 shadow-sm outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
                   >
                     <option value="any">Any annual fee</option>
                     <option value="no-fee">No annual fee</option>
@@ -543,13 +538,13 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-slate-600 mb-1">
+                  <label className="block text-sm font-semibold text-slate-700 mb-1">
                     Sort by
                   </label>
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 shadow-sm outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
                   >
                     <option value="featured">Featured</option>
                     <option value="annualFeeLow">Lowest annual fee</option>
@@ -558,7 +553,7 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
                 </div>
 
                 <div className="md:col-span-2 lg:col-span-1">
-                  <label className="block text-sm font-medium text-slate-600 mb-1">
+                  <label className="block text-sm font-semibold text-slate-700 mb-1">
                     Search
                   </label>
                   <input
@@ -566,13 +561,12 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Card or bank"
-                    className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:ring-2 focus:ring-emerald-500"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 shadow-sm outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
                   />
                 </div>
               </div>
             </div>
 
-            {/* Results */}
             <div className="space-y-3">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <p className="text-xs text-slate-500">
@@ -630,8 +624,7 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
             </div>
           </section>
 
-          {/* Educational content */}
-          <section className="rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8 space-y-5">
+          <section className="rounded-3xl border border-emerald-100 bg-white/95 shadow-sm px-4 py-6 md:px-6 md:py-8 space-y-5">
             <div>
               <h2 className="text-lg font-bold text-slate-900">
                 How to compare credit cards without guessing
@@ -709,13 +702,13 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
 function FilterSelect({ label, value, onChange, options }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-slate-600 mb-1">
+      <label className="block text-sm font-semibold text-slate-700 mb-1">
         {label}
       </label>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-800 outline-none focus:ring-2 focus:ring-emerald-500"
+        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 shadow-sm outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
       >
         {Object.entries(options).map(([optionValue, optionLabel]) => (
           <option key={optionValue} value={optionValue}>
@@ -748,10 +741,10 @@ function InfoCard({ tone, title, text }) {
 
 function ComparePanel({ cards, onClear }) {
   return (
-    <section className="mt-4 space-y-3 rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-4">
+    <section className="mt-4 space-y-3 rounded-2xl border border-emerald-100 bg-emerald-50/60 px-4 py-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">
             Compare cards
           </p>
           <p className="text-xs text-slate-600">
@@ -763,7 +756,7 @@ function ComparePanel({ cards, onClear }) {
         <button
           type="button"
           onClick={onClear}
-          className="text-xs font-semibold text-emerald-700 hover:text-emerald-800"
+          className="rounded-2xl border border-slate-200 bg-white px-4 py-2 text-xs font-bold text-slate-600 shadow-sm transition hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
         >
           Clear comparison
         </button>
@@ -895,10 +888,10 @@ function CardResult({ card, isSelected, onToggleCompare }) {
           <button
             type="button"
             onClick={onToggleCompare}
-            className={`inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-semibold ${
+            className={`inline-flex items-center gap-1 rounded-2xl border px-3 py-1 text-xs font-semibold transition ${
               isSelected
                 ? "border-emerald-500 bg-emerald-50 text-emerald-700"
-                : "border-slate-200 bg-white text-slate-600 hover:border-emerald-400 hover:text-emerald-700"
+                : "border-slate-200 bg-white text-slate-600 hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-700"
             }`}
           >
             {isSelected ? "In compare" : "Compare"}
@@ -912,7 +905,7 @@ function CardResult({ card, isSelected, onToggleCompare }) {
           <span className="rounded-full bg-slate-50 px-2.5 py-1 text-[11px] font-medium text-slate-600">
             {CREDIT_SCORE_LABELS[creditScore] || "Any credit score"}
           </span>
-          <span className="rounded-full bg-slate-900 px-2.5 py-1 text-[11px] font-semibold text-white">
+          <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-[11px] font-semibold text-emerald-700">
             {annualFeeLabel}
           </span>
         </div>
@@ -964,7 +957,7 @@ function CardResult({ card, isSelected, onToggleCompare }) {
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1"
+            className="inline-flex items-center justify-center rounded-2xl bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-1"
           >
             Apply now
           </a>
@@ -972,7 +965,7 @@ function CardResult({ card, isSelected, onToggleCompare }) {
           <button
             type="button"
             disabled
-            className="inline-flex items-center justify-center rounded-full border border-dashed border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-500"
+            className="inline-flex items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-500"
           >
             Apply link coming soon
           </button>

@@ -32,7 +32,7 @@ function CoachInput({ label, value, onChange, placeholder }) {
       <input
         type="text"
         inputMode="decimal"
-        className="w-full border border-slate-300 rounded-xl px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-emerald-500"
+        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base shadow-sm outline-none transition focus:border-emerald-400 focus:ring-4 focus:ring-emerald-100"
         value={value}
         onChange={(e) => onChange(sanitizeDecimalInput(e.target.value))}
         placeholder={placeholder}
@@ -43,7 +43,7 @@ function CoachInput({ label, value, onChange, placeholder }) {
 
 function TargetCard({ title, value, note }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+    <div className="rounded-2xl border border-emerald-100 bg-gradient-to-br from-white to-emerald-50/60 p-4 shadow-sm">
       <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
         {title}
       </p>
@@ -314,7 +314,7 @@ export default function BudgetCoach() {
           />
 
           <motion.section
-            className="bg-white rounded-3xl shadow-md border border-slate-200 p-6 md:p-8 space-y-8"
+            className="rounded-3xl border border-emerald-100 bg-white/95 shadow-sm p-6 md:p-8 space-y-8"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -333,7 +333,7 @@ export default function BudgetCoach() {
 
               <button
                 onClick={handleReset}
-                className="rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 hover:border-emerald-200 hover:text-emerald-700"
+                className="rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-600 shadow-sm transition hover:border-emerald-200 hover:bg-emerald-50 hover:text-emerald-700"
               >
                 Reset
               </button>
@@ -359,7 +359,7 @@ export default function BudgetCoach() {
               </div>
             </div>
 
-            <div className="bg-black text-white rounded-2xl p-5 space-y-3">
+            <div className="rounded-3xl bg-gradient-to-br from-emerald-600 to-sky-600 p-5 text-white shadow-md space-y-3">
               <div className="flex justify-between text-sm">
                 <span className="text-slate-300">Budget score</span>
                 <span className={`font-bold ${scoreColor}`}>{score}/100</span>
