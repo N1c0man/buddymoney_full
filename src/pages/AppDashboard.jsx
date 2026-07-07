@@ -46,7 +46,7 @@ export default function AppDashboard() {
 
           <div className="grid grid-cols-1 gap-3">
             <ToolLink
-              to="/tools/budget-coach"
+              to="/app/tools/budget-coach"
               icon="🦉"
               title="Budget Coach"
               text="Get a simple money plan."
@@ -54,7 +54,7 @@ export default function AppDashboard() {
             />
 
             <ToolLink
-              to="/tools/monthly-payment-calculator"
+              to="/app/tools/monthly-payment-calculator"
               icon="🧮"
               title="Monthly Payment Calculator"
               text="Estimate payments before you borrow."
@@ -70,7 +70,7 @@ export default function AppDashboard() {
 
           <div className="space-y-3">
             <ToolLink
-              to="/tools/bill-splitter"
+              to="/app/tools/bill-splitter"
               icon="🧾"
               title="Bill Splitter & Tip Calculator"
               text="Split bills and calculate tips fast."
@@ -85,35 +85,35 @@ export default function AppDashboard() {
 
           <div className="space-y-3">
             <ToolLink
-              to="/tools/budget-tracker"
+              to="/app/tools/budget-tracker"
               icon="💰"
               title="Budget Tracker"
               text="Track income and spending."
             />
 
             <ToolLink
-              to="/tools/debt-payoff"
+              to="/app/tools/debt-payoff"
               icon="🎯"
               title="Debt Payoff Estimator"
               text="See your payoff path."
             />
 
             <ToolLink
-              to="/tools/emergency-fund"
+              to="/app/tools/emergency-fund"
               icon="🛟"
               title="Emergency Fund Calculator"
               text="Plan your cash cushion."
             />
 
             <ToolLink
-              to="/tools/mortgage-payoff"
+              to="/app/tools/mortgage-payoff"
               icon="🏠"
               title="Mortgage Payoff"
               text="Estimate savings from extra payments."
             />
 
             <ToolLink
-              to="/tools/credit-cards"
+              to="/app/tools/credit-cards"
               icon="💳"
               title="Credit Card Tools"
               text="Explore card guides and options."

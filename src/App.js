@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 
-// Components
 import ScrollToTop from "./components/ScrollToTop";
-import AppBottomNav from "./components/AppBottomNav";
 import ROUTES from "./routePaths.json";
 
-// Pages
 import Home from "./pages/Home";
 import Tools from "./pages/Tools";
 import About from "./pages/About";
@@ -18,7 +15,6 @@ import AffiliateDisclosure from "./pages/AffiliateDisclosure";
 import AppDashboard from "./pages/AppDashboard";
 import NotFound from "./pages/NotFound";
 
-// Standalone tool pages
 import ToolEmergencyFundPage from "./pages/ToolEmergencyFundPage";
 import ToolDebtPayoffPage from "./pages/ToolDebtPayoffPage";
 import ToolBudgetTrackerPage from "./pages/ToolBudgetTrackerPage";
@@ -27,25 +23,20 @@ import ToolMonthlyPaymentPage from "./pages/ToolMonthlyPaymentPage";
 import SavingsGoalPlanner from "./pages/SavingsGoalPlanner";
 import NetWorthTracker from "./pages/NetWorthTracker";
 
-// Blog system
 import BlogList from "./blog/BlogList";
 import BlogPost from "./blog/BlogPost";
 
-// Layout
 import MainLayout from "./layouts/MainLayout";
 
-// Credit Cards
 import CreditCardFinder from "./tools/CreditCardFinder";
 import CreditCardsHub from "./pages/CreditCardsHub";
 
-// Credit Card Supporting Guides
 import BestCashBackCards from "./pages/BestCashBackCards";
 import BestBadCreditCards from "./pages/BestBadCreditCards";
 import BestTravelCards from "./pages/BestTravelCards";
 import BestIntroAprCards from "./pages/BestIntroAprCards";
 import BestStudentCards from "./pages/BestStudentCards";
 
-// Affiliate redirect
 import GoOffer from "./pages/GoOffer";
 
 export default function App() {
@@ -94,11 +85,8 @@ export default function App() {
   }
 
   const isAppOnlyRoute =
-    location.pathname === "/app" || location.pathname.startsWith("/tools/");
+    location.pathname === "/app" || location.pathname.startsWith("/app/tools");
 
-  // =========================
-  // APP-ONLY (NO NAVBAR)
-  // =========================
   if (isAppOnlyRoute) {
     return (
       <>
@@ -108,105 +96,114 @@ export default function App() {
           <Route path="/app" element={<AppDashboard />} />
 
           <Route
-            path="/tools/budget-coach"
-            element={
-              <>
-                <BudgetCoachPage />
-                <AppBottomNav />
-              </>
-            }
+            path="/app/tools"
+            element={<Navigate to="/app" replace />}
           />
 
           <Route
-            path="/tools/mortgage-payoff"
-            element={
-              <>
-                <MortgagePayoff />
-                <AppBottomNav />
-              </>
-            }
+            path="/app/tools/budget-coach"
+            element={<BudgetCoachPage />}
           />
 
           <Route
-            path="/tools/credit-cards"
+            path="/app/tools/mortgage-payoff"
+            element={<MortgagePayoff />}
+          />
+
+          <Route
+            path="/app/tools/credit-cards"
             element={<CreditCardFinder showAppBottomNav />}
           />
 
           <Route
-            path="/tools/monthly-payment-calculator"
+            path="/app/tools/monthly-payment-calculator"
             element={<ToolMonthlyPaymentPage />}
           />
 
           <Route
-            path="/tools/emergency-fund"
+            path="/app/tools/emergency-fund"
             element={<ToolEmergencyFundPage />}
           />
 
-          <Route path="/tools/debt-payoff" element={<ToolDebtPayoffPage />} />
+          <Route
+            path="/app/tools/debt-payoff"
+            element={<ToolDebtPayoffPage />}
+          />
 
           <Route
-            path="/tools/budget-tracker"
+            path="/app/tools/budget-tracker"
             element={<ToolBudgetTrackerPage />}
           />
 
           <Route
-            path="/tools/bill-splitter"
+            path="/app/tools/bill-splitter"
             element={<ToolBillSplitterPage />}
           />
 
           <Route
-            path="/tools/tip-calculator"
-            element={<Navigate to="/tools/bill-splitter" replace />}
+            path="/app/tools/tip-calculator"
+            element={<Navigate to="/app/tools/bill-splitter" replace />}
           />
 
-          <Route path="/tools/savings-goal" element={<SavingsGoalPlanner />} />
-          <Route path="/tools/net-worth" element={<NetWorthTracker />} />
+          <Route
+            path="/app/tools/savings-goal"
+            element={<SavingsGoalPlanner />}
+          />
 
-          {/* 404 fallback for app/tools routes */}
+          <Route
+            path="/app/tools/net-worth"
+            element={<NetWorthTracker />}
+          />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </>
     );
   }
 
-  // =========================
-  // WEBSITE (WITH NAVBAR)
-  // =========================
   return (
     <MainLayout>
       <ScrollToTop />
 
       <Routes>
         <Route path={ROUTES.home} element={<Home />} />
-        <Route path={ROUTES.tools} element={<Tools />} />
-        <Route path={ROUTES.about} element={<About />} />
 
+        <Route path={ROUTES.tools} element={<Tools />} />
+        <Route path="/tools/budget-coach" element={<BudgetCoachPage />} />
+        <Route path="/tools/mortgage-payoff" element={<MortgagePayoff />} />
+        <Route path="/tools/credit-cards" element={<CreditCardFinder />} />
+        <Route
+          path="/tools/monthly-payment-calculator"
+          element={<ToolMonthlyPaymentPage />}
+        />
+        <Route
+          path="/tools/emergency-fund"
+          element={<ToolEmergencyFundPage />}
+        />
+        <Route path="/tools/debt-payoff" element={<ToolDebtPayoffPage />} />
+        <Route
+          path="/tools/budget-tracker"
+          element={<ToolBudgetTrackerPage />}
+        />
+        <Route path="/tools/bill-splitter" element={<ToolBillSplitterPage />} />
+        <Route
+          path="/tools/tip-calculator"
+          element={<Navigate to="/tools/bill-splitter" replace />}
+        />
+        <Route path="/tools/savings-goal" element={<SavingsGoalPlanner />} />
+        <Route path="/tools/net-worth" element={<NetWorthTracker />} />
+
+        <Route path={ROUTES.about} element={<About />} />
         <Route path={ROUTES.coach} element={<BudgetCoachPage />} />
         <Route path={ROUTES.mortgage} element={<MortgagePayoff />} />
 
         <Route path={ROUTES.creditCardsHub} element={<CreditCardsHub />} />
         <Route path="/credit-cards/finder" element={<CreditCardFinder />} />
-
-        <Route
-          path={ROUTES.creditCardsCashBack}
-          element={<BestCashBackCards />}
-        />
-        <Route
-          path={ROUTES.creditCardsBadCredit}
-          element={<BestBadCreditCards />}
-        />
-        <Route
-          path={ROUTES.creditCardsTravel}
-          element={<BestTravelCards />}
-        />
-        <Route
-          path={ROUTES.creditCardsZeroApr}
-          element={<BestIntroAprCards />}
-        />
-        <Route
-          path={ROUTES.creditCardsStudent}
-          element={<BestStudentCards />}
-        />
+        <Route path={ROUTES.creditCardsCashBack} element={<BestCashBackCards />} />
+        <Route path={ROUTES.creditCardsBadCredit} element={<BestBadCreditCards />} />
+        <Route path={ROUTES.creditCardsTravel} element={<BestTravelCards />} />
+        <Route path={ROUTES.creditCardsZeroApr} element={<BestIntroAprCards />} />
+        <Route path={ROUTES.creditCardsStudent} element={<BestStudentCards />} />
 
         <Route path={ROUTES.blogList} element={<BlogList />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
@@ -220,7 +217,6 @@ export default function App() {
           element={<AffiliateDisclosure />}
         />
 
-        {/* 404 fallback for website routes */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </MainLayout>
