@@ -367,8 +367,8 @@ export default function Tools() {
                   Want help deciding what to do first?
                 </h2>
                 <p className="text-sm text-emerald-50">
-                  Try Budget Coach — a guided experience that helps you choose
-                  your next best money move.
+                  Try the free BuddyMoney Budget Coach — a guided experience that helps you choose
+  your next best money move.
                 </p>
               </div>
 
@@ -376,7 +376,7 @@ export default function Tools() {
                 to="/coach"
                 className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-700 shadow transition hover:bg-emerald-50"
               >
-                Start Budget Coach →
+                Start Free Budget Coach →
               </Link>
             </div>
           </section>

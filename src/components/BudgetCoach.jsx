@@ -198,7 +198,7 @@ export default function BudgetCoach() {
   return (
     <>
       <Helmet>
-        <title>AI Budget Coach Calculator | Calm, Realistic Monthly Plan</title>
+        <title>Free Budget Coach Calculator | Calm Monthly Budget Plan</title>
         <meta
           name="description"
           content="Use BuddyMoney’s free AI Budget Coach to rate your monthly budget, compare it to a flexible 50/30/20 rule, and get friendly tips to improve your money plan."
@@ -245,7 +245,7 @@ export default function BudgetCoach() {
                   </p>
 
                   <h1 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-brand-900 leading-tight">
-                    AI Budget Coach: Get a calm, realistic plan for your monthly money.
+                    Free Budget Coach: Get a calm, realistic plan for your monthly money.
                   </h1>
 
                   <p className="text-sm md:text-base text-brand-900/90 max-w-xl">

@@ -105,10 +105,10 @@ export default function Home() {
               <Link to="/coach" className="rounded-xl border border-emerald-200 bg-emerald-50/70 p-4 hover:bg-emerald-50 transition">
                 <div className="flex items-center gap-2">
                   <span className="text-lg">🧭</span>
-                  <span className="text-sm font-semibold text-slate-900">Budget Coach</span>
+                  <span className="text-sm font-semibold text-slate-900">Free Budget Coach</span>
                 </div>
                 <p className="mt-2 text-sm text-slate-600">
-                  Get personalized budget targets, a score, and practical next steps.
+                  Use the free BuddyMoney Budget Coach to get personalized budget targets, a score, and practical next steps.
                 </p>
               </Link>
 
@@ -178,7 +178,7 @@ export default function Home() {
               </Link>
 
               <Link to="/coach" className="group rounded-3xl border border-slate-200 bg-slate-900 p-5 text-white shadow-sm">
-                🧭 Budget Coach
+                🧭 Free Budget Coach
               </Link>
             </div>
           </motion.div>
