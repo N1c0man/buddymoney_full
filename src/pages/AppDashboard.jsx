@@ -41,10 +41,18 @@ export default function AppDashboard() {
 
         <section className="mb-6">
           <h2 className="text-base font-bold text-slate-900 mb-3">
-            Quick Tools
+            🦉 Recommended
           </h2>
 
           <div className="grid grid-cols-1 gap-3">
+            <ToolLink
+              to="/tools/budget-coach"
+              icon="🦉"
+              title="Budget Coach"
+              text="Get a simple money plan."
+              large
+            />
+
             <ToolLink
               to="/tools/monthly-payment-calculator"
               icon="🧮"
@@ -52,30 +60,30 @@ export default function AppDashboard() {
               text="Estimate payments before you borrow."
               large
             />
+          </div>
+        </section>
 
+        <section className="mb-6">
+          <h2 className="text-base font-bold text-slate-900 mb-3">
+            ⚡ Quick Tools
+          </h2>
+
+          <div className="space-y-3">
             <ToolLink
               to="/tools/bill-splitter"
               icon="🧾"
               title="Bill Splitter & Tip Calculator"
               text="Split bills and calculate tips fast."
-              large
             />
           </div>
         </section>
 
         <section className="mb-6">
           <h2 className="text-base font-bold text-slate-900 mb-3">
-            More Tools
+            💰 Money Tools
           </h2>
 
           <div className="space-y-3">
-            <ToolLink
-              to="/tools/budget-coach"
-              icon="🧠"
-              title="Budget Coach"
-              text="Get a simple money plan."
-            />
-
             <ToolLink
               to="/tools/budget-tracker"
               icon="💰"
@@ -158,10 +166,13 @@ function ToolLink({ to, icon, title, text, large = false }) {
           >
             {title}
           </h3>
+
           <p className="text-sm text-slate-600">{text}</p>
         </div>
 
-        <span className="text-slate-400 group-hover:text-sky-600">→</span>
+        <span className="text-slate-400 group-hover:text-sky-600">
+          →
+        </span>
       </div>
     </Link>
   );

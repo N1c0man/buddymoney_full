@@ -4,10 +4,10 @@ import { NavLink } from "react-router-dom";
 export default function AppBottomNav() {
   const navItems = [
     { to: "/app", label: "Home", icon: "🏠" },
-    { to: "/tools/budget-coach", label: "Budget", icon: "🧠" },
-    { to: "/tools/debt-payoff", label: "Debt", icon: "🎯" },
-    { to: "/tools/credit-cards", label: "Cards", icon: "💳" },
-  ];
+    { to: "/tools", label: "Tools", icon: "🧰" },
+    { to: "/tools/budget-coach", label: "Coach", icon: "🦉" },
+    { to: "/blog", label: "Learn", icon: "📚" },
+ ];
 
   return (
     <>
