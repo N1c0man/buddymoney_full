@@ -9,13 +9,24 @@ import { setCanonical } from "../utils/seo";
 
 const TOOL_CARDS = [
   {
+    id: "budget-coach",
+    name: "Budget Coach",
+    tagline: "Get a simple money plan and your next best step.",
+    badge: "Recommended",
+    icon: "🦉",
+    route: "/tools/budget-coach",
+    category: "Recommended",
+    buttonText: "Build my plan →",
+  },
+  {
     id: "monthly-payment-calculator",
     name: "Monthly Payment Calculator",
     tagline: "Estimate monthly loan payments, interest, and total cost.",
     badge: "New",
     icon: "🧮",
     route: "/tools/monthly-payment-calculator",
-    category: "Loans",
+    category: "Recommended",
+    buttonText: "Estimate payment →",
   },
   {
     id: "bill-splitter",
@@ -24,17 +35,8 @@ const TOOL_CARDS = [
     badge: "Everyday",
     icon: "🍕",
     route: "/tools/bill-splitter",
-    category: "Everyday",
-  },
-  {
-    id: "credit-cards",
-    name: "Credit Card Finder (Beta)",
-    tagline:
-      "Preview a smarter way to compare credit cards by score, rewards, and fees.",
-    badge: "Beta",
-    icon: "💳",
-    route: "/tools/credit-cards",
-    category: "Credit",
+    category: "Quick Tools",
+    buttonText: "Split a bill →",
   },
   {
     id: "budget-tracker",
@@ -44,6 +46,7 @@ const TOOL_CARDS = [
     icon: "💰",
     route: "/tools/budget-tracker",
     category: "Budgeting",
+    buttonText: "Track spending →",
   },
   {
     id: "savings-goal",
@@ -53,15 +56,7 @@ const TOOL_CARDS = [
     icon: "🎯",
     route: "/tools#savings-goal",
     category: "Saving",
-  },
-  {
-    id: "debt-payoff",
-    name: "Debt Payoff Planner",
-    tagline: "Estimate your payoff timeline and plan your way out of debt.",
-    badge: "Debt",
-    icon: "📉",
-    route: "/tools/debt-payoff",
-    category: "Debt",
+    buttonText: "Plan a goal →",
   },
   {
     id: "emergency-fund",
@@ -71,6 +66,38 @@ const TOOL_CARDS = [
     icon: "🛟",
     route: "/tools/emergency-fund",
     category: "Saving",
+    buttonText: "Build cushion →",
+  },
+  {
+    id: "debt-payoff",
+    name: "Debt Payoff Planner",
+    tagline: "Estimate your payoff timeline and plan your way out of debt.",
+    badge: "Debt",
+    icon: "📉",
+    route: "/tools/debt-payoff",
+    category: "Debt & Credit",
+    buttonText: "See payoff →",
+  },
+  {
+    id: "credit-cards",
+    name: "Credit Card Finder (Beta)",
+    tagline:
+      "Preview a smarter way to compare credit cards by score, rewards, and fees.",
+    badge: "Beta",
+    icon: "💳",
+    route: "/tools/credit-cards",
+    category: "Debt & Credit",
+    buttonText: "Explore cards →",
+  },
+  {
+    id: "mortgage-payoff",
+    name: "Mortgage Payoff Calculator",
+    tagline: "Estimate savings from extra mortgage payments.",
+    badge: "Home",
+    icon: "🏠",
+    route: "/tools/mortgage-payoff",
+    category: "Planning",
+    buttonText: "Calculate savings →",
   },
   {
     id: "net-worth",
@@ -80,10 +107,52 @@ const TOOL_CARDS = [
     icon: "📊",
     route: "/tools#net-worth",
     category: "Planning",
+    buttonText: "View big picture →",
   },
 ];
 
-const FEATURED_TOOLS = TOOL_CARDS.slice(0, 4);
+const FEATURED_TOOLS = TOOL_CARDS.filter((tool) =>
+  ["budget-coach", "monthly-payment-calculator", "bill-splitter", "debt-payoff"].includes(
+    tool.id
+  )
+);
+
+const TOOL_SECTIONS = [
+  {
+    title: "🦉 Recommended",
+    description: "Start here if you want BuddyMoney to guide your next move.",
+    toolIds: ["budget-coach", "monthly-payment-calculator"],
+    cardClass: "bg-gradient-to-br from-emerald-50 via-white to-sky-50",
+  },
+  {
+    title: "⚡ Quick Tools",
+    description: "Fast tools for everyday money math.",
+    toolIds: ["bill-splitter"],
+    cardClass: "bg-gradient-to-br from-amber-50 via-white to-emerald-50",
+  },
+  {
+    title: "💰 Budget & Saving",
+    description: "Plan your spending, savings, and emergency cushion.",
+    toolIds: ["budget-tracker", "savings-goal", "emergency-fund"],
+    cardClass: "bg-white",
+  },
+  {
+    title: "🎯 Debt & Credit",
+    description: "Work on debt payoff and explore credit card tools.",
+    toolIds: ["debt-payoff", "credit-cards"],
+    cardClass: "bg-white",
+  },
+  {
+    title: "🏠 Planning",
+    description: "Look at bigger-picture financial decisions.",
+    toolIds: ["mortgage-payoff", "net-worth"],
+    cardClass: "bg-white",
+  },
+];
+
+function getToolById(id) {
+  return TOOL_CARDS.find((tool) => tool.id === id);
+}
 
 export default function Tools() {
   useEffect(() => {
@@ -102,7 +171,7 @@ export default function Tools() {
   const title =
     "Free Financial Tools & Calculators | Budget, Debt, Monthly Payments & More | BuddyMoney";
   const description =
-    "Use BuddyMoney’s free financial tools and calculators to plan your budget, emergency fund, debt payoff, savings goals, monthly payments, bill splitting, tips, and net worth. Simple, free, and built for real life.";
+    "Use BuddyMoney’s free financial tools and calculators to plan your budget, emergency fund, debt payoff, savings goals, monthly payments, bill splitting, tips, mortgage payoff, and net worth. Simple, free, and built for real life.";
   const pageUrl = "https://buddymoney.com/tools";
 
   const jsonLd = {
@@ -121,6 +190,7 @@ export default function Tools() {
       "savings goal calculator",
       "debt payoff calculator",
       "emergency fund calculator",
+      "mortgage payoff calculator",
       "net worth tracker",
       "free financial tools",
     ],
@@ -154,7 +224,7 @@ export default function Tools() {
         <meta name="robots" content="index,follow" />
         <meta
           name="keywords"
-          content="financial tools, money tools, monthly payment calculator, loan payment calculator, tip calculator, bill splitter, budget calculator, emergency fund calculator, debt payoff calculator, savings goal calculator, net worth tracker, free budgeting tools, BuddyMoney"
+          content="financial tools, money tools, monthly payment calculator, loan payment calculator, tip calculator, bill splitter, budget calculator, emergency fund calculator, debt payoff calculator, mortgage payoff calculator, savings goal calculator, net worth tracker, free budgeting tools, BuddyMoney"
         />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
@@ -233,6 +303,7 @@ export default function Tools() {
                 <p className="mb-3 text-xs font-semibold text-slate-800">
                   Start here
                 </p>
+
                 <div className="space-y-2">
                   {FEATURED_TOOLS.map((tool) => (
                     <Link
@@ -258,11 +329,34 @@ export default function Tools() {
             label="Share BuddyMoney's simple money tools with a friend"
             title="I’m using BuddyMoney’s free money tools to plan my next money moves."
           />
+          <section className="rounded-3xl border border-emerald-100 bg-white p-5 shadow-sm">
+  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
+        Today’s Money Move
+      </p>
+      <h2 className="mt-1 text-xl font-bold text-slate-900">
+        Estimate one payment before you borrow.
+      </h2>
+      <p className="mt-2 text-sm text-slate-600">
+        Before taking on a loan or card balance, run the monthly payment numbers first.
+      </p>
+    </div>
+
+    <Link
+      to="/tools/monthly-payment-calculator"
+      onClick={() => handleToolClick("monthly-payment-calculator")}
+      className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"
+    >
+      Try today’s tool →
+    </Link>
+  </div>
+</section>
 
           <WelcomeBackBanner lastTool={lastTool} />
 
           <motion.section
-            className="space-y-5 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
+            className="space-y-6 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: "easeOut", delay: 0.15 }}
@@ -276,61 +370,83 @@ export default function Tools() {
                   Pick the money question you want to answer first.
                 </p>
               </div>
+
               <p className="text-xs text-slate-500">
                 Clean, fast, mobile-friendly calculators.
               </p>
             </div>
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {TOOL_CARDS.map((tool) => (
-                <motion.div
-                  key={tool.id}
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 260,
-                    damping: 18,
-                  }}
-                >
-                  <Link
-                    to={tool.route}
-                    onClick={() => handleToolClick(tool.id)}
-                    className="group flex h-full min-h-[190px] flex-col rounded-3xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-emerald-200 hover:shadow-md"
-                  >
-                    <div className="mb-3 flex items-start justify-between gap-3">
-                      <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-50 text-xl transition-transform group-hover:scale-110">
-                        {tool.icon}
-                      </span>
-
-                      <span className="rounded-full bg-slate-900 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white">
-                        {tool.badge}
-                      </span>
-                    </div>
-
-                    <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
-                      {tool.category}
-                    </p>
-
-                    <h3 className="text-sm font-semibold text-slate-900 group-hover:text-emerald-700">
-                      {tool.name}
+            <div className="space-y-8">
+              {TOOL_SECTIONS.map((section) => (
+                <div key={section.title} className="space-y-3">
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900">
+                      {section.title}
                     </h3>
-
-                    <p className="mt-2 flex-1 text-xs leading-relaxed text-slate-600">
-                      {tool.tagline}
+                    <p className="text-sm text-slate-600">
+                      {section.description}
                     </p>
+                  </div>
 
-                    <div className="mt-5 inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition group-hover:bg-emerald-700">
-                      Open tool →
-                    </div>
-                  </Link>
-                </motion.div>
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {section.toolIds.map((toolId) => {
+                      const tool = getToolById(toolId);
+
+                      if (!tool) return null;
+
+                      return (
+                        <motion.div
+                          key={tool.id}
+                          whileHover={{ y: -4, scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 260,
+                            damping: 18,
+                          }}
+                        >
+                          <Link
+                            to={tool.route}
+                            onClick={() => handleToolClick(tool.id)}
+                            className={`group flex h-full min-h-[190px] flex-col rounded-3xl border border-emerald-100 p-4 shadow-sm transition hover:border-emerald-300 hover:shadow-lg ${section.cardClass}`}
+                          >
+                            <div className="mb-3 flex items-start justify-between gap-3">
+                              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-2xl shadow-sm ring-1 ring-emerald-100 transition-transform group-hover:scale-110">
+                                {tool.icon}
+                              </span>
+
+                              <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-700">
+                                {tool.badge}
+                              </span>
+                            </div>
+
+                            <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
+                              {tool.category}
+                            </p>
+
+                            <h4 className="text-sm font-semibold text-slate-900 group-hover:text-emerald-700">
+                              {tool.name}
+                            </h4>
+
+                            <p className="mt-2 flex-1 text-xs leading-relaxed text-slate-600">
+                              {tool.tagline}
+                            </p>
+
+                            <div className="mt-5 inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition group-hover:bg-emerald-700">
+                              {tool.buttonText}
+                            </div>
+                          </Link>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
               ))}
             </div>
           </motion.section>
 
           <section className="grid gap-4 md:grid-cols-3">
-            <div className="rounded-3xl border border-emerald-100 bg-emerald-50/80 p-5 shadow-sm">
+            <div className="rounded-3xl border border-emerald-100 bg-gradient-to-br from-emerald-50 to-white p-5 shadow-sm">
               <p className="text-sm font-bold text-slate-900">
                 Quick everyday math
               </p>
@@ -349,7 +465,7 @@ export default function Tools() {
               </p>
             </div>
 
-            <div className="rounded-3xl border border-emerald-100 bg-white p-5 shadow-sm">
+            <div className="rounded-3xl border border-emerald-100 bg-gradient-to-br from-white to-sky-50 p-5 shadow-sm">
               <p className="text-sm font-bold text-slate-900">
                 Beginner-friendly by design
               </p>
@@ -360,20 +476,20 @@ export default function Tools() {
             </div>
           </section>
 
-          <section className="rounded-3xl bg-emerald-600 px-6 py-5 text-white shadow-sm">
+          <section className="rounded-3xl bg-gradient-to-r from-emerald-600 to-sky-600 px-6 py-5 text-white shadow-sm">
             <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
               <div>
                 <h2 className="text-lg font-semibold">
                   Want help deciding what to do first?
                 </h2>
                 <p className="text-sm text-emerald-50">
-                  Try the free BuddyMoney Budget Coach — a guided experience that helps you choose
-  your next best money move.
+                  Try the free BuddyMoney Budget Coach — a guided experience
+                  that helps you choose your next best money move.
                 </p>
               </div>
 
               <Link
-                to="/coach"
+                to="/tools/budget-coach"
                 className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2 text-sm font-semibold text-emerald-700 shadow transition hover:bg-emerald-50"
               >
                 Start Free Budget Coach →
