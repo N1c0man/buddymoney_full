@@ -636,7 +636,7 @@ export default function MortgagePayoff() {
           transition={{ duration: 0.3 }}
           className="max-w-6xl mx-auto px-4 space-y-6"
         >
-          <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-white via-emerald-50 to-sky-50 shadow-soft h-[360px] md:h-[330px] lg:h-[350px]">
+          <section className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-white via-emerald-50 to-sky-50 shadow-soft h-[315px] md:h-[315px] lg:h-[330px]">
   <img
     src="/icons/hero-mortgage-payoff.png"
     alt="Mortgage Payoff Calculator hero image"
@@ -646,7 +646,7 @@ export default function MortgagePayoff() {
 
   <div className="absolute inset-0 bg-gradient-to-r from-white/92 via-white/55 to-transparent" />
 
-  <div className="relative h-full px-5 py-5 md:px-8 md:py-7 flex flex-col justify-center">
+  <div className="relative h-full px-5 py-4 md:px-8 md:py-5 flex flex-col justify-center">
     <div className="grid h-full items-center gap-4 md:grid-cols-[1.05fr_0.95fr]">
       
       {/* LEFT SIDE */}
@@ -1277,10 +1277,10 @@ function ScenarioCard({ title, description, metrics, onClick }) {
       )}
 
       <button
-        type="button"
-        className="rounded-2xl border border-emerald-200 bg-white px-4 py-2 text-xs font-bold text-emerald-700 shadow-sm hover:bg-emerald-50"
-        
-      >
+       type="button"
+       onClick={onClick}
+       className="rounded-2xl border border-emerald-200 bg-white px-4 py-2 text-xs font-bold text-emerald-700 shadow-sm hover:bg-emerald-50"
+     >
         Set from current values
       </button>
     </div>
