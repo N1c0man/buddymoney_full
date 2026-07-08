@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { Helmet } from "react-helmet";
 import { getPostBySlug, posts } from "./postsIndex";
@@ -341,6 +341,10 @@ const markdownComponents = {
 
 export default function BlogPost() {
   const { slug } = useParams();
+  const location = useLocation();
+
+  const isAppMode = location.pathname.startsWith("/app");
+
   const post = slug ? getPostBySlug(slug) : null;
 
   // ✅ Stable canonical URL (www + slug)
@@ -541,8 +545,8 @@ export default function BlogPost() {
               Sorry, we couldn&apos;t find that article.
             </p>
             <Link
-              to="/blog"
-              className="mt-4 inline-flex items-center text-sm font-medium text-emerald-600 hover:text-emerald-700"
+             to={isAppMode ? "/app/learn" : "/blog"}
+            className="inline-flex items-center text-xs font-medium text-slate-500 hover:text-slate-700"
             >
               ← Back to all articles
             </Link>
@@ -615,11 +619,11 @@ export default function BlogPost() {
             {/* Back */}
             <div className="mb-4">
               <Link
-                to="/blog"
-                className="inline-flex items-center text-xs font-medium text-slate-500 hover:text-slate-700"
+               to={isAppMode ? "/app/learn" : "/blog"}
+               className="inline-flex items-center text-xs font-medium text-slate-500 hover:text-slate-700"
               >
-                ← Back to articles
-              </Link>
+  ← Back to articles
+</Link>
             </div>
 
             {/* Featured Ribbon */}
@@ -879,7 +883,7 @@ export default function BlogPost() {
                   <nav className="mt-4 grid gap-3 sm:grid-cols-2 text-xs">
                     {prevPost && (
                       <Link
-                        to={`/blog/${prevPost.slug}`}
+                        to={isAppMode ? `/app/learn/${prevPost.slug}` : `/blog/${prevPost.slug}`}
                         className="group border border-slate-200 rounded-xl p-3 bg-slate-50/60 hover:border-emerald-400 hover:bg-white transition-colors"
                       >
                         <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400 mb-1">
@@ -893,7 +897,7 @@ export default function BlogPost() {
 
                     {nextPost && (
                       <Link
-                        to={`/blog/${nextPost.slug}`}
+                        to={isAppMode ? `/app/learn/${nextPost.slug}` : `/blog/${nextPost.slug}`}
                         className="group border border-slate-200 rounded-xl p-3 bg-slate-50/60 hover:border-emerald-400 hover:bg-white transition-colors text-right sm:text-left"
                       >
                         <p className="text-[10px] uppercase tracking-[0.18em] text-slate-400 mb-1">

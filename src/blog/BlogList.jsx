@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { posts } from "./postsIndex";
 import ShareBar from "../components/ShareBar";
 import { setCanonical } from "../utils/seo";
@@ -20,6 +20,9 @@ const CATEGORY_STYLES = {
 
 export default function BlogList() {
   const [search, setSearch] = useState("");
+  const location = useLocation();
+
+  const isAppMode = location.pathname.startsWith("/app");
 
   // Canonical for /blog
   useEffect(() => {
@@ -31,10 +34,8 @@ export default function BlogList() {
     const description =
       "Browse BuddyMoney money guides: beginner-friendly articles on budgeting, saving, emergency funds, side hustles, debt payoff, and more.";
 
-    // Set document title
     document.title = "Money Guides & Articles | BuddyMoney Blog";
 
-    // Ensure a single meta description
     let meta = document.querySelector('meta[name="description"]');
     if (meta) {
       meta.setAttribute("content", description);
@@ -45,7 +46,6 @@ export default function BlogList() {
       document.head.appendChild(meta);
     }
 
-    // JSON-LD structured data (Blog + BlogPosting list)
     const jsonLd = {
       "@context": "https://schema.org",
       "@type": "Blog",
@@ -79,7 +79,6 @@ export default function BlogList() {
     script.innerHTML = JSON.stringify(jsonLd);
     document.head.appendChild(script);
 
-    // Cleanup on unmount
     return () => {
       if (script && script.parentNode) {
         script.parentNode.removeChild(script);
@@ -90,6 +89,7 @@ export default function BlogList() {
   const filteredPosts = useMemo(() => {
     const q = search.trim().toLowerCase();
     if (!q) return posts;
+
     return posts.filter((post) => {
       const haystack = (
         post.title +
@@ -100,6 +100,7 @@ export default function BlogList() {
         " " +
         post.level
       ).toLowerCase();
+
       return haystack.includes(q);
     });
   }, [search]);
@@ -107,7 +108,6 @@ export default function BlogList() {
   return (
     <main className="pt-2 lg:pt-4 pb-16 bg-brand-50/40">
       <div className="max-w-5xl mx-auto px-4">
-        {/* 👇 BLOG HERO (Tools-style) */}
         <motion.section
           className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-gradient-to-br from-brand-50 via-emerald-50 to-accent-100/70 shadow-soft h-[220px] md:h-[260px] lg:h-[300px] mb-6"
           initial={{ opacity: 0, y: 20 }}
@@ -115,7 +115,6 @@ export default function BlogList() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          {/* Background hero image */}
           <img
             src="/icons/hero-guides.png"
             alt="BuddyMoney guides hero image"
@@ -123,16 +122,15 @@ export default function BlogList() {
             loading="eager"
           />
 
-          {/* Soft overlay so text stays readable */}
           <div className="absolute inset-0 bg-white/35 md:bg-white/20" />
 
-          {/* background blobs (kept like Tools) */}
           <motion.div
             className="pointer-events-none absolute -top-24 -right-10 h-64 w-64 rounded-full bg-emerald-200/50 blur-3xl"
             initial={{ opacity: 0, scale: 0.9, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
           />
+
           <motion.div
             className="pointer-events-none absolute -bottom-24 -left-8 h-64 w-64 rounded-full bg-sky-200/50 blur-3xl"
             initial={{ opacity: 0, scale: 0.9, y: 10 }}
@@ -140,7 +138,6 @@ export default function BlogList() {
             transition={{ duration: 1.1, ease: "easeOut", delay: 0.15 }}
           />
 
-          {/* Content */}
           <div className="relative px-5 py-6 md:px-8 md:py-7 h-full flex items-center">
             <div className="relative grid gap-6 md:grid-cols-[minmax(0,1.8fr)_minmax(0,1.2fr)] items-center w-full">
               <div className="space-y-4">
@@ -163,13 +160,13 @@ export default function BlogList() {
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                     Beginner-friendly
                   </span>
+
                   <span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 text-emerald-700 border border-emerald-100 shadow-sm">
                     ⏱️ Most reads under 10 minutes
                   </span>
                 </div>
               </div>
 
-              {/* Right info card (Tools-style floating card) */}
               <motion.div
                 className="relative hidden md:flex justify-center"
                 initial={{ opacity: 0, scale: 0.95, y: 10 }}
@@ -205,7 +202,6 @@ export default function BlogList() {
             </div>
           </div>
         </motion.section>
-        {/* 👆 END BLOG HERO */}
 
         <ShareBar
           variant="top"
@@ -213,9 +209,7 @@ export default function BlogList() {
           title="BuddyMoney Blog – Money Guides & Articles"
         />
 
-        {/* MAIN WHITE CARD WRAPPER */}
         <div className="rounded-3xl border border-slate-200 bg-white shadow-sm px-4 py-6 md:px-6 md:py-8">
-          {/* Header */}
           <header className="mb-6">
             <p className="text-xs font-semibold tracking-[0.2em] uppercase text-emerald-500 mb-3">
               Learn the Basics
@@ -233,7 +227,6 @@ export default function BlogList() {
 
           <AffiliateCalloutSmartCredit />
 
-          {/* Search */}
           <div className="mb-8">
             <form
               className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center"
@@ -243,6 +236,7 @@ export default function BlogList() {
                 <label className="sr-only" htmlFor="blog-search">
                   Search articles
                 </label>
+
                 <input
                   id="blog-search"
                   type="text"
@@ -252,6 +246,7 @@ export default function BlogList() {
                   className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
                 />
               </div>
+
               <button
                 type="submit"
                 className="inline-flex items-center justify-center rounded-lg border border-emerald-500 bg-emerald-500 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-600 transition-colors"
@@ -259,6 +254,7 @@ export default function BlogList() {
                 Search
               </button>
             </form>
+
             <p className="mt-2 text-xs text-slate-500">
               Try: <span className="font-medium">budget</span>,{" "}
               <span className="font-medium">debt</span>,{" "}
@@ -267,7 +263,6 @@ export default function BlogList() {
             </p>
           </div>
 
-          {/* Cards grid */}
           {filteredPosts.length === 0 ? (
             <p className="text-sm text-slate-500">
               No matches yet. Try a broader search like{" "}
@@ -284,7 +279,11 @@ export default function BlogList() {
                 return (
                   <Link
                     key={post.slug}
-                    to={`/blog/${post.slug}/`}
+                    to={
+                      isAppMode
+                        ? `/app/learn/${post.slug}`
+                        : `/blog/${post.slug}/`
+                    }
                     className={`
                       group block rounded-2xl border border-slate-200 bg-white p-4
                       shadow-sm transition-all duration-150
@@ -296,6 +295,7 @@ export default function BlogList() {
                       <span className="text-[11px] font-semibold uppercase tracking-wide text-emerald-600">
                         {post.tag}
                       </span>
+
                       <span className="text-[11px] text-slate-400">
                         {post.readTime}
                       </span>
@@ -314,6 +314,7 @@ export default function BlogList() {
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                         {post.level}
                       </span>
+
                       <span>{post.readTime}</span>
                     </div>
                   </Link>
@@ -328,7 +329,6 @@ export default function BlogList() {
             title="BuddyMoney Blog – Money Guides & Articles"
           />
 
-          {/* Note */}
           <p className="mt-8 text-xs text-slate-500">
             We&apos;re continuing to add more guides over time. Check back for
             new topics and deeper dives.

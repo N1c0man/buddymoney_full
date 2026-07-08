@@ -1,12 +1,18 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 export default function AppBottomNav() {
+  const location = useLocation();
+
+  if (!location.pathname.startsWith("/app")) {
+    return null;
+  }
+
   const navItems = [
     { to: "/app", label: "Home", icon: "🏠" },
     { to: "/app/tools", label: "Tools", icon: "🧰" },
     { to: "/app/tools/budget-coach", label: "Coach", icon: "🦉" },
-    { to: "/blog", label: "Learn", icon: "📚" },
+    { to: "/app/learn", label: "Learn", icon: "📚" },
   ];
 
   return (

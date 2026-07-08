@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 
 import ScrollToTop from "./components/ScrollToTop";
+import AppBottomNav from "./components/AppBottomNav";
 import ROUTES from "./routePaths.json";
 
 import Home from "./pages/Home";
@@ -85,7 +86,9 @@ export default function App() {
   }
 
   const isAppOnlyRoute =
-    location.pathname === "/app" || location.pathname.startsWith("/app/tools");
+    location.pathname === "/app" ||
+    location.pathname.startsWith("/app/tools") ||
+    location.pathname.startsWith("/app/learn");
 
   if (isAppOnlyRoute) {
     return (
@@ -95,19 +98,46 @@ export default function App() {
         <Routes>
           <Route path="/app" element={<AppDashboard />} />
 
+          <Route path="/app/tools" element={<Navigate to="/app" replace />} />
+
           <Route
-            path="/app/tools"
-            element={<Navigate to="/app" replace />}
+            path="/app/learn"
+            element={
+              <>
+                <BlogList />
+                <AppBottomNav />
+              </>
+            }
+          />
+
+                    <Route
+            path="/app/learn/:slug"
+            element={
+              <>
+                <BlogPost />
+                <AppBottomNav />
+              </>
+            }
           />
 
           <Route
             path="/app/tools/budget-coach"
-            element={<BudgetCoachPage />}
+            element={
+              <>
+                <BudgetCoachPage />
+                <AppBottomNav />
+              </>
+            }
           />
 
           <Route
             path="/app/tools/mortgage-payoff"
-            element={<MortgagePayoff />}
+            element={
+              <>
+                <MortgagePayoff />
+                <AppBottomNav />
+              </>
+            }
           />
 
           <Route
@@ -150,10 +180,7 @@ export default function App() {
             element={<SavingsGoalPlanner />}
           />
 
-          <Route
-            path="/app/tools/net-worth"
-            element={<NetWorthTracker />}
-          />
+          <Route path="/app/tools/net-worth" element={<NetWorthTracker />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -172,24 +199,31 @@ export default function App() {
         <Route path="/tools/budget-coach" element={<BudgetCoachPage />} />
         <Route path="/tools/mortgage-payoff" element={<MortgagePayoff />} />
         <Route path="/tools/credit-cards" element={<CreditCardFinder />} />
+
         <Route
           path="/tools/monthly-payment-calculator"
           element={<ToolMonthlyPaymentPage />}
         />
+
         <Route
           path="/tools/emergency-fund"
           element={<ToolEmergencyFundPage />}
         />
+
         <Route path="/tools/debt-payoff" element={<ToolDebtPayoffPage />} />
+
         <Route
           path="/tools/budget-tracker"
           element={<ToolBudgetTrackerPage />}
         />
+
         <Route path="/tools/bill-splitter" element={<ToolBillSplitterPage />} />
+
         <Route
           path="/tools/tip-calculator"
           element={<Navigate to="/tools/bill-splitter" replace />}
         />
+
         <Route path="/tools/savings-goal" element={<SavingsGoalPlanner />} />
         <Route path="/tools/net-worth" element={<NetWorthTracker />} />
 
@@ -199,10 +233,20 @@ export default function App() {
 
         <Route path={ROUTES.creditCardsHub} element={<CreditCardsHub />} />
         <Route path="/credit-cards/finder" element={<CreditCardFinder />} />
-        <Route path={ROUTES.creditCardsCashBack} element={<BestCashBackCards />} />
-        <Route path={ROUTES.creditCardsBadCredit} element={<BestBadCreditCards />} />
+
+        <Route
+          path={ROUTES.creditCardsCashBack}
+          element={<BestCashBackCards />}
+        />
+        <Route
+          path={ROUTES.creditCardsBadCredit}
+          element={<BestBadCreditCards />}
+        />
         <Route path={ROUTES.creditCardsTravel} element={<BestTravelCards />} />
-        <Route path={ROUTES.creditCardsZeroApr} element={<BestIntroAprCards />} />
+        <Route
+          path={ROUTES.creditCardsZeroApr}
+          element={<BestIntroAprCards />}
+        />
         <Route path={ROUTES.creditCardsStudent} element={<BestStudentCards />} />
 
         <Route path={ROUTES.blogList} element={<BlogList />} />
