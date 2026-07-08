@@ -60,7 +60,7 @@ const TOOL_CARDS = [
   },
   {
     id: "emergency-fund",
-    name: "Emergency Fund Estimator",
+    name: "Emergency Fund Calculator",
     tagline: "Know how much to set aside for surprise expenses.",
     badge: "Safety",
     icon: "🛟",

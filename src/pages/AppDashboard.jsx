@@ -13,7 +13,7 @@ export default function AppDashboard() {
         <title>BuddyMoney App | Quick Money Tools</title>
         <meta
           name="description"
-          content="Open quick BuddyMoney tools like the monthly payment calculator, bill splitter and tip calculator, budget coach, budget tracker, debt payoff estimator, emergency fund calculator, and mortgage payoff calculator."
+          content="Open quick BuddyMoney tools like the monthly payment calculator, bill splitter and tip calculator, budget coach, budget tracker, debt payoff planner, emergency fund calculator, and mortgage payoff calculator."
         />
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
@@ -94,7 +94,7 @@ export default function AppDashboard() {
             <ToolLink
               to="/app/tools/debt-payoff"
               icon="🎯"
-              title="Debt Payoff Estimator"
+              title="Debt Payoff Planner"
               text="See your payoff path."
             />
 
