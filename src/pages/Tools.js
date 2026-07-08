@@ -70,7 +70,7 @@ const TOOL_CARDS = [
   },
   {
     id: "debt-payoff",
-    name: "Debt Payoff Planner",
+    name: "Debt Payoff Calculator",
     tagline: "Estimate your payoff timeline and plan your way out of debt.",
     badge: "Debt",
     icon: "📉",
