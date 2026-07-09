@@ -220,7 +220,7 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
       "@type": "ItemList",
       name: "Credit Card Finder",
       description:
-        "Use BuddyMoney’s educational credit card finder to compare sample cards by credit score, rewards type, and annual fee before applying anywhere.",
+        "Use BuddyMoney’s credit card finder to compare credit card types by credit score, rewards, annual fee, APR, and credit-building goals.",
       itemListElement: items,
     };
   }, []);
@@ -278,9 +278,9 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
   ]);
 
   const pageTitle =
-    "Credit Card Finder: Compare Cards by Credit Score, Type & Fee | BuddyMoney";
+    "Credit Card Finder: Compare Credit Cards by Score, Fees & Goals | BuddyMoney";
   const pageDescription =
-    "Use BuddyMoney’s educational credit card finder to compare sample cards by credit score, card type, and annual fee. Helpful for beginners, rebuilding credit, travel rewards, and balance transfer research.";
+    "Compare credit card types by credit score, annual fee, rewards, APR, and goals. Explore secured cards, student cards, cash back, travel, and balance transfer options.";
 
   const heroEyebrow = intentConfig
     ? intentConfig.eyebrow
@@ -288,11 +288,11 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
 
   const heroTitle = intentConfig
     ? intentConfig.title
-    : "Compare credit cards without the confusing noise.";
+    : "Compare credit cards by score, fees, rewards, and goals.";
 
   const heroDescription = intentConfig
     ? intentConfig.description
-    : "Explore sample credit cards by credit score, card type, annual fee, APR, rewards, and perks. Built for beginners, credit rebuilders, and people who want to compare before applying.";
+    : "Use BuddyMoney’s credit card finder to compare card categories, annual fees, APRs, rewards, and credit-building features before you apply.";
 
   const activeFiltersCount =
     (creditScore !== "any" ? 1 : 0) +
@@ -349,7 +349,7 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
                 <p className="inline-flex items-center gap-2 rounded-2xl bg-white/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-700 shadow-sm">
                   {heroEyebrow}
                   <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">
-                    Educational Tool
+                    Comparison Tool
                   </span>
                 </p>
 
@@ -363,13 +363,13 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
 
                 <div className="flex flex-wrap gap-2 text-xs">
                   <span className="rounded-full bg-white/80 border border-emerald-100 px-3 py-1 text-emerald-700">
-                    Beginner-friendly
+                    Secured cards
                   </span>
                   <span className="rounded-full bg-white/80 border border-emerald-100 px-3 py-1 text-emerald-700">
-                    Sample data for now
+                    Student cards
                   </span>
                   <span className="rounded-full bg-white/80 border border-emerald-100 px-3 py-1 text-emerald-700">
-                    Partner offers coming later
+                    Rewards cards
                   </span>
                 </div>
 
@@ -413,8 +413,8 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
                   <li>Compare up to 3 cards side by side.</li>
                 </ol>
                 <p className="text-[11px] text-slate-500">
-                  This is educational sample data while BuddyMoney prepares live
-                  partner links.
+                  Use this page to understand card types, compare tradeoffs, and
+                  decide what kind of card may fit your situation.
                 </p>
               </div>
             </div>
@@ -432,7 +432,7 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
                 Who this tool is for
               </h2>
               <p className="text-sm text-slate-600 mt-1">
-                A calmer way to compare card categories before applying.
+                A calmer way to compare credit card categories before applying.
               </p>
             </div>
 
@@ -472,7 +472,7 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
               <div className="border-t border-white/15 pt-3 flex justify-between items-center">
                 <span className="text-sm text-white/75">Mode</span>
                 <span className="text-lg font-bold text-white">
-                  Educational preview
+                  Comparison guide
                 </span>
               </div>
             </div>
@@ -616,10 +616,9 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
               </p>
               <p className="mt-1">
                 This tool is for educational purposes only and is not financial
-                advice. Card details shown here are sample data while we prepare
-                live offers from partner banks and card issuers. Always review
-                the terms and disclosures on the official application page before
-                you apply.
+                advice. Card details are examples for comparison. Always review
+                current terms, fees, APRs, and disclosures on the official issuer
+                website before applying.
               </p>
             </div>
           </section>
@@ -949,7 +948,7 @@ function CardResult({ card, isSelected, onToggleCompare }) {
           <span className="font-semibold text-slate-800">
             example for comparison.
           </span>{" "}
-          Real offers are added as partnerships go live.
+          Review real issuer terms before applying.
         </p>
 
         {canApply ? (
@@ -965,9 +964,9 @@ function CardResult({ card, isSelected, onToggleCompare }) {
           <button
             type="button"
             disabled
-            className="inline-flex items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-500"
+            className="inline-flex items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2 text-xs font-semibold text-slate-500"
           >
-            Apply link coming soon
+            Review card details
           </button>
         )}
       </div>

@@ -51,12 +51,33 @@ The right secured card depends on your financial goals, credit history, and budg
 
 ## Secured Credit Card Comparison
 
-| Card | Deposit | Annual Fee | Reports to Bureaus | Best For |
-| --- | --- | --- | --- | --- |
-| Discover it® Secured | $200+ | $0 | Yes | Rewards + upgrade path |
-| Capital One Platinum Secured | $49–$200 | $0 | Yes | Low deposit options |
-| Chime Credit Builder Visa® | Flexible | $0 | Yes | Fee control + no interest |
-| Citi® Secured Mastercard® | $200+ | $0 | Yes | Simple traditional banking |
+### Discover it® Secured
+
+- **Deposit:** $200+
+- **Annual fee:** $0
+- **Reports to bureaus:** Yes
+- **Best for:** Rewards + upgrade path
+
+### Capital One Platinum Secured
+
+- **Deposit:** $49–$200
+- **Annual fee:** $0
+- **Reports to bureaus:** Yes
+- **Best for:** Low deposit options
+
+### Chime Credit Builder Visa®
+
+- **Deposit:** Flexible
+- **Annual fee:** $0
+- **Reports to bureaus:** Yes
+- **Best for:** Fee control + no interest
+
+### Citi® Secured Mastercard®
+
+- **Deposit:** $200+
+- **Annual fee:** $0
+- **Reports to bureaus:** Yes
+- **Best for:** Simple traditional banking
 
 ---
 
