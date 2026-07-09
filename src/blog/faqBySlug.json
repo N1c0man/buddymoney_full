@@ -305,6 +305,28 @@
       "answer": "The most common mistakes are missing payments, maxing out credit limits, closing accounts too early, and applying for too many cards at once."
     }
   ],
+  "does-checking-your-credit-score-lower-it": [
+  {
+    "question": "Does checking my credit score lower it?",
+    "answer": "No. Checking your own credit score does not lower your credit score. This is considered a soft inquiry and does not affect your credit."
+  },
+  {
+    "question": "What is the difference between a soft inquiry and a hard inquiry?",
+    "answer": "A soft inquiry happens when you check your own credit, use credit monitoring tools, or receive certain prequalification offers. A hard inquiry usually happens when you apply for credit and a lender reviews your credit report."
+  },
+  {
+    "question": "How much does a hard inquiry lower your credit score?",
+    "answer": "A hard inquiry may temporarily lower your credit score by a few points, but the impact depends on your overall credit history. Payment history and credit utilization usually have a much larger effect."
+  },
+  {
+    "question": "How often can I check my credit score?",
+    "answer": "You can check your own credit score as often as you want without hurting your credit. Regular monitoring can help you track progress, notice changes, and catch possible errors."
+  },
+  {
+    "question": "Does checking my credit report hurt my score?",
+    "answer": "No. Checking your own credit report is also considered a soft inquiry and does not lower your credit score."
+  }
+],
   "first-30-days-taking-control-of-your-money": [
     {
       "question": "What should I focus on first when taking control of my money?",
