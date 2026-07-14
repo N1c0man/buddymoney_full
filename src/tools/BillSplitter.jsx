@@ -14,7 +14,16 @@ export default function BillSplitter() {
   return (
     <section
       id="split"
-      className="rounded-3xl border border-emerald-100 bg-white/95 p-5 shadow-sm md:p-6 space-y-6"
+      className="
+        space-y-6
+        rounded-[28px]
+        border border-emerald-200
+        bg-white
+        p-5
+        shadow-[0_12px_35px_rgba(15,118,110,0.08)]
+        ring-1 ring-emerald-50
+        md:p-6
+      "
     >
       <div className="rounded-2xl border border-emerald-100 bg-gradient-to-br from-emerald-50 via-white to-sky-50 p-5">
         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
@@ -25,7 +34,7 @@ export default function BillSplitter() {
           Bill Splitter & Tip Calculator
         </h2>
 
-        <p className="mt-2 text-sm text-slate-600 max-w-2xl">
+        <p className="mt-2 max-w-2xl text-sm text-slate-600">
           Enter the bill, choose a tip, split the total, and see what each person
           owes.
         </p>
@@ -115,14 +124,17 @@ export default function BillSplitter() {
 
         <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <SummaryItem label="Bill" value={`$${bill.toFixed(2)}`} />
+
           <SummaryItem
             label={`Tip (${Number(tip) || 0}%)`}
             value={`$${tipAmount.toFixed(2)}`}
           />
+
           <SummaryItem
             label="Total with tip"
             value={`$${totalWithTip.toFixed(2)}`}
           />
+
           <SummaryItem label="Each pays" value={`$${each.toFixed(2)}`} />
         </div>
 
@@ -142,6 +154,7 @@ function SummaryItem({ label, value }) {
       <p className="text-xs font-semibold uppercase tracking-wide text-white/70">
         {label}
       </p>
+
       <p className="mt-1 text-lg font-extrabold tabular-nums">{value}</p>
     </div>
   );
