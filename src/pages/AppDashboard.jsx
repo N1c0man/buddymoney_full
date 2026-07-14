@@ -27,11 +27,11 @@ export default function AppDashboard() {
           />
 
           <p className="text-xs font-semibold uppercase tracking-wide text-sky-600">
-            BuddyMoney App
+            Welcome to the BuddyMoney App
           </p>
 
           <h1 className="text-2xl font-bold text-slate-900 mt-1">
-            Quick Money Tools
+            Money Made Simple
           </h1>
 
           <p className="text-sm text-slate-600 mt-2">
@@ -56,7 +56,7 @@ export default function AppDashboard() {
             <ToolLink
               to="/app/tools/monthly-payment-calculator"
               icon="🧮"
-              title="Monthly Payment Calculator"
+              title="Monthly Loan Payments"
               text="Estimate payments before you borrow."
               large
             />
@@ -87,7 +87,7 @@ export default function AppDashboard() {
             <ToolLink
               to="/app/tools/budget-tracker"
               icon="💰"
-              title="Budget Tracker"
+              title="Monthly Budget Planner"
               text="Track income and spending."
             />
 
@@ -101,7 +101,7 @@ export default function AppDashboard() {
             <ToolLink
               to="/app/tools/emergency-fund"
               icon="🛟"
-              title="Emergency Fund Calculator"
+              title="Emergency Fund Planner"
               text="Plan your cash cushion."
             />
 

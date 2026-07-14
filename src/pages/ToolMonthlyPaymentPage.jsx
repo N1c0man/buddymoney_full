@@ -29,7 +29,7 @@ export default function ToolMonthlyPaymentPage() {
               BuddyMoney Tool
             </p>
             <h1 className="mt-2 text-2xl font-extrabold text-slate-900">
-              Monthly Payment Calculator
+              Monthly Loan Payment Calculator
             </h1>
             <p className="mt-2 text-sm text-slate-600">
               Estimate a monthly payment before taking on a loan, financing a

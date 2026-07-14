@@ -73,7 +73,7 @@ export default function MonthlyPaymentCalculator() {
             </p>
 
             <h2 className="mt-2 text-2xl font-extrabold text-slate-900">
-              Monthly Payment Calculator
+              Monthly Loan Payments
             </h2>
 
             <p className="mt-2 text-sm text-slate-600 max-w-2xl">

@@ -36,7 +36,7 @@ export default function BudgetTracker() {
         </p>
 
         <h2 className="mt-2 text-2xl font-extrabold text-slate-900">
-          Budget Tracker
+          Monthly Budget Planner
         </h2>
 
         <p className="mt-2 text-sm text-slate-600 max-w-2xl">

@@ -110,7 +110,7 @@ export default function ToolEmergencyFundPage() {
                 </p>
 
                 <h1 className="mt-3 text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
-                  Emergency Fund Calculator
+                  Emergency Fund Planner
                 </h1>
 
                 <p className="mt-3 text-sm md:text-base text-slate-600 max-w-3xl">
@@ -143,12 +143,6 @@ export default function ToolEmergencyFundPage() {
               </div>
             </div>
           </section>
-
-          <ShareBar
-            variant="top"
-            label="Share this emergency fund calculator with a friend"
-            title="I’m using BuddyMoney’s emergency fund calculator to plan my savings goal."
-          />
 
           <EmergencyFund />
 

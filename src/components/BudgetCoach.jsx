@@ -307,12 +307,7 @@ export default function BudgetCoach() {
             </div>
           </motion.section>
 
-          <ShareBar
-            variant="top"
-            label="Share this friendly budgeting coach with someone who needs it"
-            title="I’m using BuddyMoney’s AI Budget Coach to get a calm, realistic monthly plan."
-          />
-
+          
           <motion.section
             className="rounded-3xl border border-emerald-100 bg-white/95 shadow-sm p-6 md:p-8 space-y-8"
             initial={{ opacity: 0, y: 30 }}

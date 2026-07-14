@@ -11,7 +11,7 @@ export default function ToolDebtPayoffPage() {
     setCanonical("/tools/debt-payoff");
   }, []);
 
-  const title = "Debt Payoff Calculator | Snowball vs Avalanche | BuddyMoney";
+  const title = "Debt Payoff Planner | Snowball vs Avalanche | BuddyMoney";
   const description =
     "Use BuddyMoney’s free debt payoff calculator to compare snowball vs avalanche strategies, estimate payoff time, and build a plan to get out of debt faster.";
   const pageUrl = "https://www.buddymoney.com/tools/debt-payoff";
@@ -108,7 +108,7 @@ export default function ToolDebtPayoffPage() {
                 </p>
 
                 <h1 className="mt-3 text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
-                  Debt Payoff Calculator
+                  Debt Payoff Planner
                 </h1>
 
                 <p className="mt-3 text-sm md:text-base text-slate-600 max-w-3xl">
@@ -142,11 +142,6 @@ export default function ToolDebtPayoffPage() {
             </div>
           </section>
 
-          <ShareBar
-            variant="top"
-            label="Share this debt payoff calculator with a friend"
-            title="I’m using BuddyMoney’s debt payoff calculator to plan getting out of debt."
-          />
 
           <DebtPayoff />
 

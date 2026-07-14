@@ -744,12 +744,6 @@ export default function MortgagePayoff() {
   </div>
 </section>
 
-          <ShareBar
-            variant="top"
-            label="Share this mortgage payoff calculator with a homeowner"
-            title="Mortgage Payoff Calculator – BuddyMoney"
-          />
-
           <section className="rounded-3xl border border-emerald-100 bg-white/95 shadow-sm px-4 py-6 md:px-8 md:py-8 space-y-8">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
               <div>

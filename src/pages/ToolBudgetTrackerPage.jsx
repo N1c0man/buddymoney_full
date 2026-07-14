@@ -109,7 +109,7 @@ export default function ToolBudgetTrackerPage() {
                 </p>
 
                 <h1 className="mt-3 text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
-                  Budget Calculator & Budget Tracker
+                  Monthly Budget Planner
                 </h1>
 
                 <p className="mt-3 text-sm md:text-base text-slate-600 max-w-3xl">
@@ -145,11 +145,6 @@ export default function ToolBudgetTrackerPage() {
             </div>
           </section>
 
-          <ShareBar
-            variant="top"
-            label="Share this budget tracker with a friend"
-            title="I’m using BuddyMoney’s budget tracker to organize my monthly money plan."
-          />
 
           <BudgetTracker />
 

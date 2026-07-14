@@ -288,7 +288,7 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
 
   const heroTitle = intentConfig
     ? intentConfig.title
-    : "Compare credit cards by score, fees, rewards, and goals.";
+    : "Find beginner-friendly credit card options that fit your goals.";
 
   const heroDescription = intentConfig
     ? intentConfig.description
@@ -420,12 +420,6 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
             </div>
           </section>
 
-          <ShareBar
-            variant="top"
-            label="Share this compare credit card tool with a buddy"
-            title="I’m using BuddyMoney’s credit card finder to explore card options."
-          />
-
           <section className="rounded-3xl border border-emerald-100 bg-white/95 shadow-sm px-4 py-6 md:px-6 md:py-8 space-y-4">
             <div>
               <h2 className="text-lg font-bold text-slate-900">
@@ -458,7 +452,7 @@ export default function CreditCardFinder({ showAppBottomNav = false }) {
           <section className="space-y-6 rounded-3xl border border-emerald-100 bg-white/95 shadow-sm px-4 py-6 md:px-6 md:py-8">
             <div className="rounded-3xl bg-gradient-to-br from-emerald-600 to-sky-600 p-5 text-white shadow-md space-y-3">
               <div className="flex justify-between text-sm">
-                <span className="text-white/75">Cards showing</span>
+                <span className="text-white/75">Your Card Options</span>
                 <span className="font-semibold">{filteredCards.length}</span>
               </div>
 
