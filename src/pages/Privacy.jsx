@@ -90,9 +90,11 @@ export default function Privacy() {
               calculators, emergency fund calculators, tip calculators, bill
               splitters, and credit card comparison tools. Information you enter
               into these tools is used to calculate estimates and improve your
-              experience. Unless a future feature clearly asks you to submit
-              information, tool inputs are generally processed in your browser or
-              app experience.
+              experience. BuddyMoney does not require users to create an account
+              to use most financial planning tools. Unless a future feature
+              clearly asks you to submit information, tool inputs are generally
+              processed locally within your browser or app experience and are not
+              transmitted to BuddyMoney's servers.
             </p>
           </section>
 
@@ -104,9 +106,11 @@ export default function Privacy() {
               BuddyMoney may use localStorage or similar on-device storage to
               save tool inputs, preferences, or calculator results on your own
               device. This helps the app remember your information between
-              sessions. LocalStorage data stays on your device unless you clear
-              your browser or app data. BuddyMoney does not use localStorage to
-              collect sensitive account credentials or banking passwords.
+              sessions on your own device. LocalStorage data stays on your device
+              unless you clear your browser or app data. BuddyMoney does not use
+              localStorage to collect, transmit, or store sensitive financial
+              account information, account credentials, banking passwords, or
+              other sensitive authentication information.
             </p>
           </section>
 
@@ -245,7 +249,7 @@ export default function Privacy() {
           </section>
 
           <p className="text-xs text-slate-500 mt-8">
-            Last updated: May 19, 2026
+            Last updated: July 15, 2026
           </p>
         </div>
       </div>
