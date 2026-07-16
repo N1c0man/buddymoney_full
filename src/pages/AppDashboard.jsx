@@ -10,32 +10,34 @@ export default function AppDashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-sky-50 via-white to-indigo-50 px-4 pt-6 pb-24">
       <Helmet>
-        <title>BuddyMoney App | Quick Money Tools</title>
+        <title>BuddyMoney App | Build Better Money Habits</title>
         <meta
           name="description"
-          content="Open quick BuddyMoney tools like the monthly payment calculator, bill splitter and tip calculator, budget coach, budget tracker, debt payoff planner, emergency fund calculator, and mortgage payoff calculator."
+          content="Build better money habits with simple tools for budgeting, debt payoff, saving goals, mortgage planning, and everyday financial decisions."
         />
         <link rel="canonical" href={canonicalUrl} />
       </Helmet>
 
       <main className="mx-auto max-w-md">
-        <section className="rounded-3xl bg-white/90 border border-slate-200 shadow-sm px-5 py-6 text-center mb-5">
+        <section className="rounded-3xl bg-white/90 border border-slate-200 shadow-sm px-5 py-5 text-center mb-5">
           <img
             src="/icons/BMlogo.png"
             alt="BuddyMoney"
-            className="h-16 mx-auto mb-3"
+            className="h-17 mx-auto mb-3"
           />
 
           <p className="text-xs font-semibold uppercase tracking-wide text-sky-600">
-            Welcome to the BuddyMoney App
+            Welcome to BuddyMoney
           </p>
 
-          <h1 className="text-2xl font-bold text-slate-900 mt-1">
-            Money Made Simple
+          <h1 className="text-3xl font-bold text-slate-900 mt-1 leading-tight">
+            Build Better
+            <br />
+            Money Habits
           </h1>
 
-          <p className="text-sm text-slate-600 mt-2">
-            Simple calculators to help with everyday money decisions.
+          <p className="text-sm text-slate-600 mt-3">
+            Budget smarter. Save more. Pay off debt faster.
           </p>
         </section>
 
@@ -49,14 +51,14 @@ export default function AppDashboard() {
               to="/app/tools/budget-coach"
               icon="🦉"
               title="Budget Coach"
-              text="Get a simple money plan."
+              text="Create a simple plan for your money."
               large
             />
 
             <ToolLink
               to="/app/tools/monthly-payment-calculator"
               icon="🧮"
-              title="Monthly Loan Payments"
+              title="Monthly Payment Calculator"
               text="Estimate payments before you borrow."
               large
             />
@@ -73,7 +75,7 @@ export default function AppDashboard() {
               to="/app/tools/bill-splitter"
               icon="🧾"
               title="Bill Splitter & Tip Calculator"
-              text="Split bills and calculate tips fast."
+              text="Split bills and calculate tips in seconds."
             />
           </div>
         </section>
@@ -88,41 +90,42 @@ export default function AppDashboard() {
               to="/app/tools/budget-tracker"
               icon="💰"
               title="Monthly Budget Planner"
-              text="Track income and spending."
+              text="Track income, expenses, and spending habits."
             />
 
             <ToolLink
               to="/app/tools/debt-payoff"
               icon="🎯"
               title="Debt Payoff Planner"
-              text="See your payoff path."
+              text="Create your debt payoff plan."
             />
 
             <ToolLink
               to="/app/tools/emergency-fund"
               icon="🛟"
               title="Emergency Fund Planner"
-              text="Plan your cash cushion."
+              text="Build your financial safety net."
             />
 
             <ToolLink
               to="/app/tools/mortgage-payoff"
               icon="🏠"
-              title="Mortgage Payoff"
-              text="Estimate savings from extra payments."
+              title="Mortgage Payoff Calculator"
+              text="See how extra payments can save thousands."
             />
 
             <ToolLink
               to="/app/tools/credit-cards"
               icon="💳"
               title="Credit Card Tools"
-              text="Explore card guides and options."
+              text="Learn about cards, rewards, and credit building."
             />
           </div>
         </section>
 
-        <p className="text-center text-xs text-slate-500 pb-6">
-          BuddyMoney helps you make smarter money moves, one tool at a time.
+        <p className="text-center text-xs text-slate-500 pb-6 leading-relaxed">
+          Build better money habits one step at a time with simple,
+          beginner-friendly financial tools.
         </p>
       </main>
 
@@ -170,9 +173,7 @@ function ToolLink({ to, icon, title, text, large = false }) {
           <p className="text-sm text-slate-600">{text}</p>
         </div>
 
-        <span className="text-slate-400 group-hover:text-sky-600">
-          →
-        </span>
+        <span className="text-slate-400 group-hover:text-sky-600">→</span>
       </div>
     </Link>
   );
